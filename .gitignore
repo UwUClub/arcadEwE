@@ -1,0 +1,7 @@
+.idea
+.o
+.gcno
+.gcda
+.gcov
+cmake-build-debug
+cmake-build-release
