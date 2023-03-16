@@ -2,8 +2,8 @@ name: Syncing two repo
 on: push
 
 env:
-  SOURCE_REPO: "https://github.com/UwUClub/arcadEwE" #Insert source url of the git source repo
-  DEST_REPO: "https://github.com/EpitechPromo2026/B-OOP-400-TLS-4-1-arcade-valentin.gegoux" #Insert Destination url of the git dest repo
+  SOURCE_REPO: "git@github.com:UwUClub/arcadEwE.git" #Insert source url of the git source repo
+  DEST_REPO: "git@github.com:EpitechPromo2026/B-OOP-400-TLS-4-1-arcade-valentin.gegoux.git" #Insert Destination url of the git dest repo
 
 jobs:
   check_repo:
