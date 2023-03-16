@@ -1,0 +1,3 @@
+[submodule "sharedArchitecture"]
+	path = sharedArchitecture
+	url = https://github.com/ARCADE-TEK-2026/archi_arcade

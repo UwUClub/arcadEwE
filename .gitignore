@@ -5,3 +5,11 @@
 .gcov
 cmake-build-debug
 cmake-build-release
+.vscode
+build/
+arcade
+CMakeFiles/
+cmake_install.cmake
+CMakeCache.txt
+Makefile
+*.so
