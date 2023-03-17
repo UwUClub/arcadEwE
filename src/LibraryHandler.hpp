@@ -16,12 +16,9 @@ namespace Arcade::Core
     class LibraryHandler
     {
         public:
-            static std::unique_ptr<Arcade::Game::IGame *> loadGameLibrary(const std::string &path);
-            static std::unique_ptr<Arcade::Graph::IGraph *> loadGraphicLibrary(const std::string &path);
+            static void loadLibrary(const std::string &path, ISystemHandler *systemHandler);
 
         private:
-            static std::unique_ptr<void *> loadSymbol(void *handle, const std::string &symbol);
-
             class LibraryHandlerException : public std::exception
             {
                 public:

@@ -11,8 +11,6 @@ set(EXEC_SRC
         sharedArchitecture/include/IGraph.hpp
         sharedArchitecture/include/ICore.hpp
         src/main.cpp
-        src/Core.cpp
-        src/Core.hpp
         src/LibraryHandler.cpp
         src/LibraryHandler.hpp
         )
