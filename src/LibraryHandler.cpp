@@ -8,7 +8,7 @@
 
 namespace Arcade::Core
 {
-    void LibraryHandler::loadLibrary(const std::string &path, ECS::ISystemManager *systemManager)
+    void LibraryHandler::loadLibrary(const std::string &path, std::unique_ptr<ECS::ISystemManager> &systemManager)
     {
         void *lib = nullptr;
         void *sym = nullptr;
@@ -24,7 +24,7 @@ namespace Arcade::Core
             throw LibraryHandlerException("Cannot load symbol: " + std::string(dlerror()));
         }
         func = reinterpret_cast<void (*)(ECS::ISystemManager *)>(sym);
-        func(systemManager);
+        func(systemManager.get());
         dlclose(lib);
     }
 }

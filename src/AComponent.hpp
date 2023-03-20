@@ -10,10 +10,10 @@
 namespace Arcade::ECS {
     class AComponent : public IComponent {
         public:
-            AComponent(CompType type) : _type(type) {}
+            AComponent(CompType type);
             ~AComponent() override = default;
 
-            [[nodiscard]] Arcade::ECS::CompType getType() const override { return _type; }
+            [[nodiscard]] Arcade::ECS::CompType getType() const override;
 
         protected:
             CompType _type;

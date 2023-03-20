@@ -28,7 +28,7 @@ set(EXEC_SRC
         src/LibraryHandler.hpp
         src/AComponent.cpp
         src/AComponent.hpp
-        )
+        src/SystemManager.cpp src/SystemManager.hpp src/Entity.cpp src/Entity.hpp src/Core.cpp src/Core.hpp src/EventManager.cpp src/EventManager.hpp src/EntityManager.cpp src/EntityManager.hpp)
 set(EXECUTABLE arcade)
 include_directories(sharedArchitecture/include)
 

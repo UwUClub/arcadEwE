@@ -15,7 +15,7 @@ namespace Arcade::Core
     class LibraryHandler
     {
         public:
-            static void loadLibrary(const std::string &path, ECS::ISystemManager *systemManager);
+            static void loadLibrary(const std::string &path, std::unique_ptr<ECS::ISystemManager> &systemManager);
 
         private:
             class LibraryHandlerException : public std::exception
