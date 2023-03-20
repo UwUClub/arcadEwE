@@ -8,15 +8,14 @@
 #include <string>
 #include <memory>
 #include <utility>
-#include "IGame.hpp"
-#include "IGraph.hpp"
+#include "ISystemManager.hpp"
 
 namespace Arcade::Core
 {
     class LibraryHandler
     {
         public:
-            static void loadLibrary(const std::string &path, ISystemHandler *systemHandler);
+            static void loadLibrary(const std::string &path, ECS::ISystemManager *systemManager);
 
         private:
             class LibraryHandlerException : public std::exception

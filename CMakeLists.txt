@@ -5,14 +5,29 @@ set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fno-gnu-unique -fPIC")
 
+
+set(INCLUDES
+        sharedArchitecture/include/ArcadeStruct.hpp
+        sharedArchitecture/include/GraphStruct.hpp
+        sharedArchitecture/include/IComponent.hpp
+        sharedArchitecture/include/ICore.hpp
+        sharedArchitecture/include/IEntity.hpp
+        sharedArchitecture/include/IEntityManager.hpp
+        sharedArchitecture/include/IEventManager.hpp
+        sharedArchitecture/include/IMusic.hpp
+        sharedArchitecture/include/ISprite.hpp
+        sharedArchitecture/include/ISystem.hpp
+        sharedArchitecture/include/ISystemManager.hpp
+        sharedArchitecture/include/IText.hpp
+        )
+
 # Add main.cpp file of project root directory as source file
 set(EXEC_SRC
-        sharedArchitecture/include/IGame.hpp
-        sharedArchitecture/include/IGraph.hpp
-        sharedArchitecture/include/ICore.hpp
         src/main.cpp
         src/LibraryHandler.cpp
         src/LibraryHandler.hpp
+        src/AComponent.cpp
+        src/AComponent.hpp
         )
 set(EXECUTABLE arcade)
 include_directories(sharedArchitecture/include)
