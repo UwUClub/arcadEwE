@@ -15,7 +15,7 @@ namespace Arcade::ECS {
             SystemManager() = default;
             ~SystemManager() override = default;
 
-            virtual void addSystem(
+            void addSystem(
                 const std::string &name, Arcade::ECS::ISystem *system) override;
             void removeSystem(const std::string &name) override;
             void update(std::size_t deltaTime,

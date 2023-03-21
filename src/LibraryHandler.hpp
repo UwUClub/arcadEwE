@@ -9,13 +9,21 @@
 #include <memory>
 #include <utility>
 #include "ISystemManager.hpp"
+#include "Api.hpp"
 
 namespace Arcade::Core
 {
+    using libInfo = std::pair<LibType, std::string>;
+    using libList = std::vector<libInfo>;
+
     class LibraryHandler
     {
         public:
-            static void loadLibrary(const std::string &path, std::unique_ptr<ECS::ISystemManager> &systemManager);
+            static void loadGameLibrary(const std::string &path);
+            static void loadDisplayLibrary(const std::string &path);
+            static void *loadLibrary(const std::string &path);
+            static libList &getLibraries();
+            [[nodiscard]] static libInfo getLibType(const std::string &path);
 
         private:
             class LibraryHandlerException : public std::exception
