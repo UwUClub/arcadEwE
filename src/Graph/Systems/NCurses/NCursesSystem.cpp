@@ -8,7 +8,7 @@
 #include "IGameModule.hpp"
 #include "Scene.hpp"
 #include "ArcadeStruct.hpp"
-#include "AComponent.hpp"
+#include "Component.hpp"
 #include "ISprite.hpp"
 
 Arcade::Graph::NCursesSystem::NCursesSystem()
