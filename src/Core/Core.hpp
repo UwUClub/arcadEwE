@@ -6,22 +6,27 @@
 #define ARCADE_CORE_HPP
 
 #include "ICore.hpp"
-#include "GameModule.hpp"
-#include "DisplayModule.hpp"
+#include "IEventManager.hpp"
+#include "IGameModule.hpp"
+#include "IDisplayModule.hpp"
 #include "Api.hpp"
 
-namespace Arcade::Core {
-    class Core : public ICore {
+namespace Arcade::Core
+{
+    class Core : public ICore
+    {
         public:
-            Core();
-            ~Core() override = default;
+        Core();
+        ~Core() override = default;
 
-            void run();
+        void run();
 
-            private:
-                std::unique_ptr<GameModule> _gameModule;
-                std::unique_ptr<DisplayModule> _displayModule;
+        private:
+        void handleCoreEvents();
+        std::unique_ptr<IGameModule> _gameModule;
+        std::unique_ptr<IDisplayModule> _displayModule;
+        std::unique_ptr<ECS::IEventManager> _eventManager;
     };
-}
+} // namespace Arcade::Core
 
 #endif // ARCADE_CORE_HPP
