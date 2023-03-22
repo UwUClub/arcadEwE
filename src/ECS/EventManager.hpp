@@ -25,7 +25,7 @@ namespace Arcade::ECS {
             void setMousePosition(const Arcade::Vector2f &mousePosition) override;
 
         protected:
-            std::map<std::string, std::vector<std::optional<std::shared_ptr<IComponent>>>> _events;
+            std::map<std::string, std::optional<std::vector<std::optional<std::shared_ptr<IComponent>>>>> _events;
             Arcade::Vector2f _mousePosition;
     };
 }
