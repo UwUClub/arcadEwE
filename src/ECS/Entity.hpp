@@ -15,15 +15,15 @@ namespace Arcade::ECS {
             ~Entity() override = default;
 
             [[nodiscard]] std::string getId() const override;
-            const std::map<CompType, std::vector<std::unique_ptr<IComponent>>> &getComponents() override;
-            const std::vector<std::unique_ptr<IComponent>> &getComponents(CompType type) override;
-            void addComponent(std::unique_ptr<IComponent> component) override;
-            void removeComponent(std::string id) override;
+            const std::map<CompType, std::vector<std::shared_ptr<IComponent>>> &getComponents() override;
+            const std::vector<std::shared_ptr<IComponent>> &getComponents(CompType type) override;
+            void addComponent(std::shared_ptr<IComponent> component) override;
+            void removeComponent(const std::string &id) override;
             void removeComponents(CompType type) override;
 
         protected:
             const std::string _id;
-            std::map<Arcade::ECS::CompType, std::vector<std::unique_ptr<Arcade::ECS::IComponent>>> _components;
+            std::map<Arcade::ECS::CompType, std::vector<std::shared_ptr<Arcade::ECS::IComponent>>> _components;
     };
 }
 
