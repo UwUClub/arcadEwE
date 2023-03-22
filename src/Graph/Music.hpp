@@ -12,10 +12,11 @@ namespace Arcade::Graph
     class Music : public IMusic
     {
         public:
-        Music(std::string path, std::string id);
+        Music(const std::string &path, const std::string &id);
         ~Music() override = default;
 
         [[nodiscard]] const std::string &getPath() const override;
+        void setPath(const std::string &path) override;
         [[nodiscard]] const std::string &getId() const override;
         [[nodiscard]] bool getLoop() const override;
         void setLoop(bool loop) override;
@@ -26,7 +27,7 @@ namespace Arcade::Graph
 
         protected:
         std::string _path;
-        std::string _id;
+        const std::string _id;
         bool _loop;
         bool _isPlaying;
         float _volume;

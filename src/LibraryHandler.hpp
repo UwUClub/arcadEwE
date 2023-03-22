@@ -19,8 +19,8 @@ namespace Arcade::Core
     class LibraryHandler
     {
         public:
-            static void loadGameLibrary(const std::string &path);
-            static void loadDisplayLibrary(const std::string &path);
+            static std::unique_ptr<Arcade::Game::ISceneManager> loadGameLibrary(const std::string &path);
+            static std::unique_ptr<Arcade::ECS::ISystemManager> loadDisplayLibrary(const std::string &path);
             static void *loadLibrary(const std::string &path);
             static libList &getLibraries();
             [[nodiscard]] static libInfo getLibType(const std::string &path);

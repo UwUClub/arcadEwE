@@ -4,14 +4,43 @@
 
 #include "GameModule.hpp"
 
-Arcade::Core::GameModule::GameModule(libList &libList)
+Arcade::Core::GameModule::GameModule(const libList &libList)
     : _libList(libList)
+    , _currentGame(libList.front())
 {
 }
 
-bool Arcade::Core::GameModule::changeGame(const std::string &gameName)
+void Arcade::Core::GameModule::changeGame(const std::string &gameName)
 {
-    return false;
+    std::unique_ptr<Arcade::Game::ISceneManager> newSceneManager = nullptr;
+
+    for (auto &lib : _libList) {
+        if (lib.second == gameName) {
+            newSceneManager
+                = LibraryHandler::loadGameLibrary("./lib/" + lib.second);
+            _currentGame = lib;
+            _sceneManager = std::move(newSceneManager);
+            break;
+        }
+    }
+}
+
+void Arcade::Core::GameModule::changeGame()
+{
+    std::unique_ptr<Arcade::Game::ISceneManager> newSceneManager = nullptr;
+    auto it = _libList.begin();
+
+    for (; it != _libList.end(); ++it) {
+        if (it->second == _currentGame.second) {
+            break;
+        }
+    }
+    if (it == _libList.end()) {
+        it = _libList.begin();
+    }
+    newSceneManager = LibraryHandler::loadGameLibrary("./lib/" + it->second);
+    _currentGame = *it;
+    _sceneManager = std::move(newSceneManager);
 }
 
 Arcade::Game::ISceneManager &Arcade::Core::GameModule::getSceneManager()

@@ -5,7 +5,7 @@
 #include <utility>
 #include "Entity.hpp"
 
-Arcade::ECS::Entity::Entity(std::string id) : _id(std::move(id))
+Arcade::ECS::Entity::Entity(const std::string &id) : _id(id)
 {
 }
 

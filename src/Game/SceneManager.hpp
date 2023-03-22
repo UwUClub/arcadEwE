@@ -20,8 +20,6 @@ namespace Arcade::Game
         std::unique_ptr<IScene> &getCurrentScene() override;
         void changeScene(const std::string &sceneName) override;
 
-
-
         protected:
         std::map<std::string, std::unique_ptr<IScene>> _scenes;
         std::string _currentSceneName;

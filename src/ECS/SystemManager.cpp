@@ -18,9 +18,12 @@ void Arcade::ECS::SystemManager::removeSystem(const std::string &name)
     _systems.erase(name);
 }
 
-void Arcade::ECS::SystemManager::update(std::size_t deltaTime, Arcade::ECS::IEntityManager &entityManager, Arcade::ECS::IEventManager &eventManager)
+void Arcade::ECS::SystemManager::update(std::size_t deltaTime,
+    Arcade::ECS::IEventManager &eventManager,
+    Arcade::Core::IDisplayModule &displayModule,
+    Arcade::Core::IGameModule &gameModule)
 {
     for (auto &system : _systems) {
-        system.second->run(deltaTime, entityManager, eventManager);
+        system.second->run(deltaTime, eventManager, displayModule, gameModule);
     }
 }

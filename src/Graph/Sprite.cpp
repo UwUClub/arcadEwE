@@ -5,14 +5,15 @@
 #include <utility>
 #include "Sprite.hpp"
 
-Arcade::Graph::Sprite::Sprite(std::string path, std::string id) :
-    _path(std::move(path)),
-    _id(std::move(id)),
-    _pos({0, 0}),
-    _size({0, 0}),
-    _color({255, 255, 255, 255}),
-    _rect({0, 0, 0, 0}),
-    _scale(1.0f)
+Arcade::Graph::Sprite::Sprite(const std::string &path, const std::string &id) :
+    _path(path),
+    _id(id),
+    _cliData({}),
+    _pos({ 0, 0, 0 }),
+    _size({ 0, 0, 0 }),
+    _color({ 255, 255, 255, 255 }),
+    _rect({ 0, 0, 0, 0 }),
+    _scale(1)
 {
 }
 
@@ -51,7 +52,7 @@ const Arcade::Graph::Color &Arcade::Graph::Sprite::getColor() const
     return _color;
 }
 
-void Arcade::Graph::Sprite::setColor(Arcade::Graph::Color color)
+void Arcade::Graph::Sprite::setColor(const Arcade::Graph::Color &color)
 {
     _color = color;
 }
@@ -61,12 +62,12 @@ const Arcade::Graph::Rect &Arcade::Graph::Sprite::getRect() const
     return _rect;
 }
 
-void Arcade::Graph::Sprite::setRect(Arcade::Graph::Rect rect)
+void Arcade::Graph::Sprite::setRect(const Arcade::Graph::Rect &rect)
 {
     _rect = rect;
 }
 
-const float &Arcade::Graph::Sprite::getScale() const
+float Arcade::Graph::Sprite::getScale() const
 {
     return _scale;
 }
@@ -76,7 +77,17 @@ void Arcade::Graph::Sprite::setScale(float scale)
     _scale = scale;
 }
 
-const Arcade::Graph::TTYData &Arcade::Graph::Sprite::getNcurseData() const
+const Arcade::Graph::TTYData &Arcade::Graph::Sprite::getTTYData() const
 {
-    return _ncurseData;
+    return _cliData;
+}
+
+void Arcade::Graph::Sprite::setTTYData(const Arcade::Graph::TTYData &data)
+{
+    _cliData = data;
+}
+
+void Arcade::Graph::Sprite::setPath(const std::string &path)
+{
+    _path = path;
 }

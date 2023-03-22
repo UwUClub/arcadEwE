@@ -15,17 +15,18 @@ namespace Arcade::Core
     class DisplayModule : public IDisplayModule
     {
         public:
-            DisplayModule(libList &libList);
+            DisplayModule(const libList &libList);
             virtual ~DisplayModule() = default;
 
             ECS::ISystemManager &getSystemManager() override;
 
-            bool changeGaphicLib(const std::string &libGraphicName) override;
-            bool changeGaphicLib() override;
+            void changeGraphicLib(const std::string &libGraphicName) override;
+            void changeGraphicLib() override;
 
             private:
             std::unique_ptr<ECS::ISystemManager> _systemManager;
             libList _libList;
+            libInfo _currentGraphicLib;
     };
 }
 

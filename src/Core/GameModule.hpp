@@ -13,14 +13,16 @@ namespace Arcade::Core
     class GameModule : public IGameModule
     {
         public:
-            GameModule(libList &libList);
+            GameModule(const libList &libList);
             virtual ~GameModule() = default;
 
             Arcade::Game::ISceneManager &getSceneManager() override;
-            bool changeGame(const std::string &gameName) override;
+            void changeGame(const std::string &gameName) override;
+            void changeGame() override;
 
             private:
             libList _libList;
+            libInfo _currentGame;
             std::unique_ptr<Arcade::Game::ISceneManager> _sceneManager;
     };
 }

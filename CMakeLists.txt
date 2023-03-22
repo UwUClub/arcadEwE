@@ -54,7 +54,10 @@ set(EXEC_SRC
         src/Graph/Music.cpp
         src/Graph/Music.hpp
         src/Graph/Sprite.cpp
-        src/Graph/Sprite.hpp src/Graph/Text.cpp src/Graph/Text.hpp)
+        src/Graph/Sprite.hpp
+        src/Graph/Text.cpp
+        src/Graph/Text.hpp
+        )
 
 set(EXECUTABLE arcade)
 include_directories(src)

@@ -3,20 +3,45 @@
 //
 
 #include "DisplayModule.hpp"
+#include "LibraryHandler.hpp"
 
-Arcade::Core::DisplayModule::DisplayModule(libList &libList)
+Arcade::Core::DisplayModule::DisplayModule(const libList &libList)
     : _libList(libList)
+    , _currentGraphicLib(libList.front())
 {
 }
 
-bool Arcade::Core::DisplayModule::changeGaphicLib(const std::string &libGraphicName)
+void Arcade::Core::DisplayModule::changeGraphicLib(
+    const std::string &libGraphicName)
 {
-    return false;
+    std::unique_ptr<ECS::ISystemManager> newSystemManager = nullptr;
+
+    for (auto &lib : _libList) {
+        if (lib.second == libGraphicName) {
+            newSystemManager = LibraryHandler::loadDisplayLibrary("./lib/" + lib.second);
+            _currentGraphicLib = lib;
+            _systemManager = std::move(newSystemManager);
+            break;
+        }
+    }
 }
 
-bool Arcade::Core::DisplayModule::changeGaphicLib()
+void Arcade::Core::DisplayModule::changeGraphicLib()
 {
-    return false;
+        std::unique_ptr<ECS::ISystemManager> newSystemManager = nullptr;
+        auto it = _libList.begin();
+
+        for (; it != _libList.end(); ++it) {
+            if (it->second == _currentGraphicLib.second) {
+                break;
+            }
+        }
+        if (it == _libList.end()) {
+                it = _libList.begin();
+        }
+        newSystemManager = LibraryHandler::loadDisplayLibrary("./lib/" + it->second);
+        _currentGraphicLib = *it;
+        _systemManager = std::move(newSystemManager);
 }
 
 Arcade::ECS::ISystemManager &Arcade::Core::DisplayModule::getSystemManager()

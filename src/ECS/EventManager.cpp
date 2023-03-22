@@ -13,24 +13,6 @@ bool Arcade::ECS::EventManager::eventsIsEmpty() const
     return _events.empty();
 }
 
-bool Arcade::ECS::EventManager::isEventInQueue(const std::string &eventName) const
-{
-    return std::find(_events.begin(), _events.end(), eventName) != _events.end();
-}
-
-void Arcade::ECS::EventManager::addEvent(const std::string &eventName)
-{
-    _events.push_back(eventName);
-}
-
-const std::string &Arcade::ECS::EventManager::popEvent()
-{
-    const std::string &event = _events.front();
-
-    _events.erase(_events.begin());
-    return event;
-}
-
 void Arcade::ECS::EventManager::clearEvents()
 {
     _events.clear();
@@ -44,4 +26,20 @@ const Arcade::Vector2f &Arcade::ECS::EventManager::getMousePosition() const
 void Arcade::ECS::EventManager::setMousePosition(const Arcade::Vector2f &mousePosition)
 {
     _mousePosition = mousePosition;
+}
+
+std::pair<bool, std::vector<std::optional<std::shared_ptr<Arcade::ECS::IComponent>>>>
+Arcade::ECS::EventManager::isEventTriggered(const std::string &event) const
+{
+    auto it = _events.find(event);
+
+    if (it == _events.end())
+        return {false, {}};
+    return {true, it->second};
+}
+
+void Arcade::ECS::EventManager::addEvent(const std::string &event,
+    std::optional<std::shared_ptr<IComponent>> component)
+{
+    _events[event].push_back(component);
 }

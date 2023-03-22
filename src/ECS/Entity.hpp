@@ -11,7 +11,7 @@
 namespace Arcade::ECS {
     class Entity : public IEntity {
         public:
-            explicit Entity(std::string id);
+            explicit Entity(const std::string &id);
             ~Entity() override = default;
 
             [[nodiscard]] std::string getId() const override;
@@ -22,7 +22,7 @@ namespace Arcade::ECS {
             void removeComponents(CompType type) override;
 
         protected:
-            std::string _id;
+            const std::string _id;
             std::map<Arcade::ECS::CompType, std::vector<std::unique_ptr<Arcade::ECS::IComponent>>> _components;
     };
 }

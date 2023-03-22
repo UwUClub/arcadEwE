@@ -19,8 +19,9 @@ namespace Arcade::ECS {
                 const std::string &name, Arcade::ECS::ISystem *system) override;
             void removeSystem(const std::string &name) override;
             void update(std::size_t deltaTime,
-                    Arcade::ECS::IEntityManager &entityManager,
-                    Arcade::ECS::IEventManager &eventManager) override;
+                Arcade::ECS::IEventManager &eventManager,
+                Arcade::Core::IDisplayModule &displayModule,
+                Arcade::Core::IGameModule &gameModule) override;
 
         private:
             std::map<std::string, std::unique_ptr<ISystem>> _systems;

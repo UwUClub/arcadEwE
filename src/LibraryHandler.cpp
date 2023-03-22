@@ -9,24 +9,42 @@
 
 namespace Arcade::Core
 {
-    void LibraryHandler::loadGameLibrary(const std::string &path)
+    std::unique_ptr<Arcade::Game::ISceneManager>
+    LibraryHandler::loadGameLibrary(const std::string &path)
     {
         void *lib = nullptr;
         void *sym = nullptr;
-        std::function<void(ECS::ISystemManager *)> func = nullptr;
+        std::function<std::unique_ptr<Arcade::Game::ISceneManager>()> func = nullptr;
 
-        dlerror();
-        lib = dlopen(path.c_str(), RTLD_LAZY);
-        if (lib == nullptr) {
-            throw LibraryHandlerException("Cannot load library: " + std::string(dlerror()));
-        }
+        lib = LibraryHandler::loadLibrary(path);
         sym = dlsym(lib, "initLib");
         if (sym == nullptr) {
-            throw LibraryHandlerException("Cannot load symbol: " + std::string(dlerror()));
+            throw LibraryHandlerException(
+                "Cannot load symbol: " + std::string(dlerror()));
         }
-//        func = reinterpret_cast<void (*)(ECS::ISystemManager *)>(sym);
-//        func(systemManager.get());
+        func = reinterpret_cast<
+            std::unique_ptr<Arcade::Game::ISceneManager> (*)()>(sym);
         dlclose(lib);
+        return func();
+    }
+
+    std::unique_ptr<Arcade::ECS::ISystemManager>
+    LibraryHandler::loadDisplayLibrary(const std::string &path)
+    {
+        void *lib = nullptr;
+        void *sym = nullptr;
+        std::function<std::unique_ptr<Arcade::ECS::ISystemManager>()> func = nullptr;
+
+        lib = LibraryHandler::loadLibrary(path);
+        sym = dlsym(lib, "initLib");
+        if (sym == nullptr) {
+            throw LibraryHandlerException(
+                "Cannot load symbol: " + std::string(dlerror()));
+        }
+        func = reinterpret_cast<
+            std::unique_ptr<Arcade::ECS::ISystemManager> (*)()>(sym);
+        dlclose(lib);
+        return func();
     }
 
     void *LibraryHandler::loadLibrary(const std::string &path)
@@ -36,7 +54,8 @@ namespace Arcade::Core
         dlerror();
         lib = dlopen(path.c_str(), RTLD_LAZY);
         if (lib == nullptr) {
-            throw LibraryHandlerException("Cannot load library: " + std::string(dlerror()));
+            throw LibraryHandlerException(
+                "Cannot load library: " + std::string(dlerror()));
         }
         return lib;
     }
@@ -52,14 +71,16 @@ namespace Arcade::Core
         dlerror();
         sym = dlsym(lib, "getType");
         if (sym == nullptr) {
-            throw LibraryHandlerException("Cannot load symbol: " + std::string(dlerror()));
+            throw LibraryHandlerException(
+                "Cannot load symbol: " + std::string(dlerror()));
         }
         typeFunc = reinterpret_cast<LibType (*)()>(sym);
         sym = dlsym(lib, "getName");
         if (sym == nullptr) {
-            throw LibraryHandlerException("Cannot load symbol: " + std::string(dlerror()));
+            throw LibraryHandlerException(
+                "Cannot load symbol: " + std::string(dlerror()));
         }
-        nameFunc = reinterpret_cast<const char *(*)()>(sym);
+        nameFunc = reinterpret_cast<const char *(*) ()>(sym);
         type.first = typeFunc();
         type.second = nameFunc();
         dlclose(lib);
@@ -81,4 +102,4 @@ namespace Arcade::Core
                 libs.push_back(getLibType(std::string("./lib/") + name));
         }
     }
-}
+} // namespace Arcade::Core

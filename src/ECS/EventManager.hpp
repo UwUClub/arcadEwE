@@ -5,6 +5,7 @@
 #ifndef ARCADE_EVENTMANAGER_HPP
 #define ARCADE_EVENTMANAGER_HPP
 
+#include <map>
 #include "IEventManager.hpp"
 
 namespace Arcade::ECS {
@@ -14,16 +15,18 @@ namespace Arcade::ECS {
             ~EventManager() override = default;
 
             [[nodiscard]] bool eventsIsEmpty() const override;
-            [[nodiscard]] bool isEventInQueue(const std::string &eventName) const override;
-            void addEvent(const std::string &eventName) override;
-            const std::string &popEvent() override;
+            [[nodiscard]] std::pair<bool,
+                std::vector<std::optional<std::shared_ptr<IComponent>>>>
+            isEventTriggered(const std::string &event) const override;
+            void addEvent(const std::string &event,
+                std::optional<std::shared_ptr<IComponent>> component) override;
             void clearEvents() override;
             [[nodiscard]] const Arcade::Vector2f &getMousePosition() const override;
             void setMousePosition(const Arcade::Vector2f &mousePosition) override;
 
         protected:
-            std::vector<std::string> _events;
-            Arcade::Vector2f _mousePosition{};
+            std::map<std::string, std::vector<std::optional<std::shared_ptr<IComponent>>>> _events;
+            Arcade::Vector2f _mousePosition;
     };
 }
 

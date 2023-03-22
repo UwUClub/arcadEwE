@@ -6,8 +6,8 @@
 
 #include <utility>
 
-Arcade::ECS::AComponent::AComponent(CompType type, std::string id) : _type(type),
-    _id(std::move(id))
+Arcade::ECS::AComponent::AComponent(CompType type, const std::string &id) : _type(type),
+    _id(id)
 {
 }
 

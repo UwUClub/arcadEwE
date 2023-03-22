@@ -12,15 +12,15 @@ namespace Arcade::ECS {
 
     class AComponent : public IComponent {
         public:
-            AComponent(CompType type, std::string id);
+            AComponent(CompType type, const std::string &id);
             ~AComponent() override = default;
 
-            [[nodiscard]] Arcade::ECS::CompType getType() const override;
+            [[nodiscard]] CompType getType() const override;
             [[nodiscard]] const std::string &getId() const override;
 
         protected:
             CompType _type;
-            std::string _id;
+            const std::string _id;
     };
 }
 

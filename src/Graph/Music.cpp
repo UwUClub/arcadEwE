@@ -6,9 +6,9 @@
 
 #include <utility>
 
-Arcade::Graph::Music::Music(std::string path, std::string id) :
-    _path(std::move(path)),
-    _id(std::move(id)),
+Arcade::Graph::Music::Music(const std::string &path, const std::string &id) :
+    _path(path),
+    _id(id),
     _loop(false),
     _isPlaying(false),
     _volume(100)
@@ -53,4 +53,9 @@ float Arcade::Graph::Music::getVolume() const
 void Arcade::Graph::Music::setVolume(float volume)
 {
     _volume = volume;
+}
+
+void Arcade::Graph::Music::setPath(const std::string &path)
+{
+    _path = path;
 }
