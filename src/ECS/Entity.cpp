@@ -14,18 +14,18 @@ std::string Arcade::ECS::Entity::getId() const
     return _id;
 }
 
-void Arcade::ECS::Entity::addComponent(std::unique_ptr<Arcade::ECS::IComponent> component)
+void Arcade::ECS::Entity::addComponent(std::shared_ptr<Arcade::ECS::IComponent> component)
 {
     _components[component->getType()].push_back(std::move(component));
 }
 
-const std::map<Arcade::ECS::CompType, std::vector<std::unique_ptr<Arcade::ECS::IComponent>>> &
+const std::map<Arcade::ECS::CompType, std::vector<std::shared_ptr<Arcade::ECS::IComponent>>> &
 Arcade::ECS::Entity::getComponents()
 {
     return _components;
 }
 
-const std::vector<std::unique_ptr<Arcade::ECS::IComponent>> &Arcade::ECS::Entity::getComponents(Arcade::ECS::CompType type)
+const std::vector<std::shared_ptr<Arcade::ECS::IComponent>> &Arcade::ECS::Entity::getComponents(Arcade::ECS::CompType type)
 {
     return _components[type];
 }

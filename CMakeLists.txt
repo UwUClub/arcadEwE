@@ -3,7 +3,7 @@ set(PROJECT_NAME arcade)
 project(${PROJECT_NAME})               # Create project "arcade"
 set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fno-gnu-unique -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fno-gnu-unique -fPIC -lncurses")
 
 
 set(INCLUDES
@@ -57,6 +57,8 @@ set(EXEC_SRC
         src/Graph/Sprite.hpp
         src/Graph/Text.cpp
         src/Graph/Text.hpp
+        src/Graph/Systems/NCurses/NcursesSystem.cpp
+        src/Graph/Systems/NCurses/NcursesSystem.hpp
         )
 
 set(EXECUTABLE arcade)
