@@ -28,7 +28,7 @@ void Arcade::ECS::EventManager::setMousePosition(const Arcade::Vector2f &mousePo
     _mousePosition = mousePosition;
 }
 
-std::pair<bool, std::vector<std::optional<std::shared_ptr<Arcade::ECS::IComponent>>>>
+std::pair<bool, std::optional<std::vector<std::optional<std::shared_ptr<Arcade::ECS::IComponent>>>>>
 Arcade::ECS::EventManager::isEventTriggered(const std::string &event) const
 {
     auto it = _events.find(event);

@@ -4,10 +4,13 @@
 
 #include "GameModule.hpp"
 
-Arcade::Core::GameModule::GameModule(const libList &libList)
-    : _libList(libList)
-    , _currentGame(libList.front())
+Arcade::Core::GameModule::GameModule(const libList &libList) : _currentGame({})
 {
+    for (auto &lib : libList) {
+        if (lib.first == LibType::GAME) {
+            _libList.push_back(lib);
+        }
+    }
 }
 
 void Arcade::Core::GameModule::changeGame(const std::string &gameName)

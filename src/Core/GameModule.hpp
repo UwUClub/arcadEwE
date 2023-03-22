@@ -13,7 +13,7 @@ namespace Arcade::Core
     class GameModule : public IGameModule
     {
         public:
-            GameModule(const libList &libList);
+            explicit GameModule(const libList &libList);
             virtual ~GameModule() = default;
 
             Arcade::Game::ISceneManager &getSceneManager() override;

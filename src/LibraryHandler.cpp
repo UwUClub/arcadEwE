@@ -84,9 +84,10 @@ namespace Arcade::Core
         type.first = typeFunc();
         type.second = nameFunc();
         dlclose(lib);
+        return type;
     }
 
-    libList &LibraryHandler::getLibraries()
+    libList LibraryHandler::getLibraries()
     {
         libList libs;
         DIR *dir = nullptr;
@@ -101,5 +102,7 @@ namespace Arcade::Core
             if (name.starts_with("arcade_") && name.ends_with(".so"))
                 libs.push_back(getLibType(std::string("./lib/") + name));
         }
+        closedir(dir);
+        return libs;
     }
 } // namespace Arcade::Core

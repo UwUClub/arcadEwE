@@ -6,10 +6,6 @@
 
 namespace Arcade::Game
 {
-    SceneManager::SceneManager() : _currentSceneName("")
-    {
-    }
-
     void SceneManager::registerScene(const std::string &sceneName,
         std::unique_ptr<IScene> scene)
     {

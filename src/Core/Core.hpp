@@ -6,7 +6,7 @@
 #define ARCADE_CORE_HPP
 
 #include "ICore.hpp"
-#include "IGameModule.hpp"
+#include "GameModule.hpp"
 #include "DisplayModule.hpp"
 #include "Api.hpp"
 
@@ -19,7 +19,7 @@ namespace Arcade::Core {
             void run();
 
             private:
-                std::unique_ptr<IGameModule> _gameModule;
+                std::unique_ptr<GameModule> _gameModule;
                 std::unique_ptr<DisplayModule> _displayModule;
     };
 }
