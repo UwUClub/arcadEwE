@@ -44,7 +44,7 @@ static void displaySprites(std::unique_ptr<Arcade::Game::IScene> &scene)
         std::vector<std::shared_ptr<Arcade::ECS::IComponent>> spriteComponents = entity->getComponents(Arcade::ECS::CompType::SPRITE);
 
         for (auto spriteComponent : spriteComponents) {
-            auto sprite = std::dynamic_pointer_cast<Arcade::Graph::ISprite>(spriteComponent);
+            auto sprite = std::static_pointer_cast<Arcade::Graph::ISprite>(spriteComponent);
             Arcade::Vector3f pos = (*sprite).getPos();
             Arcade::Graph::TTYData data = (*sprite).getTTYData();
 
@@ -60,7 +60,7 @@ static void displayTexts(std::unique_ptr<Arcade::Game::IScene> &scene)
         std::vector<std::shared_ptr<Arcade::ECS::IComponent>> textComponents = entity->getComponents(Arcade::ECS::CompType::TEXT);
 
         for (auto textComponent : textComponents) {
-            auto text = std::dynamic_pointer_cast<Arcade::Graph::IText>(textComponent);
+            auto text = std::static_pointer_cast<Arcade::Graph::IText>(textComponent);
             Arcade::Vector2f pos = (*text).getPos();
             Arcade::Graph::Color foregroundColor = (*text).getForegroundColor();
             Arcade::Graph::Color backgroundColor = (*text).getBackgroundColor();
