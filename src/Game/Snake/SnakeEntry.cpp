@@ -9,35 +9,33 @@
 #include "Scene.hpp"
 #include "EntityManager.hpp"
 #include "SystemManager.hpp"
+#include "PlayerInputs.hpp"
+#include "OnClickResume.hpp"
 
 namespace Snake {
-    void SnakeEntry() {
-        Arcade::Game::SceneManager sceneManager;
-        Arcade::Game::Scene snakeScene(std::make_unique<Arcade::ECS::EntityManager>(),
-            std::make_unique<Arcade::ECS::SystemManager>());
-        Arcade::Game::Scene menuScene(std::make_unique<Arcade::ECS::EntityManager>(),
-            std::make_unique<Arcade::ECS::SystemManager>());
+    std::unique_ptr<Arcade::Game::ISceneManager> createSnakeMenuScene()
+    {
+        auto sceneManager = std::make_unique<Arcade::Game::SceneManager>();
+        auto systemManager = std::make_unique<Arcade::ECS::SystemManager>();
+        auto entityManager = std::make_unique<Arcade::ECS::EntityManager>();
 
-        menuScene.getSystemManager().addSystem(std::make_unique<Snake::MenuSystem>());
+        systemManager->addSystem("onClickResume", new Snake::OnClickResume());
+        auto snakeMenuScene = std::make_unique<Arcade::Game::Scene>(std::move(entityManager), std::move(systemManager));
 
-        menuScene.getEntityManager().createEntity(std::make_unique<Snake::playButton>());
+        sceneManager->registerScene("snakeMenu", std::move(snakeMenuScene));
+        return sceneManager;
+    }
 
-        snakeScene.getSystemManager().addSystem(std::make_unique<Snake::MovementSystem>());
-        snakeScene.getSystemManager().addSystem(std::make_unique<Snake::RenderSystem>());
-        snakeScene.getSystemManager().addSystem(std::make_unique<Snake::InputSystem>());
-        snakeScene.getSystemManager().addSystem(std::make_unique<Snake::CollisionSystem>());
-        snakeScene.getSystemManager().addSystem(std::make_unique<Snake::ScoreSystem>());
-        snakeScene.getSystemManager().addSystem(std::make_unique<Snake::FoodSystem>());
-        snakeScene.getSystemManager().addSystem(std::make_unique<Snake::GameOverSystem>());
-        snakeScene.getSystemManager().addSystem(std::make_unique<Snake::SnakeSystem>());
-        snakeScene.getSystemManager().addSystem(std::make_unique<Snake::WallSystem>());
+    std::unique_ptr<Arcade::Game::ISceneManager> createSnakeGameScene()
+    {
+        auto sceneManager = std::make_unique<Arcade::Game::SceneManager>();
+        auto systemManager = std::make_unique<Arcade::ECS::SystemManager>();
+        auto entityManager = std::make_unique<Arcade::ECS::EntityManager>();
 
-        snakeScene.getEntityManager().createEntity(std::make_unique<Snake::SnakeEntity>());
-        snakeScene.getEntityManager().createEntity(std::make_unique<Snake::FoodEntity>());
-        snakeScene.getEntityManager().createEntity(std::make_unique<Snake::WallEntity>());
-        snakeScene.getEntityManager().createEntity(std::make_unique<Snake::ScoreEntity>());
+        systemManager->addSystem("playerInputs", new Snake::PlayerInputs());
+        auto snakeGameScene = std::make_unique<Arcade::Game::Scene>(std::move(entityManager), std::move(systemManager));
 
-        sceneManager.registerScene("Menu", std::make_unique<Arcade::Game::Scene>(snakeScene));
-        sceneManager.registerScene("Snake", std::make_unique<Arcade::Game::Scene>(snakeScene));
+        sceneManager->registerScene("snakeGame", std::move(snakeGameScene));
+        return sceneManager;
     }
 }
