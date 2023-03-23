@@ -8,7 +8,11 @@
 #include "IComponent.hpp"
 
 namespace Arcade::ECS {
-    enum class CompType;
+    enum class CompType {
+        SPRITE,
+        TEXT,
+        MUSIC
+    };
 
     class Component : public IComponent {
         public:
