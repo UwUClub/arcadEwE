@@ -27,6 +27,6 @@ namespace Arcade::Graph {
 
         protected:
         sf::RenderWindow _window;
-        std::map<std::string, sf::Music *> _playingMusics; // key is music id
+        std::map<std::string, std::unique_ptr<sf::Music>> _playingMusics; // key is music id
     };
 }

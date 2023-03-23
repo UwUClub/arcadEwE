@@ -90,11 +90,16 @@ void Arcade::Graph::SFMLSystem::handleMusics(std::unique_ptr<Arcade::Game::IScen
                 sf::Music *sfMusic = new sf::Music();
                 if (sfMusic->openFromFile((*music).getPath())) {
                     sfMusic->play();
-                    this->_playingMusics.insert(std::pair<std::string, sf::Music *>(id, sfMusic));
+                    this->_playingMusics.insert(std::pair<std::string, std::unique_ptr<sf::Music>>(id, sfMusic));
                 }
             } else if (!(*music).getIsPlaying() && this->_playingMusics.contains(id)) {
                 this->_playingMusics.find(id)->second->stop();
                 this->_playingMusics.erase(id);
+            }
+
+            if (this->_playingMusics.contains(id)) {
+                this->_playingMusics.find(id)->second->setLoop((*music).getLoop());
+                this->_playingMusics.find(id)->second->setVolume((*music).getVolume());
             }
         }
     }
