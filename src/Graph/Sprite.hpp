@@ -24,10 +24,10 @@ namespace Arcade::Graph
         void setTTYData(const TTYData &data) override;
 
         [[nodiscard]] const Arcade::Vector3f &getPos() const override;
-        void setPos(Arcade::Vector3f pos) override;
+        void setPos(const Arcade::Vector3f &pos) override;
 
         [[nodiscard]] const Arcade::Vector3f &getSize() const override;
-        void setSize(Arcade::Vector3f size) override;
+        void setSize(const Arcade::Vector3f &size) override;
 
         [[nodiscard]] const Color &getColor() const override;
         void setColor(const Color &color) override;

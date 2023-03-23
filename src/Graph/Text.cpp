@@ -58,7 +58,7 @@ const Arcade::Graph::Color &Arcade::Graph::Text::getBackgroundColor() const
     return _backgroundColor;
 }
 
-void Arcade::Graph::Text::setBackgroundColor(Arcade::Graph::Color &backgroundColor)
+void Arcade::Graph::Text::setBackgroundColor(const Arcade::Graph::Color &backgroundColor)
 {
     _backgroundColor = backgroundColor;
 }
@@ -68,7 +68,7 @@ const Arcade::Graph::Color &Arcade::Graph::Text::getForegroundColor() const
     return _foregroundColor;
 }
 
-void Arcade::Graph::Text::setForegroundColor(Arcade::Graph::Color &foregroundColor)
+void Arcade::Graph::Text::setForegroundColor(const Arcade::Graph::Color &foregroundColor)
 {
     _foregroundColor = foregroundColor;
 }
@@ -88,7 +88,7 @@ const Arcade::Vector2f &Arcade::Graph::Text::getPos() const
     return _pos;
 }
 
-void Arcade::Graph::Text::setPos(Arcade::Vector2f &pos)
+void Arcade::Graph::Text::setPos(const Arcade::Vector2f &pos)
 {
     _pos = pos;
 }

@@ -24,13 +24,13 @@ namespace Arcade::Graph
         [[nodiscard]] const std::string &getText() const override;
         void setText(const std::string &text) override;
         [[nodiscard]] const Arcade::Graph::Color &getBackgroundColor() const override;
-        void setBackgroundColor(Arcade::Graph::Color &backgroundColor) override;
+        void setBackgroundColor(const Arcade::Graph::Color &backgroundColor) override;
         [[nodiscard]] const Arcade::Graph::Color &getForegroundColor() const override;
-        void setForegroundColor(Arcade::Graph::Color &foregroundColor) override;
+        void setForegroundColor(const Arcade::Graph::Color &foregroundColor) override;
         [[nodiscard]] float getPoliceSize() const override;
         void setPoliceSize(float policeSize) override;
         [[nodiscard]] const Arcade::Vector2f &getPos() const override;
-        void setPos(Arcade::Vector2f &pos) override;
+        void setPos(const Arcade::Vector2f &pos) override;
 
         protected:
         const std::string _id;
