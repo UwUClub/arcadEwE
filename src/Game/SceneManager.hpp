@@ -26,4 +26,4 @@ namespace Arcade::Game
     };
 } // namespace Arcade::Game
 
-#endif // ARCADE_SCENEMANAGER_HPP
+#endif // ARCADE_MENUSCENEMANAGER_HPP

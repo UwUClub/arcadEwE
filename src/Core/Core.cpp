@@ -7,6 +7,7 @@
 #include "EventManager.hpp"
 #include "DisplayModule.hpp"
 #include "GameModule.hpp"
+#include "Events.hpp"
 #include "Component.hpp"
 
 Arcade::Core::Core::Core()
@@ -20,7 +21,7 @@ Arcade::Core::Core::Core()
 
 void Arcade::Core::Core::run()
 {
-    while (_eventManager->isEventTriggered("QUIT").first) {
+    while (_eventManager->isEventTriggered(QUIT).first) {
         auto &gameSys = _gameModule->getSceneManager()
                             .getCurrentScene()
                             ->getSystemManager();
@@ -35,7 +36,7 @@ void Arcade::Core::Core::run()
 
 int Arcade::Core::Core::handleCoreEvents()
 {
-    auto event = _eventManager->isEventTriggered("CHANGE_GAME");
+    auto event = _eventManager->isEventTriggered(CHANGE_GAME);
 
     if (event.first) {
         for (auto &comp : *event.second) {
@@ -47,7 +48,7 @@ int Arcade::Core::Core::handleCoreEvents()
             _gameModule->changeGame();
         }
     }
-    event = _eventManager->isEventTriggered("CHANGE_LIB");
+    event = _eventManager->isEventTriggered(CHANGE_GRAPHIC);
     if (event.first) {
         for (auto &comp : *event.second) {
             if (comp.has_value()) {

@@ -6,6 +6,7 @@
 #define ARCADE_SPRITE_HPP
 
 #include "ISprite.hpp"
+#include "Component.hpp"
 
 namespace Arcade::Graph
 {
@@ -16,6 +17,7 @@ namespace Arcade::Graph
         ~Sprite() override = default;
 
         [[nodiscard]] const std::string &getId() const override;
+        [[nodiscard]] ECS::CompType getType() const override;
         [[nodiscard]] const std::string &getPath() const override;
 
         void setPath(const std::string &path) override;
@@ -39,6 +41,7 @@ namespace Arcade::Graph
         void setScale(float scale) override;
 
         protected:
+        const ECS::CompType _type{ECS::CompType::SPRITE};
         std::string _path;
         const std::string _id;
         TTYData _cliData;

@@ -39,6 +39,10 @@ set(EXEC_SRC
         src/ECS/Entity.hpp
         src/Core/Core.cpp
         src/Core/Core.hpp
+        src/Core/MainMenu/Systems/OnClickGameLib.cpp
+        src/Core/MainMenu/Systems/OnClickGameLib.hpp
+        src/Core/MainMenu/Systems/OnClickGraphLib.cpp
+        src/Core/MainMenu/Systems/OnClickGraphLib.hpp
         src/ECS/EventManager.cpp
         src/ECS/EventManager.hpp
         src/ECS/EntityManager.cpp
@@ -57,11 +61,13 @@ set(EXEC_SRC
         src/Graph/Sprite.hpp
         src/Graph/Text.cpp
         src/Graph/Text.hpp
+        src/Events.hpp
         )
 
-set(EXECUTABLE arcade)
 include_directories(src)
 include_directories(src/Core)
+include_directories(src/Core/MainMenu)
+include_directories(src/Core/MainMenu/Systems)
 include_directories(src/ECS)
 include_directories(src/Game)
 include_directories(src/Graph)
@@ -78,4 +84,5 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 #add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # Add executable target with source files listed in SOURCE_FILES variable
-add_executable(${EXECUTABLE} ${EXEC_SRC} ${INCLUDES})
+#add_subdirectory(src/Core/MainMenu)
+add_executable(${PROJECT_NAME} ${EXEC_SRC} ${INCLUDES})

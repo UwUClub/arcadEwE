@@ -6,6 +6,7 @@
 #define ARCADE_TEXT_HPP
 
 #include "IText.hpp"
+#include "Component.hpp"
 
 namespace Arcade::Graph
 {
@@ -19,6 +20,7 @@ namespace Arcade::Graph
         ~Text() override = default;
 
         [[nodiscard]] const std::string &getId() const override;
+        [[nodiscard]] ECS::CompType getType() const override;
         [[nodiscard]] const std::string &getFontPath() const override;
         void setFontPath(const std::string &fontPath) override;
         [[nodiscard]] const std::string &getText() const override;
@@ -33,6 +35,7 @@ namespace Arcade::Graph
         void setPos(const Arcade::Vector2f &pos) override;
 
         protected:
+        const ECS::CompType _type{ECS::CompType::TEXT};
         const std::string _id;
         std::string _fontPath;
         std::string _text;

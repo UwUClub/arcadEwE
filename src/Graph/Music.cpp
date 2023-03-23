@@ -20,6 +20,11 @@ const std::string &Arcade::Graph::Music::getPath() const
     return _path;
 }
 
+Arcade::ECS::CompType Arcade::Graph::Music::getType() const
+{
+    return _type;
+}
+
 const std::string &Arcade::Graph::Music::getId() const
 {
     return _id;

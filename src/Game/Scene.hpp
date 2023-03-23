@@ -13,19 +13,20 @@ namespace Arcade::Game
     class Scene : public IScene
     {
         public:
-            Scene(std::unique_ptr<ECS::IEntityManager> entityManager,
-                std::unique_ptr<ECS::ISystemManager> systemManager);
-            ~Scene() override = default;
+        Scene(std::unique_ptr<ECS::IEntityManager> entityManager,
+            std::unique_ptr<ECS::ISystemManager> systemManager);
+        ~Scene() override = default;
 
-            bool init() override { return true; };
-            void close() override {};
+        bool init() override { return true; };
 
-            ECS::IEntityManager &getEntityManager() final;
-            ECS::ISystemManager &getSystemManager() final;
+        void close() override {};
+
+        ECS::IEntityManager &getEntityManager() final;
+        ECS::ISystemManager &getSystemManager() final;
 
         protected:
-            std::unique_ptr<ECS::IEntityManager> _entityManager;
-            std::unique_ptr<ECS::ISystemManager> _systemManager;
+        std::unique_ptr<ECS::IEntityManager> _entityManager;
+        std::unique_ptr<ECS::ISystemManager> _systemManager;
     };
 } // namespace Arcade::Game
 

@@ -33,6 +33,11 @@ const std::string &Arcade::Graph::Text::getId() const
     return _id;
 }
 
+Arcade::ECS::CompType Arcade::Graph::Text::getType() const
+{
+    return _type;
+}
+
 const std::string &Arcade::Graph::Text::getFontPath() const
 {
     return _fontPath;

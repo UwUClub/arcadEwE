@@ -22,6 +22,11 @@ const std::string &Arcade::Graph::Sprite::getId() const
     return _id;
 }
 
+Arcade::ECS::CompType Arcade::Graph::Sprite::getType() const
+{
+    return _type;
+}
+
 const std::string &Arcade::Graph::Sprite::getPath() const
 {
     return _path;

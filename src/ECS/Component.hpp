@@ -8,8 +8,6 @@
 #include "IComponent.hpp"
 
 namespace Arcade::ECS {
-    enum class CompType;
-
     class Component : public IComponent {
         public:
         Component(CompType type, const std::string &id);

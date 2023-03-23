@@ -6,6 +6,7 @@
 #define ARCADE_MUSIC_HPP
 
 #include "IMusic.hpp"
+#include "Component.hpp"
 
 namespace Arcade::Graph
 {
@@ -16,6 +17,7 @@ namespace Arcade::Graph
         ~Music() override = default;
 
         [[nodiscard]] const std::string &getPath() const override;
+        [[nodiscard]] ECS::CompType getType() const override;
         void setPath(const std::string &path) override;
         [[nodiscard]] const std::string &getId() const override;
         [[nodiscard]] bool getLoop() const override;
@@ -26,6 +28,7 @@ namespace Arcade::Graph
         void setVolume(float volume) override;
 
         protected:
+        const ECS::CompType _type{ECS::CompType::MUSIC};
         std::string _path;
         const std::string _id;
         bool _loop;
