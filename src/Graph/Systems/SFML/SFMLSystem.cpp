@@ -2,7 +2,6 @@
 // Created by valegox on 23/03/23.
 //
 
-#include <SFML/Graphics.hpp>
 #include "SFMLSystem.hpp"
 #include "IScene.hpp"
 #include "IGameModule.hpp"
@@ -11,6 +10,7 @@
 #include "Component.hpp"
 #include "ISprite.hpp"
 #include "IText.hpp"
+#include "IMusic.hpp"
 
 Arcade::Graph::SFMLSystem::SFMLSystem()
 {
@@ -22,7 +22,7 @@ Arcade::Graph::SFMLSystem::~SFMLSystem()
  
 }
 
-static void drawSprites(std::unique_ptr<Arcade::Game::IScene> &scene, sf::RenderWindow &window)
+void Arcade::Graph::SFMLSystem::drawSprites(std::unique_ptr<Arcade::Game::IScene> &scene)
 {
     for (auto &entity : scene->getEntityManager().getEntities()) {
 
@@ -45,12 +45,12 @@ static void drawSprites(std::unique_ptr<Arcade::Game::IScene> &scene, sf::Render
             sfSprite.setPosition(pos.x, pos.y);
             sfSprite.setScale(size.x * scale, size.y * scale);
             sfSprite.setTextureRect(sf::IntRect(rect.left, rect.top, rect.width, rect.height));
-            window.draw(sfSprite);
+            this->_window.draw(sfSprite);
         }
     }
 }
 
-static void drawTexts(std::unique_ptr<Arcade::Game::IScene> &scene, sf::RenderWindow &window)
+void Arcade::Graph::SFMLSystem::drawTexts(std::unique_ptr<Arcade::Game::IScene> &scene)
 {
     for (auto &entity : scene->getEntityManager().getEntities()) {
 
@@ -72,12 +72,35 @@ static void drawTexts(std::unique_ptr<Arcade::Game::IScene> &scene, sf::RenderWi
             sfText.setPosition(pos.x, pos.y);
             sfText.setString((*text).getText());
             sfText.setCharacterSize((*text).getPoliceSize());
-            window.draw(sfText);
+            this->_window.draw(sfText);
         }
     }
 }
 
-static void captureEvents(Arcade::ECS::IEventManager &eventManager, sf::RenderWindow &window)
+void Arcade::Graph::SFMLSystem::handleMusics(std::unique_ptr<Arcade::Game::IScene> &scene)
+{
+    for (auto &entity : scene->getEntityManager().getEntities()) {
+        std::vector<std::shared_ptr<Arcade::ECS::IComponent>> musicComponents = entity->getComponents(Arcade::ECS::CompType::MUSIC);
+
+        for (auto musicComponent : musicComponents) {
+            auto music = std::static_pointer_cast<Arcade::Graph::IMusic>(musicComponent);
+            std::string id = (*music).getId();
+
+            if ((*music).getIsPlaying() && !this->_playingMusics.contains(id)) {
+                sf::Music *sfMusic = new sf::Music();
+                if (sfMusic->openFromFile((*music).getPath())) {
+                    sfMusic->play();
+                    this->_playingMusics.insert(std::pair<std::string, sf::Music *>(id, sfMusic));
+                }
+            } else if (!(*music).getIsPlaying() && this->_playingMusics.contains(id)) {
+                this->_playingMusics.find(id)->second->stop();
+                this->_playingMusics.erase(id);
+            }
+        }
+    }
+}
+
+void Arcade::Graph::SFMLSystem::captureEvents(Arcade::ECS::IEventManager &eventManager)
 {
     const std::map<const char, const std::string> pressKeys = {
         {'a', "KEY_A_PRESSED"},
@@ -179,10 +202,10 @@ static void captureEvents(Arcade::ECS::IEventManager &eventManager, sf::RenderWi
     };
 
     sf::Event event;
-    while (window.pollEvent(event)) {
+    while (this->_window.pollEvent(event)) {
         switch (event.type) {
             case sf::Event::Closed:
-                window.close();
+                this->_window.close();
                 break;
             case sf::Event::KeyPressed:
                 if (pressKeys.find(event.key.code) != pressKeys.end()) {
@@ -207,7 +230,7 @@ static void captureEvents(Arcade::ECS::IEventManager &eventManager, sf::RenderWi
         }
     }
 
-    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    sf::Vector2i mousePos = sf::Mouse::getPosition(this->_window);
     eventManager.setMousePosition(Arcade::Vector2f(mousePos.x, mousePos.y));
 }
 
@@ -218,9 +241,11 @@ void Arcade::Graph::SFMLSystem::run([[maybe_unused]] std::size_t deltaTime, Arca
     std::unique_ptr<Arcade::Game::IScene> &scene = gameModule.getSceneManager().getCurrentScene();
 
     this->_window.clear();
-    drawSprites(scene, this->_window);
-    drawTexts(scene, this->_window);
+    this->drawSprites(scene);
+    this->drawTexts(scene);
     this->_window.display();
 
-    captureEvents(eventManager, this->_window);
+    this->handleMusics(scene);
+
+    this->captureEvents(eventManager);
 }

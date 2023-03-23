@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fno-gnu-unique -fPIC")
 
-find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
+find_package(SFML 2.5 COMPONENTS graphics audio window system REQUIRED)
 
 set(INCLUDES
         sharedArchitecture/include/Api.hpp
@@ -83,4 +83,4 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 # Add executable target with source files listed in SOURCE_FILES variable
 add_executable(${EXECUTABLE} ${EXEC_SRC} ${INCLUDES})
 
-target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-window sfml-system)
+target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio sfml-window sfml-system)
