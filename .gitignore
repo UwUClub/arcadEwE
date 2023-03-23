@@ -14,3 +14,9 @@ CMakeCache.txt
 Makefile
 *.so
 src/Graph/Text*
+.cmake/*
+cmake-build-debug/*
+cmake-build-release/*
+.cmake
+Testing/
+arcade.cbp

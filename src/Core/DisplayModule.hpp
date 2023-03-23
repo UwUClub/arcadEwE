@@ -15,7 +15,7 @@ namespace Arcade::Core
     class DisplayModule : public IDisplayModule
     {
         public:
-            DisplayModule(const libList &libList);
+            explicit DisplayModule(const libList &libList);
             virtual ~DisplayModule() = default;
 
             ECS::ISystemManager &getSystemManager() override;

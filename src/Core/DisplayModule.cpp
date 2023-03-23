@@ -6,9 +6,14 @@
 #include "LibraryHandler.hpp"
 
 Arcade::Core::DisplayModule::DisplayModule(const libList &libList)
-    : _libList(libList)
-    , _currentGraphicLib(libList.front())
 {
+    for (auto &lib : libList) {
+        if (lib.first == LibType::GRAPH) {
+            _libList.push_back(lib);
+        }
+    }
+    _currentGraphicLib = _libList.front();
+    _systemManager = LibraryHandler::loadDisplayLibrary("./lib/" + _currentGraphicLib.second);
 }
 
 void Arcade::Core::DisplayModule::changeGraphicLib(

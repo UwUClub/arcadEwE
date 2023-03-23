@@ -32,7 +32,7 @@ const Arcade::Vector3f &Arcade::Graph::Sprite::getPos() const
     return _pos;
 }
 
-void Arcade::Graph::Sprite::setPos(Arcade::Vector3f pos)
+void Arcade::Graph::Sprite::setPos(const Arcade::Vector3f &pos)
 {
     _pos = pos;
 }
@@ -42,7 +42,7 @@ const Arcade::Vector3f &Arcade::Graph::Sprite::getSize() const
     return _size;
 }
 
-void Arcade::Graph::Sprite::setSize(Arcade::Vector3f size)
+void Arcade::Graph::Sprite::setSize(const Arcade::Vector3f &size)
 {
     _size = size;
 }

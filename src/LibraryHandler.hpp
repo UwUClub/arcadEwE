@@ -22,7 +22,7 @@ namespace Arcade::Core
             static std::unique_ptr<Arcade::Game::ISceneManager> loadGameLibrary(const std::string &path);
             static std::unique_ptr<Arcade::ECS::ISystemManager> loadDisplayLibrary(const std::string &path);
             static void *loadLibrary(const std::string &path);
-            static libList &getLibraries();
+            static libList getLibraries();
             [[nodiscard]] static libInfo getLibType(const std::string &path);
 
         private:

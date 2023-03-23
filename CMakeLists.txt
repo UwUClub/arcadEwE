@@ -31,8 +31,8 @@ set(EXEC_SRC
         src/main.cpp
         src/LibraryHandler.cpp
         src/LibraryHandler.hpp
-        src/ECS/AComponent.cpp
-        src/ECS/AComponent.hpp
+        src/ECS/Component.cpp
+        src/ECS/Component.hpp
         src/ECS/SystemManager.cpp
         src/ECS/SystemManager.hpp
         src/ECS/Entity.cpp

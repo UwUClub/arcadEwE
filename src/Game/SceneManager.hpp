@@ -12,7 +12,7 @@ namespace Arcade::Game
     class SceneManager : public ISceneManager
     {
         public:
-        SceneManager();
+        SceneManager() = default;
         ~SceneManager() override = default;
 
         void registerScene(const std::string &sceneName,
