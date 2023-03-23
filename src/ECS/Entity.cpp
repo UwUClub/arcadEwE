@@ -30,7 +30,7 @@ const std::vector<std::shared_ptr<Arcade::ECS::IComponent>> &Arcade::ECS::Entity
     return _components[type];
 }
 
-void Arcade::ECS::Entity::removeComponent(std::string id)
+void Arcade::ECS::Entity::removeComponent(const std::string &id)
 {
     for (auto &component : _components) {
         for (auto it = component.second.begin(); it != component.second.end(); ++it) {

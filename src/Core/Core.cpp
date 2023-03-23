@@ -29,10 +29,11 @@ void Arcade::Core::Core::run()
         gameSys.update(0, *_eventManager, *_displayModule, *_gameModule);
         displaySys.update(0, *_eventManager, *_displayModule, *_gameModule);
         handleCoreEvents();
+        _eventManager->clearEvents();
     }
 }
 
-void Arcade::Core::Core::handleCoreEvents()
+int Arcade::Core::Core::handleCoreEvents()
 {
     auto event = _eventManager->isEventTriggered("CHANGE_GAME");
 
@@ -57,4 +58,5 @@ void Arcade::Core::Core::handleCoreEvents()
             _displayModule->changeGraphicLib();
         }
     }
+    return 0;
 }

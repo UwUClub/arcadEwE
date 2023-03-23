@@ -18,7 +18,7 @@ namespace Arcade::ECS {
             const std::map<CompType, std::vector<std::shared_ptr<IComponent>>> &getComponents() override;
             const std::vector<std::shared_ptr<IComponent>> &getComponents(CompType type) override;
             void addComponent(std::shared_ptr<IComponent> component) override;
-            void removeComponent(std::string id) override;
+            void removeComponent(const std::string &id) override;
             void removeComponents(CompType type) override;
 
         protected:

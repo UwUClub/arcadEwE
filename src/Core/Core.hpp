@@ -22,7 +22,7 @@ namespace Arcade::Core
         void run();
 
         private:
-        void handleCoreEvents();
+        int handleCoreEvents();
         std::unique_ptr<IGameModule> _gameModule;
         std::unique_ptr<IDisplayModule> _displayModule;
         std::unique_ptr<ECS::IEventManager> _eventManager;
