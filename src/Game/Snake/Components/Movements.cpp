@@ -9,7 +9,7 @@
 
 namespace Snake {
     Movements::Movements(const std::string &id, const enum Movements::Direction direction) :
-        Arcade::ECS::Component(ECS::CompType::MOVE, "id"),
+        Arcade::ECS::Component(Arcade::ECS::CompType::MOVE, "id"),
         _direction(direction)
     {
     }
