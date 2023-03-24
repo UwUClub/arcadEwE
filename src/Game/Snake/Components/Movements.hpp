@@ -20,14 +20,14 @@ namespace Snake {
         };
 
         public:
-            Movements();
-            ~Movements();
+            Movements(const std::string &id, const enum Direction direction);
+            ~Movements() override = default;
 
-            void setDirection(Direction direction);
-            enum Direction Movements::getDirection() const;
-        protected:
+            void setDirection(const enum Direction direction);
+            [[nodiscard]] const enum Direction getDirection() const;
+
         private:
-            Direction _direction = UP;
+            Direction _direction;
     };
 } // namespace Snake
 

@@ -8,7 +8,9 @@
 #include "Movements.hpp"
 
 namespace Snake {
-    Movements::Movements() : Arcade::ECS::Component(Displace, "Movements")
+    Movements::Movements(const std::string &id, const enum Movements::Direction direction) :
+        Arcade::ECS::Component(ECS::CompType::MOVE, "id"),
+        _direction(direction)
     {
     }
 
@@ -16,12 +18,12 @@ namespace Snake {
     {
     }
 
-    void Movements::setDirection(Direction direction)
+    void Movements::setDirection(const enum Movements::Direction direction)
     {
         _direction = direction;
     }
 
-    enum Direction Movements::getDirection() const
+    const enum Movements::Direction Movements::getDirection() const
     {
         return _direction;
     }
