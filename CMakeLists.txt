@@ -41,8 +41,6 @@ set(EXEC_SRC
         src/Core/Core.hpp
         src/Core/MainMenu/Systems/OnClickGameLib.cpp
         src/Core/MainMenu/Systems/OnClickGameLib.hpp
-        src/Core/MainMenu/Systems/OnClickGraphLib.cpp
-        src/Core/MainMenu/Systems/OnClickGraphLib.hpp
         src/ECS/EventManager.cpp
         src/ECS/EventManager.hpp
         src/ECS/EntityManager.cpp
@@ -62,11 +60,13 @@ set(EXEC_SRC
         src/Graph/Text.cpp
         src/Graph/Text.hpp
         src/Events.hpp
-        )
+        src/Core/MainMenu/Components/TextHitbox.cpp
+        src/Core/MainMenu/Components/TextHitbox.hpp)
 
 include_directories(src)
 include_directories(src/Core)
 include_directories(src/Core/MainMenu)
+include_directories(src/Core/MainMenu/Components)
 include_directories(src/Core/MainMenu/Systems)
 include_directories(src/ECS)
 include_directories(src/Game)

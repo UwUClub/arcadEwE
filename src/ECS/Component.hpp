@@ -7,19 +7,21 @@
 
 #include "IComponent.hpp"
 
-namespace Arcade::ECS {
-    class Component : public IComponent {
+namespace Arcade::ECS
+{
+    class Component : public IComponent
+    {
         public:
         Component(CompType type, const std::string &id);
-            ~Component() override = default;
+        ~Component() override = default;
 
-            [[nodiscard]] CompType getType() const override;
-            [[nodiscard]] const std::string &getId() const override;
+        [[nodiscard]] CompType getType() const override;
+        [[nodiscard]] const std::string &getId() const override;
 
         protected:
-            CompType _type;
-            const std::string _id;
+        CompType _type;
+        const std::string _id;
     };
-}
+} // namespace Arcade::ECS
 
 #endif // ARCADE_COMPONENT_HPP

@@ -8,15 +8,19 @@
 #include "IText.hpp"
 #include "Component.hpp"
 
+#define FONT_PATH         "assets/fonts/arcade.ttf"
+#define FONT_SIZE         25
+#define AVERAGE_CHAR_SIZE 0.6f
+
 namespace Arcade::Graph
 {
     class Text : public IText
     {
         public:
-        Text(const std::string &id, const std::string &fontPath, const std::string &text,
-            Arcade::Graph::Color &backgroundColor, Arcade::Graph::Color &foregroundColor,
-            float policeSize, Arcade::Vector2f &pos);
-        Text(const std::string &id, const std::string &fontPath, const std::string &text);
+        Text(const std::string &id, const std::string &text,
+            const Arcade::Graph::Color &backgroundColor,
+            const Arcade::Graph::Color &foregroundColor, const Arcade::Vector2f &pos,
+            const std::string &fontPath = FONT_PATH, float policeSize = FONT_SIZE);
         ~Text() override = default;
 
         [[nodiscard]] const std::string &getId() const override;
@@ -35,7 +39,7 @@ namespace Arcade::Graph
         void setPos(const Arcade::Vector2f &pos) override;
 
         protected:
-        const ECS::CompType _type{ECS::CompType::TEXT};
+        const ECS::CompType _type { ECS::CompType::TEXT };
         const std::string _id;
         std::string _fontPath;
         std::string _text;
