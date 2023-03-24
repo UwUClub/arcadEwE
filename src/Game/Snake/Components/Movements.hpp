@@ -12,12 +12,13 @@
 namespace Snake {
     class Movements : public Arcade::ECS::Component
     {
-        enum Direction {
-            UP,
-            DOWN,
-            LEFT,
-            RIGHT
-        };
+        public:
+            enum Direction {
+                UP,
+                DOWN,
+                LEFT,
+                RIGHT
+            };
 
         public:
             Movements(const std::string &id, const enum Direction direction);
