@@ -10,8 +10,6 @@ set(INCLUDES
         sharedArchitecture/include/Api.hpp
         sharedArchitecture/include/Arcade/ArcadeStruct.hpp
         sharedArchitecture/include/Arcade/Core/ICore.hpp
-        sharedArchitecture/include/Arcade/Core/IGameModule.hpp
-        sharedArchitecture/include/Arcade/Core/IDisplayModule.hpp
         sharedArchitecture/include/Arcade/ECS/IComponent.hpp
         sharedArchitecture/include/Arcade/ECS/IEntity.hpp
         sharedArchitecture/include/Arcade/ECS/IEntityManager.hpp
@@ -22,8 +20,9 @@ set(INCLUDES
         sharedArchitecture/include/Arcade/Graph/IMusic.hpp
         sharedArchitecture/include/Arcade/Graph/ISprite.hpp
         sharedArchitecture/include/Arcade/Graph/IText.hpp
+        sharedArchitecture/include/Arcade/Graph/IDisplayModule.hpp
         sharedArchitecture/include/Arcade/Game/IScene.hpp
-        sharedArchitecture/include/Arcade/Game/ISceneManager.hpp
+        sharedArchitecture/include/Arcade/Game/IGameModule.hpp
         )
 
 # Add main.cpp file of project root directory as source file

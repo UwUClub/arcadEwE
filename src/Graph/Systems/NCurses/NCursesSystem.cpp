@@ -37,9 +37,9 @@ static void printContent(std::string content, int posX, int posY, Arcade::Graph:
     }
 }
 
-static void displaySprites(std::unique_ptr<Arcade::Game::IScene> &scene)
+static void displaySprites(std::vector<std::shared_ptr<IEntity>> &entities)
 {
-    for (auto &entity : scene->getEntityManager().getEntities()) {
+    for (auto &entity : entities) {
 
         std::vector<std::shared_ptr<Arcade::ECS::IComponent>> spriteComponents = entity->getComponents(Arcade::ECS::CompType::SPRITE);
 
@@ -53,9 +53,9 @@ static void displaySprites(std::unique_ptr<Arcade::Game::IScene> &scene)
     }
 }
 
-static void displayTexts(std::unique_ptr<Arcade::Game::IScene> &scene)
+static void displayTexts(std::vector<std::shared_ptr<IEntity>> &entities)
 {
-    for (auto &entity : scene->getEntityManager().getEntities()) {
+    for (auto &entity : entities) {
 
         std::vector<std::shared_ptr<Arcade::ECS::IComponent>> textComponents = entity->getComponents(Arcade::ECS::CompType::TEXT);
 
@@ -183,13 +183,12 @@ static void captureKeyboardEvents(Arcade::ECS::IEventManager &eventManager)
 }
 
 void Arcade::Graph::NCursesSystem::run([[maybe_unused]] std::size_t deltaTime, Arcade::ECS::IEventManager &eventManager,
-    [[maybe_unused]] Arcade::Core::IDisplayModule &displayModule,
-    Arcade::Core::IGameModule &gameModule)
+    [[maybe_unused]] Arcade::Core::IEntityManager &entityManager)
 {
-    std::unique_ptr<Arcade::Game::IScene> &scene = gameModule.getSceneManager().getCurrentScene();
+    std::vector<std::shared_ptr<IEntity>> &entities = entityManager.getEntities();
 
-    displaySprites(scene);
-    displayTexts(scene);
+    displaySprites(entities);
+    displayTexts(entities);
     captureKeyboardEvents(eventManager);
 
     refresh();
