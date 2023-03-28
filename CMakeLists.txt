@@ -7,53 +7,53 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wl,--no-as-needed
 
 
 set(INCLUDES
-        sharedArchitecture/include/Api.hpp
-        sharedArchitecture/include/Arcade/ArcadeStruct.hpp
-        sharedArchitecture/include/Arcade/Core/ICore.hpp
-        sharedArchitecture/include/Arcade/Game/IGameModule.hpp
-        sharedArchitecture/include/Arcade/Graph/IDisplayModule.hpp
-        sharedArchitecture/include/Arcade/ECS/IComponent.hpp
-        sharedArchitecture/include/Arcade/ECS/IEntity.hpp
-        sharedArchitecture/include/Arcade/ECS/IEntityManager.hpp
-        sharedArchitecture/include/Arcade/ECS/IEventManager.hpp
-        sharedArchitecture/include/Arcade/ECS/ISystemManager.hpp
-        sharedArchitecture/include/Arcade/Graph/GraphStruct.hpp
-        sharedArchitecture/include/Arcade/Graph/IMusic.hpp
-        sharedArchitecture/include/Arcade/Graph/ISprite.hpp
-        sharedArchitecture/include/Arcade/Graph/IText.hpp
-        sharedArchitecture/include/Arcade/Game/IScene.hpp
-        )
+    sharedArchitecture/include/Api.hpp
+    sharedArchitecture/include/Arcade/ArcadeStruct.hpp
+    sharedArchitecture/include/Arcade/Core/ICore.hpp
+    sharedArchitecture/include/Arcade/Game/IGameModule.hpp
+    sharedArchitecture/include/Arcade/Graph/IDisplayModule.hpp
+    sharedArchitecture/include/Arcade/ECS/IComponent.hpp
+    sharedArchitecture/include/Arcade/ECS/IEntity.hpp
+    sharedArchitecture/include/Arcade/ECS/IEntityManager.hpp
+    sharedArchitecture/include/Arcade/ECS/IEventManager.hpp
+    sharedArchitecture/include/Arcade/ECS/ISystemManager.hpp
+    sharedArchitecture/include/Arcade/Graph/GraphStruct.hpp
+    sharedArchitecture/include/Arcade/Graph/IMusic.hpp
+    sharedArchitecture/include/Arcade/Graph/ISprite.hpp
+    sharedArchitecture/include/Arcade/Graph/IText.hpp
+    sharedArchitecture/include/Arcade/Game/IScene.hpp
+    )
 
 # Add main.cpp file of project root directory as source file
 set(EXEC_SRC
-        src/main.cpp
-        src/Library/DisplayHandler.hpp
-        src/Library/DisplayHandler.cpp
-        src/Library/GameHandler.hpp
-        src/Library/GameHandler.cpp
-        src/Library/LibraryFinder.cpp
-        src/Library/LibraryFinder.hpp
-        src/Core/Core.cpp
-        src/Core/Core.hpp
-        src/ECS/EventManager.cpp
-        src/ECS/EventManager.hpp
-        src/ECS/SystemManager.cpp
-        src/ECS/SystemManager.hpp
-        #        src/Core/MainMenu/MainMenu.cpp
-        #        src/Core/MainMenu/MainMenu.hpp
-        #        src/Core/MainMenu/Scene/MainMenuScene.cpp
-        #        src/Core/MainMenu/Scene/MainMenuScene.hpp
-        #        src/Core/MainMenu/Scene/SelectionLib.cpp
-        #        src/Core/MainMenu/Scene/SelectionLib.hpp
-        #        src/Core/MainMenu/Components/Text.cpp
-        #        src/Core/MainMenu/Components/Text.hpp
-        #        src/Core/MainMenu/Components/IsHovered.cpp
-        #        src/Core/MainMenu/Components/IsHovered.hpp
-        #        src/Core/MainMenu/Systems/IsHovering.cpp
-        #        src/Core/MainMenu/Systems/IsHovering.hpp
-        #        src/Core/MainMenu/Systems/KeyboardEvent.cpp
-        #        src/Core/MainMenu/Systems/KeyboardEvent.hpp
-        )
+    src/main.cpp
+    src/Library/DisplayHandler.hpp
+    src/Library/DisplayHandler.cpp
+    src/Library/GameHandler.hpp
+    src/Library/GameHandler.cpp
+    src/Library/LibraryFinder.cpp
+    src/Library/LibraryFinder.hpp
+    src/Core/Core.cpp
+    src/Core/Core.hpp
+    src/ECS/EventManager.cpp
+    src/ECS/EventManager.hpp
+    src/ECS/SystemManager.cpp
+    src/ECS/SystemManager.hpp
+    #        src/Core/MainMenu/MainMenu.cpp
+    #        src/Core/MainMenu/MainMenu.hpp
+    #        src/Core/MainMenu/Scene/MainMenuScene.cpp
+    #        src/Core/MainMenu/Scene/MainMenuScene.hpp
+    #        src/Core/MainMenu/Scene/SelectionLib.cpp
+    #        src/Core/MainMenu/Scene/SelectionLib.hpp
+    #        src/Core/MainMenu/Components/Text.cpp
+    #        src/Core/MainMenu/Components/Text.hpp
+    #        src/Core/MainMenu/Components/IsHovered.cpp
+    #        src/Core/MainMenu/Components/IsHovered.hpp
+    #        src/Core/MainMenu/Systems/IsHovering.cpp
+    #        src/Core/MainMenu/Systems/IsHovering.hpp
+    #        src/Core/MainMenu/Systems/KeyboardEvent.cpp
+    #        src/Core/MainMenu/Systems/KeyboardEvent.hpp
+    )
 
 include_directories(src)
 include_directories(src/Core)
@@ -78,3 +78,50 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 # Add executable target with source files listed in SOURCE_FILES variable
 #add_subdirectory(src/Core/MainMenu)
 add_executable(${PROJECT_NAME} ${EXEC_SRC} ${INCLUDES})
+
+
+# ------------------------------------------------------------------------------
+# Compile the Snake game shared library
+# ------------------------------------------------------------------------------
+cmake_minimum_required(VERSION 3.9)
+include(GNUInstallDirs)
+set(SNAKE_VERSION 1.0.0)
+
+project(arcade_snake
+    VERSION ${SNAKE_VERSION}
+    DESCRIPTION "Snake game for the arcade"
+    LANGUAGES CXX)
+
+add_library(arcade_snake SHARED
+    lib/Snake/Components/Movements.cpp
+    lib/Snake/Components/Movements.hpp
+    lib/Snake/Systems/OnClickResume.cpp
+    lib/Snake/Systems/OnClickResume.hpp
+    lib/Snake/Systems/PlayerInputs.cpp
+    lib/Snake/Systems/PlayerInputs.hpp
+    lib/Snake/SnakeEntry.cpp
+)
+
+set_target_properties(arcade_snake PROPERTIES
+    VERSION ${SNAKE_VERSION}
+    DESCRIPTION "Snake game for the arcade")
+
+target_include_directories(arcade_snake PRIVATE lib/Snake)
+target_include_directories(arcade_snake PRIVATE src)
+target_include_directories(arcade_snake PRIVATE src/Core)
+target_include_directories(arcade_snake PRIVATE src/Core/MainMenu)
+target_include_directories(arcade_snake PRIVATE src/Core/MainMenu/Components)
+target_include_directories(arcade_snake PRIVATE src/Core/MainMenu/Systems)
+target_include_directories(arcade_snake PRIVATE src/Core/MainMenu/Scene)
+target_include_directories(arcade_snake PRIVATE src/ECS)
+target_include_directories(arcade_snake PRIVATE src/Library)
+target_include_directories(arcade_snake PRIVATE sharedArchitecture/include)
+target_include_directories(arcade_snake PRIVATE sharedArchitecture/include/Arcade)
+target_include_directories(arcade_snake PRIVATE sharedArchitecture/include/Arcade/Core)
+target_include_directories(arcade_snake PRIVATE sharedArchitecture/include/Arcade/ECS)
+target_include_directories(arcade_snake PRIVATE sharedArchitecture/include/Arcade/Game)
+target_include_directories(arcade_snake PRIVATE sharedArchitecture/include/Arcade/Graph)
+
+install(TARGETS arcade_snake
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
