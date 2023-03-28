@@ -11,7 +11,7 @@
 
 Arcade::Core::Core::Core()
     : _gameModule(nullptr)
-    , _mainMenu(nullptr)
+//    , _mainMenu(nullptr)
 //    , _mainMenu(std::make_unique<Arcade::Game::MainMenu>())
 {
     auto libs = LibraryFinder::getLibraries();
