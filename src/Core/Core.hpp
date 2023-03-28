@@ -6,10 +6,9 @@
 #define ARCADE_CORE_HPP
 
 #include "ICore.hpp"
-#include "IEventManager.hpp"
-#include "IGameModule.hpp"
-#include "IDisplayModule.hpp"
-#include "Api.hpp"
+#include "DisplayHandler.hpp"
+#include "GameHandler.hpp"
+#include "LibraryFinder.hpp"
 
 namespace Arcade::Core
 {
@@ -22,9 +21,16 @@ namespace Arcade::Core
         void run();
 
         private:
-        int handleCoreEvents();
-        std::unique_ptr<IGameModule> _gameModule;
-        std::unique_ptr<IDisplayModule> _displayModule;
+        void loadGameModule(const std::string &path);
+        void loadGameModule();
+        void loadDisplayModule(const std::string &path);
+        void loadDisplayModule();
+        void handleCoreEvents();
+
+        std::unique_ptr<GameHandler> _gameModule;
+        std::string _currentGameModule;
+        std::unique_ptr<DisplayHandler> _displayModule;
+        std::string _currentDisplayModule;
         std::unique_ptr<ECS::IEventManager> _eventManager;
     };
 } // namespace Arcade::Core
