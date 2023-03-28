@@ -18,9 +18,9 @@ namespace Snake
         PlayerInputs() = default;
         ~PlayerInputs() override = default;
 
-        void run(std::size_t deltaTime, Arcade::ECS::IEventManager &eventManager,
-            Arcade::Core::IDisplayModule &displayModule,
-            Arcade::Core::IGameModule &gameModule) override;
+        void run(float deltaTime,
+                Arcade::ECS::IEventManager &eventManager,
+                Arcade::ECS::IEntityManager &currentScene) override;
     };
 } // namespace Arcade::Core
 

@@ -7,12 +7,11 @@
 
 #include "PlayerInputs.hpp"
 #include "Events.hpp"
-#include "Sprite.hpp"
 #include "Movements.hpp"
 
-void Arcade::Core::PlayerInputs::run(std::size_t deltaTime,
-    Arcade::ECS::IEventManager &eventManager, Arcade::Core::IDisplayModule &displayModule,
-    Arcade::Core::IGameModule &gameModule)
+void Snake::PlayerInputs::run(float deltaTime,
+    Arcade::ECS::IEventManager &eventManager,
+    Arcade::ECS::IEntityManager &currentScene)
 {
     auto eventD = eventManager.isEventTriggered("KEY_DOWN_PRESSED");
     auto eventU = eventManager.isEventTriggered("KEY_UP_PRESSED");
@@ -22,24 +21,24 @@ void Arcade::Core::PlayerInputs::run(std::size_t deltaTime,
     if (!eventD.first && !eventU.first && !eventL.first && !eventR.first) {
         return;
     }
-    auto &entities = gameModule.getSceneManager().getCurrentScene()->getEntityManager().getEntities();
+    auto &entities = currentScene.getEntities();
 
     for (auto &entity : entities) {
         auto idEntity = entity->getId();
-        enum Snake::Direction direction;
+        enum Snake::Movements::Direction direction;
 
         if (idEntity.find("snake") == std::string::npos) {
             continue;
         }
-        auto &spriteComp = entity->getComponents(ECS::CompType::MOVEMENT).front();
+        auto &movementsComp = entity->getComponents("Movements").front();
         if (eventD.first)
-            direction = Snake::Direction::DOWN;
+            direction = Snake::Movements::Direction::DOWN;
         if (eventU.first)
-            direction = Snake::Direction::UP;
+            direction = Snake::Movements::Direction::UP;
         if (eventL.first)
-            direction = Snake::Direction::LEFT;
+            direction = Snake::Movements::Direction::LEFT;
         if (eventR.first)
-            direction = Snake::Direction::RIGHT;
-        reinterpret_cast<Arcade::Graph::Movement *>(spriteComp.get())->setDirection(direction);
+            direction = Snake::Movements::Direction::RIGHT;
+        reinterpret_cast<Snake::Movements *>(movementsComp.get())->setDirection(direction);
     }
 }
