@@ -27,22 +27,42 @@ set(INCLUDES
 # Add main.cpp file of project root directory as source file
 set(EXEC_SRC
         src/main.cpp
-        src/DisplayHandler.hpp
-        src/DisplayHandler.cpp
-        src/LibraryFinder.cpp
-        src/LibraryFinder.hpp
+        src/Library/DisplayHandler.hpp
+        src/Library/DisplayHandler.cpp
+        src/Library/GameHandler.hpp
+        src/Library/GameHandler.cpp
+        src/Library/LibraryFinder.cpp
+        src/Library/LibraryFinder.hpp
         src/Core/Core.cpp
         src/Core/Core.hpp
         src/ECS/EventManager.cpp
         src/ECS/EventManager.hpp
-        src/GameHandler.cpp src/GameHandler.hpp)
+        src/ECS/SystemManager.cpp
+        src/ECS/SystemManager.hpp
+        #        src/Core/MainMenu/MainMenu.cpp
+        #        src/Core/MainMenu/MainMenu.hpp
+        #        src/Core/MainMenu/Scene/MainMenuScene.cpp
+        #        src/Core/MainMenu/Scene/MainMenuScene.hpp
+        #        src/Core/MainMenu/Scene/SelectionLib.cpp
+        #        src/Core/MainMenu/Scene/SelectionLib.hpp
+        #        src/Core/MainMenu/Components/Text.cpp
+        #        src/Core/MainMenu/Components/Text.hpp
+        #        src/Core/MainMenu/Components/IsHovered.cpp
+        #        src/Core/MainMenu/Components/IsHovered.hpp
+        #        src/Core/MainMenu/Systems/IsHovering.cpp
+        #        src/Core/MainMenu/Systems/IsHovering.hpp
+        #        src/Core/MainMenu/Systems/KeyboardEvent.cpp
+        #        src/Core/MainMenu/Systems/KeyboardEvent.hpp
+        )
 
-set(EXECUTABLE arcade)
 include_directories(src)
 include_directories(src/Core)
+include_directories(src/Core/MainMenu)
+include_directories(src/Core/MainMenu/Components)
+include_directories(src/Core/MainMenu/Systems)
+include_directories(src/Core/MainMenu/Scene)
 include_directories(src/ECS)
-include_directories(src/Game)
-include_directories(src/Graph)
+include_directories(src/Library)
 include_directories(sharedArchitecture/include)
 include_directories(sharedArchitecture/include/Arcade)
 include_directories(sharedArchitecture/include/Arcade/Core)
@@ -56,4 +76,5 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 #add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # Add executable target with source files listed in SOURCE_FILES variable
-add_executable(${EXECUTABLE} ${EXEC_SRC} ${INCLUDES})
+#add_subdirectory(src/Core/MainMenu)
+add_executable(${PROJECT_NAME} ${EXEC_SRC} ${INCLUDES})

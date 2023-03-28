@@ -23,4 +23,3 @@ Arcade::Core::DisplayHandler::~DisplayHandler()
 {
     if (_handle) dlclose(_handle);
 }
-} // namespace Arcade::Core

@@ -2,13 +2,17 @@
 // Created by patatofour on 20/03/23.
 //
 
-#include "Core.hpp"
 #include <memory>
+#include "Core.hpp"
 #include "EventManager.hpp"
 #include "Component.hpp"
+#include "Events.hpp"
+#include "MainMenu.hpp"
 
 Arcade::Core::Core::Core()
     : _gameModule(nullptr)
+    , _mainMenu(nullptr)
+//    , _mainMenu(std::make_unique<Arcade::Game::MainMenu>())
 {
     auto libs = LibraryFinder::getLibraries();
 
@@ -18,25 +22,30 @@ Arcade::Core::Core::Core()
             break;
         }
     }
-    _displayModule = std::make_unique<DisplayHandler>(_currentDisplayModule);
+    //        _displayModule = std::make_unique<DisplayHandler>(_currentDisplayModule);
     _eventManager = std::make_unique<ECS::EventManager>();
 }
 
 void Arcade::Core::Core::run()
 {
-    while (_eventManager->isEventTriggered("QUIT").first) {
-        auto &currentEntityManager = _gameModule->operator->()->getCurrentEntityManager();
-
-        handleCoreEvents();
-        _gameModule->operator->()->update(0, *_eventManager);
-        _displayModule->operator->()->update(0, *_eventManager, currentEntityManager);
-    }
+    //    while (_eventManager->isEventTriggered(QUIT).first) {
+    //        auto &currentEntityManager = _gameModule
+    //                                         ?
+    //                                         _gameModule->operator->()->getCurrentEntityManager()
+    //                                         : _mainMenu->getCurrentEntityManager();
+    //
+    //        handleCoreEvents();
+    //        //        if (_gameModule) _gameModule->operator->()->update(0, *_eventManager);
+    //        //        _displayModule->operator->()->update(0, *_eventManager,
+    //        currentEntityManager);
+    //    }
 }
 
 void Arcade::Core::Core::handleCoreEvents()
 {
-    auto eventGame = _eventManager->isEventTriggered("CHANGE_GAME");
-    auto eventGraph = _eventManager->isEventTriggered("CHANGE_LIB");
+    auto eventGame = _eventManager->isEventTriggered(CHANGE_GAME);
+    auto eventGraph = _eventManager->isEventTriggered(CHANGE_GRAPHIC);
+    auto eventGameEnd = _eventManager->isEventTriggered(END_GAME);
 
     if (eventGame.first) {
         for (auto &comp : *eventGame.second) {
@@ -57,6 +66,10 @@ void Arcade::Core::Core::handleCoreEvents()
             }
             loadDisplayModule();
         }
+    }
+    if (eventGameEnd.first) {
+        _currentGameModule = "";
+        _gameModule.reset(nullptr);
     }
 }
 
