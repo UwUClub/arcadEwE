@@ -17,10 +17,10 @@ namespace Arcade::Core
     class Core : public ICore
     {
         public:
-        Core();
+        Core(const std::string &pathDisplay);
         ~Core() override = default;
 
-        void run();
+        void update() override;
 
         private:
         void loadGameModule(const std::string &path);

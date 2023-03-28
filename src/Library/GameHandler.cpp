@@ -22,5 +22,12 @@ Arcade::Core::GameHandler::GameHandler(const std::string &path)
 
 Arcade::Core::GameHandler::~GameHandler()
 {
-    if (_handle) dlclose(_handle);
+    if (_handle == nullptr) return;
+    auto sym = dlsym(_handle, "destroyGameModule");
+
+    if (sym == nullptr)
+        return;
+    auto func = reinterpret_cast<void (*)(Game::IGameModule *)>(sym);
+    func(_lib.get());
+    dlclose(_handle);
 }
