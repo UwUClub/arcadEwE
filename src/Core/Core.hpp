@@ -10,6 +10,8 @@
 #include "GameHandler.hpp"
 #include "LibraryFinder.hpp"
 
+#define FONT_PATH "assets/fonts/Roboto-Regular.ttf"
+
 namespace Arcade::Core
 {
     class Core : public ICore
@@ -29,6 +31,7 @@ namespace Arcade::Core
 
         std::unique_ptr<GameHandler> _gameModule;
         std::string _currentGameModule;
+        std::unique_ptr<Game::IGameModule> _mainMenu;
         std::unique_ptr<DisplayHandler> _displayModule;
         std::string _currentDisplayModule;
         std::unique_ptr<ECS::IEventManager> _eventManager;

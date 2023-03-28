@@ -39,20 +39,24 @@ set(EXEC_SRC
         src/ECS/EventManager.hpp
         src/ECS/SystemManager.cpp
         src/ECS/SystemManager.hpp
-        #        src/Core/MainMenu/MainMenu.cpp
-        #        src/Core/MainMenu/MainMenu.hpp
-        #        src/Core/MainMenu/Scene/MainMenuScene.cpp
-        #        src/Core/MainMenu/Scene/MainMenuScene.hpp
-        #        src/Core/MainMenu/Scene/SelectionLib.cpp
-        #        src/Core/MainMenu/Scene/SelectionLib.hpp
-        #        src/Core/MainMenu/Components/Text.cpp
-        #        src/Core/MainMenu/Components/Text.hpp
-        #        src/Core/MainMenu/Components/IsHovered.cpp
-        #        src/Core/MainMenu/Components/IsHovered.hpp
-        #        src/Core/MainMenu/Systems/IsHovering.cpp
-        #        src/Core/MainMenu/Systems/IsHovering.hpp
-        #        src/Core/MainMenu/Systems/KeyboardEvent.cpp
-        #        src/Core/MainMenu/Systems/KeyboardEvent.hpp
+        src/ECS/EntityManager.cpp
+        src/ECS/EntityManager.hpp
+        src/ECS/Entity.cpp
+        src/ECS/Entity.hpp
+        src/Core/MainMenu/MainMenu.cpp
+        src/Core/MainMenu/MainMenu.hpp
+        src/Core/MainMenu/Scene/MainMenuScene.cpp
+        src/Core/MainMenu/Scene/MainMenuScene.hpp
+        src/Core/MainMenu/Scene/SelectionLib.cpp
+        src/Core/MainMenu/Scene/SelectionLib.hpp
+        src/Core/MainMenu/Components/Text.cpp
+        src/Core/MainMenu/Components/Text.hpp
+        src/Core/MainMenu/Components/IsHovered.cpp
+        src/Core/MainMenu/Components/IsHovered.hpp
+        src/Core/MainMenu/Systems/IsHovering.cpp
+        src/Core/MainMenu/Systems/IsHovering.hpp
+        src/Core/MainMenu/Systems/KeyboardHandler.cpp
+        src/Core/MainMenu/Systems/KeyboardHandler.hpp
         )
 
 include_directories(src)

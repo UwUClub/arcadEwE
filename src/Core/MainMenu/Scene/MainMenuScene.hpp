@@ -15,7 +15,7 @@ namespace Arcade::Game
     {
         public:
         MainMenuScene();
-        ~MainMenuScene() = default;
+        virtual ~MainMenuScene() = default;
 
         void update(float deltaTime, Arcade::ECS::IEventManager &eventManager);
         Arcade::ECS::IEntityManager &getEntityManager();
