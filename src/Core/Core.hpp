@@ -6,10 +6,6 @@
 #define ARCADE_CORE_HPP
 
 #include "ICore.hpp"
-#include "IEventManager.hpp"
-#include "IGameModule.hpp"
-#include "IDisplayModule.hpp"
-#include "Api.hpp"
 #include "DisplayHandler.hpp"
 #include "GameHandler.hpp"
 #include "LibraryFinder.hpp"

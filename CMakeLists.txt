@@ -17,7 +17,6 @@ set(INCLUDES
         sharedArchitecture/include/Arcade/ECS/IEntityManager.hpp
         sharedArchitecture/include/Arcade/ECS/IEventManager.hpp
         sharedArchitecture/include/Arcade/ECS/ISystemManager.hpp
-        sharedArchitecture/include/Arcade/ECS/ISystem.hpp
         sharedArchitecture/include/Arcade/Graph/GraphStruct.hpp
         sharedArchitecture/include/Arcade/Graph/IMusic.hpp
         sharedArchitecture/include/Arcade/Graph/ISprite.hpp

@@ -10,9 +10,8 @@
 #include <utility>
 #include <dlfcn.h>
 #include <iostream>
-#include "ISystemManager.hpp"
-#include "Api.hpp"
 #include "LibraryFinder.hpp"
+#include "IGameModule.hpp"
 
 namespace Arcade::Core
 {
@@ -23,13 +22,13 @@ namespace Arcade::Core
 
         ~GameHandler();
 
-        IGameModule &operator*() const noexcept { return *_lib; }
+        Game::IGameModule &operator*() const noexcept { return *_lib; }
 
-        IGameModule *operator->() const noexcept { return _lib; }
+        Game::IGameModule *operator->() const noexcept { return _lib.get(); }
 
         private:
         void *_handle;
-        IGameModule *_lib;
+        std::unique_ptr<Game::IGameModule> _lib;
 
         class LibraryHandlerException : public std::exception
         {

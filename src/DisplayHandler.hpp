@@ -10,9 +10,8 @@
 #include <utility>
 #include <dlfcn.h>
 #include <iostream>
-#include "ISystemManager.hpp"
-#include "Api.hpp"
 #include "LibraryFinder.hpp"
+#include "IDisplayModule.hpp"
 
 namespace Arcade::Core
 {
@@ -23,13 +22,13 @@ namespace Arcade::Core
 
         ~DisplayHandler();
 
-        IDisplayModule &operator*() const noexcept { return *_lib; }
+        Graph::IDisplayModule &operator*() const noexcept { return *_lib; }
 
-        IDisplayModule *operator->() const noexcept { return _lib; }
+        Graph::IDisplayModule *operator->() const noexcept { return _lib.get(); }
 
         private:
         void *_handle;
-        IDisplayModule *_lib;
+        std::unique_ptr<Graph::IDisplayModule> _lib;
 
         class LibraryHandlerException : public std::exception
         {

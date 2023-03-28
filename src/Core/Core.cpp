@@ -3,7 +3,6 @@
 //
 
 #include "Core.hpp"
-
 #include <memory>
 #include "EventManager.hpp"
 #include "Component.hpp"
@@ -19,30 +18,28 @@ Arcade::Core::Core::Core()
             break;
         }
     }
-
     _displayModule = std::make_unique<DisplayHandler>(_currentDisplayModule);
     _eventManager = std::make_unique<ECS::EventManager>();
 }
 
 void Arcade::Core::Core::run()
 {
-    //    while (_eventManager->isEventTriggered("QUIT").first) {
-    //        auto &gameSys = _gameModule->getSceneManager().getCurrentScene()->getSystemManager();
-    //        auto &displaySys = _displayModule->getSystemManager();
-    //
-    //        gameSys.update(0, *_eventManager, *_displayModule, *_gameModule);
-    //        displaySys.update(0, *_eventManager, *_displayModule, *_gameModule);
-    //        handleCoreEvents();
-    //        _eventManager->clearEvents();
-    //    }
+    while (_eventManager->isEventTriggered("QUIT").first) {
+        auto &currentEntityManager = _gameModule->operator->()->getCurrentEntityManager();
+
+        handleCoreEvents();
+        _gameModule->operator->()->update(0, *_eventManager);
+        _displayModule->operator->()->update(0, *_eventManager, currentEntityManager);
+    }
 }
 
 void Arcade::Core::Core::handleCoreEvents()
 {
-    auto event = _eventManager->isEventTriggered("CHANGE_GAME");
+    auto eventGame = _eventManager->isEventTriggered("CHANGE_GAME");
+    auto eventGraph = _eventManager->isEventTriggered("CHANGE_LIB");
 
-    if (event.first) {
-        for (auto &comp : *event.second) {
+    if (eventGame.first) {
+        for (auto &comp : *eventGame.second) {
             if (comp.has_value()) {
                 std::string gameName = comp.value()->id;
                 loadGameModule(gameName);
@@ -51,9 +48,8 @@ void Arcade::Core::Core::handleCoreEvents()
             loadGameModule();
         }
     }
-    event = _eventManager->isEventTriggered("CHANGE_LIB");
-    if (event.first) {
-        for (auto &comp : *event.second) {
+    if (eventGraph.first) {
+        for (auto &comp : *eventGraph.second) {
             if (comp.has_value()) {
                 std::string libName = comp.value()->id;
                 loadDisplayModule(libName);
