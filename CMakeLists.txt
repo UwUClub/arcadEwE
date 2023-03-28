@@ -92,21 +92,33 @@ project(arcade_snake
     DESCRIPTION "Snake game for the arcade"
     LANGUAGES CXX)
 
-add_library(arcade_snake SHARED
+set(SNAKE_SOURCES
     lib/Snake/Components/Movements.cpp
     lib/Snake/Components/Movements.hpp
+    lib/Snake/Scenes/SnakeGameScene.cpp
+    lib/Snake/Scenes/SnakeGameScene.hpp
+    lib/Snake/Scenes/SnakeMenuScene.cpp
+    lib/Snake/Scenes/SnakeMenuScene.hpp
+    lib/Snake/Scenes/SnakeScene.cpp
+    lib/Snake/Scenes/SnakeScene.hpp
     lib/Snake/Systems/OnClickResume.cpp
     lib/Snake/Systems/OnClickResume.hpp
     lib/Snake/Systems/PlayerInputs.cpp
     lib/Snake/Systems/PlayerInputs.hpp
-    lib/Snake/SnakeEntry.cpp
-)
+    lib/Snake/Snake.cpp
+    lib/Snake/Snake.hpp)
+
+add_library(arcade_snake SHARED
+    ${SNAKE_SOURCES} ${INCLUDES})
 
 set_target_properties(arcade_snake PROPERTIES
     VERSION ${SNAKE_VERSION}
     DESCRIPTION "Snake game for the arcade")
 
 target_include_directories(arcade_snake PRIVATE lib/Snake)
+target_include_directories(arcade_snake PRIVATE lib/Snake/Components)
+target_include_directories(arcade_snake PRIVATE lib/Snake/Systems)
+target_include_directories(arcade_snake PRIVATE lib/Snake/Scenes)
 target_include_directories(arcade_snake PRIVATE src)
 target_include_directories(arcade_snake PRIVATE src/Core)
 target_include_directories(arcade_snake PRIVATE src/Core/MainMenu)

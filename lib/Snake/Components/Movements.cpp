@@ -6,15 +6,12 @@
 */
 
 #include "Movements.hpp"
+#include "Snake.hpp"
 
 namespace Snake {
     Movements::Movements(const std::string &id, const enum Movements::Direction direction) :
-        Arcade::ECS::Component(, "id"),
+        Arcade::ECS::Component(Arcade::ECS::CompType::MOVEMENTS, id),
         _direction(direction)
-    {
-    }
-
-    Movements::~Movements()
     {
     }
 
@@ -23,7 +20,7 @@ namespace Snake {
         _direction = direction;
     }
 
-    const enum Movements::Direction Movements::getDirection() const
+    Movements::Direction Movements::getDirection() const
     {
         return _direction;
     }

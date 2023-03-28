@@ -11,7 +11,7 @@ namespace Snake {
     Snake::Snake()
     {
         _currentScene = 0;
-        _scenes.emplace_back(std::make_unique<MainMenuScene>());
+        _scenes.emplace_back(std::make_unique<SnakeMenuScene>());
     }
 
     void Snake::update(float deltaTime, Arcade::ECS::IEventManager &eventManager)
@@ -21,6 +21,6 @@ namespace Snake {
 
     Arcade::ECS::IEntityManager &Snake::getCurrentEntityManager()
     {
-        return _scenes[_currentScene]->getCurrentEntityManager();
+        return _scenes[_currentScene]->getEntityManager();
     }
 } // namespace Snake

@@ -18,27 +18,29 @@ void Snake::PlayerInputs::run(float deltaTime,
     auto eventL = eventManager.isEventTriggered("KEY_LEFT_PRESSED");
     auto eventR = eventManager.isEventTriggered("KEY_RIGHT_PRESSED");
 
+    (void)(deltaTime);
     if (!eventD.first && !eventU.first && !eventL.first && !eventR.first) {
         return;
     }
     auto &entities = currentScene.getEntities();
 
-    for (auto &entity : entities) {
-        auto idEntity = entity->getId();
-        enum Snake::Movements::Direction direction;
+    (void)(entities);
+    // for (auto &entity : entities) {
+    //     auto idEntity = entity->getId();
+    //     enum Snake::Movements::Direction direction;
 
-        if (idEntity.find("snake") == std::string::npos) {
-            continue;
-        }
-        auto &movementsComp = entity->getComponents("Movements").front();
-        if (eventD.first)
-            direction = Snake::Movements::Direction::DOWN;
-        if (eventU.first)
-            direction = Snake::Movements::Direction::UP;
-        if (eventL.first)
-            direction = Snake::Movements::Direction::LEFT;
-        if (eventR.first)
-            direction = Snake::Movements::Direction::RIGHT;
-        reinterpret_cast<Snake::Movements *>(movementsComp.get())->setDirection(direction);
-    }
+    //     if (idEntity.find("snake") == std::string::npos) {
+    //         continue;
+    //     }
+    //     auto &movementsComp = entity->getComponents("Movements");
+    //     if (eventD.first)
+    //         direction = Snake::Movements::Direction::DOWN;
+    //     if (eventU.first)
+    //         direction = Snake::Movements::Direction::UP;
+    //     if (eventL.first)
+    //         direction = Snake::Movements::Direction::LEFT;
+    //     if (eventR.first)
+    //         direction = Snake::Movements::Direction::RIGHT;
+    //     reinterpret_cast<Snake::Movements *>(movementsComp)->setDirection(direction);
+    // }
 }

@@ -15,7 +15,7 @@ enum class Arcade::ECS::CompType: int {
     TEXT = 0,
     SPRITE = 1,
     MUSIC = 2,
-    MOVEMENT = 3
+    MOVEMENTS = 3
 };
 
 namespace Snake {
