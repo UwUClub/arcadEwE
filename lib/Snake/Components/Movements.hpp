@@ -25,7 +25,7 @@ namespace Snake {
             ~Movements() override = default;
 
             void setDirection(const enum Direction direction);
-            [[nodiscard]] const enum Direction getDirection() const;
+            [[nodiscard]] enum Direction getDirection() const;
 
         private:
             Direction _direction;
