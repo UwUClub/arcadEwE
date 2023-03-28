@@ -13,6 +13,10 @@
 Arcade::Game::SelectionLib::SelectionLib()
     : MainMenuScene()
 {
+}
+
+bool Arcade::Game::SelectionLib::init()
+{
     auto libs = Arcade::Core::LibraryFinder::getLibraries();
     float index_game = 0;
     float index_graphic = 0;
@@ -27,13 +31,16 @@ Arcade::Game::SelectionLib::SelectionLib()
             new Arcade::Game::IsHovered(lib.second + "_hover"));
         if (lib.first == LibType::GAME) {
             text->pos.y = index_game * OFFSET_Y_TEXT;
+            text->id += "_game";
             index_game++;
         } else {
             text->pos.y = index_graphic * OFFSET_Y_TEXT;
             text->pos.x += OFFSET_X_TEXT;
+            text->id += "_graphic";
             index_graphic++;
         }
         entity.addComponent(text);
         entity.addComponent(hover);
     }
+    return true;
 }

@@ -7,7 +7,9 @@
 #include "Text.hpp"
 #include "SelectionLib.hpp"
 
-Arcade::Game::KeyboardHandler::KeyboardHandler() { }
+Arcade::Game::KeyboardHandler::KeyboardHandler()
+{
+}
 
 void Arcade::Game::KeyboardHandler::run([[maybe_unused]] float deltaTime,
     Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &currentEntityManager)
@@ -16,6 +18,7 @@ void Arcade::Game::KeyboardHandler::run([[maybe_unused]] float deltaTime,
     auto keyDown = eventManager.isEventTriggered(KEY_DOWN_PRESSED);
     auto keyLeft = eventManager.isEventTriggered(KEY_LEFT_PRESSED);
     auto keyRight = eventManager.isEventTriggered(KEY_RIGHT_PRESSED);
+    auto keyEnter = eventManager.isEventTriggered(KEY_ENTER_PRESSED);
     auto &entities = currentEntityManager.getEntities();
     auto hoveredEntity = getCurrentlyHoveredEntity(currentEntityManager);
 
@@ -76,6 +79,18 @@ void Arcade::Game::KeyboardHandler::run([[maybe_unused]] float deltaTime,
             }
         }
     }
+    if (keyEnter.first) {
+        hoveredEntity = getCurrentlyHoveredEntity(currentEntityManager);
+        hoveredEntityText = reinterpret_cast<Arcade::Game::Text &>(
+            *hoveredEntity->getComponents(ECS::CompType::TEXT)[0]);
+        if (hoveredEntityText.text.find("_game") != std::string::npos) {
+            eventManager.addEvent(CHANGE_GAME,
+                hoveredEntity->getComponents(ECS::CompType::TEXT)[0]);
+        } else {
+            eventManager.addEvent(CHANGE_GRAPHIC,
+                hoveredEntity->getComponents(ECS::CompType::TEXT)[0]);
+        }
+    }
 }
 
 std::shared_ptr<Arcade::ECS::IEntity> Arcade::Game::KeyboardHandler::getCurrentlyHoveredEntity(
@@ -86,7 +101,8 @@ std::shared_ptr<Arcade::ECS::IEntity> Arcade::Game::KeyboardHandler::getCurrentl
         auto &hover = entity->getComponents(ECS::CompType::TEXT_HOVER)[0];
         if (hover) {
             auto &hoverComp = reinterpret_cast<Arcade::Game::IsHovered &>(*hover);
-            if (hoverComp.isHovered) return entity;
+            if (hoverComp.isHovered)
+                return entity;
         }
     }
     return nullptr;

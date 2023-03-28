@@ -18,6 +18,8 @@ namespace Arcade::Game
         public:
         SelectionLib();
         ~SelectionLib() override = default;
+
+        bool init() override;
     };
 } // namespace Arcade::Game
 

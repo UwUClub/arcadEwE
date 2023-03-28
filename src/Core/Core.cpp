@@ -8,6 +8,8 @@
 #include "Component.hpp"
 #include "Events.hpp"
 #include "MainMenu.hpp"
+#include "IText.hpp"
+#include "Text.hpp"
 
 Arcade::Core::Core::Core(const std::string &pathDisplay)
     : _gameModule(nullptr)
@@ -54,7 +56,7 @@ void Arcade::Core::Core::handleCoreEvents()
     if (eventGame.first) {
         for (auto &comp : *eventGame.second) {
             if (comp.has_value()) {
-                std::string gameName = comp.value()->id;
+                std::string gameName = reinterpret_cast<Arcade::Game::Text &>(comp.value()).text;
                 loadGameModule(gameName);
                 continue;
             }
@@ -64,7 +66,7 @@ void Arcade::Core::Core::handleCoreEvents()
     if (eventGraph.first) {
         for (auto &comp : *eventGraph.second) {
             if (comp.has_value()) {
-                std::string libName = comp.value()->id;
+                std::string libName = reinterpret_cast<Arcade::Game::Text &>(comp.value()).text;
                 loadDisplayModule(libName);
                 continue;
             }

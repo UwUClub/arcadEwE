@@ -56,7 +56,7 @@ set(EXEC_SRC
         src/Core/MainMenu/Systems/IsHovering.hpp
         src/Core/MainMenu/Systems/KeyboardHandler.cpp
         src/Core/MainMenu/Systems/KeyboardHandler.hpp
-        src/ECS/Component.cpp)
+        src/ECS/Component.cpp src/Core/MainMenu/Scene/SaveReader.cpp src/Core/MainMenu/Scene/SaveReader.hpp)
 
 include_directories(src)
 include_directories(src/Core)

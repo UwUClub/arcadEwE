@@ -6,7 +6,7 @@
 #define ARCADE_MAINMENU_HPP
 
 #include "IGameModule.hpp"
-#include "Core/MainMenu/Scene/MainMenuScene.hpp"
+#include "MainMenuScene.hpp"
 
 namespace Arcade::Game
 {
@@ -20,6 +20,27 @@ namespace Arcade::Game
         Arcade::ECS::IEntityManager &getCurrentEntityManager() override;
 
         private:
+        class MainMenuException : public std::exception
+        {
+            public:
+            MainMenuException(const std::string &message)
+                : _message(message)
+            {
+            }
+
+            ~MainMenuException() override = default;
+
+            const char *what() const noexcept override
+            {
+                return _message.c_str();
+            }
+
+            private:
+            std::string _message;
+        };
+
+        void changeScene(std::size_t sceneId);
+        void handleEventSceneChange(Arcade::ECS::IEventManager &eventManager);
         std::size_t _currentScene;
         std::vector<std::unique_ptr<MainMenuScene>> _scenes;
     };
