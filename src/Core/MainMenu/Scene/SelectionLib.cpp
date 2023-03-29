@@ -25,8 +25,9 @@ bool Arcade::Game::SelectionLib::init()
     _systemManager->addSystem("keyboardHandler", std::make_unique<Arcade::Game::KeyboardHandler>());
     for (auto &lib : libs) {
         auto &entity = _entityManager->createEntity(lib.second);
-        auto text = std::shared_ptr<Arcade::Game::Text>(new Arcade::Game::Text(lib.second + "_text",
-            lib.second, FONT_PATH, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, { BASE_X, 0, 0 }));
+        auto text = std::shared_ptr<Arcade::Game::Text>(
+            new Arcade::Game::Text(lib.second + "_text", lib.second, FONT_PATH, { 0, 0, 0, 255 },
+                { 255, 255, 255, 255 }, { BASE_X_TEXT, 0, 0 }));
         auto hover = std::shared_ptr<Arcade::Game::IsHovered>(
             new Arcade::Game::IsHovered(lib.second + "_hover"));
         if (lib.first == LibType::GAME) {

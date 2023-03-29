@@ -54,10 +54,9 @@ bool Arcade::Game::SaveReader::init()
             auto &entity = _entityManager->createEntity("Save" + std::to_string(i++));
             auto text = std::shared_ptr<Arcade::Game::Text>(
                 new Arcade::Game::Text("text", line, FONT_PATH, { 0, 0, 0, 255 },
-                    { 255, 255, 255, 255 }, { BASE_X, (30 * (i + 1)), 0 }));
+                    { 255, 255, 255, 255 }, { BASE_X_SAVE, (30 * (i + 1)), 0 }));
             entity.addComponent(text);
         }
-
     } catch (const SaveReaderException &e) {
         std::cerr << e.what() << std::endl;
         return false;

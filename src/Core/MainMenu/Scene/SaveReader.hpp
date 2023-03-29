@@ -7,7 +7,7 @@
 
 #include "MainMenuScene.hpp"
 
-#define BASE_X 60
+#define BASE_X_SAVE 60
 
 namespace Arcade::Game
 {

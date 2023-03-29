@@ -4,12 +4,16 @@
 
 #include "MainMenu.hpp"
 #include "SelectionLib.hpp"
+#include "SaveReader.hpp"
 #include "Events.hpp"
 
 Arcade::Game::MainMenu::MainMenu()
     : _currentScene(0)
 {
     _scenes.push_back(std::make_unique<SelectionLib>());
+    _scenes.push_back(std::make_unique<SaveReader>());
+
+    _scenes[_currentScene]->init();
 }
 
 void Arcade::Game::MainMenu::update(float deltaTime, Arcade::ECS::IEventManager &eventManager)
