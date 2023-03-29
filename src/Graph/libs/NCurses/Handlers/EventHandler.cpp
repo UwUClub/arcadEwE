@@ -1,82 +1,12 @@
 //
-// Created by valegox on 22/03/23.
+// Created by valegox on 27/03/23.
 //
 
 #include <ncurses.h>
-#include "NCursesSystem.hpp"
-#include "IScene.hpp"
-#include "IGameModule.hpp"
-#include "Scene.hpp"
 #include "ArcadeStruct.hpp"
-#include "Component.hpp"
-#include "ISprite.hpp"
-#include "IText.hpp"
+#include "EventHandler.hpp"
 
-Arcade::Graph::NCursesSystem::NCursesSystem()
-{
-    initscr();
-    printw("Hello World");
-}
-
-Arcade::Graph::NCursesSystem::~NCursesSystem()
-{
-    endwin();
-}
-
-static void printContent(std::string content, int posX, int posY, Arcade::Graph::Color foregroundColor, Arcade::Graph::Color backgroundColor)
-{
-    if (has_colors()) {
-        init_color(0, foregroundColor.r, foregroundColor.g, foregroundColor.b);
-        init_color(1, backgroundColor.r, backgroundColor.g, backgroundColor.b);
-        init_pair(2, 0, 1);
-        attron(COLOR_PAIR(2));
-    }
-    mvprintw(posY, posX, content.c_str());
-    if (has_colors()) {
-        attroff(COLOR_PAIR(2));
-    }
-}
-
-static void displaySprites(std::vector<std::shared_ptr<IEntity>> &entities)
-{
-    for (auto &entity : entities) {
-
-        std::vector<std::shared_ptr<Arcade::ECS::IComponent>> spriteComponents = entity->getComponents(Arcade::ECS::CompType::SPRITE);
-
-        for (auto spriteComponent : spriteComponents) {
-            auto sprite = std::static_pointer_cast<Arcade::Graph::ISprite>(spriteComponent);
-            Arcade::Vector3f pos = (*sprite).getPos();
-            Arcade::Graph::TTYData data = (*sprite).getTTYData();
-
-            printContent(data.defaultChar, pos.x, pos.y, data.foreground, data.background);
-        }
-    }
-}
-
-static void displayTexts(std::vector<std::shared_ptr<IEntity>> &entities)
-{
-    for (auto &entity : entities) {
-
-        std::vector<std::shared_ptr<Arcade::ECS::IComponent>> textComponents = entity->getComponents(Arcade::ECS::CompType::TEXT);
-
-        for (auto textComponent : textComponents) {
-            auto text = std::static_pointer_cast<Arcade::Graph::IText>(textComponent);
-            Arcade::Vector2f pos = (*text).getPos();
-            Arcade::Graph::Color foregroundColor = (*text).getForegroundColor();
-            Arcade::Graph::Color backgroundColor = (*text).getBackgroundColor();
-
-            printContent((*text).getText(), pos.x, pos.y, foregroundColor, backgroundColor);
-        }
-    }
-}
-
-static void captureKeyboardEvents(Arcade::ECS::IEventManager &eventManager)
-{
-    const char key = getch();
-
-    if (key == ERR) {
-        return;
-    }
+namespace Arcade::Graph {
 
     std::map<const char, const std::string> keys = {
         {KEY_MOUSE, "MOUSE_KEY1_PRESSED"},
@@ -176,20 +106,22 @@ static void captureKeyboardEvents(Arcade::ECS::IEventManager &eventManager)
         {KEY_MIN, "WINDOW_MINIMIZE"}
     };
 
-    if (keys.find(key) != keys.end()) {
-        std::string eventName = keys.find(key)->second;
-        eventManager.addEvent(eventName, nullptr);
+    EventHandler::EventHandler() : AHandler()
+    {
     }
-}
 
-void Arcade::Graph::NCursesSystem::run([[maybe_unused]] std::size_t deltaTime, Arcade::ECS::IEventManager &eventManager,
-    [[maybe_unused]] Arcade::Core::IEntityManager &entityManager)
-{
-    std::vector<std::shared_ptr<IEntity>> &entities = entityManager.getEntities();
+    void EventHandler::run([[maybe_unused]] float delta, Arcade::ECS::IEventManager &eventManager, [[maybe_unused]] Arcade::ECS::IEntityManager &entityManager)
+    {
+        const char key = getch();
 
-    displaySprites(entities);
-    displayTexts(entities);
-    captureKeyboardEvents(eventManager);
+        eventManager.clearEvents();
 
-    refresh();
+        if (key == ERR) {
+            return;
+        }
+        if (keys.find(key) != keys.end()) {
+            std::string eventName = keys.find(key)->second;
+            eventManager.addEvent(eventName, nullptr);
+        }
+    }
 }
