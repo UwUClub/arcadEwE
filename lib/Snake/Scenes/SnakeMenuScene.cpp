@@ -6,11 +6,11 @@
 */
 
 #include "SnakeMenuScene.hpp"
-#include "OnClickResume.hpp"
 #include "EntityManager.hpp"
 #include "SystemManager.hpp"
 #include "SnakeText.hpp"
 #include "SnakeIsHovered.hpp"
+#include "SnakeIsHovering.hpp"
 
 namespace Snake {
     SnakeMenuScene::SnakeMenuScene() : SnakeScene()

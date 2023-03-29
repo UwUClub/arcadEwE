@@ -100,26 +100,30 @@ set(SNAKE_SOURCES
     lib/Snake/Components/Direction.hpp
     lib/Snake/Components/Position.cpp
     lib/Snake/Components/Position.hpp
-    lib/Snake/Components/Speed.cpp
-    lib/Snake/Components/Speed.hpp
-    lib/Snake/Components/Sprite.cpp
-    lib/Snake/Components/Sprite.hpp
     lib/Snake/Components/SnakeIsHovered.cpp
     lib/Snake/Components/SnakeIsHovered.hpp
     lib/Snake/Components/SnakeText.cpp
     lib/Snake/Components/SnakeText.hpp
+    lib/Snake/Components/Speed.cpp
+    lib/Snake/Components/Speed.hpp
+    lib/Snake/Components/Sprite.cpp
+    lib/Snake/Components/Sprite.hpp
     lib/Snake/Scenes/SnakeGameScene.cpp
     lib/Snake/Scenes/SnakeGameScene.hpp
     lib/Snake/Scenes/SnakeMenuScene.cpp
     lib/Snake/Scenes/SnakeMenuScene.hpp
     lib/Snake/Scenes/SnakeScene.cpp
     lib/Snake/Scenes/SnakeScene.hpp
+    lib/Snake/Systems/MenuKeyboardHandler.cpp
+    lib/Snake/Systems/MenuKeyboardHandler.hpp
     lib/Snake/Systems/MoveSnake.cpp
     lib/Snake/Systems/MoveSnake.hpp
-    lib/Snake/Systems/OnClickResume.cpp
-    lib/Snake/Systems/OnClickResume.hpp
     lib/Snake/Systems/PlayerInputs.cpp
     lib/Snake/Systems/PlayerInputs.hpp
+    lib/Snake/Systems/SnakeGameManager.cpp
+    lib/Snake/Systems/SnakeGameManager.hpp
+    lib/Snake/Systems/SnakeIsHovering.cpp
+    lib/Snake/Systems/SnakeIsHovering.hpp
     lib/Snake/Snake.cpp
     lib/Snake/Snake.hpp)
 
