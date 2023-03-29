@@ -3,7 +3,7 @@ set(PROJECT_NAME arcade)
 project(${PROJECT_NAME})               # Create project "arcade"
 set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wl,--no-as-needed -ldl -fno-gnu-unique -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wl,--no-as-needed -ldl -fno-gnu-unique -fPIC -lncurses")
 
 set(INCLUDES
     sharedArchitecture/include/Api.hpp
@@ -48,6 +48,8 @@ set(EXEC_SRC
         src/Core/MainMenu/Scene/MainMenuScene.hpp
         src/Core/MainMenu/Scene/SelectionLib.cpp
         src/Core/MainMenu/Scene/SelectionLib.hpp
+        src/Core/MainMenu/Scene/SaveReader.cpp
+        src/Core/MainMenu/Scene/SaveReader.hpp
         src/Core/MainMenu/Components/Text.cpp
         src/Core/MainMenu/Components/Text.hpp
         src/Core/MainMenu/Components/IsHovered.cpp
@@ -56,7 +58,24 @@ set(EXEC_SRC
         src/Core/MainMenu/Systems/IsHovering.hpp
         src/Core/MainMenu/Systems/KeyboardHandler.cpp
         src/Core/MainMenu/Systems/KeyboardHandler.hpp
-        src/ECS/Component.cpp src/Core/MainMenu/Scene/SaveReader.cpp src/Core/MainMenu/Scene/SaveReader.hpp)
+        src/ECS/Component.cpp
+        src/Core/DisplayModule.cpp
+        src/Core/DisplayModule.hpp
+        src/Core/GameModule.cpp
+        src/Core/GameModule.hpp
+        src/Game/Scene.cpp
+        src/Game/Scene.hpp
+        src/Game/SceneManager.cpp
+        src/Game/SceneManager.hpp
+        src/Graph/Music.cpp
+        src/Graph/Music.hpp
+        src/Graph/Sprite.cpp
+        src/Graph/Sprite.hpp
+        src/Graph/Text.cpp
+        src/Graph/Text.hpp
+        src/Graph/Systems/NCurses/NcursesSystem.cpp
+        src/Graph/Systems/NCurses/NcursesSystem.hpp
+        )
 
 include_directories(src)
 include_directories(src/Core)
