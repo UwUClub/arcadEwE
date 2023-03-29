@@ -7,25 +7,26 @@
 
 #include "IComponent.hpp"
 
-namespace Arcade::ECS {
-    enum class CompType {
-        SPRITE,
-        TEXT,
-        MUSIC
-    };
-
-    class Component : public IComponent {
+namespace Arcade::ECS
+{
+    /**
+     * @brief Base class for all components
+     */
+    struct Component : public IComponent {
         public:
-        Component(CompType type, const std::string &id);
-            ~Component() override = default;
+        /**
+         * @brief Construct a new Component object
+         *
+         * @param nType The type of the component
+         * @param nId The id of the component
+         */
+        Component(CompType nType, const std::string &nId);
 
-            [[nodiscard]] CompType getType() const override;
-            [[nodiscard]] const std::string &getId() const override;
-
-        protected:
-            CompType _type;
-            const std::string _id;
+        /**
+         * @brief Destroy the Component object
+         */
+        ~Component() override = default;
     };
-}
+} // namespace Arcade::ECS
 
 #endif // ARCADE_COMPONENT_HPP
