@@ -96,14 +96,26 @@ project(arcade_snake
     LANGUAGES CXX)
 
 set(SNAKE_SOURCES
-    lib/Snake/Components/Movements.cpp
-    lib/Snake/Components/Movements.hpp
+    lib/Snake/Components/Direction.cpp
+    lib/Snake/Components/Direction.hpp
+    lib/Snake/Components/Position.cpp
+    lib/Snake/Components/Position.hpp
+    lib/Snake/Components/Speed.cpp
+    lib/Snake/Components/Speed.hpp
+    lib/Snake/Components/Sprite.cpp
+    lib/Snake/Components/Sprite.hpp
+    lib/Snake/Components/SnakeIsHovered.cpp
+    lib/Snake/Components/SnakeIsHovered.hpp
+    lib/Snake/Components/SnakeText.cpp
+    lib/Snake/Components/SnakeText.hpp
     lib/Snake/Scenes/SnakeGameScene.cpp
     lib/Snake/Scenes/SnakeGameScene.hpp
     lib/Snake/Scenes/SnakeMenuScene.cpp
     lib/Snake/Scenes/SnakeMenuScene.hpp
     lib/Snake/Scenes/SnakeScene.cpp
     lib/Snake/Scenes/SnakeScene.hpp
+    lib/Snake/Systems/MoveSnake.cpp
+    lib/Snake/Systems/MoveSnake.hpp
     lib/Snake/Systems/OnClickResume.cpp
     lib/Snake/Systems/OnClickResume.hpp
     lib/Snake/Systems/PlayerInputs.cpp

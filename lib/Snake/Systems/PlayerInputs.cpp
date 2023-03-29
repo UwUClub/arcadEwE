@@ -7,7 +7,7 @@
 
 #include "PlayerInputs.hpp"
 #include "Events.hpp"
-#include "Movements.hpp"
+#include "Direction.hpp"
 
 void Snake::PlayerInputs::run(float deltaTime,
     Arcade::ECS::IEventManager &eventManager,
@@ -24,23 +24,22 @@ void Snake::PlayerInputs::run(float deltaTime,
     }
     auto &entities = currentScene.getEntities();
 
-    (void)(entities);
-    // for (auto &entity : entities) {
-    //     auto idEntity = entity->getId();
-    //     enum Snake::Movements::Direction direction;
+    for (auto &entity : entities) {
+        auto idEntity = entity->getId();
+        enum Snake::Direction::dir direction = Snake::Direction::dir::UP;
 
-    //     if (idEntity.find("snake") == std::string::npos) {
-    //         continue;
-    //     }
-    //     auto &movementsComp = entity->getComponents("Movements");
-    //     if (eventD.first)
-    //         direction = Snake::Movements::Direction::DOWN;
-    //     if (eventU.first)
-    //         direction = Snake::Movements::Direction::UP;
-    //     if (eventL.first)
-    //         direction = Snake::Movements::Direction::LEFT;
-    //     if (eventR.first)
-    //         direction = Snake::Movements::Direction::RIGHT;
-    //     reinterpret_cast<Snake::Movements *>(movementsComp)->setDirection(direction);
-    // }
+        if (idEntity.find("snake") == std::string::npos) {
+            continue;
+        }
+        auto &directionComp = entity->getComponents("Direction");
+        if (eventD.first)
+            direction = Snake::Direction::dir::DOWN;
+        if (eventU.first)
+            direction = Snake::Direction::dir::UP;
+        if (eventL.first)
+            direction = Snake::Direction::dir::LEFT;
+        if (eventR.first)
+            direction = Snake::Direction::dir::RIGHT;
+        reinterpret_cast<Snake::Direction &>(directionComp).setDirection(direction);
+    }
 }

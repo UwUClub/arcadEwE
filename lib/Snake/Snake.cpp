@@ -6,11 +6,14 @@
 */
 
 #include "Snake.hpp"
+#include "SnakeGameScene.hpp"
+#include "SnakeMenuScene.hpp"
 
 namespace Snake {
     Snake::Snake()
     {
         _currentScene = 0;
+        _scenes.emplace_back(std::make_unique<SnakeGameScene>());
         _scenes.emplace_back(std::make_unique<SnakeMenuScene>());
     }
 

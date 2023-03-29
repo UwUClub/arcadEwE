@@ -6,15 +6,19 @@
 */
 
 #ifndef SNAKEGAMESCENE_HPP_
-#define SNAKEGAMESCENE_HPP_
+    #define SNAKEGAMESCENE_HPP_
+    #include "SnakeScene.hpp"
+    #define SNAKE_PATH "assets/images/SnakeSpriteSheet.png"
 
-class SnakeGameScene {
-    public:
-        SnakeGameScene();
-        ~SnakeGameScene();
+namespace Snake {
+    class SnakeGameScene : public SnakeScene
+    {
+        public:
+            SnakeGameScene();
+            ~SnakeGameScene() override = default;
 
-    protected:
-    private:
-};
+            bool init() override;
+    };
+}
 
 #endif /* !SNAKEGAMESCENE_HPP_ */

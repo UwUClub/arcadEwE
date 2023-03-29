@@ -2,25 +2,25 @@
 ** EPITECH PROJECT, 2023
 ** arcadEwE
 ** File description:
-** PlayerInputs
+** MoveSnake
 */
 
-#ifndef PLAYERINPUTS_HPP_
-    #define PLAYERINPUTS_HPP_
+#ifndef MOVESNAKE_HPP_
+    #define MOVESNAKE_HPP_
     #include "ISystem.hpp"
 
 namespace Snake
 {
-    class PlayerInputs : public Arcade::ECS::ISystem
+    class MoveSnake : public Arcade::ECS::ISystem
     {
         public:
-            PlayerInputs() = default;
-            ~PlayerInputs() override = default;
+            MoveSnake() = default;
+            ~MoveSnake() override = default;
 
             void run(float deltaTime,
                 Arcade::ECS::IEventManager &eventManager,
                 Arcade::ECS::IEntityManager &currentScene) override;
     };
-} // namespace Arcade::Core
+}
 
-#endif /* !PLAYERINPUTS_HPP_ */
+#endif /* !MOVESNAKE_HPP_ */

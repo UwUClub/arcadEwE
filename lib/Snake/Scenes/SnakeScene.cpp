@@ -25,4 +25,10 @@ namespace Snake {
     {
         return *_entityManager;
     }
+
+    void SnakeScene::close()
+    {
+        _entityManager.reset(nullptr);
+        _systemManager.reset(nullptr);
+    }
 }

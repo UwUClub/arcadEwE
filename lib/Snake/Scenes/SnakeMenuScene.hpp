@@ -11,6 +11,7 @@
     #define BASE_X        20
     #define OFFSET_Y_TEXT 50
     #define OFFSET_X_TEXT 180
+    #define FONT_PATH "assets/fonts/Roboto-Regular.ttf"
 
 namespace Snake
 {
@@ -19,6 +20,8 @@ namespace Snake
         public:
             SnakeMenuScene();
             ~SnakeMenuScene() override = default;
+
+            bool init() override;
     };
 } // namespace Snake
 

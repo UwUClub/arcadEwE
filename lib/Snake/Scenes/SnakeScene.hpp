@@ -10,16 +10,21 @@
     #include "IEventManager.hpp"
     #include "IEntityManager.hpp"
     #include "ISystemManager.hpp"
+    #include "IScene.hpp"
 
 namespace Snake
 {
-    class SnakeScene {
+    class SnakeScene : public Arcade::Game::IScene
+    {
         public:
             SnakeScene();
             virtual ~SnakeScene() = default;
 
             void update(float deltaTime, Arcade::ECS::IEventManager &eventManager);
             Arcade::ECS::IEntityManager &getEntityManager();
+
+            bool init() override = 0;
+            void close() final;
 
         protected:
             std::unique_ptr<Arcade::ECS::IEntityManager> _entityManager;

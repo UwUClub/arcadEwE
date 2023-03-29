@@ -9,14 +9,7 @@
     #define SNAKE_HPP_
     #include "IComponent.hpp"
     #include "IGameModule.hpp"
-    #include "SnakeMenuScene.hpp"
-
-enum class Arcade::ECS::CompType: int {
-    TEXT = 0,
-    SPRITE = 1,
-    MUSIC = 2,
-    MOVEMENTS = 3
-};
+    #include "SnakeScene.hpp"
 
 namespace Snake {
     class Snake : public Arcade::Game::IGameModule
@@ -30,7 +23,7 @@ namespace Snake {
         protected:
         private:
             std::size_t _currentScene;
-            std::vector<std::unique_ptr<SnakeMenuScene>> _scenes;
+            std::vector<std::unique_ptr<SnakeScene>> _scenes;
     };
 }
 
