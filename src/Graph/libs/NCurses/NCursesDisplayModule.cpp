@@ -28,7 +28,7 @@ namespace Arcade::Graph {
         free(this->_eventHandler);
     }
 
-    NCursesDisplayModule::update(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager)
+    void NCursesDisplayModule::update(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager)
     {
         this->_spriteHandler->run(delta, eventManager, entityManager);
         this->_textHandler->run(delta, eventManager, entityManager);

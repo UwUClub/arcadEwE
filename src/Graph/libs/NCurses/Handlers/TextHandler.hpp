@@ -9,12 +9,12 @@
 #include "IEntityManager.hpp"
 
 namespace Arcade::Graph {
-    class TextHandler : public Arcade::ECS::AHandler
+    class TextHandler : public AHandler
     {
         public:
         TextHandler();
         ~TextHandler() = default;
 
-        void run(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager) override;
+        void run(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager);
     };
 }

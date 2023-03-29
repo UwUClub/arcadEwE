@@ -6,6 +6,7 @@
 #include "IsHovered.hpp"
 #include "Text.hpp"
 #include "SelectionLib.hpp"
+#include "IComponent.hpp"
 
 Arcade::Game::KeyboardHandler::KeyboardHandler()
 {

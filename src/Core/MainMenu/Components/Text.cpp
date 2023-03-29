@@ -3,6 +3,7 @@
 //
 
 #include "Text.hpp"
+#include "IComponent.hpp"
 
 Arcade::Game::Text::Text(const std::string &id, const std::string &text, const std::string &font,
     Arcade::Graph::Color backColor, Arcade::Graph::Color textColor, Arcade::Vector3f pos)

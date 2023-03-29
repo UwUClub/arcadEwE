@@ -4,7 +4,6 @@
 
 #include <ncurses.h>
 #include "ArcadeStruct.hpp"
-#include "Component.hpp"
 #include "ISprite.hpp"
 #include "SpriteHandler.hpp"
 
@@ -14,13 +13,13 @@ namespace Arcade::Graph {
     {
     }
 
-    void SpriteHandler::run([[maybe_unused]] float delta, [[maybe_unused]] IEventManager &eventManager, IEntityManager &entityManager)
+    void SpriteHandler::run([[maybe_unused]] float delta, [[maybe_unused]] Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager)
     {
-        std::vector<std::shared_ptr<IEntity>> &entities = entityManager.getEntities();
+        const std::vector<std::shared_ptr<Arcade::ECS::IEntity>> &entities = entityManager.getEntities();
 
         for (auto &entity : entities) {
 
-            std::vector<std::shared_ptr<IComponent>> spriteComponents = entity->getComponents(CompType::SPRITE);
+            std::vector<std::shared_ptr<Arcade::ECS::IComponent>> spriteComponents = entity->getComponents(Arcade::ECS::CompType::SPRITE);
 
             for (auto spriteComponent : spriteComponents) {
                 auto sprite = std::static_pointer_cast<ISprite>(spriteComponent);

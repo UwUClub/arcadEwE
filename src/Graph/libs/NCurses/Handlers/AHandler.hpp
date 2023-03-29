@@ -7,6 +7,7 @@
 #include "IHandler.hpp"
 #include "IEventManager.hpp"
 #include "IEntityManager.hpp"
+#include "GraphStruct.hpp"
 
 namespace Arcade::Graph {
     class AHandler : public IHandler

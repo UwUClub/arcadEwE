@@ -20,7 +20,7 @@ void destroyDisplayModule(Arcade::Graph::IDisplayModule *displayModule)
 
 const char *getName()
 {
-    return "NCurses"
+    return "NCurses";
 }
 
 LibType getType()

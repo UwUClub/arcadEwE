@@ -4,7 +4,7 @@
 
 #include <ncurses.h>
 #include "ArcadeStruct.hpp"
-#include "Component.hpp"
+#include "IComponent.hpp"
 #include "IText.hpp"
 #include "TextHandler.hpp"
 
@@ -16,7 +16,7 @@ namespace Arcade::Graph {
 
     void TextHandler::run([[maybe_unused]] float delta, [[maybe_unused]] Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager)
     {
-        std::vector<std::shared_ptr<IEntity>> &entities = entityManager.getEntities();
+        const std::vector<std::shared_ptr<Arcade::ECS::IEntity>> &entities = entityManager.getEntities();
 
         for (auto &entity : entities) {
 
@@ -24,11 +24,11 @@ namespace Arcade::Graph {
 
             for (auto textComponent : textComponents) {
                 auto text = std::static_pointer_cast<IText>(textComponent);
-                Arcade::Vector2f pos = (*text).pos;
+                Arcade::Vector3f pos = (*text).pos;
                 Color foregroundColor = (*text).textColor;
                 Color backgroundColor = (*text).backgroundColor;
 
-                printContent((*text).getText(), pos.x, pos.y, foregroundColor, backgroundColor);
+                printContent((*text).text, pos.x, pos.y, foregroundColor, backgroundColor);
             }
         }
     }
