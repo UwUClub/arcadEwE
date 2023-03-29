@@ -4,16 +4,19 @@
 
 #ifndef ARCADE_EVENTS_HPP
 #define ARCADE_EVENTS_HPP
+// --------------------------- Events related to the game ---------------------------//
+#define QUIT           "QUIT"
+#define CHANGE_GAME    "CHANGE_GAME"
+#define CHANGE_GRAPHIC "CHANGE_GRAPH"
+#define END_GAME       "GAME_END"
+#define RESTART_GAME   "GAME_RESTART"
 
+// --------------------------- Events related to keys ---------------------------//
 #define MOUSE_CLICK_1         "MOUSE_KEY1_PRESSED"
 #define MOUSE_CLICK_2         "MOUSE_KEY2_PRESSED"
 #define MOUSE_CLICK_3         "MOUSE_KEY3_PRESSED"
 #define MOUSE_CLICK_4         "MOUSE_KEY4_PRESSED"
 #define MOUSE_CLICK_5         "MOUSE_KEY5_PRESSED"
-#define QUIT                  "QUIT"
-#define CHANGE_GAME           "CHANGE_GAME"
-#define CHANGE_GRAPHIC        "CHANGE_GRAPH"
-#define END_GAME              "GAME_END"
 #define KEY_A_PRESSED         "KEY_A_PRESSED"
 #define KEY_B_PRESSED         "KEY_B_PRESSED"
 #define KEY_C_PRESSED         "KEY_C_PRESSED"
@@ -75,9 +78,11 @@
 #define KEY_F10_PRESSED       "KEY_F10_PRESSED"
 #define KEY_F11_PRESSED       "KEY_F11_PRESSED"
 #define KEY_F12_PRESSED       "KEY_F12_PRESSED"
-#define WINDOW_CLOSE          "WINDOW_CLOSE"
-#define WINDOW_RESIZE         "WINDOW_RESIZE"
-#define WINDOW_MINIMIZE       "WINDOW_MINIMIZE"
-#define WINDOW_MAXIMIZE       "WINDOW_MAXIMIZE"
+
+// --------------------------- Events related to the window ---------------------------//
+#define WINDOW_CLOSE    "WINDOW_CLOSE"
+#define WINDOW_RESIZE   "WINDOW_RESIZE"
+#define WINDOW_MINIMIZE "WINDOW_MINIMIZE"
+#define WINDOW_MAXIMIZE "WINDOW_MAXIMIZE"
 
 #endif // ARCADE_EVENTS_HPP

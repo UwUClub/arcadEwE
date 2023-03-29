@@ -8,25 +8,31 @@
 #include "Component.hpp"
 #include "Events.hpp"
 #include "MainMenu.hpp"
+#include "IText.hpp"
+#include "Text.hpp"
 
-Arcade::Core::Core::Core()
+Arcade::Core::Core::Core(const std::string &pathDisplay)
     : _gameModule(nullptr)
-//    , _mainMenu(nullptr)
-//    , _mainMenu(std::make_unique<Arcade::Game::MainMenu>())
+    , _mainMenu(std::make_unique<Arcade::Game::MainMenu>())
 {
     auto libs = LibraryFinder::getLibraries();
 
-    for (auto &lib : libs) {
-        if (lib.first == LibType::GRAPH) {
-            _currentDisplayModule = lib.second;
-            break;
+    if (pathDisplay.empty()) {
+        for (auto &lib : libs) {
+            if (lib.first == LibType::GRAPH) {
+                _currentDisplayModule = lib.second;
+                break;
+            }
         }
+    } else {
+        _currentDisplayModule = pathDisplay;
     }
+
     //        _displayModule = std::make_unique<DisplayHandler>(_currentDisplayModule);
     _eventManager = std::make_unique<ECS::EventManager>();
 }
 
-void Arcade::Core::Core::run()
+void Arcade::Core::Core::update()
 {
     //    while (_eventManager->isEventTriggered(QUIT).first) {
     //        auto &currentEntityManager = _gameModule
@@ -50,7 +56,7 @@ void Arcade::Core::Core::handleCoreEvents()
     if (eventGame.first) {
         for (auto &comp : *eventGame.second) {
             if (comp.has_value()) {
-                std::string gameName = comp.value()->id;
+                std::string gameName = reinterpret_cast<Arcade::Game::Text &>(comp.value()).text;
                 loadGameModule(gameName);
                 continue;
             }
@@ -60,7 +66,7 @@ void Arcade::Core::Core::handleCoreEvents()
     if (eventGraph.first) {
         for (auto &comp : *eventGraph.second) {
             if (comp.has_value()) {
-                std::string libName = comp.value()->id;
+                std::string libName = reinterpret_cast<Arcade::Game::Text &>(comp.value()).text;
                 loadDisplayModule(libName);
                 continue;
             }
@@ -92,7 +98,7 @@ void Arcade::Core::Core::loadGameModule()
     if (it == list.end()) {
         it = list.begin();
     }
-    _gameModule = std::make_unique<GameHandler>("./lib/" + it->second);
+    _gameModule = std::make_unique<GameHandler>(it->second);
     _currentGameModule = it->second;
 }
 
@@ -115,6 +121,6 @@ void Arcade::Core::Core::loadDisplayModule()
     if (it == list.end()) {
         it = list.begin();
     }
-    _displayModule = std::make_unique<DisplayHandler>("./lib/" + it->second);
+    _displayModule = std::make_unique<DisplayHandler>(it->second);
     _currentDisplayModule = it->second;
 }

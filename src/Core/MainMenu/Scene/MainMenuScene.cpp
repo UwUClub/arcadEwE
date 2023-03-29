@@ -21,3 +21,9 @@ Arcade::ECS::IEntityManager &Arcade::Game::MainMenuScene::getEntityManager()
 {
     return *_entityManager;
 }
+
+void Arcade::Game::MainMenuScene::close()
+{
+    _entityManager.reset(nullptr);
+    _systemManager.reset(nullptr);
+}

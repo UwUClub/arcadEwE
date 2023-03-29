@@ -15,21 +15,47 @@
 
 namespace Arcade::Core
 {
+    /**
+     * @brief DisplayHandler class
+     * @details This class is used to load a display module
+     */
     class DisplayHandler
     {
         public:
+        /**
+         * @brief DisplayHandler constructor
+         * @details This constructor is used to load a display module
+         * @param path The path to the display library
+         */
         explicit DisplayHandler(const std::string &path);
 
+        /**
+         * @brief DisplayHandler destructor
+         * @details This destructor is used to unload the display module and close the library
+         */
         ~DisplayHandler();
 
+        /**
+         * @brief Get the display module
+         * @details Overload of the * operator
+         * @return A reference to the display module
+         */
         Graph::IDisplayModule &operator*() const noexcept { return *_lib; }
 
+        /**
+         * @brief Get the display module
+         * @details Overload of the -> operator
+         * @return A pointer to the display module
+         */
         Graph::IDisplayModule *operator->() const noexcept { return _lib.get(); }
 
         private:
         void *_handle;
         std::unique_ptr<Graph::IDisplayModule> _lib;
 
+        /**
+         * @brief Exception class for the DisplayHandler
+         */
         class LibraryHandlerException : public std::exception
         {
             public:

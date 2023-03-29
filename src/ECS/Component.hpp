@@ -9,14 +9,22 @@
 
 namespace Arcade::ECS
 {
+    /**
+     * @brief Base class for all components
+     */
     struct Component : public IComponent {
         public:
-        Component(CompType nType, const std::string &nId)
-        {
-            type = nType;
-            id = nId;
-        }
+        /**
+         * @brief Construct a new Component object
+         *
+         * @param nType The type of the component
+         * @param nId The id of the component
+         */
+        Component(CompType nType, const std::string &nId);
 
+        /**
+         * @brief Destroy the Component object
+         */
         ~Component() override = default;
     };
 } // namespace Arcade::ECS

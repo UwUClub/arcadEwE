@@ -21,5 +21,12 @@ Arcade::Core::DisplayHandler::DisplayHandler(const std::string &path)
 
 Arcade::Core::DisplayHandler::~DisplayHandler()
 {
-    if (_handle) dlclose(_handle);
+    if (_handle == nullptr) return;
+    auto sym = dlsym(_handle, "destroyDisplayModule");
+
+    if (sym == nullptr)
+        return;
+    auto func = reinterpret_cast<void (*)(Graph::IDisplayModule *)>(sym);
+    func(_lib.get());
+    dlclose(_handle);
 }

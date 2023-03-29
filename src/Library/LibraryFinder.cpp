@@ -21,13 +21,8 @@ Arcade::Core::libInfo Arcade::Core::LibraryFinder::getLibType(const std::string 
         throw LibraryFinderException("Cannot load symbol: " + std::string(dlerror()));
     }
     typeFunc = reinterpret_cast<LibType (*)()>(sym);
-    sym = dlsym(lib, "getName");
-    if (sym == nullptr) {
-        throw LibraryFinderException("Cannot load symbol: " + std::string(dlerror()));
-    }
-    nameFunc = reinterpret_cast<const char *(*) ()>(sym);
     type.first = typeFunc();
-    type.second = nameFunc();
+    type.second = path;
     dlclose(lib);
     return type;
 }

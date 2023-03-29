@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wl,--no-as-needed -ldl -fno-gnu-unique -fPIC")
 
-
 set(INCLUDES
     sharedArchitecture/include/Api.hpp
     sharedArchitecture/include/Arcade/ArcadeStruct.hpp
@@ -26,34 +25,38 @@ set(INCLUDES
 
 # Add main.cpp file of project root directory as source file
 set(EXEC_SRC
-    src/main.cpp
-    src/Library/DisplayHandler.hpp
-    src/Library/DisplayHandler.cpp
-    src/Library/GameHandler.hpp
-    src/Library/GameHandler.cpp
-    src/Library/LibraryFinder.cpp
-    src/Library/LibraryFinder.hpp
-    src/Core/Core.cpp
-    src/Core/Core.hpp
-    src/ECS/EventManager.cpp
-    src/ECS/EventManager.hpp
-    src/ECS/SystemManager.cpp
-    src/ECS/SystemManager.hpp
-    #        src/Core/MainMenu/MainMenu.cpp
-    #        src/Core/MainMenu/MainMenu.hpp
-    #        src/Core/MainMenu/Scene/MainMenuScene.cpp
-    #        src/Core/MainMenu/Scene/MainMenuScene.hpp
-    #        src/Core/MainMenu/Scene/SelectionLib.cpp
-    #        src/Core/MainMenu/Scene/SelectionLib.hpp
-    #        src/Core/MainMenu/Components/Text.cpp
-    #        src/Core/MainMenu/Components/Text.hpp
-    #        src/Core/MainMenu/Components/IsHovered.cpp
-    #        src/Core/MainMenu/Components/IsHovered.hpp
-    #        src/Core/MainMenu/Systems/IsHovering.cpp
-    #        src/Core/MainMenu/Systems/IsHovering.hpp
-    #        src/Core/MainMenu/Systems/KeyboardEvent.cpp
-    #        src/Core/MainMenu/Systems/KeyboardEvent.hpp
-    )
+        src/main.cpp
+        src/Library/DisplayHandler.hpp
+        src/Library/DisplayHandler.cpp
+        src/Library/GameHandler.hpp
+        src/Library/GameHandler.cpp
+        src/Library/LibraryFinder.cpp
+        src/Library/LibraryFinder.hpp
+        src/Core/Core.cpp
+        src/Core/Core.hpp
+        src/ECS/EventManager.cpp
+        src/ECS/EventManager.hpp
+        src/ECS/SystemManager.cpp
+        src/ECS/SystemManager.hpp
+        src/ECS/EntityManager.cpp
+        src/ECS/EntityManager.hpp
+        src/ECS/Entity.cpp
+        src/ECS/Entity.hpp
+        src/Core/MainMenu/MainMenu.cpp
+        src/Core/MainMenu/MainMenu.hpp
+        src/Core/MainMenu/Scene/MainMenuScene.cpp
+        src/Core/MainMenu/Scene/MainMenuScene.hpp
+        src/Core/MainMenu/Scene/SelectionLib.cpp
+        src/Core/MainMenu/Scene/SelectionLib.hpp
+        src/Core/MainMenu/Components/Text.cpp
+        src/Core/MainMenu/Components/Text.hpp
+        src/Core/MainMenu/Components/IsHovered.cpp
+        src/Core/MainMenu/Components/IsHovered.hpp
+        src/Core/MainMenu/Systems/IsHovering.cpp
+        src/Core/MainMenu/Systems/IsHovering.hpp
+        src/Core/MainMenu/Systems/KeyboardHandler.cpp
+        src/Core/MainMenu/Systems/KeyboardHandler.hpp
+        src/ECS/Component.cpp src/Core/MainMenu/Scene/SaveReader.cpp src/Core/MainMenu/Scene/SaveReader.hpp)
 
 include_directories(src)
 include_directories(src/Core)

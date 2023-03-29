@@ -8,17 +8,21 @@
 #include "IEventManager.hpp"
 #include "IEntityManager.hpp"
 #include "ISystemManager.hpp"
+#include "IScene.hpp"
 
 namespace Arcade::Game
 {
-    class MainMenuScene
+    class MainMenuScene : public Arcade::Game::IScene
     {
         public:
         MainMenuScene();
-        ~MainMenuScene() = default;
+        virtual ~MainMenuScene() = default;
 
         void update(float deltaTime, Arcade::ECS::IEventManager &eventManager);
-        Arcade::ECS::IEntityManager &getEntityManager();
+        Arcade::ECS::IEntityManager &getEntityManager() override;
+
+        bool init() override = 0;
+        void close() final;
 
         protected:
         std::unique_ptr<Arcade::ECS::IEntityManager> _entityManager;
