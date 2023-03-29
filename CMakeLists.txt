@@ -59,22 +59,8 @@ set(EXEC_SRC
         src/Core/MainMenu/Systems/KeyboardHandler.cpp
         src/Core/MainMenu/Systems/KeyboardHandler.hpp
         src/ECS/Component.cpp
-        src/Core/DisplayModule.cpp
-        src/Core/DisplayModule.hpp
-        src/Core/GameModule.cpp
-        src/Core/GameModule.hpp
-        src/Game/Scene.cpp
-        src/Game/Scene.hpp
-        src/Game/SceneManager.cpp
-        src/Game/SceneManager.hpp
-        src/Graph/Music.cpp
-        src/Graph/Music.hpp
-        src/Graph/Sprite.cpp
-        src/Graph/Sprite.hpp
-        src/Graph/Text.cpp
-        src/Graph/Text.hpp
-        src/Graph/Systems/NCurses/NcursesSystem.cpp
-        src/Graph/Systems/NCurses/NcursesSystem.hpp
+        src/Graph/Systems/NCurses/NCursesSystem.cpp
+        src/Graph/Systems/NCurses/NCursesSystem.hpp
         )
 
 include_directories(src)

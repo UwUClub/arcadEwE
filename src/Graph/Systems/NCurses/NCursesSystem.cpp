@@ -6,7 +6,7 @@
 #include "NCursesSystem.hpp"
 #include "IScene.hpp"
 #include "IGameModule.hpp"
-#include "Scene.hpp"
+#include "IScene.hpp"
 #include "ArcadeStruct.hpp"
 #include "Component.hpp"
 #include "ISprite.hpp"
