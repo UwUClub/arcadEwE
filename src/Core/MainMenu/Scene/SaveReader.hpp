@@ -5,13 +5,13 @@
 #ifndef ARCADE_SAVEREADER_HPP
 #define ARCADE_SAVEREADER_HPP
 
-#include "MainMenuScene.hpp"
+#include "AScene.hpp"
 
 #define BASE_X_SAVE 60
 
 namespace Arcade::Game
 {
-    class SaveReader : public MainMenuScene
+    class SaveReader : public AScene
     {
         public:
         SaveReader();
@@ -20,25 +20,6 @@ namespace Arcade::Game
         bool init() final;
 
         private:
-        class SaveReaderException : public std::exception
-        {
-            public:
-            SaveReaderException(const std::string &message)
-                : _message(message)
-            {
-            }
-
-            ~SaveReaderException() override = default;
-
-            const char *what() const noexcept override
-            {
-                return _message.c_str();
-            }
-
-            private:
-            std::string _message;
-        };
-
         void loadSave();
         std::string _saveContent;
     };

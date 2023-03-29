@@ -5,7 +5,7 @@
 #ifndef ARCADE_SELECTIONLIB_HPP
 #define ARCADE_SELECTIONLIB_HPP
 
-#include "MainMenuScene.hpp"
+#include "AScene.hpp"
 
 #define BASE_X_TEXT   20
 #define OFFSET_Y_TEXT 50
@@ -13,13 +13,13 @@
 
 namespace Arcade::Game
 {
-    class SelectionLib : public MainMenuScene
+    class SelectionLib : public AScene
     {
         public:
         SelectionLib();
         ~SelectionLib() override = default;
 
-        bool init() override;
+        bool init() final;
     };
 } // namespace Arcade::Game
 

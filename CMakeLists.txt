@@ -35,6 +35,10 @@ set(EXEC_SRC
         src/Library/LibraryFinder.hpp
         src/Core/Core.cpp
         src/Core/Core.hpp
+        src/Game/AGameModule.hpp
+        src/Game/AGameModule.cpp
+        src/Game/AScene.hpp
+        src/Game/AScene.cpp
         src/ECS/EventManager.cpp
         src/ECS/EventManager.hpp
         src/ECS/SystemManager.cpp
@@ -45,8 +49,6 @@ set(EXEC_SRC
         src/ECS/Entity.hpp
         src/Core/MainMenu/MainMenu.cpp
         src/Core/MainMenu/MainMenu.hpp
-        src/Core/MainMenu/Scene/MainMenuScene.cpp
-        src/Core/MainMenu/Scene/MainMenuScene.hpp
         src/Core/MainMenu/Scene/SelectionLib.cpp
         src/Core/MainMenu/Scene/SelectionLib.hpp
         src/Core/MainMenu/Components/Text.cpp
@@ -66,6 +68,7 @@ include_directories(src/Core/MainMenu/Components)
 include_directories(src/Core/MainMenu/Systems)
 include_directories(src/Core/MainMenu/Scene)
 include_directories(src/ECS)
+include_directories(src/Game)
 include_directories(src/Library)
 include_directories(sharedArchitecture/include)
 include_directories(sharedArchitecture/include/Arcade)
