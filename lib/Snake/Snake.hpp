@@ -19,11 +19,31 @@ namespace Snake {
             ~Snake() override = default;
 
             void update(float deltaTime, Arcade::ECS::IEventManager &eventManager) override;
-            Arcade::ECS::IEntityManager &getCurrentEntityManager() override;
-        protected:
+                Arcade::ECS::IEntityManager &getCurrentEntityManager() override;
+
+        private:
+            void changeScene(std::size_t sceneId);
+            void handleEventSceneChange(Arcade::ECS::IEventManager &eventManager);
+
         private:
             std::size_t _currentScene;
             std::vector<std::unique_ptr<SnakeScene>> _scenes;
+
+        private:
+            class SnakeException : public std::exception
+            {
+                public:
+                    SnakeException(const std::string &message) : _message(message){};
+                    ~SnakeException() override = default;
+
+                    const char *what() const noexcept override
+                    {
+                        return _message.c_str();
+                    }
+
+                private:
+                    std::string _message;
+            };
     };
 }
 

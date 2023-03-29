@@ -8,13 +8,14 @@
 #include "Snake.hpp"
 #include "SnakeGameScene.hpp"
 #include "SnakeMenuScene.hpp"
+#include "EventManager.hpp"
 
 namespace Snake {
     Snake::Snake()
     {
         _currentScene = 0;
-        _scenes.emplace_back(std::make_unique<SnakeGameScene>());
         _scenes.emplace_back(std::make_unique<SnakeMenuScene>());
+        _scenes.emplace_back(std::make_unique<SnakeGameScene>());
     }
 
     void Snake::update(float deltaTime, Arcade::ECS::IEventManager &eventManager)
@@ -26,4 +27,25 @@ namespace Snake {
     {
         return _scenes[_currentScene]->getEntityManager();
     }
+
+    void Snake::changeScene(std::size_t sceneId)
+    {
+        if (sceneId >= _scenes.size())
+            throw SnakeException("Scene does not exist");
+        _scenes[_currentScene]->close();
+        _currentScene = sceneId;
+        _scenes[_currentScene]->init();
+    }
+
+    void Snake::handleEventSceneChange(Arcade::ECS::IEventManager &eventManager)
+    {
+        auto play = eventManager.isEventTriggered("PLAY");
+        auto gameOver = eventManager.isEventTriggered("GAME_OVER");
+
+        if (play.first && _currentScene == 0)
+            changeScene(1);
+        if (gameOver.first && _currentScene == 1)
+            changeScene(0);
+    }
+
 } // namespace Snake
