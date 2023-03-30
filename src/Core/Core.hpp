@@ -6,25 +6,70 @@
 #define ARCADE_CORE_HPP
 
 #include "ICore.hpp"
-#include "IEventManager.hpp"
-#include "IGameModule.hpp"
-#include "IDisplayModule.hpp"
-#include "Api.hpp"
+#include "DisplayHandler.hpp"
+#include "GameHandler.hpp"
+#include "LibraryFinder.hpp"
+
+#define FONT_PATH "assets/fonts/Roboto-Regular.ttf"
 
 namespace Arcade::Core
 {
+    /**
+     * @brief Core class of the Arcade
+     */
     class Core : public ICore
     {
         public:
-        Core();
+        /**
+         * @brief Construct a new Core object
+         *
+         * @param pathDisplay Path to the display module
+         */
+        explicit Core(const std::string &pathDisplay);
+        /**
+         * @brief Destroy the Core object
+         */
         ~Core() override = default;
 
-        void run();
+        /**
+         * @brief This function is the main loop of the Arcade
+         * It will handle the events and update the display and the game
+         */
+        void update() override;
 
         private:
-        int handleCoreEvents();
-        std::unique_ptr<IGameModule> _gameModule;
-        std::unique_ptr<IDisplayModule> _displayModule;
+        /**
+         * @brief This function is used to load the game module
+         *
+         * @param path Path to the game module
+         */
+        void loadGameModule(const std::string &path);
+        /**
+         * @brief This function is used to load the game module
+         * It changes the game module to the next one in the list
+         */
+        void loadGameModule();
+        /**
+         * @brief This function is used to load the display module
+         *
+         * @param path Path to the display module
+         */
+        void loadDisplayModule(const std::string &path);
+        /**
+         * @brief This function is used to load the display module
+         * It changes the display module to the next one in the list
+         */
+        void loadDisplayModule();
+        /**
+         * @brief This function is used to handle the events of the Arcade
+         */
+        void handleCoreEvents();
+
+        std::unique_ptr<GameHandler> _gameModule;
+        std::string _currentGameModule;
+        std::unique_ptr<Game::IGameModule> _mainMenu;
+        std::unique_ptr<DisplayHandler> _displayModule;
+        std::string _currentDisplayModule;
         std::unique_ptr<ECS::IEventManager> _eventManager;
     };
 } // namespace Arcade::Core

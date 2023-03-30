@@ -5,69 +5,74 @@ set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fno-gnu-unique -fPIC")
 
-find_package(SFML 2.5 COMPONENTS graphics audio window system REQUIRED)
-
 set(INCLUDES
         sharedArchitecture/include/Api.hpp
         sharedArchitecture/include/Arcade/ArcadeStruct.hpp
         sharedArchitecture/include/Arcade/Core/ICore.hpp
-        sharedArchitecture/include/Arcade/Core/IGameModule.hpp
-        sharedArchitecture/include/Arcade/Core/IDisplayModule.hpp
+        sharedArchitecture/include/Arcade/Game/IGameModule.hpp
+        sharedArchitecture/include/Arcade/Graph/IDisplayModule.hpp
         sharedArchitecture/include/Arcade/ECS/IComponent.hpp
         sharedArchitecture/include/Arcade/ECS/IEntity.hpp
         sharedArchitecture/include/Arcade/ECS/IEntityManager.hpp
         sharedArchitecture/include/Arcade/ECS/IEventManager.hpp
         sharedArchitecture/include/Arcade/ECS/ISystemManager.hpp
-        sharedArchitecture/include/Arcade/ECS/ISystem.hpp
         sharedArchitecture/include/Arcade/Graph/GraphStruct.hpp
         sharedArchitecture/include/Arcade/Graph/IMusic.hpp
         sharedArchitecture/include/Arcade/Graph/ISprite.hpp
         sharedArchitecture/include/Arcade/Graph/IText.hpp
+        sharedArchitecture/include/Arcade/Graph/IDisplayModule.hpp
         sharedArchitecture/include/Arcade/Game/IScene.hpp
-        sharedArchitecture/include/Arcade/Game/ISceneManager.hpp
-        )
+)
 
 # Add main.cpp file of project root directory as source file
 set(EXEC_SRC
         src/main.cpp
-        src/LibraryHandler.cpp
-        src/LibraryHandler.hpp
-        src/ECS/Component.cpp
-        src/ECS/Component.hpp
-        src/ECS/SystemManager.cpp
-        src/ECS/SystemManager.hpp
-        src/ECS/Entity.cpp
-        src/ECS/Entity.hpp
+        src/Library/DisplayHandler.hpp
+        src/Library/DisplayHandler.cpp
+        src/Library/GameHandler.hpp
+        src/Library/GameHandler.cpp
+        src/Library/LibraryFinder.cpp
+        src/Library/LibraryFinder.hpp
         src/Core/Core.cpp
         src/Core/Core.hpp
+        src/Game/AGameModule.hpp
+        src/Game/AGameModule.cpp
+        src/Game/AScene.hpp
+        src/Game/AScene.cpp
         src/ECS/EventManager.cpp
         src/ECS/EventManager.hpp
+        src/ECS/SystemManager.cpp
+        src/ECS/SystemManager.hpp
         src/ECS/EntityManager.cpp
         src/ECS/EntityManager.hpp
-        src/Core/DisplayModule.cpp
-        src/Core/DisplayModule.hpp
-        src/Core/GameModule.cpp
-        src/Core/GameModule.hpp
-        src/Game/Scene.cpp
-        src/Game/Scene.hpp
-        src/Game/SceneManager.cpp
-        src/Game/SceneManager.hpp
-        src/Graph/Music.cpp
-        src/Graph/Music.hpp
-        src/Graph/Sprite.cpp
-        src/Graph/Sprite.hpp
-        src/Graph/Text.cpp
-        src/Graph/Text.hpp
-        src/Graph/Systems/SFML/SFMLSystem.cpp
-        src/Graph/Systems/SFML/SFMLSystem.hpp
-        )
+        src/ECS/Entity.cpp
+        src/ECS/Entity.hpp
+        src/Core/MainMenu/MainMenu.cpp
+        src/Core/MainMenu/MainMenu.hpp
+        src/Core/MainMenu/Scene/SelectionLib.cpp
+        src/Core/MainMenu/Scene/SelectionLib.hpp
+        src/Core/MainMenu/Components/Text.cpp
+        src/Core/MainMenu/Components/Text.hpp
+        src/Core/MainMenu/Components/IsHovered.cpp
+        src/Core/MainMenu/Components/IsHovered.hpp
+        src/Core/MainMenu/Systems/IsHovering.cpp
+        src/Core/MainMenu/Systems/IsHovering.hpp
+        src/Core/MainMenu/Systems/KeyboardHandler.cpp
+        src/Core/MainMenu/Systems/KeyboardHandler.hpp
+        src/ECS/Component.cpp
+        src/Core/MainMenu/Scene/SaveReader.cpp
+        src/Core/MainMenu/Scene/SaveReader.hpp
+)
 
-set(EXECUTABLE arcade)
 include_directories(src)
 include_directories(src/Core)
+include_directories(src/Core/MainMenu)
+include_directories(src/Core/MainMenu/Components)
+include_directories(src/Core/MainMenu/Systems)
+include_directories(src/Core/MainMenu/Scene)
 include_directories(src/ECS)
 include_directories(src/Game)
-include_directories(src/Graph)
+include_directories(src/Library)
 include_directories(sharedArchitecture/include)
 include_directories(sharedArchitecture/include/Arcade)
 include_directories(sharedArchitecture/include/Arcade/Core)
@@ -81,6 +86,5 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 #add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # Add executable target with source files listed in SOURCE_FILES variable
-add_executable(${EXECUTABLE} ${EXEC_SRC} ${INCLUDES})
-
-target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio sfml-window sfml-system)
+#add_subdirectory(src/Core/MainMenu)
+add_executable(${PROJECT_NAME} ${EXEC_SRC} ${INCLUDES})

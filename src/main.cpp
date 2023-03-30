@@ -6,11 +6,20 @@
 */
 
 #include <iostream>
-#include "LibraryHandler.hpp"
+#include "Core.hpp"
 
 int main(int ac, const char **av)
 {
-    (void)ac;
-        (void)av;
+    if (ac > 2) {
+        std::cerr << "Usage: ./arcade [lib.so]" << std::endl;
+        return 84;
+    }
+    if (ac == 2) {
+        Arcade::Core::Core core(av[1]);
+        core.update();
+    } else {
+        Arcade::Core::Core core("");
+        core.update();
+    }
     return 0;
 }
