@@ -13,9 +13,18 @@ Arcade::Game::IGameModule *getGameModule()
     return new Arcade::Game::TestGame();
 }
 
+Arcade::Graph::IDisplayModule *getDisplayModule()
+{
+    return nullptr;
+}
+
 void destroyGameModule(Arcade::Game::IGameModule *gameModule)
 {
     free(gameModule);
+}
+
+void destroyDisplayModule([[maybe_unused]] Arcade::Graph::IDisplayModule *displayModule)
+{
 }
 
 const char *getName()

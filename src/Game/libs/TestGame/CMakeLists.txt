@@ -35,6 +35,10 @@ set(EXEC_SRC
         ../../AGameModule.cpp
         ../../AScene.hpp
         ../../AScene.cpp
+        ../../../ECS/SystemManager.hpp
+        ../../../ECS/SystemManager.cpp
+        ../../../ECS/EntityManager.hpp
+        ../../../ECS/EntityManager.cpp
 )
 
 include_directories(.)
