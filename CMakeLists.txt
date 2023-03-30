@@ -3,7 +3,7 @@ set(PROJECT_NAME arcade)
 project(${PROJECT_NAME})               # Create project "arcade"
 set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fno-gnu-unique -fPIC -lncurses")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fno-gnu-unique -Wl,--no-as-needed -ldl")
 
 set(INCLUDES
         sharedArchitecture/include/Api.hpp
@@ -59,7 +59,9 @@ set(EXEC_SRC
         src/Core/MainMenu/Systems/IsHovering.hpp
         src/Core/MainMenu/Systems/KeyboardHandler.cpp
         src/Core/MainMenu/Systems/KeyboardHandler.hpp
-        src/ECS/Component.cpp src/Core/MainMenu/Scene/SaveReader.cpp src/Core/MainMenu/Scene/SaveReader.hpp)
+        src/ECS/Component.cpp
+        src/Core/MainMenu/Scene/SaveReader.cpp
+        src/Core/MainMenu/Scene/SaveReader.hpp)
 
 include_directories(src)
 include_directories(src/Core)
