@@ -8,31 +8,33 @@
 #include "Api.hpp"
 #include "TestGame.hpp"
 
-Arcade::Game::IGameModule *getGameModule()
-{
-    return new Arcade::Game::TestGame();
-}
+extern "C" {
+    Arcade::Game::IGameModule *getGameModule()
+    {
+        return new Arcade::Game::TestGame();
+    }
 
-Arcade::Graph::IDisplayModule *getDisplayModule()
-{
-    return nullptr;
-}
+    Arcade::Graph::IDisplayModule *getDisplayModule()
+    {
+        return nullptr;
+    }
 
-void destroyGameModule(Arcade::Game::IGameModule *gameModule)
-{
-    free(gameModule);
-}
+    void destroyGameModule(Arcade::Game::IGameModule *gameModule)
+    {
+        free(gameModule);
+    }
 
-void destroyDisplayModule([[maybe_unused]] Arcade::Graph::IDisplayModule *displayModule)
-{
-}
+    void destroyDisplayModule([[maybe_unused]] Arcade::Graph::IDisplayModule *displayModule)
+    {
+    }
 
-const char *getName()
-{
-    return "Test game";
-}
+    const char *getName()
+    {
+        return "Test game";
+    }
 
-LibType getType()
-{
-    return GAME;
+    LibType getType()
+    {
+        return GAME;
+    }
 }

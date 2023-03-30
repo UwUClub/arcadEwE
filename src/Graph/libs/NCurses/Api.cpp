@@ -8,22 +8,24 @@
 #include "Api.hpp"
 #include "NCursesDisplayModule.hpp"
 
-Arcade::Graph::IDisplayModule *getDisplayModule()
-{
-    return new Arcade::Graph::NCursesDisplayModule();
-}
+extern "C" {
+    Arcade::Graph::IDisplayModule *getDisplayModule()
+    {
+        return new Arcade::Graph::NCursesDisplayModule();
+    }
 
-void destroyDisplayModule(Arcade::Graph::IDisplayModule *displayModule)
-{
-    free(displayModule);
-}
+    void destroyDisplayModule(Arcade::Graph::IDisplayModule *displayModule)
+    {
+        free(displayModule);
+    }
 
-const char *getName()
-{
-    return "NCurses";
-}
+    const char *getName()
+    {
+        return "NCurses";
+    }
 
-LibType getType()
-{
-    return GRAPH;
+    LibType getType()
+    {
+        return GRAPH;
+    }
 }

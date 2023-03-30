@@ -106,7 +106,7 @@ namespace Arcade::Graph {
         {KEY_MIN, "WINDOW_MINIMIZE"}
     };
 
-    EventHandler::EventHandler() : AHandler()
+    EventHandler::EventHandler()
     {
     }
 

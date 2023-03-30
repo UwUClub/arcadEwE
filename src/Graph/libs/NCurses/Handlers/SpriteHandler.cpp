@@ -4,12 +4,13 @@
 
 #include <ncurses.h>
 #include "ArcadeStruct.hpp"
+#include "IComponent.hpp"
 #include "ISprite.hpp"
 #include "SpriteHandler.hpp"
 
 namespace Arcade::Graph {
 
-    SpriteHandler::SpriteHandler() : AHandler()
+    SpriteHandler::SpriteHandler()
     {
     }
 
@@ -19,6 +20,10 @@ namespace Arcade::Graph {
 
         for (auto &entity : entities) {
 
+            if (entity->getComponents().find(Arcade::ECS::CompType::SPRITE) == entity->getComponents().end()) {
+                continue;
+            }
+    
             std::vector<std::shared_ptr<Arcade::ECS::IComponent>> spriteComponents = entity->getComponents(Arcade::ECS::CompType::SPRITE);
 
             for (auto spriteComponent : spriteComponents) {

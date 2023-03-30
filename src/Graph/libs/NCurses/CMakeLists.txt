@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)  # CMake version check
-set(PROJECT_NAME arcade-graph-ncurses)
+set(PROJECT_NAME arcade_ncurses)
 project(${PROJECT_NAME})               # Create project "arcade"
 set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
@@ -36,6 +36,8 @@ set(EXEC_SRC
         Handlers/TextHandler.cpp
         Handlers/SpriteHandler.hpp
         Handlers/SpriteHandler.cpp
+        Handlers/EventHandler.hpp
+        Handlers/EventHandler.cpp
 )
 
 include_directories(.)

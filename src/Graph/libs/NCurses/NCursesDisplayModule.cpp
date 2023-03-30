@@ -6,6 +6,7 @@
 */
 
 #include <ncurses.h>
+#include <iostream>
 #include "NCursesDisplayModule.hpp"
 
 namespace Arcade::Graph {
@@ -30,6 +31,8 @@ namespace Arcade::Graph {
 
     void NCursesDisplayModule::update(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager)
     {
+        refresh();
+
         this->_spriteHandler->run(delta, eventManager, entityManager);
         this->_textHandler->run(delta, eventManager, entityManager);
         this->_eventHandler->run(delta, eventManager, entityManager);

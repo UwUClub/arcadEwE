@@ -7,6 +7,10 @@
 
 namespace Arcade::Graph {
 
+    AHandler::AHandler()
+    {
+    }
+
     void AHandler::printContent(std::string content, int posX, int posY, Color foregroundColor, Color backgroundColor)
     {
         if (has_colors()) {

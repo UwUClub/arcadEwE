@@ -11,8 +11,8 @@ namespace Arcade::Graph {
     class IHandler
     {
         public:
-        ~IHandler() = default;
+        virtual ~IHandler() = default;
 
-        virtual void run(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager);
+        virtual void run(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager) = 0;
     };
 }

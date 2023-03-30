@@ -28,6 +28,8 @@ Arcade::Core::Core::Core(const std::string &pathDisplay)
         _currentDisplayModule = pathDisplay;
     }
 
+    //std::cout << "display module path: " << _currentDisplayModule << std::endl;
+    //std::cout << "game module path: " << _currentGameModule << std::endl;
     //_gameModule = std::make_unique<GameHandler>(_currentGameModule);
     _displayModule = std::make_unique<DisplayHandler>(_currentDisplayModule);
     _eventManager = std::make_unique<ECS::EventManager>();
@@ -35,22 +37,19 @@ Arcade::Core::Core::Core(const std::string &pathDisplay)
 
 void Arcade::Core::Core::update()
 {
-    std::cout << "Called update\n";
-    std::cout << (_gameModule == nullptr) << std::endl;
-    std::cout << (_displayModule == nullptr) << std::endl;
 
     while (!_eventManager->isEventTriggered(QUIT).first) {
         [[maybe_unused]] auto &currentEntityManager = _gameModule ?
             _gameModule->operator->()->getCurrentEntityManager()
             : _mainMenu->getCurrentEntityManager();
 
-        // handleCoreEvents();
+        handleCoreEvents();
 
         // if (_gameModule)
         //     _gameModule->operator->()->update(0, *_eventManager);
 
-        // if (_displayModule)
-        //     _displayModule->operator->()->update(0, *_eventManager, currentEntityManager);
+        if (_displayModule)
+            _displayModule->operator->()->update(0, *_eventManager, currentEntityManager);
     }
     std::cout << "End of update\n";
 }

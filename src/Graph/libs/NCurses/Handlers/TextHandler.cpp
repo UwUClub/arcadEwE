@@ -2,6 +2,7 @@
 // Created by valegox on 27/03/23.
 //
 
+#include <iostream>
 #include <ncurses.h>
 #include "ArcadeStruct.hpp"
 #include "IComponent.hpp"
@@ -10,7 +11,7 @@
 
 namespace Arcade::Graph {
 
-    TextHandler::TextHandler() : AHandler()
+    TextHandler::TextHandler()
     {
     }
 
@@ -20,6 +21,9 @@ namespace Arcade::Graph {
 
         for (auto &entity : entities) {
 
+            if (entity->getComponents().find(Arcade::ECS::CompType::TEXT) == entity->getComponents().end()) {
+                continue;
+            }
             std::vector<std::shared_ptr<Arcade::ECS::IComponent>> textComponents = entity->getComponents(Arcade::ECS::CompType::TEXT);
 
             for (auto textComponent : textComponents) {
@@ -28,7 +32,7 @@ namespace Arcade::Graph {
                 Color foregroundColor = (*text).textColor;
                 Color backgroundColor = (*text).backgroundColor;
 
-                printContent((*text).text, pos.x, pos.y, foregroundColor, backgroundColor);
+                this->printContent((*text).text, pos.x, pos.y, foregroundColor, backgroundColor);
             }
         }
     }
