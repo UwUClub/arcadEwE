@@ -8,9 +8,9 @@
 #pragma once
 
 #include <vector>
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 #include "IDisplayModule.hpp"
-#include "TextHandler.hpp"
+// #include "TextHandler.hpp"
 // #include "SpriteHandler.hpp"
 // #include "MusicHandler.hpp"
 // #include "EventHandler.hpp"
@@ -23,9 +23,9 @@ namespace Arcade::Graph {
 
         void update(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager) override;
 
-        protected:
-        sf::RenderWindow _window;
-        TextHandler *_textHandler;
+        //protected:
+        // sf::RenderWindow _window;
+        // TextHandler *_textHandler;
         // SpriteHandler *_spriteHandler;
         // MusicHandler *_musicHandler;
         // EventHandler *_eventHandler;

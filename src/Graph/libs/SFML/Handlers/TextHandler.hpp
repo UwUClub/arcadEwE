@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <memory>
 #include <SFML/Graphics.hpp>
 #include "IEventManager.hpp"
 #include "IEntityManager.hpp"
@@ -16,10 +15,10 @@ namespace Arcade::Graph {
         TextHandler() = default;
         ~TextHandler() = default;
 
-        void run(Arcade::ECS::IEntityManager &entityManager, sf::RenderWindow &window);
-        void handle_font(std::string path, sf::Text &text);
+        void run(Arcade::ECS::IEntityManager &entityManager, sf::RenderWindow *window);
+        void handle_font(std::string path, sf::Text *text);
 
         protected:
-        std::map<std::string, std::unique_ptr<sf::Font>> _fonts; // key is the font path, value is the font
+        std::map<std::string, sf::Font *> _fonts; // key is the font path, value is the font
     };
 }

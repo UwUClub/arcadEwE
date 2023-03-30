@@ -10,7 +10,7 @@
 
 namespace Arcade::Graph {
 
-    void TextHandler::run([[maybe_unused]] Arcade::ECS::IEntityManager &entityManager, [[maybe_unused]] sf::RenderWindow &window)
+    void TextHandler::run([[maybe_unused]] Arcade::ECS::IEntityManager &entityManager, [[maybe_unused]] sf::RenderWindow *window)
     {
         for (auto &entity : entityManager.getEntities()) {
 
@@ -25,33 +25,33 @@ namespace Arcade::Graph {
                 Arcade::Graph::Color fColor = (*text).textColor;
                 Arcade::Graph::Color bColor = (*text).backgroundColor;
 
-                sf::Text sfText;
-                sfText.setFillColor(sf::Color(fColor.r, fColor.g, fColor.b, fColor.a));
-                sfText.setOutlineColor(sf::Color(bColor.r, bColor.g, bColor.b, bColor.a));
+                sf::Text *sfText = new sf::Text();
+                //sfText->setString((*text).text);
+                sfText->setFillColor(sf::Color(fColor.r, fColor.g, fColor.b, fColor.a));
+                sfText->setOutlineColor(sf::Color(bColor.r, bColor.g, bColor.b, bColor.a));
 
                 this->handle_font((*text).fontPath, sfText);
 
-                sfText.setPosition((*text).pos.x, (*text).pos.y);
-                sfText.setString((*text).text);
-                // sfText.setCharacterSize((*text).policeSize);
-                window.draw(sfText);
+                sfText->setPosition((*text).pos.x, (*text).pos.y);
+                sfText->setCharacterSize(42);
+                window->draw(*sfText);
             }
         }
     }
 
-    void TextHandler::handle_font(std::string path, [[maybe_unused]] sf::Text &text)
+    void TextHandler::handle_font([[maybe_unused]] std::string path, [[maybe_unused]] sf::Text *text)
     {
-        sf::Font font;
+        sf::Font *font = new sf::Font();
 
         if (_fonts.find(path) == _fonts.end()) {
-            if (font.loadFromFile(path)) {
-                _fonts[path] = std::make_unique<sf::Font>(font);
+            if (font->loadFromFile(path)) {
+                _fonts[path] = font;
             } else {
                 _fonts[path] = nullptr;
             }
         }
         if (_fonts[path] != nullptr) {
-            text.setFont(*(_fonts[path]));
+            text->setFont(*(_fonts[path]));
         } else {
             // TODO: set default font
         }
