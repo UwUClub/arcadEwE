@@ -8,7 +8,7 @@
 #include "MoveSnake.hpp"
 #include "Events.hpp"
 #include "Direction.hpp"
-#include "Position.hpp"
+#include "Transform.hpp"
 #include "Speed.hpp"
 
 void Snake::MoveSnake::run(float deltaTime,
@@ -20,14 +20,14 @@ void Snake::MoveSnake::run(float deltaTime,
 
     for (auto &entity : entities) {
         auto idEntity = entity->getId();
-        auto &positionComp = entity->getComponents("Position");
+        auto &transformComp = entity->getComponents("Transform");
         auto &directionComp = entity->getComponents("Direction");
         auto &speedComp = entity->getComponents("Speed");
 
         if (idEntity.find("snake") == std::string::npos) {
             continue;
         }
-        auto &position = reinterpret_cast<Snake::Position &>(positionComp).pos;
+        auto &position = reinterpret_cast<Snake::Transform &>(transformComp).position;
         auto speed = reinterpret_cast<Snake::Speed &>(speedComp).getSpeed();
         auto direction = reinterpret_cast<Snake::Direction &>(directionComp).getDirection();
         switch (direction) {

@@ -27,10 +27,12 @@ set(INCLUDES
 # Add main.cpp file of project root directory as source file
 set(EXEC_SRC
         Api.cpp
+        Components/BoxCollider.cpp
+        Components/BoxCollider.hpp
         Components/Direction.cpp
         Components/Direction.hpp
-        Components/Position.cpp
-        Components/Position.hpp
+        Components/Transform.cpp
+        Components/Transform.hpp
         Components/SnakeIsHovered.cpp
         Components/SnakeIsHovered.hpp
         Components/SnakeText.cpp
@@ -45,6 +47,8 @@ set(EXEC_SRC
         Scenes/SnakeMenuScene.hpp
         Scenes/SnakeScene.cpp
         Scenes/SnakeScene.hpp
+        Systems/ColliderManager.cpp
+        Systems/ColliderManager.hpp
         Systems/MenuKeyboardHandler.cpp
         Systems/MenuKeyboardHandler.hpp
         Systems/MoveSnake.cpp
