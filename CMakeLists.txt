@@ -89,6 +89,7 @@ add_executable(${PROJECT_NAME} ${EXEC_SRC} ${INCLUDES})
 cmake_minimum_required(VERSION 3.9)
 include(GNUInstallDirs)
 set(SNAKE_VERSION 1.0.0)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 
 project(arcade_snake
     VERSION ${SNAKE_VERSION}
