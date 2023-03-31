@@ -88,83 +88,11 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 
 # Add executable target with source files listed in SOURCE_FILES variable
 #add_subdirectory(src/Graph/libs/SDL)
+
+# Graphical libraries
 add_subdirectory(src/Graph/libs/NCurses)
+# Games libraries
 add_subdirectory(src/Game/libs/TestGame)
+add_subdirectory(src/Game/libs/Snake)
+# Core
 add_executable(${PROJECT_NAME} ${EXEC_SRC} ${INCLUDES})
-
-
-# ------------------------------------------------------------------------------
-# Compile the Snake game shared library
-# ------------------------------------------------------------------------------
-cmake_minimum_required(VERSION 3.9)
-include(GNUInstallDirs)
-set(SNAKE_VERSION 1.0.0)
-set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
-
-project(arcade_snake
-    VERSION ${SNAKE_VERSION}
-    DESCRIPTION "Snake game for the arcade"
-    LANGUAGES CXX)
-
-set(SNAKE_SOURCES
-    lib/Snake/Api.cpp
-    lib/Snake/Components/Direction.cpp
-    lib/Snake/Components/Direction.hpp
-    lib/Snake/Components/Position.cpp
-    lib/Snake/Components/Position.hpp
-    lib/Snake/Components/SnakeIsHovered.cpp
-    lib/Snake/Components/SnakeIsHovered.hpp
-    lib/Snake/Components/SnakeText.cpp
-    lib/Snake/Components/SnakeText.hpp
-    lib/Snake/Components/Speed.cpp
-    lib/Snake/Components/Speed.hpp
-    lib/Snake/Components/Sprite.cpp
-    lib/Snake/Components/Sprite.hpp
-    lib/Snake/Scenes/SnakeGameScene.cpp
-    lib/Snake/Scenes/SnakeGameScene.hpp
-    lib/Snake/Scenes/SnakeMenuScene.cpp
-    lib/Snake/Scenes/SnakeMenuScene.hpp
-    lib/Snake/Scenes/SnakeScene.cpp
-    lib/Snake/Scenes/SnakeScene.hpp
-    lib/Snake/Systems/MenuKeyboardHandler.cpp
-    lib/Snake/Systems/MenuKeyboardHandler.hpp
-    lib/Snake/Systems/MoveSnake.cpp
-    lib/Snake/Systems/MoveSnake.hpp
-    lib/Snake/Systems/PlayerInputs.cpp
-    lib/Snake/Systems/PlayerInputs.hpp
-    lib/Snake/Systems/SnakeGameManager.cpp
-    lib/Snake/Systems/SnakeGameManager.hpp
-    lib/Snake/Systems/SnakeIsHovering.cpp
-    lib/Snake/Systems/SnakeIsHovering.hpp
-    lib/Snake/SnakeGameModule.cpp
-    lib/Snake/SnakeGameModule.hpp)
-
-add_library(arcade_snake SHARED
-    ${SNAKE_SOURCES} ${INCLUDES})
-
-set_target_properties(arcade_snake PROPERTIES
-    VERSION ${SNAKE_VERSION}
-    DESCRIPTION "Snake game for the arcade")
-
-target_include_directories(arcade_snake PRIVATE lib/Snake)
-target_include_directories(arcade_snake PRIVATE lib/Snake/Components)
-target_include_directories(arcade_snake PRIVATE lib/Snake/Systems)
-target_include_directories(arcade_snake PRIVATE lib/Snake/Scenes)
-target_include_directories(arcade_snake PRIVATE src)
-target_include_directories(arcade_snake PRIVATE src/Core)
-target_include_directories(arcade_snake PRIVATE src/Core/MainMenu)
-target_include_directories(arcade_snake PRIVATE src/Core/MainMenu/Components)
-target_include_directories(arcade_snake PRIVATE src/Core/MainMenu/Systems)
-target_include_directories(arcade_snake PRIVATE src/Core/MainMenu/Scene)
-target_include_directories(arcade_snake PRIVATE src/ECS)
-target_include_directories(arcade_snake PRIVATE src/Library)
-target_include_directories(arcade_snake PRIVATE sharedArchitecture/include)
-target_include_directories(arcade_snake PRIVATE sharedArchitecture/include/Arcade)
-target_include_directories(arcade_snake PRIVATE sharedArchitecture/include/Arcade/Core)
-target_include_directories(arcade_snake PRIVATE sharedArchitecture/include/Arcade/ECS)
-target_include_directories(arcade_snake PRIVATE sharedArchitecture/include/Arcade/Game)
-target_include_directories(arcade_snake PRIVATE sharedArchitecture/include/Arcade/Graph)
-
-install(TARGETS arcade_snake
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
