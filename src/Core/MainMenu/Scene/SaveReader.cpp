@@ -18,18 +18,18 @@ void Arcade::Game::SaveReader::loadSave()
     std::ifstream file(fileName, std::ios::ate);
 
     if (!file.is_open()) {
-        throw SaveReaderException("Failed to open file");
+        throw SceneException("Failed to open file");
     }
 
     const size_t fileSize = file.tellg();
     char buffer[fileSize + 1] = { '\0' };
 
     if (file.bad()) {
-        throw SaveReaderException("Failed to read file");
+        throw SceneException("Failed to read file");
     }
     file.seekg(0, std::ios::beg);
     if (!file.read(buffer, fileSize)) {
-        throw SaveReaderException("Failed to read file");
+        throw SceneException("Failed to read file");
     }
     file.close();
     _saveContent = buffer;
@@ -57,8 +57,8 @@ bool Arcade::Game::SaveReader::init()
                     { 255, 255, 255, 255 }, { BASE_X_SAVE, (30 * (i + 1)), 0 }));
             entity.addComponent(text);
         }
-    } catch (const SaveReaderException &e) {
-        std::cerr << e.what() << std::endl;
+    } catch (const SceneException &e) {
+        std::cout << e.what() << std::endl;
         return false;
     }
     return true;

@@ -3,6 +3,7 @@
 //
 
 #include "IsHovered.hpp"
+#include "IComponent.hpp"
 
 Arcade::Game::IsHovered::IsHovered(const std::string &id)
 {

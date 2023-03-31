@@ -5,6 +5,7 @@
 #include "IsHovering.hpp"
 #include "IsHovered.hpp"
 #include "Text.hpp"
+#include "IComponent.hpp"
 
 Arcade::Game::IsHovering::IsHovering()
     : Arcade::ECS::ISystem()

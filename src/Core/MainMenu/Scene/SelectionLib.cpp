@@ -10,8 +10,7 @@
 #include "IsHovering.hpp"
 #include "KeyboardHandler.hpp"
 
-Arcade::Game::SelectionLib::SelectionLib()
-    : MainMenuScene()
+Arcade::Game::SelectionLib::SelectionLib() : AScene()
 {
 }
 
