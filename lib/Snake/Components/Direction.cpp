@@ -6,7 +6,6 @@
 */
 
 #include "Direction.hpp"
-#include "Snake.hpp"
 
 namespace Snake {
     Direction::Direction(const std::string &id, const enum Direction::dir direction) :

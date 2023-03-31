@@ -6,11 +6,11 @@
 */
 
 #include "SnakeMenuScene.hpp"
-#include "OnClickResume.hpp"
 #include "EntityManager.hpp"
 #include "SystemManager.hpp"
 #include "SnakeText.hpp"
 #include "SnakeIsHovered.hpp"
+#include "SnakeIsHovering.hpp"
 
 namespace Snake {
     SnakeMenuScene::SnakeMenuScene() : SnakeScene()
@@ -19,17 +19,17 @@ namespace Snake {
 
     bool SnakeMenuScene::init()
     {
-        _systemManager->addSystem("OnClickResume", std::make_unique<Snake::OnClickResume>());
+        _systemManager->addSystem("IsHovering", std::make_unique<Snake::IsHovering>());
 
-        auto &entity = _entityManager->createEntity("resumeButton");
+        auto &entity = _entityManager->createEntity("playButton");
 
-        auto text = std::shared_ptr<Snake::Text>(new Snake::Text("resume_button_text",
-            "Resume", FONT_PATH, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, { BASE_X, 0, 0 }));
+        auto text = std::shared_ptr<Snake::Text>(new Snake::Text("play_button_text",
+            "PLAY", FONT_PATH, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, { BASE_X, 0, 0 }));
         text->pos.y = OFFSET_Y_TEXT;
-        // auto hover = std::shared_ptr<Snake::IsHovered>(new Snake::IsHovered("resume_button_hover"));
+        auto hover = std::shared_ptr<Snake::IsHovered>(new Snake::IsHovered("play_button_hover"));
 
         entity.addComponent(text);
-        // entity.addComponent(hover);
+        entity.addComponent(hover);
         return true;
     }
 }
