@@ -10,7 +10,7 @@
 namespace Arcade::Graph
 {
 
-    static const std::map<const char, const std::string> keys = {
+    static const std::map<const int, const std::string> keys = {
         { KEY_MOUSE, "MOUSE_KEY1_PRESSED" }, { KEY_MOUSE, "MOUSE_KEY2_PRESSED" },
         { KEY_MOUSE, "MOUSE_KEY3_PRESSED" }, { KEY_MOUSE, "MOUSE_KEY4_PRESSED" },
         { KEY_MOUSE, "MOUSE_KEY5_PRESSED" }, { 'a', "KEY_A_PRESSED" }, { 'A', "KEY_A_PRESSED" },
@@ -56,7 +56,7 @@ namespace Arcade::Graph
     void EventHandler::run([[maybe_unused]] float delta, Arcade::ECS::IEventManager &eventManager,
         [[maybe_unused]] Arcade::ECS::IEntityManager &entityManager)
     {
-        const char key = getch();
+        const int key = getch();
 
         eventManager.clearEvents();
 
@@ -65,7 +65,8 @@ namespace Arcade::Graph
         }
         if (keys.find(key) != keys.end()) {
             std::string eventName = keys.find(key)->second;
-            std::cout << eventName << std::endl;
+            // printw("event %s\n", eventName.c_str());
+            std::cout << key << " | " << eventName << "\n";
             eventManager.addEvent(eventName, nullptr);
         }
     }

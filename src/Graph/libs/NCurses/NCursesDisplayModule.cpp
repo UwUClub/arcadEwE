@@ -16,6 +16,7 @@ namespace Arcade::Graph
     {
         initscr();
 
+        noecho();
         this->_spriteHandler = new SpriteHandler();
         this->_textHandler = new TextHandler();
         this->_eventHandler = new EventHandler();
