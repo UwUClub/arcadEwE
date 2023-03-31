@@ -2,21 +2,21 @@
 ** EPITECH PROJECT, 2023
 ** arcadEwE
 ** File description:
-** Snake
+** SnakeGameModule
 */
 
-#ifndef SNAKE_HPP_
-    #define SNAKE_HPP_
+#ifndef SNAKE_GAME_MODULE_HPP_
+    #define SNAKE_GAME_MODULE_HPP_
     #include "IComponent.hpp"
     #include "IGameModule.hpp"
     #include "SnakeScene.hpp"
 
 namespace Snake {
-    class Snake : public Arcade::Game::IGameModule
+    class SnakeGameModule : public Arcade::Game::IGameModule
     {
         public:
-            Snake();
-            ~Snake() override = default;
+            SnakeGameModule();
+            ~SnakeGameModule() override = default;
 
             void update(float deltaTime, Arcade::ECS::IEventManager &eventManager) override;
                 Arcade::ECS::IEntityManager &getCurrentEntityManager() override;
@@ -47,4 +47,4 @@ namespace Snake {
     };
 }
 
-#endif /* !SNAKE_HPP_ */
+#endif /* !SNAKE_GAME_MODULE_HPP_ */

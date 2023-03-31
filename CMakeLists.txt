@@ -97,6 +97,7 @@ project(arcade_snake
     LANGUAGES CXX)
 
 set(SNAKE_SOURCES
+    lib/Snake/Api.cpp
     lib/Snake/Components/Direction.cpp
     lib/Snake/Components/Direction.hpp
     lib/Snake/Components/Position.cpp
@@ -125,8 +126,8 @@ set(SNAKE_SOURCES
     lib/Snake/Systems/SnakeGameManager.hpp
     lib/Snake/Systems/SnakeIsHovering.cpp
     lib/Snake/Systems/SnakeIsHovering.hpp
-    lib/Snake/Snake.cpp
-    lib/Snake/Snake.hpp)
+    lib/Snake/SnakeGameModule.cpp
+    lib/Snake/SnakeGameModule.hpp)
 
 add_library(arcade_snake SHARED
     ${SNAKE_SOURCES} ${INCLUDES})

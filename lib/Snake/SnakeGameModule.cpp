@@ -2,33 +2,33 @@
 ** EPITECH PROJECT, 2023
 ** arcadEwE
 ** File description:
-** Snake
+** SnakeGameModule
 */
 
-#include "Snake.hpp"
+#include "SnakeGameModule.hpp"
 #include "SnakeGameScene.hpp"
 #include "SnakeMenuScene.hpp"
 #include "EventManager.hpp"
 
 namespace Snake {
-    Snake::Snake()
+    SnakeGameModule::SnakeGameModule()
     {
         _currentScene = 0;
         _scenes.emplace_back(std::make_unique<SnakeMenuScene>());
         _scenes.emplace_back(std::make_unique<SnakeGameScene>());
     }
 
-    void Snake::update(float deltaTime, Arcade::ECS::IEventManager &eventManager)
+    void SnakeGameModule::update(float deltaTime, Arcade::ECS::IEventManager &eventManager)
     {
         _scenes[_currentScene]->update(deltaTime, eventManager);
     }
 
-    Arcade::ECS::IEntityManager &Snake::getCurrentEntityManager()
+    Arcade::ECS::IEntityManager &SnakeGameModule::getCurrentEntityManager()
     {
         return _scenes[_currentScene]->getEntityManager();
     }
 
-    void Snake::changeScene(std::size_t sceneId)
+    void SnakeGameModule::changeScene(std::size_t sceneId)
     {
         if (sceneId >= _scenes.size())
             throw SnakeException("Scene does not exist");
@@ -37,7 +37,7 @@ namespace Snake {
         _scenes[_currentScene]->init();
     }
 
-    void Snake::handleEventSceneChange(Arcade::ECS::IEventManager &eventManager)
+    void SnakeGameModule::handleEventSceneChange(Arcade::ECS::IEventManager &eventManager)
     {
         auto play = eventManager.isEventTriggered("PLAY");
         auto gameOver = eventManager.isEventTriggered("GAME_OVER");
