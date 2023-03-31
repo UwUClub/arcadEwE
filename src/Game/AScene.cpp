@@ -6,7 +6,8 @@
 #include "EntityManager.hpp"
 #include "SystemManager.hpp"
 
-namespace Arcade::Game {
+namespace Arcade::Game
+{
 
     AScene::AScene()
         : _entityManager(std::make_unique<Arcade::ECS::EntityManager>())
@@ -26,7 +27,8 @@ namespace Arcade::Game {
 
     void Arcade::Game::AScene::close()
     {
-        _entityManager.reset(nullptr);
-        _systemManager.reset(nullptr);
+        _entityManager->removeAllEntities();
+        _entityManager.reset(new Arcade::ECS::EntityManager());
+        _systemManager.reset(new Arcade::ECS::SystemManager());
     }
-}
+} // namespace Arcade::Game

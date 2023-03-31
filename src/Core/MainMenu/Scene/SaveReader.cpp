@@ -58,7 +58,7 @@ bool Arcade::Game::SaveReader::init()
             entity.addComponent(text);
         }
     } catch (const SceneException &e) {
-        std::cerr << e.what() << std::endl;
+        std::cout << e.what() << std::endl;
         return false;
     }
     return true;
