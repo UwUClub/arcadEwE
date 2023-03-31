@@ -26,7 +26,8 @@ Arcade::Core::DisplayHandler::~DisplayHandler()
 
     if (sym == nullptr)
         return;
-    auto func = reinterpret_cast<void (*)(Graph::IDisplayModule *)>(sym);
+    [[maybe_unused]] auto func = reinterpret_cast<void (*)(Graph::IDisplayModule *)>(sym);
+    
     func(_lib.get());
     dlclose(_handle);
 }

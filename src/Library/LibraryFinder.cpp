@@ -40,7 +40,6 @@ Arcade::Core::libList Arcade::Core::LibraryFinder::getLibraries()
     }
     while ((ent = readdir(dir)) != nullptr) {
         std::string name(ent->d_name);
-        std::cout << "name: " << name << std::endl;
         if (name.starts_with("libarcade_") && name.ends_with(".so"))
             libs.push_back(getLibType(std::string("./lib/") + name));
     }
