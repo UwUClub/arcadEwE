@@ -16,7 +16,7 @@ extern "C" {
 
     void destroyGameModule(Arcade::Game::IGameModule *gameModule)
     {
-        free(gameModule);
+        delete gameModule;
     }
 
     const char *getName()

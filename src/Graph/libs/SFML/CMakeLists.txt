@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.13)  # CMake version check
-set(PROJECT_NAME arcade_test_game)
+set(PROJECT_NAME arcade_sfml)
 project(${PROJECT_NAME})               # Create project "arcade"
 set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fno-gnu-unique -fPIC")
+
+# find_package(OpenGL)
+find_package(SFML 2.5 COMPONENTS graphics audio window system REQUIRED)
 
 set(INCLUDES
         ../../../../sharedArchitecture/include/Api.hpp
@@ -26,25 +29,17 @@ set(INCLUDES
 
 # Add main.cpp file of project root directory as source file
 set(EXEC_SRC
-        Api.cpp
-        TestGame.hpp
-        TestGame.cpp
-        Scenes/MainScene.hpp
-        Scenes/MainScene.cpp
-        ../../AGameModule.hpp
-        ../../AGameModule.cpp
-        ../../AScene.hpp
-        ../../AScene.cpp
-        ../../../ECS/SystemManager.hpp
-        ../../../ECS/SystemManager.cpp
-        ../../../ECS/EntityManager.hpp
-        ../../../ECS/EntityManager.cpp
+    Api.cpp
+    SFMLDisplayModule.cpp
+    SFMLDisplayModule.hpp
+    Handlers/TextHandler.cpp
+    Handlers/TextHandler.hpp
+    Handlers/EventHandler.cpp
+    Handlers/EventHandler.hpp
 )
 
 include_directories(.)
-include_directories(Scenes)
-include_directories(../../)
-include_directories(../../../ECS)
+include_directories(Handlers)
 include_directories(../../../../sharedArchitecture/include)
 include_directories(../../../../sharedArchitecture/include/Arcade)
 include_directories(../../../../sharedArchitecture/include/Arcade/Core)
@@ -58,6 +53,7 @@ include_directories(../../../../sharedArchitecture/include/Arcade/Graph)
 #add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # Add executable target with source files listed in SOURCE_FILES variable
-#add_subdirectory(src/Core/MainMenu)
 add_library(${PROJECT_NAME} SHARED ${EXEC_SRC} ${INCLUDES})
+target_link_libraries(${PROJECT_NAME} sfml-system sfml-window sfml-graphics sfml-audio)
+
 set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../../../lib)

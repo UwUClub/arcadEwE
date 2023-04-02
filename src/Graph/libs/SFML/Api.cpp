@@ -5,13 +5,14 @@
 ** Api to access the lib in .so files
 */
 
+#include <iostream>
 #include "Api.hpp"
-#include "NCursesDisplayModule.hpp"
+#include "SFMLDisplayModule.hpp"
 
 extern "C" {
     Arcade::Graph::IDisplayModule *getDisplayModule()
     {
-        return new Arcade::Graph::NCursesDisplayModule();
+        return new Arcade::Graph::SFMLDisplayModule();
     }
 
     void destroyDisplayModule(Arcade::Graph::IDisplayModule *displayModule)
@@ -21,7 +22,7 @@ extern "C" {
 
     const char *getName()
     {
-        return "NCurses";
+        return "SFML";
     }
 
     LibType getType()

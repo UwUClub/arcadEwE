@@ -47,11 +47,11 @@ namespace Arcade::Core
          * @details Overload of the -> operator
          * @return A pointer to the display module
          */
-        Graph::IDisplayModule *operator->() const noexcept { return _lib.get(); }
+        Graph::IDisplayModule *operator->() const noexcept { return _lib; }
 
         private:
         void *_handle;
-        std::unique_ptr<Graph::IDisplayModule> _lib;
+        Graph::IDisplayModule *_lib;
 
         /**
          * @brief Exception class for the DisplayHandler
