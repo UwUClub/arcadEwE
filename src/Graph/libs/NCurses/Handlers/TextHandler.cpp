@@ -27,7 +27,6 @@ namespace Arcade::Graph
 
             for (auto &textComponent : textComponents) {
                 auto text = std::static_pointer_cast<IText>(textComponent);
-                Arcade::Vector3f pos = (*text).pos;
                 Color foregroundColor = (*text).textColor;
                 Color backgroundColor = (*text).backgroundColor;
 
