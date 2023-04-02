@@ -16,7 +16,7 @@ extern "C" {
 
     void destroyDisplayModule(Arcade::Graph::IDisplayModule *displayModule)
     {
-        free(displayModule);
+        delete displayModule;
     }
 
     const char *getName()

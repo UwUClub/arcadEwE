@@ -21,3 +21,4 @@ cmake-build-release/*
 Testing/
 arcade.cbp
 .DS_Store
+vgcore.*

@@ -12,9 +12,9 @@ namespace Arcade::Graph
 {
 
     static const std::map<const int, const std::string> keys = {
-        {KEY_MOUSE, MOUSE_KEY1_PRESSED }, {KEY_MOUSE, MOUSE_KEY2_PRESSED },
-        {KEY_MOUSE, MOUSE_KEY3_PRESSED }, {KEY_MOUSE, MOUSE_KEY4_PRESSED },
-        {KEY_MOUSE, MOUSE_KEY5_PRESSED },
+        // {KEY_MOUSE, MOUSE_KEY1_PRESSED }, {KEY_MOUSE, MOUSE_KEY2_PRESSED },
+        // {KEY_MOUSE, MOUSE_KEY3_PRESSED }, {KEY_MOUSE, MOUSE_KEY4_PRESSED },
+        // {KEY_MOUSE, MOUSE_KEY5_PRESSED },
         { 'a', KEY_A_PRESSED }, { 'A', KEY_A_PRESSED },
         { 'b', KEY_B_PRESSED }, { 'B', KEY_B_PRESSED }, { 'c', KEY_C_PRESSED },
         { 'C', KEY_C_PRESSED }, { 'd', KEY_D_PRESSED }, { 'D', KEY_D_PRESSED },

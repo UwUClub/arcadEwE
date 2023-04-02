@@ -31,9 +31,9 @@ namespace Arcade::Graph
         noraw();
         echo();
         endwin();
-        free(this->_spriteHandler);
-        free(this->_textHandler);
-        free(this->_eventHandler);
+        delete this->_spriteHandler;
+        delete this->_textHandler;
+        delete this->_eventHandler;
     }
 
     void NCursesDisplayModule::update([[maybe_unused]] float delta, [[maybe_unused]] Arcade::ECS::IEventManager &eventManager,

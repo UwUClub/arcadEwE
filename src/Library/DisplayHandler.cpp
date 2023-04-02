@@ -6,6 +6,7 @@
 
 Arcade::Core::DisplayHandler::DisplayHandler(const std::string &path)
     : _handle(nullptr)
+    , _lib(nullptr)
 {
     try {
         _handle = LibraryFinder::loadLibrary(path);
@@ -13,7 +14,7 @@ Arcade::Core::DisplayHandler::DisplayHandler(const std::string &path)
         if (sym == nullptr)
             throw LibraryHandlerException("Cannot load symbol: " + std::string(dlerror()));
         auto func = reinterpret_cast<Graph::IDisplayModule *(*) ()>(sym);
-        _lib = std::unique_ptr<Graph::IDisplayModule>(func());
+        _lib = func();
     } catch (const LibraryHandlerException &e) {
         std::cerr << e.what() << std::endl;
     }
@@ -27,7 +28,6 @@ Arcade::Core::DisplayHandler::~DisplayHandler()
     if (sym == nullptr)
         return;
     [[maybe_unused]] auto func = reinterpret_cast<void (*)(Graph::IDisplayModule *)>(sym);
-    
-    func(_lib.get());
+    func(_lib);
     dlclose(_handle);
 }
