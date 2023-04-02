@@ -5,6 +5,7 @@
 ** Api to access the lib in .so files
 */
 
+#include <iostream>
 #include "Api.hpp"
 #include "SFMLDisplayModule.hpp"
 
@@ -16,7 +17,7 @@ extern "C" {
 
     void destroyDisplayModule(Arcade::Graph::IDisplayModule *displayModule)
     {
-        free(displayModule);
+        delete displayModule;
     }
 
     const char *getName()

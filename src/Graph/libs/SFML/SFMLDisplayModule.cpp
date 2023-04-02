@@ -6,38 +6,38 @@
 */
 
 #include <iostream>
+#include <SFML/Graphics.hpp>
 #include "SFMLDisplayModule.hpp"
 
 namespace Arcade::Graph {
 
     SFMLDisplayModule::SFMLDisplayModule()
     {
-        // this->_window.create(sf::VideoMode(800, 600), "Arcade");
-
-        // this->_textHandler = new TextHandler();
+        _window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Arcade");
+        _window->clear(sf::Color::White);
+        _textHandler = new TextHandler();
         // this->_spriteHandler = new SpriteHandler();
         // this->_musicHandler = new MusicHandler();
-        // this->_eventHandler = new EventHandler();
+        _eventHandler = new EventHandler();
     }
 
     SFMLDisplayModule::~SFMLDisplayModule()
     {
-        // TODO: close window
-
-        // free(this->_textHandler);
+        _window->close();
+        delete _textHandler;
         // free(this->_spriteHandler);
         // free(this->_musicHandler);
-        // free(this->_eventHandler);
+        delete _eventHandler;
     }
 
     void SFMLDisplayModule::update([[maybe_unused]] float delta, [[maybe_unused]] Arcade::ECS::IEventManager &eventManager, [[maybe_unused]] Arcade::ECS::IEntityManager &entityManager)
     {
-        // this->_window.clear();
+        _window->clear(sf::Color::White);
         // this->_spriteHandler->run(delta, eventManager, entityManager);
-        // this->_textHandler->run(entityManager, this->_window);
-        // this->_window.display();
+        _textHandler->run(entityManager, this->_window);
+        _window->display();
 
         // this->_musicHandler->run(delta, eventManager, entityManager);
-        // this->_eventHandler->run(delta, eventManager, entityManager);
+        _eventHandler->run(eventManager, _window);
     }
 }

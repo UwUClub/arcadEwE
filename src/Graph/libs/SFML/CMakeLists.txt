@@ -3,8 +3,9 @@ set(PROJECT_NAME arcade_sfml)
 project(${PROJECT_NAME})               # Create project "arcade"
 set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fno-gnu-unique -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fno-gnu-unique -fPIC")
 
+# find_package(OpenGL)
 find_package(SFML 2.5 COMPONENTS graphics audio window system REQUIRED)
 
 set(INCLUDES
@@ -33,6 +34,8 @@ set(EXEC_SRC
     SFMLDisplayModule.hpp
     Handlers/TextHandler.cpp
     Handlers/TextHandler.hpp
+    Handlers/EventHandler.cpp
+    Handlers/EventHandler.hpp
 )
 
 include_directories(.)
@@ -51,5 +54,6 @@ include_directories(../../../../sharedArchitecture/include/Arcade/Graph)
 
 # Add executable target with source files listed in SOURCE_FILES variable
 add_library(${PROJECT_NAME} SHARED ${EXEC_SRC} ${INCLUDES})
+target_link_libraries(${PROJECT_NAME} sfml-system sfml-window sfml-graphics sfml-audio)
 
-target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio sfml-window sfml-system)
+set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../../../lib)

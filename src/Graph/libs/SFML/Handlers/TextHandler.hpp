@@ -5,14 +5,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "IEventManager.hpp"
 #include "IEntityManager.hpp"
 
 namespace Arcade::Graph {
     class TextHandler
     {
         public:
-        TextHandler() = default;
+        TextHandler();
         ~TextHandler() = default;
 
         void run(Arcade::ECS::IEntityManager &entityManager, sf::RenderWindow *window);

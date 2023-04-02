@@ -88,5 +88,6 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 # Add executable target with source files listed in SOURCE_FILES variable
 #add_subdirectory(src/Graph/libs/SDL)
 add_subdirectory(src/Graph/libs/NCurses)
+add_subdirectory(src/Graph/libs/SFML)
 add_subdirectory(src/Game/libs/TestGame)
 add_executable(${PROJECT_NAME} ${EXEC_SRC} ${INCLUDES})

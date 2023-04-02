@@ -10,7 +10,17 @@
 
 namespace Arcade::Graph {
 
-    void TextHandler::run([[maybe_unused]] Arcade::ECS::IEntityManager &entityManager, [[maybe_unused]] sf::RenderWindow *window)
+    TextHandler::TextHandler()
+    {
+        _fonts = std::map<std::string, sf::Font *>();
+        _fonts["assets/fonts/arial.ttf"] = new sf::Font();
+        if (!_fonts["assets/fonts/arial.ttf"]->loadFromFile("assets/fonts/arial.ttf")) {
+            delete _fonts["assets/fonts/arial.ttf"];
+            _fonts["assets/fonts/arial.ttf"] = nullptr;
+        }
+    }
+
+    void TextHandler::run(Arcade::ECS::IEntityManager &entityManager, sf::RenderWindow *window)
     {
         for (auto &entity : entityManager.getEntities()) {
 
@@ -26,11 +36,11 @@ namespace Arcade::Graph {
                 Arcade::Graph::Color bColor = (*text).backgroundColor;
 
                 sf::Text *sfText = new sf::Text();
-                //sfText->setString((*text).text);
+                sfText->setString((*text).text);
                 sfText->setFillColor(sf::Color(fColor.r, fColor.g, fColor.b, fColor.a));
                 sfText->setOutlineColor(sf::Color(bColor.r, bColor.g, bColor.b, bColor.a));
 
-                this->handle_font((*text).fontPath, sfText);
+                this->handle_font((*text).fontPath, sfText); 
 
                 sfText->setPosition((*text).pos.x, (*text).pos.y);
                 sfText->setCharacterSize(42);
@@ -39,7 +49,7 @@ namespace Arcade::Graph {
         }
     }
 
-    void TextHandler::handle_font([[maybe_unused]] std::string path, [[maybe_unused]] sf::Text *text)
+    void TextHandler::handle_font(std::string path, sf::Text *text)
     {
         sf::Font *font = new sf::Font();
 
@@ -52,8 +62,8 @@ namespace Arcade::Graph {
         }
         if (_fonts[path] != nullptr) {
             text->setFont(*(_fonts[path]));
-        } else {
-            // TODO: set default font
+        } else if (_fonts.find("assets/fonts/arial.ttf") != _fonts.end()) {
+            text->setFont(*(_fonts["assets/fonts/arial.ttf"]));
         }
     }
 }
