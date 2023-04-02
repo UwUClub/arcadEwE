@@ -5,13 +5,15 @@
 #include <ncurses.h>
 #include "AHandler.hpp"
 
-namespace Arcade::Graph {
+namespace Arcade::Graph
+{
 
     AHandler::AHandler()
     {
     }
 
-    void AHandler::printContent(std::string content, int posX, int posY, Color foregroundColor, Color backgroundColor)
+    void AHandler::printContent(std::string content, int posX, int posY, Color foregroundColor,
+        Color backgroundColor)
     {
         if (has_colors()) {
             init_color(0, foregroundColor.r, foregroundColor.g, foregroundColor.b);
@@ -19,9 +21,9 @@ namespace Arcade::Graph {
             init_pair(2, 0, 1);
             attron(COLOR_PAIR(2));
         }
-        mvprintw(posY, posX, content.c_str());
+        mvprintw(posY, posX, "%s", content.c_str());
         if (has_colors()) {
             attroff(COLOR_PAIR(2));
         }
     }
-}
+} // namespace Arcade::Graph

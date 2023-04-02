@@ -2,9 +2,11 @@
 // Created by patatofour on 28/03/23.
 //
 
+#include <iostream>
 #include "AGameModule.hpp"
 
-Arcade::Game::AGameModule::AGameModule() : _currentScene(0)
+Arcade::Game::AGameModule::AGameModule()
+    : _currentScene(0)
 {
 }
 
@@ -20,9 +22,16 @@ Arcade::ECS::IEntityManager &Arcade::Game::AGameModule::getCurrentEntityManager(
 
 void Arcade::Game::AGameModule::changeScene(std::size_t sceneId)
 {
+    size_t i = _currentScene;
+
+    if (sceneId == _currentScene)
+        return;
     if (sceneId >= _scenes.size())
         throw AGameModuleException("Scene does not exist");
-    _scenes[_currentScene]->close();
+    std::cout << "Changing scene to " << sceneId << std::endl;
     _currentScene = sceneId;
-    _scenes[_currentScene]->init();
+    if (!_scenes[_currentScene]->init())
+        _currentScene = i;
+    else
+        _scenes[i]->close();
 }

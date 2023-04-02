@@ -8,8 +8,8 @@
 #include "AScene.hpp"
 
 #define BASE_X_TEXT   20
-#define OFFSET_Y_TEXT 50
-#define OFFSET_X_TEXT 180
+#define OFFSET_Y_TEXT 10
+#define OFFSET_X_TEXT 18
 
 namespace Arcade::Game
 {

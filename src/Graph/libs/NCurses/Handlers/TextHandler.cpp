@@ -9,24 +9,23 @@
 #include "IText.hpp"
 #include "TextHandler.hpp"
 
-namespace Arcade::Graph {
+namespace Arcade::Graph
+{
 
     TextHandler::TextHandler()
     {
     }
 
-    void TextHandler::run([[maybe_unused]] float delta, [[maybe_unused]] Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager)
+    void TextHandler::run([[maybe_unused]] float delta,
+        [[maybe_unused]] Arcade::ECS::IEventManager &eventManager,
+        Arcade::ECS::IEntityManager &entityManager)
     {
-        const std::vector<std::shared_ptr<Arcade::ECS::IEntity>> &entities = entityManager.getEntities();
+        auto entities = entityManager.getEntitiesByComponentType(Arcade::ECS::CompType::TEXT);
 
-        for (auto &entity : entities) {
+        for (auto &entity : *entities) {
+            auto &textComponents = entity->getComponents(Arcade::ECS::CompType::TEXT);
 
-            if (entity->getComponents().find(Arcade::ECS::CompType::TEXT) == entity->getComponents().end()) {
-                continue;
-            }
-            std::vector<std::shared_ptr<Arcade::ECS::IComponent>> textComponents = entity->getComponents(Arcade::ECS::CompType::TEXT);
-
-            for (auto textComponent : textComponents) {
+            for (auto &textComponent : textComponents) {
                 auto text = std::static_pointer_cast<IText>(textComponent);
                 Arcade::Vector3f pos = (*text).pos;
                 Color foregroundColor = (*text).textColor;
@@ -36,4 +35,4 @@ namespace Arcade::Graph {
             }
         }
     }
-}
+} // namespace Arcade::Graph
