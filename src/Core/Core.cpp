@@ -37,7 +37,6 @@ Arcade::Core::Core::Core(const std::string &pathDisplay)
 
 void Arcade::Core::Core::update()
 {
-
     while (!_eventManager->isEventTriggered(QUIT).first) {
         [[maybe_unused]] auto &currentEntityManager
             = _gameModule ? _gameModule->operator->()->getCurrentEntityManager()

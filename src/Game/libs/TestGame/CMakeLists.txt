@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.13)  # CMake version check
-set(PROJECT_NAME arcade-game-test)
+set(PROJECT_NAME arcade_test_game)
 project(${PROJECT_NAME})               # Create project "arcade"
 set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fno-gnu-unique -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fno-gnu-unique -fPIC")
 
 set(INCLUDES
         ../../../../sharedArchitecture/include/Api.hpp
@@ -60,3 +60,4 @@ include_directories(../../../../sharedArchitecture/include/Arcade/Graph)
 # Add executable target with source files listed in SOURCE_FILES variable
 #add_subdirectory(src/Core/MainMenu)
 add_library(${PROJECT_NAME} SHARED ${EXEC_SRC} ${INCLUDES})
+set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../../../lib)

@@ -7,7 +7,7 @@
 
 #include "AScene.hpp"
 
-#define BASE_X_TEXT   20
+#define BASE_X_TEXT   60
 #define OFFSET_Y_TEXT 10
 #define OFFSET_X_TEXT 18
 

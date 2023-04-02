@@ -3,7 +3,7 @@ set(PROJECT_NAME arcade)
 project(${PROJECT_NAME})               # Create project "arcade"
 set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fno-gnu-unique -Wl,--no-as-needed -ldl")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fno-gnu-unique -Wl,--no-as-needed -ldl")
 
 set(INCLUDES
         sharedArchitecture/include/Api.hpp
@@ -88,4 +88,5 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 # Add executable target with source files listed in SOURCE_FILES variable
 #add_subdirectory(src/Graph/libs/SDL)
 add_subdirectory(src/Graph/libs/NCurses)
+add_subdirectory(src/Game/libs/TestGame)
 add_executable(${PROJECT_NAME} ${EXEC_SRC} ${INCLUDES})

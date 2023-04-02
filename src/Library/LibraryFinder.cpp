@@ -2,6 +2,7 @@
 // Created by patatofour on 27/03/23.
 //
 
+#include <iostream>
 #include <functional>
 #include <dlfcn.h>
 #include <dirent.h>
