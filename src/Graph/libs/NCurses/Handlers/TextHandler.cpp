@@ -31,7 +31,9 @@ namespace Arcade::Graph
                 Color foregroundColor = (*text).textColor;
                 Color backgroundColor = (*text).backgroundColor;
 
-                this->printContent((*text).text, pos.x, pos.y, foregroundColor, backgroundColor);
+                const int x = ((*text).pos.x / 100) * COLS;
+                const int y = ((*text).pos.y / 100) * LINES;
+                this->printContent((*text).text, x, y, foregroundColor, backgroundColor);
             }
         }
     }

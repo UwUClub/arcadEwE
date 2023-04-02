@@ -43,8 +43,9 @@ namespace Arcade::Graph {
                 sfText->setOutlineColor(sf::Color(bColor.r, bColor.g, bColor.b, bColor.a));
 
                 this->handle_font((*text).fontPath, sfText);
-                int x = ((*text).pos.x / 100) * WINDOW_WIDTH;
-                int y = ((*text).pos.y / 100) * WINDOW_HEIGHT;
+
+                const int x = ((*text).pos.x / 100) * WINDOW_WIDTH;
+                const int y = ((*text).pos.y / 100) * WINDOW_HEIGHT;
                 sfText->setPosition(x, y);
                 sfText->setCharacterSize(20);
                 window->draw(*sfText);
