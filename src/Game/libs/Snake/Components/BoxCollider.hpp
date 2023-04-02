@@ -29,8 +29,8 @@ namespace Snake {
             bool IsColliding(const BoxCollider &other) const;
 
         public:
-            Transform &transform;
             Arcade::Vector3f box;
+            Transform &transform;
             bool isEnabled = true;
             std::vector<Arcade::ECS::Entity *> _collidingEntities;
     };

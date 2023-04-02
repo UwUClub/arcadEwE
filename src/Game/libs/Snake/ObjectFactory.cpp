@@ -12,8 +12,7 @@
 #include "Sprite.hpp"
 
 namespace Snake {
-    ObjectFactory::ObjectFactory(Arcade::ECS::IEntityManager &entityManager) :
-        _entityManager(entityManager)
+    ObjectFactory::ObjectFactory(std::unique_ptr<Arcade::ECS::IEntityManager> entityManager) : _entityManager(std::move(entityManager))
     {
     }
 
@@ -21,7 +20,7 @@ namespace Snake {
     {
     }
 
-    Arcade::ECS::IEntity ObjectFactory::CreateSnakeHead(Arcade::Vector3f position)
+    Arcade::ECS::IEntity &ObjectFactory::CreateSnakeHead(Arcade::Vector3f position)
     {
         auto &entity = _entityManager->createEntity("snake_head");
         entity.addComponent(std::shared_ptr<Snake::Transform>(new Snake::Transform("transform", position)));
@@ -31,7 +30,7 @@ namespace Snake {
         return entity;
     }
 
-    Arcade::ECS::IEntity ObjectFactory::CreateSnakeBody(Arcade::Vector3f position, Arcade::Vector3f rotation)
+    Arcade::ECS::IEntity &ObjectFactory::CreateSnakeBody(Arcade::Vector3f position, Arcade::Vector3f rotation)
     {
         auto &entity = _entityManager->createEntity("snake_body");
         entity.addComponent(std::shared_ptr<Snake::Transform>(new Snake::Transform("transform", position)));
@@ -41,7 +40,7 @@ namespace Snake {
         return entity;
     }
 
-    Arcade::ECS::IEntity ObjectFactory::CreateFruit(Arcade::Vector3f position)
+    Arcade::ECS::IEntity &ObjectFactory::CreateFruit(Arcade::Vector3f position)
     {
         auto &entity = _entityManager->createEntity("fruit");
         entity.addComponent(std::shared_ptr<Snake::Transform>(new Snake::Transform("transform", position)));
@@ -49,7 +48,7 @@ namespace Snake {
         return entity;
     }
 
-    Arcade::ECS::IEntity ObjectFactory::CreateWall(Arcade::Vector3f position, Arcade::Vector3f rotation)
+    Arcade::ECS::IEntity &ObjectFactory::CreateWall(Arcade::Vector3f position, Arcade::Vector3f rotation)
     {
         auto &entity = _entityManager->createEntity("wall");
         entity.addComponent(std::shared_ptr<Snake::Transform>(new Snake::Transform("transform", position)));
