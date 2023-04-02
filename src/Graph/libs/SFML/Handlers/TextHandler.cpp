@@ -3,6 +3,8 @@
 //
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "SFMLDisplayModule.hpp"
 #include "TextHandler.hpp"
 #include "ArcadeStruct.hpp"
 #include "IComponent.hpp"
@@ -40,10 +42,11 @@ namespace Arcade::Graph {
                 sfText->setFillColor(sf::Color(fColor.r, fColor.g, fColor.b, fColor.a));
                 sfText->setOutlineColor(sf::Color(bColor.r, bColor.g, bColor.b, bColor.a));
 
-                this->handle_font((*text).fontPath, sfText); 
-
-                sfText->setPosition((*text).pos.x, (*text).pos.y);
-                sfText->setCharacterSize(42);
+                this->handle_font((*text).fontPath, sfText);
+                int x = ((*text).pos.x / 100) * WINDOW_WIDTH;
+                int y = ((*text).pos.y / 100) * WINDOW_HEIGHT;
+                sfText->setPosition(x, y);
+                sfText->setCharacterSize(20);
                 window->draw(*sfText);
             }
         }

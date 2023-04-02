@@ -13,8 +13,8 @@ namespace Arcade::Graph {
 
     SFMLDisplayModule::SFMLDisplayModule()
     {
-        _window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Arcade");
-        _window->clear(sf::Color::White);
+        _window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Arcade");
+        _window->clear(sf::Color::Green);
         _textHandler = new TextHandler();
         // this->_spriteHandler = new SpriteHandler();
         // this->_musicHandler = new MusicHandler();
@@ -32,9 +32,9 @@ namespace Arcade::Graph {
 
     void SFMLDisplayModule::update([[maybe_unused]] float delta, [[maybe_unused]] Arcade::ECS::IEventManager &eventManager, [[maybe_unused]] Arcade::ECS::IEntityManager &entityManager)
     {
-        _window->clear(sf::Color::White);
+        _window->clear(sf::Color::Green);
         // this->_spriteHandler->run(delta, eventManager, entityManager);
-        _textHandler->run(entityManager, this->_window);
+        _textHandler->run(entityManager, _window);
         _window->display();
 
         // this->_musicHandler->run(delta, eventManager, entityManager);
