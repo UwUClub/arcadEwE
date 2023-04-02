@@ -22,16 +22,17 @@ namespace Snake {
 
     bool SnakeGameScene::init()
     {
+        ObjectFactory objectFactory;
+
         _systemManager->addSystem("PlayerInputs", std::make_unique<Snake::PlayerInputs>());
         _systemManager->addSystem("MoveSnake", std::make_unique<Snake::MoveSnake>());
         _systemManager->addSystem("FruitSpawner", std::make_unique<Snake::FruitSpawner>());
         _systemManager->addSystem("ColliderManager", std::make_unique<Snake::ColliderManager>());
 
-        ObjectFactory objectFactory(*_entityManager);
-        objectFactory.CreateSnakeHead({MAX_CASE_X / 2 * CASE_SIZE , MAX_CASE_X / 2 * CASE_SIZE, 0});
-        objectFactory.CreateSnakeBody({MAX_CASE_X / 2 * CASE_SIZE, (MAX_CASE_X / 2 + 1) * CASE_SIZE, 0}, {0, 0, 0});
-        objectFactory.CreateSnakeBody({MAX_CASE_X / 2 * CASE_SIZE, (MAX_CASE_X / 2 + 2) * CASE_SIZE, 0}, {0, 0, 0});
-        objectFactory.CreateSnakeBody({MAX_CASE_X / 2 * CASE_SIZE, (MAX_CASE_X / 2 + 3) * CASE_SIZE, 0}, {0, 0, 0});
+        objectFactory.CreateSnakeHead(*_entityManager, {MAX_CASE_X / 2 * CASE_SIZE , MAX_CASE_X / 2 * CASE_SIZE, 0});
+        objectFactory.CreateSnakeBody(*_entityManager, {MAX_CASE_X / 2 * CASE_SIZE, (MAX_CASE_X / 2 + 1) * CASE_SIZE, 0}, {0, 0, 0});
+        objectFactory.CreateSnakeBody(*_entityManager, {MAX_CASE_X / 2 * CASE_SIZE, (MAX_CASE_X / 2 + 2) * CASE_SIZE, 0}, {0, 0, 0});
+        objectFactory.CreateSnakeBody(*_entityManager, {MAX_CASE_X / 2 * CASE_SIZE, (MAX_CASE_X / 2 + 3) * CASE_SIZE, 0}, {0, 0, 0});
         return true;
     }
 }

@@ -28,21 +28,21 @@ namespace Snake {
     bool FruitSpawner::SpawnFruit(Arcade::ECS::IEntityManager &entityManager)
     {
         Arcade::Vector3f position = {0, 0, 0};
-        ObjectFactory objectFactory(entityManager);
-        auto fruit = objectFactory.createFruit(position);
+        ObjectFactory objectFactory;
+        auto fruit = objectFactory.CreateFruit(entityManager, position);
         srand(time(0));
         std::vector<Arcade::Vector3f> positions;
 
         for (int x = 0; x < MAX_CASE_X; x++) {
             for (int y = 0; y < MAX_CASE_Y; y++) {
-                fruit.getComponent<Transform>(Arcade::ECS::CompType::TRANSFORM).SetPosition = {x * CASE_SIZE, y * CASE_SIZE, 0};
+                fruit.getComponents(Arcade::ECS::CompType::TRANSFORM).SetPosition = {x * CASE_SIZE, y * CASE_SIZE, 0};
                 if (isFruitColliding(entityManager) == false)
                     positions.push_back(fruit.getComponent<Transform>(Arcade::ECS::CompType::TRANSFORM).GetPosition);
             }
         }
         if (positions.size() > 0) {
             int random = rand() % positions.size();
-            fruit.getComponent<Transform>(Arcade::ECS::CompType::TRANSFORM).SetPosition = positions[random];
+            fruit.getComponents(Arcade::ECS::CompType::TRANSFORM).SetPosition = positions[random];
             return true;
         }
         return false;

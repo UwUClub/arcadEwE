@@ -16,16 +16,13 @@
 namespace Snake {
     class ObjectFactory {
         public:
-            ObjectFactory(std::unique_ptr<Arcade::ECS::IEntityManager> entityManager);
+            ObjectFactory();
             ~ObjectFactory();
 
-            Arcade::ECS::IEntity &CreateSnakeHead(Arcade::Vector3f position);
-            Arcade::ECS::IEntity &CreateSnakeBody(Arcade::Vector3f position, Arcade::Vector3f rotation);
-            Arcade::ECS::IEntity &CreateFruit(Arcade::Vector3f position);
-            Arcade::ECS::IEntity &CreateWall(Arcade::Vector3f position, Arcade::Vector3f rotation);
-
-        private:
-            std::unique_ptr<Arcade::ECS::IEntityManager> _entityManager;
+            Arcade::ECS::IEntity &CreateSnakeHead(Arcade::ECS::IEntityManager &entityManager, Arcade::Vector3f position);
+            Arcade::ECS::IEntity &CreateSnakeBody(Arcade::ECS::IEntityManager &entityManager, Arcade::Vector3f position, Arcade::Vector3f rotation);
+            Arcade::ECS::IEntity &CreateFruit(Arcade::ECS::IEntityManager &entityManager, Arcade::Vector3f position);
+            Arcade::ECS::IEntity &CreateWall(Arcade::ECS::IEntityManager &entityManager, Arcade::Vector3f position, Arcade::Vector3f rotation);
     };
 }
 
