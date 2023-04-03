@@ -21,7 +21,7 @@ namespace Arcade::Game
         this->_scenes[this->_currentScene]->init();
     }
 
-    void TestGame::update([[maybe_unused]] float delta,
+    void TestGame::update([[maybe_unused]] double delta,
         [[maybe_unused]] Arcade::ECS::IEventManager &eventManager)
     {
         AGameModule::update(delta, eventManager);

@@ -8,12 +8,12 @@
 #include "Component.hpp"
 #include "Events.hpp"
 #include "MainMenu.hpp"
-#include "IText.hpp"
 #include "Text.hpp"
 
 Arcade::Core::Core::Core(const std::string &pathDisplay)
     : _gameModule(nullptr)
     , _mainMenu(std::make_unique<Arcade::Game::MainMenu>())
+    , _clock(std::make_unique<Arcade::Core::Clock>())
 {
     auto libs = LibraryFinder::getLibraries();
 
@@ -47,7 +47,8 @@ void Arcade::Core::Core::update()
 
         _eventManager->clearEvents();
         if (_displayModule)
-            _displayModule->operator->()->update(0, *_eventManager, currentEntityManager);
+            _displayModule->operator->()->update(_clock->getDeltaTime(), *_eventManager,
+                currentEntityManager);
     }
 }
 

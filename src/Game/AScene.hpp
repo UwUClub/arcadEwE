@@ -14,7 +14,7 @@ namespace Arcade::Game
         AScene();
         virtual ~AScene() = default;
 
-        void update(float deltaTime, Arcade::ECS::IEventManager &eventManager);
+        void update(double deltaTime, Arcade::ECS::IEventManager &eventManager);
         Arcade::ECS::IEntityManager &getEntityManager() override;
 
         bool init() override = 0;
@@ -43,4 +43,4 @@ namespace Arcade::Game
         std::unique_ptr<Arcade::ECS::IEntityManager> _entityManager;
         std::unique_ptr<Arcade::ECS::ISystemManager> _systemManager;
     };
-}
+} // namespace Arcade::Game

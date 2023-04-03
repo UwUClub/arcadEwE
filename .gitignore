@@ -22,3 +22,5 @@ Testing/
 arcade.cbp
 .DS_Store
 vgcore.*
+.save.txt
+*.cbp

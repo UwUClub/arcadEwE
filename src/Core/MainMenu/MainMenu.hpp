@@ -15,7 +15,7 @@ namespace Arcade::Game
         MainMenu();
         ~MainMenu() override = default;
 
-        void update(float deltaTime, Arcade::ECS::IEventManager &eventManager) override;
+        void update(double deltaTime, Arcade::ECS::IEventManager &eventManager) override;
 
         private:
         void handleEventSceneChange(Arcade::ECS::IEventManager &eventManager) override;

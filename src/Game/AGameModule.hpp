@@ -15,7 +15,7 @@ namespace Arcade::Game
         AGameModule();
         ~AGameModule() override = default;
 
-        void update(float deltaTime, Arcade::ECS::IEventManager &eventManager) override;
+        void update(double deltaTime, Arcade::ECS::IEventManager &eventManager) override;
         Arcade::ECS::IEntityManager &getCurrentEntityManager() override;
 
         protected:

@@ -14,7 +14,7 @@ namespace Arcade::Graph
         SpriteHandler();
         ~SpriteHandler() override = default;
 
-        void run(float delta, Arcade::ECS::IEventManager &eventManager,
+        void run(double delta, Arcade::ECS::IEventManager &eventManager,
             Arcade::ECS::IEntityManager &entityManager) final;
     };
 } // namespace Arcade::Graph

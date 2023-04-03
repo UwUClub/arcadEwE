@@ -16,7 +16,7 @@ namespace Arcade::Graph
     {
     }
 
-    void SpriteHandler::run([[maybe_unused]] float delta,
+    void SpriteHandler::run([[maybe_unused]] double delta,
         [[maybe_unused]] Arcade::ECS::IEventManager &eventManager,
         Arcade::ECS::IEntityManager &entityManager)
     {

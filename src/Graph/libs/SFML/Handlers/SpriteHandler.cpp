@@ -8,17 +8,21 @@
 #include "IComponent.hpp"
 #include "IText.hpp"
 
-namespace Arcade::Graph {
+namespace Arcade::Graph
+{
 
-    void SpriteHandler::run(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager)
+    void SpriteHandler::run(double delta, Arcade::ECS::IEventManager &eventManager,
+        Arcade::ECS::IEntityManager &entityManager)
     {
         for (auto &entity : scene->getEntityManager().getEntities()) {
 
-            if (entity->getComponents().find(Arcade::ECS::CompType::TEXT) == entity->getComponents().end()) {
+            if (entity->getComponents().find(Arcade::ECS::CompType::TEXT)
+                == entity->getComponents().end()) {
                 continue;
             }
 
-            std::vector<std::shared_ptr<Arcade::ECS::IComponent>> spriteComponents = entity->getComponents(Arcade::ECS::CompType::SPRITE);
+            std::vector<std::shared_ptr<Arcade::ECS::IComponent>> spriteComponents
+                = entity->getComponents(Arcade::ECS::CompType::SPRITE);
 
             for (auto spriteComponent : spriteComponents) {
                 auto sprite = std::static_pointer_cast<Arcade::Graph::ISprite>(spriteComponent);
@@ -41,4 +45,4 @@ namespace Arcade::Graph {
             }
         }
     }
-}
+} // namespace Arcade::Graph
