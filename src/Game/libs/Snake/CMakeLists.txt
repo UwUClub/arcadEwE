@@ -49,6 +49,8 @@ set(EXEC_SRC
         Scenes/SnakeScene.hpp
         Systems/ColliderManager.cpp
         Systems/ColliderManager.hpp
+        Systems/FruitSpawner.cpp
+        Systems/FruitSpawner.hpp
         Systems/MenuKeyboardHandler.cpp
         Systems/MenuKeyboardHandler.hpp
         Systems/MoveSnake.cpp
