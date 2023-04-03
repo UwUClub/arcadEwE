@@ -48,20 +48,20 @@ namespace Snake {
         return this->box;
     }
 
-    void BoxCollider::OnCollisionEnter(const Arcade::ECS::Entity &entity)
+    void BoxCollider::OnCollisionEnter(const Arcade::ECS::IEntity &entity)
     {
         if (std::find(_collidingEntities.begin(), _collidingEntities.end(), &entity) == _collidingEntities.end())
-            _collidingEntities.push_back(const_cast<Arcade::ECS::Entity *>(&entity));
+            _collidingEntities.push_back(const_cast<Arcade::ECS::IEntity *>(&entity));
         else
             OnCollisionStay(entity);
     }
 
-    void BoxCollider::OnCollisionStay(const Arcade::ECS::Entity &entity)
+    void BoxCollider::OnCollisionStay(const Arcade::ECS::IEntity &entity)
     {
         (void)entity;
     }
 
-    void BoxCollider::OnCollisionExit(const Arcade::ECS::Entity &entity)
+    void BoxCollider::OnCollisionExit(const Arcade::ECS::IEntity &entity)
     {
         auto it = std::find(_collidingEntities.begin(), _collidingEntities.end(), &entity);
         if (it != _collidingEntities.end())

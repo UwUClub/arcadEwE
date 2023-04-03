@@ -10,7 +10,7 @@
     #include "Component.hpp"
     #include "ArcadeStruct.hpp"
     #include "Transform.hpp"
-    #include "Entity.hpp"
+    #include "IEntity.hpp"
     #include <vector>
 
 namespace Snake {
@@ -21,18 +21,16 @@ namespace Snake {
 
             void setBox(Arcade::Vector3f box);
             Arcade::Vector3f getBox() const;
-            virtual void OnCollisionEnter(const Arcade::ECS::Entity &entity);
-            virtual void OnCollisionStay(const Arcade::ECS::Entity &entity);
-            virtual void OnCollisionExit(const Arcade::ECS::Entity &entity);
-
-        private:
+            virtual void OnCollisionEnter(const Arcade::ECS::IEntity &entity);
+            virtual void OnCollisionStay(const Arcade::ECS::IEntity &entity);
+            virtual void OnCollisionExit(const Arcade::ECS::IEntity &entity);
             bool IsColliding(const BoxCollider &other) const;
 
         public:
             Arcade::Vector3f box;
             Transform &transform;
             bool isEnabled = true;
-            std::vector<Arcade::ECS::Entity *> _collidingEntities;
+            std::vector<Arcade::ECS::IEntity *> _collidingEntities;
     };
 }
 
