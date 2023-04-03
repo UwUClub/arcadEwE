@@ -5,7 +5,6 @@
 #include <SFML/Graphics.hpp>
 #include "Events.hpp"
 #include "EventHandler.hpp"
-#include "ArcadeStruct.hpp"
 
 namespace Arcade::Graph
 {
