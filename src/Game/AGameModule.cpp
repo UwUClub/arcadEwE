@@ -28,7 +28,6 @@ void Arcade::Game::AGameModule::changeScene(std::size_t sceneId)
         return;
     if (sceneId >= _scenes.size())
         throw AGameModuleException("Scene does not exist");
-    _currentScene = sceneId;
     if (_scenes[sceneId]->init()) {
         _currentScene = sceneId;
         _scenes[i]->close();
