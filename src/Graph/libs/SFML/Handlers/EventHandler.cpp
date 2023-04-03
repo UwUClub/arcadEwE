@@ -3,13 +3,6 @@
 //
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
-#include <algorithm>
-#include <map>
-#include <string>
-#include <vector>
-#include <memory>
-#include <unordered_map>
 #include "Events.hpp"
 #include "EventHandler.hpp"
 #include "ArcadeStruct.hpp"
