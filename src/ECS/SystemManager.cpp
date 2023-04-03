@@ -11,7 +11,7 @@ void Arcade::ECS::SystemManager::removeSystem(const std::string &name)
     _systems.erase(name);
 }
 
-void Arcade::ECS::SystemManager::update(float deltaTime, Arcade::ECS::IEventManager &eventManager,
+void Arcade::ECS::SystemManager::update(double deltaTime, Arcade::ECS::IEventManager &eventManager,
     Arcade::ECS::IEntityManager &currentEntityManager)
 {
     if (_systems.empty())

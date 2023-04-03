@@ -10,7 +10,7 @@ Arcade::Game::AGameModule::AGameModule()
 {
 }
 
-void Arcade::Game::AGameModule::update(float deltaTime, Arcade::ECS::IEventManager &eventManager)
+void Arcade::Game::AGameModule::update(double deltaTime, Arcade::ECS::IEventManager &eventManager)
 {
     _scenes[_currentScene]->update(deltaTime, eventManager);
 }

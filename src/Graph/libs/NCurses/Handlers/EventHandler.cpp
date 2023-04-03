@@ -53,7 +53,7 @@ namespace Arcade::Graph
     {
     }
 
-    void EventHandler::run([[maybe_unused]] float delta, Arcade::ECS::IEventManager &eventManager,
+    void EventHandler::run([[maybe_unused]] double delta, Arcade::ECS::IEventManager &eventManager,
         [[maybe_unused]] Arcade::ECS::IEntityManager &entityManager)
     {
         const int key = getch();

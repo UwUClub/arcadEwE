@@ -60,6 +60,5 @@ bool Arcade::Game::SaveReader::init()
         std::cout << e.what() << std::endl;
         return false;
     }
-    std::cout << "SaveReader init" << std::endl;
     return true;
 }

@@ -9,6 +9,7 @@
 #include "DisplayHandler.hpp"
 #include "GameHandler.hpp"
 #include "LibraryFinder.hpp"
+#include "Clock.hpp"
 
 #define FONT_PATH "assets/fonts/Roboto-Regular.ttf"
 
@@ -71,6 +72,7 @@ namespace Arcade::Core
         std::unique_ptr<DisplayHandler> _displayModule;
         std::string _currentDisplayModule;
         std::unique_ptr<ECS::IEventManager> _eventManager;
+        std::unique_ptr<Clock> _clock;
     };
 } // namespace Arcade::Core
 

@@ -13,7 +13,7 @@ Arcade::Game::IsHovering::IsHovering()
 {
 }
 
-void Arcade::Game::IsHovering::run([[maybe_unused]] float deltaTime,
+void Arcade::Game::IsHovering::run([[maybe_unused]] double deltaTime,
     [[maybe_unused]] Arcade::ECS::IEventManager &eventManager,
     Arcade::ECS::IEntityManager &currentEntityManager)
 {

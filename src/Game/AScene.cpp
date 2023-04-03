@@ -17,7 +17,7 @@ namespace Arcade::Game
     {
     }
 
-    void AScene::update(float deltaTime, Arcade::ECS::IEventManager &eventManager)
+    void AScene::update(double deltaTime, Arcade::ECS::IEventManager &eventManager)
     {
         _systemManager->update(deltaTime, eventManager, *_entityManager);
     }

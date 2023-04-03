@@ -9,19 +9,23 @@
 #include "IEntityManager.hpp"
 #include "GraphStruct.hpp"
 
-namespace Arcade::Graph {
+namespace Arcade::Graph
+{
     class AHandler : public IHandler
     {
         public:
         AHandler();
         ~AHandler() = default;
 
-        virtual void run(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager) = 0;
-        void printContent(std::string content, int posX, int posY, Color foregroundColor, Color backgroundColor);
+        virtual void run(double delta, Arcade::ECS::IEventManager &eventManager,
+            Arcade::ECS::IEntityManager &entityManager)
+            = 0;
+        void printContent(std::string content, int posX, int posY, Color foregroundColor,
+            Color backgroundColor);
         void resetColors();
 
         protected:
         int _nbColorPairs;
         int _nbColors;
     };
-}
+} // namespace Arcade::Graph

@@ -13,7 +13,7 @@ Arcade::Game::KeyboardHandler::KeyboardHandler()
 {
 }
 
-void Arcade::Game::KeyboardHandler::run([[maybe_unused]] float deltaTime,
+void Arcade::Game::KeyboardHandler::run([[maybe_unused]] double deltaTime,
     Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &currentEntityManager)
 {
     auto keyUp = eventManager.isEventTriggered(KEY_UP_PRESSED);

@@ -61,7 +61,7 @@ set(EXEC_SRC
         src/Core/MainMenu/Systems/KeyboardHandler.hpp
         src/ECS/Component.cpp
         src/Core/MainMenu/Scene/SaveReader.cpp
-        src/Core/MainMenu/Scene/SaveReader.hpp)
+        src/Core/MainMenu/Scene/SaveReader.hpp src/Core/Clock.cpp src/Core/Clock.hpp)
 
 include_directories(src)
 include_directories(src/Core)
@@ -85,6 +85,8 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 #add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # Add executable target with source files listed in SOURCE_FILES variable
-#add_subdirectory(src/Graph/libs/SDL)
+add_subdirectory(src/Graph/libs/SDL)
+add_subdirectory(src/Graph/libs/SFML)
 add_subdirectory(src/Graph/libs/NCurses)
+add_subdirectory(src/Game/libs/TestGame)
 add_executable(${PROJECT_NAME} ${EXEC_SRC} ${INCLUDES})
