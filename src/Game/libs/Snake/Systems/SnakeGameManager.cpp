@@ -8,6 +8,7 @@
 #include "SnakeGameManager.hpp"
 #include "Events.hpp"
 #include "Transform.hpp"
+#include <iostream>
 
 void Snake::SnakeGameManager::run(double deltaTime,
     Arcade::ECS::IEventManager &eventManager,
@@ -22,10 +23,16 @@ void Snake::SnakeGameManager::run(double deltaTime,
         if (idEntity != "snake_head") {
             continue;
         }
-        auto &transformComp = entity->getComponents("Transform");
-        auto &position = reinterpret_cast<Snake::Transform &>(transformComp).position;
-        if (position.x < 0 || position.x > 1920 || position.y < 0 || position.y > 1080) {
-            eventManager.addEvent("GAME_OVER");
+        try {
+            auto &transformComp = entity->getComponents("Transform");
+
+            auto &position = reinterpret_cast<Snake::Transform &>(transformComp).position;
+            if (position.x < 0 || position.x > 1920 || position.y < 0 || position.y > 1080) {
+                eventManager.addEvent("GAME_OVER");
+            }
+        } catch (const std::exception &e) {
+            std::cerr << "snakeGameManager, component not found" << std::endl;
+            return;
         }
     }
 }

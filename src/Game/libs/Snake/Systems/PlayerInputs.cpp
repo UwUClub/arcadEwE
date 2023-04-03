@@ -8,6 +8,7 @@
 #include "PlayerInputs.hpp"
 #include "Events.hpp"
 #include "Direction.hpp"
+#include <iostream>
 
 void Snake::PlayerInputs::run(double deltaTime,
     Arcade::ECS::IEventManager &eventManager,
@@ -31,15 +32,21 @@ void Snake::PlayerInputs::run(double deltaTime,
         if (idEntity.find("snake") == std::string::npos) {
             continue;
         }
-        auto &directionComp = entity->getComponents("Direction");
-        if (eventD.first)
-            direction = Snake::Direction::dir::DOWN;
-        if (eventU.first)
-            direction = Snake::Direction::dir::UP;
-        if (eventL.first)
-            direction = Snake::Direction::dir::LEFT;
-        if (eventR.first)
-            direction = Snake::Direction::dir::RIGHT;
-        reinterpret_cast<Snake::Direction &>(directionComp).setDirection(direction);
+        try {
+            auto &directionComp = entity->getComponents("Direction");
+
+            if (eventD.first)
+                direction = Snake::Direction::dir::DOWN;
+            if (eventU.first)
+                direction = Snake::Direction::dir::UP;
+            if (eventL.first)
+                direction = Snake::Direction::dir::LEFT;
+            if (eventR.first)
+                direction = Snake::Direction::dir::RIGHT;
+            reinterpret_cast<Snake::Direction &>(directionComp).setDirection(direction);
+        } catch(const std::exception& e) {
+            std::cerr << "playerInputs direction component not found" << std::endl;
+            return;
+        }
     }
 }

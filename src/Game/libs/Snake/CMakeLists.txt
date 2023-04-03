@@ -63,6 +63,8 @@ set(EXEC_SRC
         Systems/SnakeIsHovering.hpp
         Systems/TransformDisplay.cpp
         Systems/TransformDisplay.hpp
+        ObjectFactory.cpp
+        ObjectFactory.hpp
         SnakeGameModule.cpp
         SnakeGameModule.hpp
         ../../AGameModule.hpp
@@ -73,6 +75,10 @@ set(EXEC_SRC
         ../../../ECS/SystemManager.cpp
         ../../../ECS/EntityManager.hpp
         ../../../ECS/EntityManager.cpp
+        ../../../ECS/Entity.hpp
+        ../../../ECS/Entity.cpp
+        ../../../ECS/Component.hpp
+        ../../../ECS/Component.cpp
 )
 
 include_directories(.)

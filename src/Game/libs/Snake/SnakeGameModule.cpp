@@ -16,6 +16,7 @@ namespace Snake {
         _currentScene = 0;
         _scenes.emplace_back(std::make_unique<SnakeMenuScene>());
         _scenes.emplace_back(std::make_unique<SnakeGameScene>());
+        _scenes[_currentScene]->init();
     }
 
     void SnakeGameModule::update(double deltaTime, Arcade::ECS::IEventManager &eventManager)
