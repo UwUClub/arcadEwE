@@ -2,6 +2,7 @@
 // Created by patatofour on 31/03/23.
 //
 
+#include <iostream>
 #include "OnEvent.hpp"
 
 namespace Arcade::Graph
