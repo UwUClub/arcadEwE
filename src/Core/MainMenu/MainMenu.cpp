@@ -2,13 +2,16 @@
 // Created by patatofour on 28/03/23.
 //
 
+#include <iostream>
 #include "MainMenu.hpp"
 #include "SelectionLib.hpp"
 #include "SaveReader.hpp"
 #include "Events.hpp"
 
-namespace Arcade::Game {
-    MainMenu::MainMenu() : AGameModule()
+namespace Arcade::Game
+{
+    MainMenu::MainMenu()
+        : AGameModule()
     {
         this->_currentScene = 0;
 
@@ -18,10 +21,11 @@ namespace Arcade::Game {
         this->_scenes[this->_currentScene]->init();
     }
 
-    void MainMenu::update([[maybe_unused]] float deltaTime, Arcade::ECS::IEventManager &eventManager)
+    void MainMenu::update([[maybe_unused]] float deltaTime,
+        Arcade::ECS::IEventManager &eventManager)
     {
-        AGameModule::update(deltaTime, eventManager);
         handleEventSceneChange(eventManager);
+        AGameModule::update(deltaTime, eventManager);
     }
 
     void MainMenu::handleEventSceneChange(Arcade::ECS::IEventManager &eventManager)
@@ -34,4 +38,4 @@ namespace Arcade::Game {
         if (key2.first && _currentScene == 0)
             changeScene(1);
     }
-}
+} // namespace Arcade::Game

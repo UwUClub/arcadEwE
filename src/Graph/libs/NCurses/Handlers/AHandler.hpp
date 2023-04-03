@@ -18,5 +18,10 @@ namespace Arcade::Graph {
 
         virtual void run(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager) = 0;
         void printContent(std::string content, int posX, int posY, Color foregroundColor, Color backgroundColor);
+        void resetColors();
+
+        protected:
+        int _nbColorPairs;
+        int _nbColors;
     };
 }

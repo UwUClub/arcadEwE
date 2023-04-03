@@ -20,6 +20,7 @@ namespace Arcade::Graph
         curs_set(0);
         start_color();
         keypad(stdscr, TRUE);
+        nodelay(stdscr, TRUE);
         this->_spriteHandler = new SpriteHandler();
         this->_textHandler = new TextHandler();
         this->_eventHandler = new EventHandler();
@@ -27,6 +28,7 @@ namespace Arcade::Graph
 
     NCursesDisplayModule::~NCursesDisplayModule()
     {
+        clear();
         curs_set(1);
         noraw();
         echo();
@@ -36,11 +38,14 @@ namespace Arcade::Graph
         delete this->_eventHandler;
     }
 
-    void NCursesDisplayModule::update([[maybe_unused]] float delta, [[maybe_unused]] Arcade::ECS::IEventManager &eventManager,
+    void NCursesDisplayModule::update([[maybe_unused]] float delta,
+        [[maybe_unused]] Arcade::ECS::IEventManager &eventManager,
         [[maybe_unused]] Arcade::ECS::IEntityManager &entityManager)
     {
+        //clear();
         refresh();
-
+        this->_textHandler->resetColors();
+        this->_spriteHandler->resetColors();
         this->_spriteHandler->run(delta, eventManager, entityManager);
         this->_textHandler->run(delta, eventManager, entityManager);
         this->_eventHandler->run(delta, eventManager, entityManager);

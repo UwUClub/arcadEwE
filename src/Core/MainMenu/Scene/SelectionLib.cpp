@@ -10,10 +10,6 @@
 #include "IsHovering.hpp"
 #include "KeyboardHandler.hpp"
 
-Arcade::Game::SelectionLib::SelectionLib() : AScene()
-{
-}
-
 bool Arcade::Game::SelectionLib::init()
 {
     auto libs = Arcade::Core::LibraryFinder::getLibraries();

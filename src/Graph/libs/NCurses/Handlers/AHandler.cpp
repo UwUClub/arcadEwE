@@ -8,7 +8,7 @@
 namespace Arcade::Graph
 {
 
-    AHandler::AHandler()
+    AHandler::AHandler() : _nbColorPairs(0), _nbColors(0)
     {
     }
 
@@ -16,14 +16,23 @@ namespace Arcade::Graph
         Color backgroundColor)
     {
         if (has_colors()) {
-            init_color(0, foregroundColor.r, foregroundColor.g, foregroundColor.b);
-            init_color(1, backgroundColor.r, backgroundColor.g, backgroundColor.b);
-            init_pair(2, 0, 1);
-            attron(COLOR_PAIR(2));
+            _nbColorPairs++;
+            _nbColors++;
+            init_color(_nbColors, foregroundColor.r, foregroundColor.g, foregroundColor.b);
+            _nbColors++;
+            init_color(_nbColors, backgroundColor.r, backgroundColor.g, backgroundColor.b);
+            init_pair(_nbColorPairs, _nbColors - 1, _nbColors);
+            attron(COLOR_PAIR(_nbColorPairs));
         }
         mvprintw(posY, posX, "%s", content.c_str());
         if (has_colors()) {
-            attroff(COLOR_PAIR(2));
+            attroff(COLOR_PAIR(_nbColorPairs));
         }
+    }
+
+    void AHandler::resetColors()
+    {
+        _nbColorPairs = 0;
+        _nbColors = 0;
     }
 } // namespace Arcade::Graph

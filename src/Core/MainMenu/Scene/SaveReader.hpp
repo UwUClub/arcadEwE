@@ -14,7 +14,7 @@ namespace Arcade::Game
     class SaveReader : public AScene
     {
         public:
-        SaveReader();
+        SaveReader() = default;
         ~SaveReader() override = default;
 
         bool init() final;
