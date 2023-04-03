@@ -3,7 +3,7 @@ set(PROJECT_NAME arcade)
 project(${PROJECT_NAME})               # Create project "arcade"
 set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fno-gnu-unique -ldl")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fno-gnu-unique -ldl")
 
 set(INCLUDES
         sharedArchitecture/include/Api.hpp
@@ -62,8 +62,8 @@ set(EXEC_SRC
         src/Core/MainMenu/Systems/KeyboardHandler.cpp
         src/Core/MainMenu/Systems/KeyboardHandler.hpp
         src/ECS/Component.cpp
-        src/Core/MainMenu/Scene/SaveReader.cpp
-        src/Core/MainMenu/Scene/SaveReader.hpp src/Core/Clock.cpp src/Core/Clock.hpp)
+        src/Core/Clock.cpp
+        src/Core/Clock.hpp)
 
 include_directories(src)
 include_directories(src/Core)
@@ -90,10 +90,11 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 #add_subdirectory(src/Graph/libs/SDL)
 
 # Graphical libraries
-add_subdirectory(src/Graph/libs/NCurses)
-add_subdirectory(src/Graph/libs/SFML)
 add_subdirectory(src/Graph/libs/SDL)
+add_subdirectory(src/Graph/libs/SFML)
+add_subdirectory(src/Graph/libs/NCurses)
 # Games libraries
+add_subdirectory(src/Core/MainMenu)
 add_subdirectory(src/Game/libs/TestGame)
 add_subdirectory(src/Game/libs/Snake)
 # Core

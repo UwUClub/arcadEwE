@@ -19,6 +19,8 @@ bool Arcade::Game::SelectionLib::init()
     _systemManager->addSystem("isHovering", std::make_unique<Arcade::Game::IsHovering>());
     _systemManager->addSystem("keyboardHandler", std::make_unique<Arcade::Game::KeyboardHandler>());
     for (auto &lib : libs) {
+        if (lib.second == "./lib/libarcade_mainMenu_game.so")
+            continue;
         auto &entity = _entityManager->createEntity(lib.second);
         auto text = std::shared_ptr<Arcade::Game::Text>(
             new Arcade::Game::Text(lib.second + "_text", lib.second, FONT_PATH, { 0, 0, 0, 255 },

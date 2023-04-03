@@ -24,8 +24,8 @@ namespace Arcade::Game
     void MainMenu::update([[maybe_unused]] double deltaTime,
         Arcade::ECS::IEventManager &eventManager)
     {
-        handleEventSceneChange(eventManager);
         AGameModule::update(deltaTime, eventManager);
+        handleEventSceneChange(eventManager);
     }
 
     void MainMenu::handleEventSceneChange(Arcade::ECS::IEventManager &eventManager)

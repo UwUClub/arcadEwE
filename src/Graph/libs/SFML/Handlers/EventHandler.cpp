@@ -6,14 +6,19 @@
 #include "Events.hpp"
 #include "EventHandler.hpp"
 
-namespace Arcade::Graph {
-
+namespace Arcade::Graph
+{
     void EventHandler::run(Arcade::ECS::IEventManager &eventManager, sf::RenderWindow *window)
     {
-        sf::Event _event;
-        window->pollEvent(_event);
-        if (_event.type == sf::Event::Closed) {
+        sf::Event event;
+        window->pollEvent(event);
+        if (event.type == sf::Event::Closed) {
             eventManager.addEvent(QUIT);
         }
+        if (event.type == sf::Event::KeyPressed) {
+            if (keyMap.find(event.key.code) != keyMap.end()) {
+                eventManager.addEvent(keyMap.at(event.key.code));
+            }
+        }
     }
-}
+} // namespace Arcade::Graph
