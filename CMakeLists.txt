@@ -3,7 +3,7 @@ set(PROJECT_NAME arcade)
 project(${PROJECT_NAME})               # Create project "arcade"
 set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fno-gnu-unique -Wl,--no-as-needed -ldl")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fno-gnu-unique -ldl")
 
 set(INCLUDES
         sharedArchitecture/include/Api.hpp
