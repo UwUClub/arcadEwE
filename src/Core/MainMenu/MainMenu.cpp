@@ -20,7 +20,7 @@ namespace Arcade::Game
 
         this->_scenes[this->_currentScene]->init();
     }
-
+    
     void MainMenu::update([[maybe_unused]] double deltaTime,
         Arcade::ECS::IEventManager &eventManager)
     {

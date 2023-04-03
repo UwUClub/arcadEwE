@@ -5,6 +5,7 @@
 #include <iostream>
 #include "KeyboardHandler.hpp"
 #include "IsHovered.hpp"
+#include "Core.hpp"
 #include "Text.hpp"
 #include "SelectionLib.hpp"
 #include "IComponent.hpp"
@@ -76,13 +77,11 @@ void Arcade::Game::KeyboardHandler::run([[maybe_unused]] double deltaTime,
         hoveredEntity = getCurrentlyHoveredEntity(currentEntityManager);
         hoveredEntityText = reinterpret_cast<Arcade::Game::Text &>(
             *hoveredEntity->getComponents(ECS::CompType::TEXT)[0]);
-        std::cout << "Hovered entity: " << hoveredEntityText.text << std::endl;
-        if (hoveredEntityText.text.find("_game") != std::string::npos) {
-            eventManager.addEvent(CHANGE_GAME,
-                hoveredEntity->getComponents(ECS::CompType::TEXT)[0]);
-        } else {
-            eventManager.addEvent(CHANGE_GRAPHIC,
-                hoveredEntity->getComponents(ECS::CompType::TEXT)[0]);
+        auto text = std::make_shared<Arcade::Game::Text>(
+            Arcade::Game::Text(hoveredEntityText.id, hoveredEntityText.text, FONT_PATH,
+                { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, { BASE_X_TEXT, 0, 0 }));
+        if (hoveredEntityText.text.find("_game") == std::string::npos) {
+            eventManager.addEvent(CHANGE_GRAPHIC, text);
         }
     }
 }

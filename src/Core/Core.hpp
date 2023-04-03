@@ -12,7 +12,7 @@
 #include "Clock.hpp"
 
 #define FONT_PATH "assets/fonts/Roboto-Regular.ttf"
-#define MENU_PATH "lib/libarcade_mainMenu_game.so"
+#define MENU_PATH "./lib/libarcade_mainMenu_game.so"
 
 namespace Arcade::Core
 {
