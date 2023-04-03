@@ -18,27 +18,30 @@ void Snake::IsHovering::run([[maybe_unused]] double deltaTime,
     auto entities = currentEntityManager.getEntitiesByComponentType(Arcade::ECS::CompType::TEXT_HOVER);
 
     for (auto &entity : *entities) {
-        auto &hover = entity->getComponents(Arcade::ECS::CompType::TEXT_HOVER)[0];
-        auto &text = entity->getComponents(Arcade::ECS::CompType::TEXT)[0];
+        auto hovers = entity->getComponents(Arcade::ECS::CompType::TEXT_HOVER);
+        auto &texts = entity->getComponents(Arcade::ECS::CompType::TEXT);
 
-        if (hover && text) {
-            auto &hoverComp = reinterpret_cast<Arcade::Game::IsHovered &>(*hover);
-            auto &textComp = reinterpret_cast<Arcade::Game::Text &>(*text);
-            if (!hoverComp.isHovered) {
-                textComp.textColor.r = 255;
-                textComp.textColor.g = 255;
-                textComp.textColor.b = 255;
-                textComp.backgroundColor.r = 0;
-                textComp.backgroundColor.g = 0;
-                textComp.backgroundColor.b = 0;
-                continue;
-            }
-            textComp.textColor.r = 0;
-            textComp.textColor.g = 0;
-            textComp.textColor.b = 0;
-            textComp.backgroundColor.r = 255;
-            textComp.backgroundColor.g = 255;
-            textComp.backgroundColor.b = 255;
+        if (hovers.size() == 0 || texts.size() == 0)
+            continue;
+
+        auto &hover = hovers[0];
+        auto &text = texts[0];
+        auto &hoverComp = reinterpret_cast<Arcade::Game::IsHovered &>(*hover);
+        auto &textComp = reinterpret_cast<Arcade::Game::Text &>(*text);
+        if (!hoverComp.isHovered) {
+            textComp.textColor.r = 255;
+            textComp.textColor.g = 255;
+            textComp.textColor.b = 255;
+            textComp.backgroundColor.r = 0;
+            textComp.backgroundColor.g = 0;
+            textComp.backgroundColor.b = 0;
+            continue;
         }
+        textComp.textColor.r = 0;
+        textComp.textColor.g = 0;
+        textComp.textColor.b = 0;
+        textComp.backgroundColor.r = 255;
+        textComp.backgroundColor.g = 255;
+        textComp.backgroundColor.b = 255;
     }
 }

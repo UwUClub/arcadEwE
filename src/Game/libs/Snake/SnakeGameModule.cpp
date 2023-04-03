@@ -22,6 +22,7 @@ namespace Snake {
     void SnakeGameModule::update(double deltaTime, Arcade::ECS::IEventManager &eventManager)
     {
         _scenes[_currentScene]->update(deltaTime, eventManager);
+        handleEventSceneChange(eventManager);
     }
 
     Arcade::ECS::IEntityManager &SnakeGameModule::getCurrentEntityManager()

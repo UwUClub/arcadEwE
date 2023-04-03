@@ -11,6 +11,7 @@
 #include "SnakeText.hpp"
 #include "SnakeIsHovered.hpp"
 #include "SnakeIsHovering.hpp"
+#include "MenuKeyboardHandler.hpp"
 
 namespace Snake {
     SnakeMenuScene::SnakeMenuScene() : SnakeScene()
@@ -20,6 +21,7 @@ namespace Snake {
     bool SnakeMenuScene::init()
     {
         _systemManager->addSystem("IsHovering", std::make_unique<Snake::IsHovering>());
+        _systemManager->addSystem("MenuKeyboardHandler", std::make_unique<Snake::MenuKeyboardHandler>());
 
         auto &entity = _entityManager->createEntity("playButton");
 
@@ -27,6 +29,7 @@ namespace Snake {
             "PLAY", FONT_PATH, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, { BASE_X, 0, 0 }));
         text->pos.y = OFFSET_Y_TEXT;
         auto hover = std::shared_ptr<Snake::IsHovered>(new Snake::IsHovered("play_button_hover"));
+        hover->isHovered = true;
 
         entity.addComponent(text);
         entity.addComponent(hover);
