@@ -40,18 +40,24 @@ namespace Arcade::Core
          * @details Overload of the * operator
          * @return A reference to the game module
          */
-        Game::IGameModule &operator*() const noexcept { return *_lib; }
+        Game::IGameModule &operator*() const noexcept
+        {
+            return *_lib;
+        }
 
         /**
          * @brief Get the game module
          * @details Overload of the -> operator
          * @return A pointer to the game module
          */
-        Game::IGameModule *operator->() const noexcept { return _lib.get(); }
+        Game::IGameModule *operator->() const noexcept
+        {
+            return _lib;
+        }
 
         private:
         void *_handle;
-        std::unique_ptr<Game::IGameModule> _lib;
+        Game::IGameModule *_lib;
 
         /**
          * @brief Exception class for the GameHandler
@@ -66,7 +72,10 @@ namespace Arcade::Core
 
             ~LibraryHandlerException() noexcept override = default;
 
-            [[nodiscard]] const char *what() const noexcept override { return _message.c_str(); }
+            [[nodiscard]] const char *what() const noexcept override
+            {
+                return _message.c_str();
+            }
 
             private:
             std::string _message;

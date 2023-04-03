@@ -7,16 +7,14 @@
 #include "EventManager.hpp"
 #include "Component.hpp"
 #include "Events.hpp"
-#include "MainMenu.hpp"
 #include "Text.hpp"
 
 Arcade::Core::Core::Core(const std::string &pathDisplay)
-    : _gameModule(nullptr)
-    , _mainMenu(std::make_unique<Arcade::Game::MainMenu>())
-    , _clock(std::make_unique<Arcade::Core::Clock>())
+    : _clock(std::make_unique<Arcade::Core::Clock>())
 {
     auto libs = LibraryFinder::getLibraries();
 
+    _currentGameModule = MENU_PATH;
     if (pathDisplay.empty()) {
         for (auto &lib : libs) {
             if (lib.first == LibType::GRAPH) {
@@ -28,9 +26,9 @@ Arcade::Core::Core::Core(const std::string &pathDisplay)
         _currentDisplayModule = pathDisplay;
     }
 
-    // std::cout << "display module path: " << _currentDisplayModule << std::endl;
+    //    std::cout << "display module path: " << _currentDisplayModule << std::endl;
     // std::cout << "game module path: " << _currentGameModule << std::endl;
-    //_gameModule = std::make_unique<GameHandler>(_currentGameModule);
+    _gameModule = std::make_unique<GameHandler>(_currentGameModule);
     _displayModule = std::make_unique<DisplayHandler>(_currentDisplayModule);
     _eventManager = std::make_unique<ECS::EventManager>();
 }
@@ -38,12 +36,10 @@ Arcade::Core::Core::Core(const std::string &pathDisplay)
 void Arcade::Core::Core::update()
 {
     while (!_eventManager->isEventTriggered(QUIT).first) {
-        // if (_gameModule)
-        //     _gameModule->operator->()->update(0, *_eventManager);
-        // else
-        _mainMenu->update(0, *_eventManager);
+        if (_gameModule)
+            _gameModule->operator->()->update(_clock->getDeltaTime(), *_eventManager);
         handleCoreEvents();
-        auto &currentEntityManager = _mainMenu->getCurrentEntityManager();
+        auto &currentEntityManager = _gameModule->operator->()->getCurrentEntityManager();
 
         _eventManager->clearEvents();
         if (_displayModule)
@@ -84,8 +80,8 @@ void Arcade::Core::Core::handleCoreEvents()
         }
     }
     if (eventGameEnd.first) {
-        _currentGameModule = "";
-        _gameModule.reset(nullptr);
+        _currentGameModule = MENU_PATH;
+        _gameModule = std::make_unique<GameHandler>(MENU_PATH);
     }
 }
 
