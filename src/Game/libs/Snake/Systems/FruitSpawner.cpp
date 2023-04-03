@@ -17,7 +17,7 @@
 #include <vector>
 
 namespace Snake {
-    void FruitSpawner::run(float deltaTime,
+    void FruitSpawner::run(double deltaTime,
         Arcade::ECS::IEventManager &eventManager,
         Arcade::ECS::IEntityManager &entityManager)
     {

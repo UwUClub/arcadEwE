@@ -11,7 +11,7 @@
 #include "Transform.hpp"
 #include "Speed.hpp"
 
-void Snake::MoveSnake::run(float deltaTime,
+void Snake::MoveSnake::run(double deltaTime,
     Arcade::ECS::IEventManager &eventManager,
     Arcade::ECS::IEntityManager &currentScene)
 {

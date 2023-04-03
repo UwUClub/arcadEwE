@@ -9,7 +9,7 @@
 #include "Events.hpp"
 #include "Transform.hpp"
 
-void Snake::SnakeGameManager::run(float deltaTime,
+void Snake::SnakeGameManager::run(double deltaTime,
     Arcade::ECS::IEventManager &eventManager,
     Arcade::ECS::IEntityManager &currentScene)
 {

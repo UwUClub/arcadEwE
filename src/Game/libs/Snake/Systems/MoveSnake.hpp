@@ -17,7 +17,7 @@ namespace Snake
             MoveSnake() = default;
             ~MoveSnake() override = default;
 
-            void run(float deltaTime,
+            void run(double deltaTime,
                 Arcade::ECS::IEventManager &eventManager,
                 Arcade::ECS::IEntityManager &currentScene) override;
     };

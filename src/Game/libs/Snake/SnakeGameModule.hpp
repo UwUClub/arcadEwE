@@ -18,7 +18,7 @@ namespace Snake {
             SnakeGameModule();
             ~SnakeGameModule() override = default;
 
-            void update(float deltaTime, Arcade::ECS::IEventManager &eventManager) override;
+            void update(double deltaTime, Arcade::ECS::IEventManager &eventManager) override;
                 Arcade::ECS::IEntityManager &getCurrentEntityManager() override;
 
         private:

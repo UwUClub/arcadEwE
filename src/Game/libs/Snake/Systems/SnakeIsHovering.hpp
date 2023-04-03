@@ -14,7 +14,7 @@ namespace Snake
         IsHovering();
         ~IsHovering() override = default;
 
-        void run(float deltaTime, Arcade::ECS::IEventManager &eventManager,
+        void run(double deltaTime, Arcade::ECS::IEventManager &eventManager,
             Arcade::ECS::IEntityManager &currentEntityManager) override;
     };
 } // namespace Snake

@@ -11,7 +11,7 @@ Snake::IsHovering::IsHovering()
 {
 }
 
-void Snake::IsHovering::run([[maybe_unused]] float deltaTime,
+void Snake::IsHovering::run([[maybe_unused]] double deltaTime,
     [[maybe_unused]] Arcade::ECS::IEventManager &eventManager,
     Arcade::ECS::IEntityManager &currentEntityManager)
 {

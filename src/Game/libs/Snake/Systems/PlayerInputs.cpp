@@ -9,7 +9,7 @@
 #include "Events.hpp"
 #include "Direction.hpp"
 
-void Snake::PlayerInputs::run(float deltaTime,
+void Snake::PlayerInputs::run(double deltaTime,
     Arcade::ECS::IEventManager &eventManager,
     Arcade::ECS::IEntityManager &currentScene)
 {

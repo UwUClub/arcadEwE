@@ -12,7 +12,7 @@
 #include <algorithm>
 #include <vector>
 
-void Snake::ColliderManager::run(float deltaTime,
+void Snake::ColliderManager::run(double deltaTime,
     Arcade::ECS::IEventManager &eventManager,
     Arcade::ECS::IEntityManager &entityManager)
 {

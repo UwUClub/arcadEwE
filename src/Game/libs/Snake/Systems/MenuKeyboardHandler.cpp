@@ -11,7 +11,7 @@ Snake::MenuKeyboardHandler::MenuKeyboardHandler()
 {
 }
 
-void Snake::MenuKeyboardHandler::run([[maybe_unused]] float deltaTime,
+void Snake::MenuKeyboardHandler::run([[maybe_unused]] double deltaTime,
     Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &currentEntityManager)
 {
     auto keyUp = eventManager.isEventTriggered(KEY_UP_PRESSED);
