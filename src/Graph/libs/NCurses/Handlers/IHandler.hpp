@@ -7,12 +7,15 @@
 #include "IEventManager.hpp"
 #include "IEntityManager.hpp"
 
-namespace Arcade::Graph {
+namespace Arcade::Graph
+{
     class IHandler
     {
         public:
         virtual ~IHandler() = default;
 
-        virtual void run(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager) = 0;
+        virtual void run(double delta, Arcade::ECS::IEventManager &eventManager,
+            Arcade::ECS::IEntityManager &entityManager)
+            = 0;
     };
-}
+} // namespace Arcade::Graph

@@ -6,13 +6,15 @@
 
 #include "AHandler.hpp"
 
-namespace Arcade::Graph {
+namespace Arcade::Graph
+{
     class EventHandler : public AHandler
     {
         public:
         EventHandler();
         ~EventHandler() = default;
 
-        void run(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager);
+        void run(double delta, Arcade::ECS::IEventManager &eventManager,
+            Arcade::ECS::IEntityManager &entityManager);
     };
-}
+} // namespace Arcade::Graph

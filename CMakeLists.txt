@@ -22,7 +22,7 @@ set(INCLUDES
         sharedArchitecture/include/Arcade/Graph/IText.hpp
         sharedArchitecture/include/Arcade/Graph/IDisplayModule.hpp
         sharedArchitecture/include/Arcade/Game/IScene.hpp
-)
+        )
 
 # Add main.cpp file of project root directory as source file
 set(EXEC_SRC
@@ -47,22 +47,9 @@ set(EXEC_SRC
         src/ECS/EntityManager.hpp
         src/ECS/Entity.cpp
         src/ECS/Entity.hpp
-        src/Core/MainMenu/MainMenu.cpp
-        src/Core/MainMenu/MainMenu.hpp
-        src/Core/MainMenu/Scene/SelectionLib.cpp
-        src/Core/MainMenu/Scene/SelectionLib.hpp
-        src/Core/MainMenu/Components/Text.cpp
-        src/Core/MainMenu/Components/Text.hpp
-        src/Core/MainMenu/Components/IsHovered.cpp
-        src/Core/MainMenu/Components/IsHovered.hpp
-        src/Core/MainMenu/Systems/IsHovering.cpp
-        src/Core/MainMenu/Systems/IsHovering.hpp
-        src/Core/MainMenu/Systems/KeyboardHandler.cpp
-        src/Core/MainMenu/Systems/KeyboardHandler.hpp
         src/ECS/Component.cpp
-        src/Core/MainMenu/Scene/SaveReader.cpp
-        src/Core/MainMenu/Scene/SaveReader.hpp
-)
+        src/Core/Clock.cpp
+        src/Core/Clock.hpp)
 
 include_directories(src)
 include_directories(src/Core)
@@ -86,8 +73,9 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 #add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # Add executable target with source files listed in SOURCE_FILES variable
-#add_subdirectory(src/Graph/libs/SDL)
-add_subdirectory(src/Graph/libs/NCurses)
+add_subdirectory(src/Core/MainMenu)
+add_subdirectory(src/Graph/libs/SDL)
 add_subdirectory(src/Graph/libs/SFML)
+add_subdirectory(src/Graph/libs/NCurses)
 add_subdirectory(src/Game/libs/TestGame)
 add_executable(${PROJECT_NAME} ${EXEC_SRC} ${INCLUDES})

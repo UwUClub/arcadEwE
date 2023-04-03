@@ -16,7 +16,7 @@ namespace Arcade::Game
         KeyboardHandler();
         ~KeyboardHandler() final = default;
 
-        void run(float deltaTime, Arcade::ECS::IEventManager &eventManager,
+        void run(double deltaTime, Arcade::ECS::IEventManager &eventManager,
             Arcade::ECS::IEntityManager &currentEntityManager) final;
 
         private:

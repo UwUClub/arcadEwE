@@ -9,8 +9,10 @@
 #include "DisplayHandler.hpp"
 #include "GameHandler.hpp"
 #include "LibraryFinder.hpp"
+#include "Clock.hpp"
 
 #define FONT_PATH "assets/fonts/Roboto-Regular.ttf"
+#define MENU_PATH "lib/libarcade_mainMenu_game.so"
 
 namespace Arcade::Core
 {
@@ -67,10 +69,10 @@ namespace Arcade::Core
 
         std::unique_ptr<GameHandler> _gameModule;
         std::string _currentGameModule;
-        std::unique_ptr<Game::IGameModule> _mainMenu;
         std::unique_ptr<DisplayHandler> _displayModule;
         std::string _currentDisplayModule;
         std::unique_ptr<ECS::IEventManager> _eventManager;
+        std::unique_ptr<Clock> _clock;
     };
 } // namespace Arcade::Core
 

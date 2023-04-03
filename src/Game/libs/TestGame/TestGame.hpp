@@ -10,13 +10,16 @@
 
 #include "AGameModule.hpp"
 
-namespace Arcade::Game {
+namespace Arcade::Game
+{
 
-    class TestGame : public AGameModule {
+    class TestGame : public AGameModule
+    {
         public:
         TestGame();
         ~TestGame() override = default;
 
-        void update(float deltaTime, Arcade::ECS::IEventManager &eventManager) override;
+        void update(double deltaTime, Arcade::ECS::IEventManager &eventManager) override;
+        void handleEventSceneChange(Arcade::ECS::IEventManager &eventManager) override;
     };
-}
+} // namespace Arcade::Game

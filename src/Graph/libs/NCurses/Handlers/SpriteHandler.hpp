@@ -6,13 +6,15 @@
 
 #include "AHandler.hpp"
 
-namespace Arcade::Graph {
-    class SpriteHandler : public AHandler
+namespace Arcade::Graph
+{
+    class SpriteHandler final : public AHandler
     {
         public:
         SpriteHandler();
-        ~SpriteHandler() = default;
+        ~SpriteHandler() override = default;
 
-        void run(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager);
+        void run(double delta, Arcade::ECS::IEventManager &eventManager,
+            Arcade::ECS::IEntityManager &entityManager) final;
     };
-}
+} // namespace Arcade::Graph

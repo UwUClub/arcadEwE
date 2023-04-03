@@ -15,16 +15,19 @@
 // #include "MusicHandler.hpp"
 #include "EventHandler.hpp"
 
-#define WINDOW_WIDTH 1920
+#define WINDOW_WIDTH  1920
 #define WINDOW_HEIGHT 1080
 
-namespace Arcade::Graph {
-    class SFMLDisplayModule : public IDisplayModule {
+namespace Arcade::Graph
+{
+    class SFMLDisplayModule : public IDisplayModule
+    {
         public:
         SFMLDisplayModule();
         ~SFMLDisplayModule() override;
 
-        void update(float delta, Arcade::ECS::IEventManager &eventManager, Arcade::ECS::IEntityManager &entityManager) override;
+        void update(double delta, Arcade::ECS::IEventManager &eventManager,
+            Arcade::ECS::IEntityManager &entityManager) override;
 
         protected:
         sf::RenderWindow *_window;
@@ -33,4 +36,4 @@ namespace Arcade::Graph {
         // MusicHandler *_musicHandler;
         EventHandler *_eventHandler;
     };
-}
+} // namespace Arcade::Graph

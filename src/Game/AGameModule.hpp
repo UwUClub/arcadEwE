@@ -15,7 +15,7 @@ namespace Arcade::Game
         AGameModule();
         ~AGameModule() override = default;
 
-        void update(float deltaTime, Arcade::ECS::IEventManager &eventManager) override;
+        void update(double deltaTime, Arcade::ECS::IEventManager &eventManager) override;
         Arcade::ECS::IEntityManager &getCurrentEntityManager() override;
 
         protected:
@@ -39,8 +39,8 @@ namespace Arcade::Game
         };
 
         void changeScene(std::size_t sceneId);
-        void handleEventSceneChange(Arcade::ECS::IEventManager &eventManager);
+        virtual void handleEventSceneChange(Arcade::ECS::IEventManager &eventManager) = 0;
         std::size_t _currentScene;
         std::vector<std::unique_ptr<AScene>> _scenes;
     };
-}
+} // namespace Arcade::Game

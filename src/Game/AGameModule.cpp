@@ -10,7 +10,7 @@ Arcade::Game::AGameModule::AGameModule()
 {
 }
 
-void Arcade::Game::AGameModule::update(float deltaTime, Arcade::ECS::IEventManager &eventManager)
+void Arcade::Game::AGameModule::update(double deltaTime, Arcade::ECS::IEventManager &eventManager)
 {
     _scenes[_currentScene]->update(deltaTime, eventManager);
 }
@@ -28,10 +28,9 @@ void Arcade::Game::AGameModule::changeScene(std::size_t sceneId)
         return;
     if (sceneId >= _scenes.size())
         throw AGameModuleException("Scene does not exist");
-    std::cout << "Changing scene to " << sceneId << std::endl;
     _currentScene = sceneId;
-    if (!_scenes[_currentScene]->init())
-        _currentScene = i;
-    else
+    if (_scenes[sceneId]->init()) {
+        _currentScene = sceneId;
         _scenes[i]->close();
+    }
 }

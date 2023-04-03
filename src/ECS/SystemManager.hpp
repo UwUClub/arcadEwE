@@ -44,7 +44,7 @@ namespace Arcade::ECS
          * @param eventManager The event manager
          * @param currentEntityManager The current entity manager
          */
-        void update(float deltaTime, Arcade::ECS::IEventManager &eventManager,
+        void update(double deltaTime, Arcade::ECS::IEventManager &eventManager,
             Arcade::ECS::IEntityManager &currentEntityManager) override;
 
         private:
@@ -63,7 +63,10 @@ namespace Arcade::ECS
 
             ~SystemManagerException() override = default;
 
-            const char *what() const noexcept override { return _message.c_str(); }
+            const char *what() const noexcept override
+            {
+                return _message.c_str();
+            }
 
             private:
             std::string _message;

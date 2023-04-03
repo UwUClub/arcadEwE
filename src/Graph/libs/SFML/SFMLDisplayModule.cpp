@@ -9,7 +9,8 @@
 #include <SFML/Graphics.hpp>
 #include "SFMLDisplayModule.hpp"
 
-namespace Arcade::Graph {
+namespace Arcade::Graph
+{
 
     SFMLDisplayModule::SFMLDisplayModule()
     {
@@ -30,7 +31,9 @@ namespace Arcade::Graph {
         delete _eventHandler;
     }
 
-    void SFMLDisplayModule::update([[maybe_unused]] float delta, [[maybe_unused]] Arcade::ECS::IEventManager &eventManager, [[maybe_unused]] Arcade::ECS::IEntityManager &entityManager)
+    void SFMLDisplayModule::update([[maybe_unused]] double delta,
+        [[maybe_unused]] Arcade::ECS::IEventManager &eventManager,
+        [[maybe_unused]] Arcade::ECS::IEntityManager &entityManager)
     {
         _window->clear(sf::Color::Green);
         // this->_spriteHandler->run(delta, eventManager, entityManager);
@@ -40,4 +43,4 @@ namespace Arcade::Graph {
         // this->_musicHandler->run(delta, eventManager, entityManager);
         _eventHandler->run(eventManager, _window);
     }
-}
+} // namespace Arcade::Graph

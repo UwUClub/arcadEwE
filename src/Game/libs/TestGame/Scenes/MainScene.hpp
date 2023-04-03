@@ -17,4 +17,4 @@ namespace Arcade::Game
         private:
         bool init() final;
     };
-}
+} // namespace Arcade::Game

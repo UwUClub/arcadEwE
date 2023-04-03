@@ -8,10 +8,6 @@
 #include "Text.hpp"
 #include "Core.hpp"
 
-Arcade::Game::SaveReader::SaveReader()
-{
-}
-
 void Arcade::Game::SaveReader::loadSave()
 {
     std::string fileName = "save.txt";
@@ -21,7 +17,10 @@ void Arcade::Game::SaveReader::loadSave()
         throw SceneException("Failed to open file");
     }
 
-    const size_t fileSize = file.tellg();
+    long int fileSize = file.tellg();
+    if (fileSize == -1) {
+        throw SceneException("Failed to read file");
+    }
     char buffer[fileSize + 1] = { '\0' };
 
     if (file.bad()) {
@@ -51,7 +50,7 @@ bool Arcade::Game::SaveReader::init()
         while ((pos = _saveContent.find('\n')) != std::string::npos) {
             line = _saveContent.substr(0, pos);
             _saveContent.erase(0, pos + 1);
-            auto &entity = _entityManager->createEntity("Save" + std::to_string(i++));
+            auto &entity = _entityManager->createEntity("Save_" + std::to_string(i++));
             auto text = std::shared_ptr<Arcade::Game::Text>(
                 new Arcade::Game::Text("text", line, FONT_PATH, { 0, 0, 0, 255 },
                     { 255, 255, 255, 255 }, { BASE_X_SAVE, (30 * (i + 1)), 0 }));
