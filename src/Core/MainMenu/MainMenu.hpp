@@ -18,7 +18,7 @@ namespace Arcade::Game
         void update(float deltaTime, Arcade::ECS::IEventManager &eventManager) override;
 
         private:
-        void handleEventSceneChange(Arcade::ECS::IEventManager &eventManager);
+        void handleEventSceneChange(Arcade::ECS::IEventManager &eventManager) override;
     };
 } // namespace Arcade::Game
 

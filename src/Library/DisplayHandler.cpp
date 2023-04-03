@@ -22,7 +22,8 @@ Arcade::Core::DisplayHandler::DisplayHandler(const std::string &path)
 
 Arcade::Core::DisplayHandler::~DisplayHandler()
 {
-    if (_handle == nullptr) return;
+    if (_handle == nullptr)
+        return;
     auto sym = dlsym(_handle, "destroyDisplayModule");
 
     if (sym == nullptr)

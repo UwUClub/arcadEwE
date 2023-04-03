@@ -14,6 +14,8 @@ void Arcade::ECS::SystemManager::removeSystem(const std::string &name)
 void Arcade::ECS::SystemManager::update(float deltaTime, Arcade::ECS::IEventManager &eventManager,
     Arcade::ECS::IEntityManager &currentEntityManager)
 {
+    if (_systems.empty())
+        return;
     for (auto &system : _systems) {
         system.second->run(deltaTime, eventManager, currentEntityManager);
     }

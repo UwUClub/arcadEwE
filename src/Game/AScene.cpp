@@ -3,6 +3,8 @@
 //
 
 #include "AScene.hpp"
+
+#include <memory>
 #include "EntityManager.hpp"
 #include "SystemManager.hpp"
 
@@ -28,7 +30,7 @@ namespace Arcade::Game
     void Arcade::Game::AScene::close()
     {
         _entityManager->removeAllEntities();
-        _entityManager.reset(new Arcade::ECS::EntityManager());
-        _systemManager.reset(new Arcade::ECS::SystemManager());
+        _entityManager = std::make_unique<Arcade::ECS::EntityManager>();
+        _systemManager = std::make_unique<Arcade::ECS::SystemManager>();
     }
 } // namespace Arcade::Game

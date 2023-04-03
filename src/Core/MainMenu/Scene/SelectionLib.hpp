@@ -16,7 +16,7 @@ namespace Arcade::Game
     class SelectionLib : public AScene
     {
         public:
-        SelectionLib();
+        SelectionLib() = default;
         ~SelectionLib() override = default;
 
         bool init() final;

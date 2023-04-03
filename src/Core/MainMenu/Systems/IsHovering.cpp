@@ -2,6 +2,7 @@
 // Created by patatofour on 28/03/23.
 //
 
+#include <iostream>
 #include "IsHovering.hpp"
 #include "IsHovered.hpp"
 #include "Text.hpp"
@@ -25,10 +26,11 @@ void Arcade::Game::IsHovering::run([[maybe_unused]] float deltaTime,
         if (hover && text) {
             auto &hoverComp = reinterpret_cast<Arcade::Game::IsHovered &>(*hover);
             auto &textComp = reinterpret_cast<Arcade::Game::Text &>(*text);
+
             if (!hoverComp.isHovered) {
                 textComp.textColor.r = 255;
-                textComp.textColor.g = 255;
-                textComp.textColor.b = 255;
+                textComp.textColor.g = 0;
+                textComp.textColor.b = 0;
                 textComp.backgroundColor.r = 0;
                 textComp.backgroundColor.g = 0;
                 textComp.backgroundColor.b = 0;
