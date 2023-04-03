@@ -61,6 +61,8 @@ set(EXEC_SRC
         Systems/SnakeGameManager.hpp
         Systems/SnakeIsHovering.cpp
         Systems/SnakeIsHovering.hpp
+        Systems/TransformDisplay.cpp
+        Systems/TransformDisplay.hpp
         SnakeGameModule.cpp
         SnakeGameModule.hpp
         ../../AGameModule.hpp
