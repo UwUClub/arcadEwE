@@ -4,19 +4,22 @@
 
 #pragma once
 
-#include "IHandler.hpp"
+#include <SFML/Graphics.hpp>
 #include "IEventManager.hpp"
 #include "IEntityManager.hpp"
 
 namespace Arcade::Graph
 {
-    class SpriteHandler : public IHandler
+    class SpriteHandler
     {
         public:
-        SpriteHandler() = default;
-        ~SpriteHandler() = default;
+        SpriteHandler();
+        ~SpriteHandler();
 
-        void run(double delta, Arcade::ECS::IEventManager &eventManager,
-            Arcade::ECS::IEntityManager &entityManager);
+        void run(Arcade::ECS::IEntityManager &entityManager, sf::RenderWindow *window);
+        void handleTexture(const std::string path, sf::Sprite *sprite);
+
+        protected:
+        std::map<std::string, sf::Texture *> _textures; // key is the texture path, value is the texture
     };
 } // namespace Arcade::Graph

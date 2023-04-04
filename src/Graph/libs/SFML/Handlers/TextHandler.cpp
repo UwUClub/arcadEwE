@@ -23,6 +23,15 @@ namespace Arcade::Graph
         }
     }
 
+    TextHandler::~TextHandler()
+    {
+        for (auto &font : _fonts) {
+            if (font.second != nullptr) {
+                delete font.second;
+            }
+        }
+    }
+
     void TextHandler::run(Arcade::ECS::IEntityManager &entityManager, sf::RenderWindow *window)
     {
         for (auto &entity : entityManager.getEntities()) {
@@ -42,6 +51,7 @@ namespace Arcade::Graph
 
                 sf::Text *sfText = new sf::Text();
                 sfText->setString((*text).text);
+                sfText->setOutlineThickness(5);
                 sfText->setFillColor(sf::Color(fColor.r, fColor.g, fColor.b, fColor.a));
                 sfText->setOutlineColor(sf::Color(bColor.r, bColor.g, bColor.b, bColor.a));
 
@@ -64,6 +74,7 @@ namespace Arcade::Graph
             if (font->loadFromFile(path)) {
                 _fonts[path] = font;
             } else {
+                delete font;
                 _fonts[path] = nullptr;
             }
         }

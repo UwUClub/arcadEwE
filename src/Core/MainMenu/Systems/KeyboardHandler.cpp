@@ -38,6 +38,12 @@ void Arcade::Game::KeyboardHandler::run([[maybe_unused]] double deltaTime,
         *hoveredEntity->getComponents(ECS::CompType::TEXT)[0]);
 
     for (auto &entity : entities) {
+
+        if (entity->getComponents().find(ECS::CompType::TEXT_HOVER) == entity->getComponents().end() ||
+            entity->getComponents().find(ECS::CompType::TEXT) == entity->getComponents().end()) {
+            continue;
+        }
+
         auto &hoverComp = reinterpret_cast<Arcade::Game::IsHovered &>(
             *entity->getComponents(ECS::CompType::TEXT_HOVER)[0]);
         auto &textComp = reinterpret_cast<Arcade::Game::Text &>(

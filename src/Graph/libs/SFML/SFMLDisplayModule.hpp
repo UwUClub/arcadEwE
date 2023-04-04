@@ -11,7 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include "IDisplayModule.hpp"
 #include "TextHandler.hpp"
-// #include "SpriteHandler.hpp"
+#include "SpriteHandler.hpp"
 // #include "MusicHandler.hpp"
 #include "EventHandler.hpp"
 
@@ -32,7 +32,7 @@ namespace Arcade::Graph
         protected:
         sf::RenderWindow *_window;
         TextHandler *_textHandler;
-        // SpriteHandler *_spriteHandler;
+        SpriteHandler *_spriteHandler;
         // MusicHandler *_musicHandler;
         EventHandler *_eventHandler;
     };

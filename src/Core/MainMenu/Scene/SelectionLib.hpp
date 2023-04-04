@@ -20,6 +20,7 @@ namespace Arcade::Game
         ~SelectionLib() override = default;
 
         bool init() final;
+        void addIcon();
     };
 } // namespace Arcade::Game
 
