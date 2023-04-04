@@ -27,6 +27,7 @@ namespace Arcade::Graph {
         for (auto &entity : entityManager.getEntities()) {
 
             if (entity->getComponents().find(Arcade::ECS::CompType::TEXT) == entity->getComponents().end()) {
+                std::cout << "continue" << std::endl;
                 continue;
             }
 
@@ -39,6 +40,7 @@ namespace Arcade::Graph {
 
                 sf::Text *sfText = new sf::Text();
                 sfText->setString((*text).text);
+                sfText->setOutlineThickness(5);
                 sfText->setFillColor(sf::Color(fColor.r, fColor.g, fColor.b, fColor.a));
                 sfText->setOutlineColor(sf::Color(bColor.r, bColor.g, bColor.b, bColor.a));
 

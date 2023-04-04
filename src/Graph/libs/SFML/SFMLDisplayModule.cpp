@@ -15,8 +15,8 @@ namespace Arcade::Graph
     SFMLDisplayModule::SFMLDisplayModule()
     {
         _window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Arcade");
-        _window->clear(sf::Color::Green);
-        _textHandler = new TextHandler();
+        _window->clear(sf::Color::Black);
+        // _textHandler = new TextHandler();
         // this->_spriteHandler = new SpriteHandler();
         // this->_musicHandler = new MusicHandler();
         _eventHandler = new EventHandler();
@@ -25,7 +25,7 @@ namespace Arcade::Graph
     SFMLDisplayModule::~SFMLDisplayModule()
     {
         _window->close();
-        delete _textHandler;
+        // delete _textHandler;
         // free(this->_spriteHandler);
         // free(this->_musicHandler);
         delete _eventHandler;
@@ -35,9 +35,9 @@ namespace Arcade::Graph
         [[maybe_unused]] Arcade::ECS::IEventManager &eventManager,
         [[maybe_unused]] Arcade::ECS::IEntityManager &entityManager)
     {
-        _window->clear(sf::Color::Green);
+        _window->clear(sf::Color::Black);
         // this->_spriteHandler->run(delta, eventManager, entityManager);
-        _textHandler->run(entityManager, _window);
+        // _textHandler->run(entityManager, _window);
         _window->display();
 
         // this->_musicHandler->run(delta, eventManager, entityManager);

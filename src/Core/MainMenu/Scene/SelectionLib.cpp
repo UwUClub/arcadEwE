@@ -5,6 +5,7 @@
 #include "SelectionLib.hpp"
 #include "LibraryFinder.hpp"
 #include "Text.hpp"
+#include "Sprite.hpp"
 #include "Core.hpp"
 #include "IsHovered.hpp"
 #include "IsHovering.hpp"
@@ -40,5 +41,19 @@ bool Arcade::Game::SelectionLib::init()
         entity.addComponent(text);
         entity.addComponent(hover);
     }
+    auto &testEntity = _entityManager->createEntity("justatest");
+    auto test = std::shared_ptr<Arcade::Game::Text>(
+        new Arcade::Game::Text("justatest_text", "hello world!", FONT_PATH, { 0, 0, 0, 255 },
+            { 255, 255, 255, 255 }, { 90, 0, 0 }));
+    testEntity.addComponent(test);
     return true;
 }
+
+// void Arcade::Game::SelectionLib::addIcon()
+// {
+//     //auto &entity = _entityManager->createEntity("arcade_icon_sprite");
+//     //const Arcade::Graph::TTYData tty = { "***", { 255, 255, 255, 255 }, { 255, 0, 0, 255 } };
+//     // auto sprite = std::shared_ptr<Arcade::Game::Sprite>(
+//     //     new Arcade::Game::Sprite("arcade_icon", "assets/images/arcade.png", tty, { 0, 0, 0 }, { 0, 0, 10, 10 }, 0));
+//     // entity.addComponent(sprite);
+// }
