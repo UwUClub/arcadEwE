@@ -22,12 +22,20 @@ namespace Arcade::Graph {
         }
     }
 
+    TextHandler::~TextHandler()
+    {
+        for (auto &font : _fonts) {
+            if (font.second != nullptr) {
+                delete font.second;
+            }
+        }
+    }
+
     void TextHandler::run(Arcade::ECS::IEntityManager &entityManager, sf::RenderWindow *window)
     {
         for (auto &entity : entityManager.getEntities()) {
 
             if (entity->getComponents().find(Arcade::ECS::CompType::TEXT) == entity->getComponents().end()) {
-                std::cout << "continue" << std::endl;
                 continue;
             }
 
@@ -63,6 +71,7 @@ namespace Arcade::Graph {
             if (font->loadFromFile(path)) {
                 _fonts[path] = font;
             } else {
+                delete font;
                 _fonts[path] = nullptr;
             }
         }

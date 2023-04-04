@@ -42,12 +42,12 @@ namespace Arcade::Graph
         [[maybe_unused]] Arcade::ECS::IEventManager &eventManager,
         [[maybe_unused]] Arcade::ECS::IEntityManager &entityManager)
     {
-        refresh();
+        erase();
         this->_textHandler->resetColors();
         this->_spriteHandler->resetColors();
         this->_spriteHandler->run(delta, eventManager, entityManager);
         this->_textHandler->run(delta, eventManager, entityManager);
         this->_eventHandler->run(delta, eventManager, entityManager);
-        clear();
+        refresh();
     }
 } // namespace Arcade::Graph
