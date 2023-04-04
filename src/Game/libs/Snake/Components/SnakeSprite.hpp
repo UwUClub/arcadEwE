@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2023
 ** arcadEwE
 ** File description:
-** Sprite
+** SnakeSprite
 */
 
-#ifndef SPRITE_HPP
-    #define SPRITE_HPP
+#ifndef SNAKE_SPRITE_HPP
+    #define SNAKE_SPRITE_HPP
     #include "ISprite.hpp"
 
 namespace Snake
@@ -19,4 +19,4 @@ namespace Snake
     };
 } // namespace Snake
 
-#endif // SPRITE_HPP
+#endif // SNAKE_SPRITE_HPP

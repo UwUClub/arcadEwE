@@ -39,8 +39,8 @@ set(EXEC_SRC
         Components/SnakeText.hpp
         Components/Speed.cpp
         Components/Speed.hpp
-        Components/Sprite.cpp
-        Components/Sprite.hpp
+        Components/SnakeSprite.cpp
+        Components/SnakeSprite.hpp
         Scenes/SnakeGameScene.cpp
         Scenes/SnakeGameScene.hpp
         Scenes/SnakeMenuScene.cpp

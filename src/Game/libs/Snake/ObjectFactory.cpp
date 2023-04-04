@@ -10,7 +10,7 @@
 #include "Transform.hpp"
 #include "Direction.hpp"
 #include "Speed.hpp"
-#include "Sprite.hpp"
+#include "SnakeSprite.hpp"
 
 namespace Snake {
     ObjectFactory::ObjectFactory()

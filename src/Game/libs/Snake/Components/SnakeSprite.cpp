@@ -5,7 +5,7 @@
 ** Sprite
 */
 
-#include "Sprite.hpp"
+#include "SnakeSprite.hpp"
 
 Snake::Sprite::Sprite(const std::string &id, const std::string &path, Arcade::Graph::TTYData ttyData,
     Arcade::Vector3f pos, Arcade::Graph::Rect rect, int currentRectIndex)

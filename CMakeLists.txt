@@ -53,6 +53,8 @@ set(EXEC_SRC
         src/Core/MainMenu/Scene/SelectionLib.hpp
         src/Core/MainMenu/Scene/SaveReader.cpp
         src/Core/MainMenu/Scene/SaveReader.hpp
+        src/Core/MainMenu/Components/Sprite.cpp
+        src/Core/MainMenu/Components/Sprite.hpp
         src/Core/MainMenu/Components/Text.cpp
         src/Core/MainMenu/Components/Text.hpp
         src/Core/MainMenu/Components/IsHovered.cpp
@@ -90,7 +92,7 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 #add_subdirectory(src/Graph/libs/SDL)
 
 # Graphical libraries
-add_subdirectory(src/Graph/libs/SDL)
+# add_subdirectory(src/Graph/libs/SDL)
 add_subdirectory(src/Graph/libs/SFML)
 add_subdirectory(src/Graph/libs/NCurses)
 # Games libraries

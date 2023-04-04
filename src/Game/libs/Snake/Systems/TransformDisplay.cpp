@@ -7,7 +7,7 @@
 
 #include "TransformDisplay.hpp"
 #include "Transform.hpp"
-#include "Sprite.hpp"
+#include "SnakeSprite.hpp"
 #include <algorithm>
 #include <vector>
 
