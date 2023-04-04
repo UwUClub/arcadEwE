@@ -25,7 +25,13 @@ set(INCLUDES
         )
 
 find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_mixer REQUIRED)
+find_package(SDL2_ttf REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
+include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
+include_directories(${SDL2_MIXER_INCLUDE_DIRS})
+include_directories(${SDL2_TTF_INCLUDE_DIRS})
 
 # Add main.cpp file of project root directory as source file
 set(EXEC_SRC
@@ -58,5 +64,5 @@ include_directories(../../../../sharedArchitecture/include/Arcade/Graph)
 # Add executable target with source files listed in SOURCE_FILES variable
 #add_subdirectory(src/Core/MainMenu)
 add_library(${PROJECT_NAME} SHARED ${EXEC_SRC} ${INCLUDES})
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES})
 set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../../../lib)
