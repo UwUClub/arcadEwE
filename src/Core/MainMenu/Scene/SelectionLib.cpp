@@ -6,6 +6,7 @@
 #include "LibraryFinder.hpp"
 #include "Text.hpp"
 #include "Sprite.hpp"
+#include "Music.hpp"
 #include "Core.hpp"
 #include "IsHovered.hpp"
 #include "IsHovering.hpp"
@@ -28,7 +29,7 @@ bool Arcade::Game::SelectionLib::init()
 
         auto &entity = _entityManager->createEntity(name);
         auto text = std::shared_ptr<Arcade::Game::Text>(
-            new Arcade::Game::Text(name+ "_text", name, FONT_PATH, { 0, 0, 0, 255 },
+            new Arcade::Game::Text(name + "_text", name, FONT_PATH, { 0, 0, 0, 255 },
                 { 255, 255, 255, 255 }, { BASE_X_TEXT, BASE_Y_TEXT, 0 }));
         auto hover = std::shared_ptr<Arcade::Game::IsHovered>(
             new Arcade::Game::IsHovered(name + "_hover"));
@@ -46,14 +47,24 @@ bool Arcade::Game::SelectionLib::init()
         entity.addComponent(hover);
     }
     this->addIcon();
+    this->addMusic();
     return true;
 }
 
 void Arcade::Game::SelectionLib::addIcon()
 {
-    auto &entity = _entityManager->createEntity("arcade_icon_sprite");
+    auto &entity = _entityManager->createEntity("background_sprite");
     const Arcade::Graph::TTYData tty = { "", { 255, 255, 255, 255 }, { 255, 0, 0, 255 } };
     auto sprite = std::shared_ptr<Arcade::Game::Sprite>(
-        new Arcade::Game::Sprite("arcade_icon", "assets/images/menu_background.jpg", tty, { 0, 0, 0 }, { -360, -202, 1920, 1080 }, 0));
+        new Arcade::Game::Sprite("background_sprite", "assets/images/menu_background.jpg", tty, { 0, 0, 0 }, { -360, -202, 1920, 1080 }, 0));
     entity.addComponent(sprite);
 }
+
+void Arcade::Game::SelectionLib::addMusic()
+{
+    auto &entity = _entityManager->createEntity("background_music");
+    auto music = std::shared_ptr<Arcade::Game::Music>(
+        new Arcade::Game::Music("background_music", "assets/musics/menu.ogg", true, true));
+    entity.addComponent(music);
+}
+
