@@ -31,21 +31,21 @@ void Snake::MoveSnake::run(double deltaTime,
             auto &directionComp = entity->getComponents("Direction");
             auto &speedComp = entity->getComponents("Speed");
 
-            auto &position = reinterpret_cast<Snake::Transform &>(transformComp).position;
+            auto &transform = reinterpret_cast<Snake::Transform &>(transformComp);
             auto speed = reinterpret_cast<Snake::Speed &>(speedComp).getSpeed();
             auto direction = reinterpret_cast<Snake::Direction &>(directionComp).getDirection();
             switch (direction) {
                 case Snake::Direction::dir::UP:
-                    position.y -= speed * deltaTime;
+                    transform.Translate({0, -speed * static_cast<float>(deltaTime), 0});
                     break;
                 case Snake::Direction::dir::DOWN:
-                    position.y += speed * deltaTime;
+                    transform.Translate({0, speed * static_cast<float>(deltaTime), 0});
                     break;
                 case Snake::Direction::dir::LEFT:
-                    position.x -= speed * deltaTime;
+                    transform.Translate({-speed * static_cast<float>(deltaTime), 0, 0});
                     break;
                 case Snake::Direction::dir::RIGHT:
-                    position.x += speed * deltaTime;
+                    transform.Translate({speed * static_cast<float>(deltaTime), 0, 0});
                     break;
             }
         } catch(const std::exception& e) {
