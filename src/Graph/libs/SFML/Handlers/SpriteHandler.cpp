@@ -3,21 +3,35 @@
 //
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "SFMLDisplayModule.hpp"
 #include "SpriteHandler.hpp"
 #include "ArcadeStruct.hpp"
 #include "IComponent.hpp"
-#include "IText.hpp"
+#include "ISprite.hpp"
 
 namespace Arcade::Graph
 {
 
-    void SpriteHandler::run(double delta, Arcade::ECS::IEventManager &eventManager,
-        Arcade::ECS::IEntityManager &entityManager)
+    SpriteHandler::SpriteHandler()
     {
-        for (auto &entity : scene->getEntityManager().getEntities()) {
+        _textures = std::map<std::string, sf::Texture *>();
+    }
 
-            if (entity->getComponents().find(Arcade::ECS::CompType::TEXT)
-                == entity->getComponents().end()) {
+    SpriteHandler::~SpriteHandler()
+    {
+        for (auto &texture : _textures) {
+            if (texture.second != nullptr) {
+                delete texture.second;
+            }
+        }
+    }
+
+    void SpriteHandler::run(Arcade::ECS::IEntityManager &entityManager, sf::RenderWindow *window)
+    {
+        for (auto &entity : entityManager.getEntities()) {
+
+            if (entity->getComponents().find(Arcade::ECS::CompType::SPRITE) == entity->getComponents().end()) {
                 continue;
             }
 
@@ -26,23 +40,41 @@ namespace Arcade::Graph
 
             for (auto spriteComponent : spriteComponents) {
                 auto sprite = std::static_pointer_cast<Arcade::Graph::ISprite>(spriteComponent);
-                Arcade::Vector3f pos = (*sprite).getPos();
-                Arcade::Vector3f size = (*sprite).getSize();
-                Arcade::Graph::Rect rect = (*sprite).getRect();
-                float scale = (*sprite).getScale();
-                Arcade::Graph::Color color = (*sprite).getColor();
 
-                sf::Texture texture;
-                sf::Sprite sfSprite;
-                sfSprite.setColor(sf::Color(color.r, color.g, color.b, color.a));
-                if (texture.loadFromFile((*sprite).getPath())) {
-                    sfSprite.setTexture(texture);
-                }
-                sfSprite.setPosition(pos.x, pos.y);
-                sfSprite.setScale(size.x * scale, size.y * scale);
-                sfSprite.setTextureRect(sf::IntRect(rect.left, rect.top, rect.width, rect.height));
-                this->_window.draw(sfSprite);
+                sf::Sprite *sfSprite = new sf::Sprite();
+
+                const int x = ((*sprite).pos.x / 100) * WINDOW_WIDTH;
+                const int y = ((*sprite).pos.y / 100) * WINDOW_HEIGHT;
+                sfSprite->setPosition(x, y);
+
+                Arcade::Graph::Rect rect = (*sprite).rect;
+                sfSprite->setTextureRect(sf::IntRect(rect.left, rect.top, rect.width, rect.height));
+
+                this->handleTexture((*sprite).path, sfSprite);
+
+                window->draw(*sfSprite);
             }
         }
     }
+
+    void SpriteHandler::handleTexture(const std::string path, sf::Sprite *sprite)
+    {
+        sf::Texture *texture = new sf::Texture();
+
+        if (_textures.find(path) == _textures.end()) {
+            if (texture->loadFromFile(path)) {
+                _textures[path] = texture;
+            } else {
+                delete texture;
+                texture = nullptr;
+            }
+        } else {
+            texture = _textures[path];
+        }
+
+        if (texture != nullptr) {
+            sprite->setTexture(*texture);
+        }
+    }
+
 } // namespace Arcade::Graph

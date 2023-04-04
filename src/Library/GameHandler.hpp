@@ -58,28 +58,6 @@ namespace Arcade::Core
         private:
         void *_handle;
         Game::IGameModule *_lib;
-
-        /**
-         * @brief Exception class for the GameHandler
-         */
-        class LibraryHandlerException : public std::exception
-        {
-            public:
-            explicit LibraryHandlerException(const std::string &message)
-                : _message(message)
-            {
-            }
-
-            ~LibraryHandlerException() noexcept override = default;
-
-            [[nodiscard]] const char *what() const noexcept override
-            {
-                return _message.c_str();
-            }
-
-            private:
-            std::string _message;
-        };
     };
 } // namespace Arcade::Core
 #endif // ARCADE_GAMEHANDLER_HPP

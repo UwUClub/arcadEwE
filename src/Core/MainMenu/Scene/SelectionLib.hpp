@@ -7,9 +7,10 @@
 
 #include "AScene.hpp"
 
-#define BASE_X_TEXT   10
+#define BASE_X_TEXT   41
+#define BASE_Y_TEXT   45
 #define OFFSET_Y_TEXT 10
-#define OFFSET_X_TEXT 18
+#define OFFSET_X_TEXT 10
 
 namespace Arcade::Game
 {
@@ -20,6 +21,7 @@ namespace Arcade::Game
         ~SelectionLib() override = default;
 
         bool init() final;
+        void addIcon();
     };
 } // namespace Arcade::Game
 

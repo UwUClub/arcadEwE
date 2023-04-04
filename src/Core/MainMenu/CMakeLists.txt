@@ -35,6 +35,8 @@ set(EXEC_SRC
         Components/Text.hpp
         Components/IsHovered.cpp
         Components/IsHovered.hpp
+        Components/Sprite.cpp
+        Components/Sprite.hpp
         Systems/IsHovering.cpp
         Systems/IsHovering.hpp
         Systems/KeyboardHandler.cpp

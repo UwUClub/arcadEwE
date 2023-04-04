@@ -10,7 +10,8 @@
 #include "IComponent.hpp"
 #include "IText.hpp"
 
-namespace Arcade::Graph {
+namespace Arcade::Graph
+{
 
     TextHandler::TextHandler()
     {
@@ -22,23 +23,35 @@ namespace Arcade::Graph {
         }
     }
 
+    TextHandler::~TextHandler()
+    {
+        for (auto &font : _fonts) {
+            if (font.second != nullptr) {
+                delete font.second;
+            }
+        }
+    }
+
     void TextHandler::run(Arcade::ECS::IEntityManager &entityManager, sf::RenderWindow *window)
     {
         for (auto &entity : entityManager.getEntities()) {
 
-            if (entity->getComponents().find(Arcade::ECS::CompType::TEXT) == entity->getComponents().end()) {
+            if (entity->getComponents().find(Arcade::ECS::CompType::TEXT)
+                == entity->getComponents().end()) {
                 continue;
             }
 
-            std::vector<std::shared_ptr<Arcade::ECS::IComponent>> textComponents = entity->getComponents(Arcade::ECS::CompType::TEXT);
+            std::vector<std::shared_ptr<Arcade::ECS::IComponent>> textComponents
+                = entity->getComponents(Arcade::ECS::CompType::TEXT);
 
-            for (auto textComponent : textComponents) {
+            for (auto &textComponent : textComponents) {
                 auto text = std::static_pointer_cast<Arcade::Graph::IText>(textComponent);
                 Arcade::Graph::Color fColor = (*text).textColor;
                 Arcade::Graph::Color bColor = (*text).backgroundColor;
 
                 sf::Text *sfText = new sf::Text();
                 sfText->setString((*text).text);
+                sfText->setOutlineThickness(5);
                 sfText->setFillColor(sf::Color(fColor.r, fColor.g, fColor.b, fColor.a));
                 sfText->setOutlineColor(sf::Color(bColor.r, bColor.g, bColor.b, bColor.a));
 
@@ -47,7 +60,7 @@ namespace Arcade::Graph {
                 const int x = ((*text).pos.x / 100) * WINDOW_WIDTH;
                 const int y = ((*text).pos.y / 100) * WINDOW_HEIGHT;
                 sfText->setPosition(x, y);
-                sfText->setCharacterSize(20);
+                sfText->setCharacterSize(15);
                 window->draw(*sfText);
             }
         }
@@ -61,6 +74,7 @@ namespace Arcade::Graph {
             if (font->loadFromFile(path)) {
                 _fonts[path] = font;
             } else {
+                delete font;
                 _fonts[path] = nullptr;
             }
         }
@@ -70,4 +84,4 @@ namespace Arcade::Graph {
             text->setFont(*(_fonts["assets/fonts/arial.ttf"]));
         }
     }
-}
+} // namespace Arcade::Graph

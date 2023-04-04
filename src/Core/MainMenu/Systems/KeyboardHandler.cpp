@@ -5,6 +5,7 @@
 #include <iostream>
 #include "KeyboardHandler.hpp"
 #include "IsHovered.hpp"
+#include "Core.hpp"
 #include "Text.hpp"
 #include "SelectionLib.hpp"
 #include "IComponent.hpp"
@@ -25,7 +26,6 @@ void Arcade::Game::KeyboardHandler::run([[maybe_unused]] double deltaTime,
     auto hoveredEntity = getCurrentlyHoveredEntity(currentEntityManager);
 
     if (!hoveredEntity) {
-        std::cout << "No hovered entity found, setting first entity as hovered" << std::endl;
         auto first = entities[0]->getComponents(ECS::CompType::TEXT_HOVER)[0];
         auto &firstHover = reinterpret_cast<Arcade::Game::IsHovered &>(*first);
         firstHover.isHovered = true;
@@ -38,6 +38,12 @@ void Arcade::Game::KeyboardHandler::run([[maybe_unused]] double deltaTime,
         *hoveredEntity->getComponents(ECS::CompType::TEXT)[0]);
 
     for (auto &entity : entities) {
+
+        if (entity->getComponents().find(ECS::CompType::TEXT_HOVER) == entity->getComponents().end() ||
+            entity->getComponents().find(ECS::CompType::TEXT) == entity->getComponents().end()) {
+            continue;
+        }
+
         auto &hoverComp = reinterpret_cast<Arcade::Game::IsHovered &>(
             *entity->getComponents(ECS::CompType::TEXT_HOVER)[0]);
         auto &textComp = reinterpret_cast<Arcade::Game::Text &>(
@@ -76,13 +82,11 @@ void Arcade::Game::KeyboardHandler::run([[maybe_unused]] double deltaTime,
         hoveredEntity = getCurrentlyHoveredEntity(currentEntityManager);
         hoveredEntityText = reinterpret_cast<Arcade::Game::Text &>(
             *hoveredEntity->getComponents(ECS::CompType::TEXT)[0]);
-        std::cout << "Hovered entity: " << hoveredEntityText.text << std::endl;
-        if (hoveredEntityText.text.find("_game") != std::string::npos) {
-            eventManager.addEvent(CHANGE_GAME,
-                hoveredEntity->getComponents(ECS::CompType::TEXT)[0]);
-        } else {
-            eventManager.addEvent(CHANGE_GRAPHIC,
-                hoveredEntity->getComponents(ECS::CompType::TEXT)[0]);
+        auto text = std::make_shared<Arcade::Game::Text>(
+            Arcade::Game::Text(hoveredEntityText.id, hoveredEntityText.text, FONT_PATH,
+                { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, { BASE_X_TEXT, 0, 0 }));
+        if (hoveredEntityText.text.find("_game") == std::string::npos) {
+            eventManager.addEvent(CHANGE_GRAPHIC, text);
         }
     }
 }

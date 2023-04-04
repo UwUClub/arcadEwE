@@ -26,18 +26,20 @@ Arcade::Core::Core::Core(const std::string &pathDisplay)
         _currentDisplayModule = pathDisplay;
     }
 
-    //    std::cout << "display module path: " << _currentDisplayModule << std::endl;
-    // std::cout << "game module path: " << _currentGameModule << std::endl;
-    _gameModule = std::make_unique<GameHandler>(_currentGameModule);
-    _displayModule = std::make_unique<DisplayHandler>(_currentDisplayModule);
-    _eventManager = std::make_unique<ECS::EventManager>();
+    try {
+        _gameModule = std::make_unique<GameHandler>(_currentGameModule);
+        _displayModule = std::make_unique<DisplayHandler>(_currentDisplayModule);
+        _eventManager = std::make_unique<ECS::EventManager>();
+    } catch (const DisplayHandler::LibraryHandlerException &e) {
+        std::cerr << e.what() << std::endl;
+        exit(84);
+    }
 }
 
 void Arcade::Core::Core::update()
 {
     while (!_eventManager->isEventTriggered(QUIT).first) {
-        if (_gameModule)
-            _gameModule->operator->()->update(_clock->getDeltaTime(), *_eventManager);
+        _gameModule->operator->()->update(_clock->getDeltaTime(), *_eventManager);
         handleCoreEvents();
         auto &currentEntityManager = _gameModule->operator->()->getCurrentEntityManager();
 
@@ -53,18 +55,19 @@ void Arcade::Core::Core::handleCoreEvents()
     auto eventGame = _eventManager->isEventTriggered(CHANGE_GAME);
     auto eventGraph = _eventManager->isEventTriggered(CHANGE_GRAPHIC);
     auto eventGameEnd = _eventManager->isEventTriggered(END_GAME);
+    auto eventTab = _eventManager->isEventTriggered(KEY_TAB_PRESSED);
+    auto eventSpace = _eventManager->isEventTriggered(KEY_SPACE_PRESSED);
 
     if (eventGame.first) {
-        if (!eventGraph.second.has_value()) {
+        if (!eventGame.second.has_value()) {
             loadGameModule();
         }
         for (auto &comp : *eventGame.second) {
             if (comp.has_value()) {
                 std::string gameName = reinterpret_cast<Arcade::Game::Text &>(*comp.value()).text;
                 loadGameModule(gameName);
-                continue;
+                return;
             }
-            loadGameModule();
         }
     }
     if (eventGraph.first) {
@@ -74,14 +77,20 @@ void Arcade::Core::Core::handleCoreEvents()
         for (auto &comp : *eventGraph.second) {
             if (comp.has_value()) {
                 std::string libName = reinterpret_cast<Arcade::Game::Text &>(*comp.value()).text;
+                libName = "./lib/libarcade_" + libName + ".so";
                 loadDisplayModule(libName);
-                continue;
+                return;
             }
         }
     }
     if (eventGameEnd.first) {
-        _currentGameModule = MENU_PATH;
-        _gameModule = std::make_unique<GameHandler>(MENU_PATH);
+        loadGameModule(MENU_PATH);
+    }
+    if (eventTab.first) {
+        loadGameModule();
+    }
+    if (eventSpace.first) {
+        loadDisplayModule();
     }
 }
 
@@ -89,8 +98,13 @@ void Arcade::Core::Core::loadGameModule(const std::string &path)
 {
     if (_currentGameModule == path)
         return;
-    _currentGameModule = path;
-    _gameModule = std::make_unique<GameHandler>(path);
+    try {
+        _currentGameModule = path;
+        _gameModule = std::make_unique<GameHandler>(path);
+    } catch (const DisplayHandler::LibraryHandlerException &e) {
+        std::cerr << e.what() << std::endl;
+        exit(84);
+    }
 }
 
 void Arcade::Core::Core::loadGameModule()
@@ -110,19 +124,25 @@ void Arcade::Core::Core::loadGameModule()
             break;
         }
     }
+    ++it;
     if (it == list.end()) {
         it = list.begin();
     }
-    _gameModule = std::make_unique<GameHandler>(it->second);
-    _currentGameModule = it->second;
+    loadGameModule(it->second);
 }
 
 void Arcade::Core::Core::loadDisplayModule(const std::string &path)
 {
     if (_currentDisplayModule == path)
         return;
-    _currentDisplayModule = path;
-    _displayModule = std::make_unique<DisplayHandler>(path);
+    try {
+        _displayModule.reset(nullptr);
+        _displayModule = std::make_unique<DisplayHandler>(path);
+        _currentDisplayModule = path;
+    } catch (const DisplayHandler::LibraryHandlerException &e) {
+        std::cerr << e.what() << std::endl;
+        exit(84);
+    }
 }
 
 void Arcade::Core::Core::loadDisplayModule()
@@ -136,15 +156,16 @@ void Arcade::Core::Core::loadDisplayModule()
         }
     }
     auto it = list.begin();
-
+    
     for (; it != list.end(); ++it) {
-        if (it->second == _currentDisplayModule) {
+        if (it->second == _currentDisplayModule || it->second == "./" + _currentDisplayModule) {
             break;
         }
     }
+
+    ++it;
     if (it == list.end()) {
         it = list.begin();
     }
-    _displayModule = std::make_unique<DisplayHandler>(it->second);
-    _currentDisplayModule = it->second;
+    loadDisplayModule(it->second);
 }

@@ -15,7 +15,7 @@ namespace Arcade::Graph
     class OnEvent
     {
         public:
-        OnEvent();
+        OnEvent() = default;
         ~OnEvent() = default;
 
         void run(Arcade::ECS::IEventManager &eventManager, SDL_Event &event);
@@ -24,7 +24,6 @@ namespace Arcade::Graph
         static const inline std::unordered_map<Uint32, const std::string> baseEventMap = {
             { SDL_QUIT, QUIT },
             { SDL_KEYDOWN, KEY_DOWN_PRESSED },
-            { SDL_KEYUP, KEY_UP_PRESSED },
         };
 
         static const inline std::unordered_map<Uint32, const std::string> windowEventMap = {

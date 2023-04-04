@@ -7,23 +7,23 @@
 #include "SdlDisplayModule.hpp"
 
 extern "C" {
-    Arcade::Graph::IDisplayModule *getDisplayModule()
-    {
-        return new Arcade::Graph::SDLDisplayModule();
-    }
+Arcade::Graph::IDisplayModule *getDisplayModule()
+{
+    return new Arcade::Graph::SDLDisplayModule();
+}
 
-    void destroyDisplayModule(Arcade::Graph::IDisplayModule *displayModule)
-    {
-        delete displayModule;
-    }
+void destroyDisplayModule(Arcade::Graph::IDisplayModule *displayModule)
+{
+    delete displayModule;
+}
 
-    const char *getName()
-    {
-        return "SDL";
-    }
+const char *getName()
+{
+    return "SDL";
+}
 
-    LibType getType()
-    {
-        return GRAPH;
-    }
+LibType getType()
+{
+    return GRAPH;
+}
 }

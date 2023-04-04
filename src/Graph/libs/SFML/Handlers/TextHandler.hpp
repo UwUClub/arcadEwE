@@ -12,7 +12,7 @@ namespace Arcade::Graph {
     {
         public:
         TextHandler();
-        ~TextHandler() = default;
+        ~TextHandler();
 
         void run(Arcade::ECS::IEntityManager &entityManager, sf::RenderWindow *window);
         void handle_font(std::string path, sf::Text *text);

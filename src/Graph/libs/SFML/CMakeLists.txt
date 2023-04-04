@@ -34,6 +34,8 @@ set(EXEC_SRC
     SFMLDisplayModule.hpp
     Handlers/TextHandler.cpp
     Handlers/TextHandler.hpp
+    Handlers/SpriteHandler.cpp
+    Handlers/SpriteHandler.hpp
     Handlers/EventHandler.cpp
     Handlers/EventHandler.hpp
 )
