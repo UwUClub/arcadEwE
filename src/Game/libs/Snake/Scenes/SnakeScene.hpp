@@ -9,6 +9,7 @@
     #define SNAKESCENE_HPP_
     #include "IEventManager.hpp"
     #include "IEntityManager.hpp"
+    #include "EntityManager.hpp"
     #include "ISystemManager.hpp"
     #include "IScene.hpp"
 

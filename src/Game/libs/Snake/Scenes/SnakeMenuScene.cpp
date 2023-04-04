@@ -20,6 +20,11 @@ namespace Snake {
 
     bool SnakeMenuScene::init()
     {
+        if (_entityManager == nullptr)
+            _entityManager = std::make_unique<Arcade::ECS::EntityManager>();
+        if (_systemManager == nullptr)
+            _systemManager = std::make_unique<Arcade::ECS::SystemManager>();
+
         _systemManager->addSystem("IsHovering", std::make_unique<Snake::IsHovering>());
         _systemManager->addSystem("MenuKeyboardHandler", std::make_unique<Snake::MenuKeyboardHandler>());
 

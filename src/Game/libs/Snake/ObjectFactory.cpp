@@ -26,8 +26,8 @@ namespace Snake {
         auto &entity = entityManager.createEntity("snake_head");
         entity.addComponent(std::shared_ptr<Snake::Transform>(new Snake::Transform("Transform", position)));
         entity.addComponent(std::shared_ptr<Snake::Direction>(new Snake::Direction("Direction", Direction::dir::UP)));
-        entity.addComponent(std::shared_ptr<Snake::Speed>(new Snake::Speed("Speed", 0.0f)));
-        entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite", SNAKE_PATH, {"H", {255, 255, 255, 255}, {0, 0, 0, 255}}, position, {0, 0, CASE_SIZE, CASE_SIZE}, 0)));
+        entity.addComponent(std::shared_ptr<Snake::Speed>(new Snake::Speed("Speed", 4.0f)));
+        entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite", SNAKE_PATH, {"H", {255, 255, 255, 255}, {0, 0, 0, 255}}, position, {0, 0, CASE_SIZE * 10, CASE_SIZE * 10}, 0)));
         return entity;
     }
 
@@ -38,7 +38,7 @@ namespace Snake {
         entity.addComponent(std::shared_ptr<Snake::Transform>(new Snake::Transform("Transform", position)));
         entity.addComponent(std::shared_ptr<Snake::Direction>(new Snake::Direction("Direction", Direction::dir::UP)));
         entity.addComponent(std::shared_ptr<Snake::Speed>(new Snake::Speed("Speed", 0.0f)));
-        entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite", SNAKE_PATH, {"B", {255, 255, 255, 255}, {0, 0, 0, 255}}, position, {0, 0, CASE_SIZE, CASE_SIZE}, 0)));
+        entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite", SNAKE_PATH, {"B", {255, 255, 255, 255}, {0, 0, 0, 255}}, position, {0, 0, CASE_SIZE * 10, CASE_SIZE * 10}, 0)));
         return entity;
     }
 
