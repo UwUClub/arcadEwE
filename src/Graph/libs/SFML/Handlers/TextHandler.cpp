@@ -60,7 +60,7 @@ namespace Arcade::Graph
                 const int x = ((*text).pos.x / 100) * WINDOW_WIDTH;
                 const int y = ((*text).pos.y / 100) * WINDOW_HEIGHT;
                 sfText->setPosition(x, y);
-                sfText->setCharacterSize(20);
+                sfText->setCharacterSize(15);
                 window->draw(*sfText);
             }
         }
