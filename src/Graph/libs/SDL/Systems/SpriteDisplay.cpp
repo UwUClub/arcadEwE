@@ -28,17 +28,22 @@ void Arcade::Graph::SpriteDisplay::drawSprite(SDL_Renderer *renderer,
     const std::shared_ptr<ISprite> &sprite)
 {
     SDL_Rect rect;
+    SDL_Rect srcRect;
     SDL_Texture *texture = loadTexture(sprite->path, renderer);
 
     if (texture == nullptr)
         return;
-    rect.x = (sprite->pos.x / 100) * SCREEN_WIDTH;
-    rect.y = (sprite->pos.y / 100) * SCREEN_HEIGHT;
+    rect.x = sprite->pos.x;
+    rect.y = sprite->pos.y;
     rect.w = sprite->rect.left + (sprite->rect.width * sprite->currentRectIndex);
     rect.h = sprite->rect.top + sprite->rect.height;
+    srcRect.x = (sprite->pos.x / 100) * SCREEN_WIDTH;
+    srcRect.y = (sprite->pos.y / 100) * SCREEN_HEIGHT;
+    srcRect.w = sprite->rect.width;
+    srcRect.h = sprite->rect.height;
 
     SDL_QueryTexture(texture, nullptr, nullptr, &rect.w, &rect.h);
-    SDL_RenderCopy(renderer, texture, nullptr, &rect);
+    SDL_RenderCopy(renderer, texture, &rect, &srcRect);
 }
 
 Arcade::Graph::SpriteDisplay::~SpriteDisplay()
