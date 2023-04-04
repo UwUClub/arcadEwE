@@ -48,7 +48,7 @@ Arcade::Graph::SpriteDisplay::~SpriteDisplay()
     }
 }
 
-void Arcade::Graph::SpriteDisplay::run(double delta, SDL_Renderer *renderer,
+void Arcade::Graph::SpriteDisplay::run([[maybe_unused]] double delta, SDL_Renderer *renderer,
     Arcade::ECS::IEntityManager &entityManager)
 {
     auto sprites = entityManager.getEntitiesByComponentType(ECS::CompType::SPRITE);

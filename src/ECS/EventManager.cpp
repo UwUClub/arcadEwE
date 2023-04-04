@@ -3,6 +3,7 @@
 //
 
 #include <algorithm>
+#include <iostream>
 #include "EventManager.hpp"
 
 Arcade::ECS::EventManager::EventManager() = default;
@@ -41,6 +42,7 @@ void Arcade::ECS::EventManager::addEvent(const std::string &event,
         _events.emplace(event, std::nullopt);
         it = _events.find(event);
     }
+
     if (component.has_value()) {
         if (!it->second.has_value())
             it->second = std::vector<std::optional<std::shared_ptr<IComponent>>>();
