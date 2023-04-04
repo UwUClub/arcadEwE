@@ -2,19 +2,24 @@
 // Created by patatofour on 31/03/23.
 //
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_audio.h>
+#include <SDL2/SDL_mixer.h>
 #include "SdlDisplayModule.hpp"
-#include "Events.hpp"
 
 Arcade::Graph::SDLDisplayModule::SDLDisplayModule()
     : _onEvent(std::make_unique<OnEvent>())
+    , _soundHandler(std::make_unique<SoundHandler>())
+    , _spriteDisplay(std::make_unique<SpriteDisplay>())
+    , _textHandler(std::make_unique<TextHandler>())
     , _renderer(nullptr)
     , _window(nullptr)
 {
     int rendererFlags = SDL_RENDERER_ACCELERATED;
     int windowFlags = 0;
 
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
         printf("Couldn't initialize SDL: %s\n", SDL_GetError());
         return;
     }
@@ -27,7 +32,15 @@ Arcade::Graph::SDLDisplayModule::SDLDisplayModule()
         return;
     }
 
+    IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1) {
+        printf("Couldn't initialize SDL Mixer\n");
+        return;
+    }
+
+    Mix_AllocateChannels(MAX_SND_CHANNELS);
 
     _renderer = SDL_CreateRenderer(_window, -1, rendererFlags);
 
@@ -53,8 +66,10 @@ void Arcade::Graph::SDLDisplayModule::update([[maybe_unused]] double delta,
     while (SDL_PollEvent(&event)) {
         _onEvent->run(eventManager, event);
     }
+    _spriteDisplay->run(delta, _renderer, entityManager);
+    _soundHandler->run(entityManager);
+    _textHandler->run(_renderer, entityManager);
     SDL_RenderPresent(_renderer);
-    SDL_Delay(16);
 }
 
 void Arcade::Graph::SDLDisplayModule::prepareScene(

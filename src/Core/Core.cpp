@@ -56,6 +56,7 @@ void Arcade::Core::Core::handleCoreEvents()
     auto eventGraph = _eventManager->isEventTriggered(CHANGE_GRAPHIC);
     auto eventGameEnd = _eventManager->isEventTriggered(END_GAME);
     auto eventTab = _eventManager->isEventTriggered(KEY_TAB_PRESSED);
+    auto eventSpace = _eventManager->isEventTriggered(KEY_SPACE_PRESSED);
 
     if (eventGame.first) {
         if (!eventGame.second.has_value()) {
@@ -86,6 +87,9 @@ void Arcade::Core::Core::handleCoreEvents()
     }
     if (eventTab.first) {
         loadGameModule();
+    }
+    if (eventSpace.first) {
+        loadDisplayModule();
     }
 }
 
@@ -131,6 +135,7 @@ void Arcade::Core::Core::loadDisplayModule(const std::string &path)
     if (_currentDisplayModule == path)
         return;
     try {
+        _displayModule.reset(nullptr);
         _displayModule = std::make_unique<DisplayHandler>(path);
         _currentDisplayModule = path;
     } catch (const DisplayHandler::LibraryHandlerException &e) {
@@ -150,12 +155,13 @@ void Arcade::Core::Core::loadDisplayModule()
         }
     }
     auto it = list.begin();
-
+    
     for (; it != list.end(); ++it) {
-        if (it->second == _currentDisplayModule) {
+        if (it->second == _currentDisplayModule || it->second == "./" + _currentDisplayModule) {
             break;
         }
     }
+
     ++it;
     if (it == list.end()) {
         it = list.begin();

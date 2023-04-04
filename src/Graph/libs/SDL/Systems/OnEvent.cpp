@@ -7,10 +7,6 @@
 
 namespace Arcade::Graph
 {
-    OnEvent::OnEvent()
-    {
-    }
-
     void OnEvent::run(Arcade::ECS::IEventManager &eventManager, SDL_Event &event)
     {
         if (event.type == SDL_WINDOWEVENT

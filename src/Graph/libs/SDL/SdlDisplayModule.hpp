@@ -8,9 +8,13 @@
 #include <memory>
 #include "IDisplayModule.hpp"
 #include "OnEvent.hpp"
+#include "SoundHandler.hpp"
+#include "SpriteDisplay.hpp"
+#include "TextHandler.hpp"
 
-#define SCREEN_WIDTH  1920
-#define SCREEN_HEIGHT 1080
+#define SCREEN_WIDTH     1920
+#define SCREEN_HEIGHT    1080
+#define MAX_SND_CHANNELS 16
 
 namespace Arcade::Graph
 {
@@ -26,6 +30,9 @@ namespace Arcade::Graph
         private:
         void prepareScene(Arcade::ECS::IEntityManager &entityManager);
         std::unique_ptr<OnEvent> _onEvent;
+        std::unique_ptr<SoundHandler> _soundHandler;
+        std::unique_ptr<SpriteDisplay> _spriteDisplay;
+        std::unique_ptr<TextHandler> _textHandler;
         SDL_Renderer *_renderer;
         SDL_Window *_window;
     };

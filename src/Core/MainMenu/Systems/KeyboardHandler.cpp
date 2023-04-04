@@ -26,7 +26,6 @@ void Arcade::Game::KeyboardHandler::run([[maybe_unused]] double deltaTime,
     auto hoveredEntity = getCurrentlyHoveredEntity(currentEntityManager);
 
     if (!hoveredEntity) {
-        std::cout << "No hovered entity found, setting first entity as hovered" << std::endl;
         auto first = entities[0]->getComponents(ECS::CompType::TEXT_HOVER)[0];
         auto &firstHover = reinterpret_cast<Arcade::Game::IsHovered &>(*first);
         firstHover.isHovered = true;

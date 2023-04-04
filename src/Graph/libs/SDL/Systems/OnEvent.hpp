@@ -15,7 +15,7 @@ namespace Arcade::Graph
     class OnEvent
     {
         public:
-        OnEvent();
+        OnEvent() = default;
         ~OnEvent() = default;
 
         void run(Arcade::ECS::IEventManager &eventManager, SDL_Event &event);

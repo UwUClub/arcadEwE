@@ -10,7 +10,8 @@
 #include "IComponent.hpp"
 #include "IText.hpp"
 
-namespace Arcade::Graph {
+namespace Arcade::Graph
+{
 
     TextHandler::TextHandler()
     {
@@ -26,13 +27,15 @@ namespace Arcade::Graph {
     {
         for (auto &entity : entityManager.getEntities()) {
 
-            if (entity->getComponents().find(Arcade::ECS::CompType::TEXT) == entity->getComponents().end()) {
+            if (entity->getComponents().find(Arcade::ECS::CompType::TEXT)
+                == entity->getComponents().end()) {
                 continue;
             }
 
-            std::vector<std::shared_ptr<Arcade::ECS::IComponent>> textComponents = entity->getComponents(Arcade::ECS::CompType::TEXT);
+            std::vector<std::shared_ptr<Arcade::ECS::IComponent>> textComponents
+                = entity->getComponents(Arcade::ECS::CompType::TEXT);
 
-            for (auto textComponent : textComponents) {
+            for (auto &textComponent : textComponents) {
                 auto text = std::static_pointer_cast<Arcade::Graph::IText>(textComponent);
                 Arcade::Graph::Color fColor = (*text).textColor;
                 Arcade::Graph::Color bColor = (*text).backgroundColor;
@@ -70,4 +73,4 @@ namespace Arcade::Graph {
             text->setFont(*(_fonts["assets/fonts/arial.ttf"]));
         }
     }
-}
+} // namespace Arcade::Graph

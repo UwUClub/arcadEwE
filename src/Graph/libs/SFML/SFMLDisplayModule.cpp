@@ -11,10 +11,11 @@
 
 namespace Arcade::Graph
 {
-
     SFMLDisplayModule::SFMLDisplayModule()
     {
         _window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Arcade");
+        _window->setFramerateLimit(60);
+
         _window->clear(sf::Color::Green);
         _textHandler = new TextHandler();
         // this->_spriteHandler = new SpriteHandler();
