@@ -27,7 +27,7 @@ void Snake::SnakeGameManager::run(double deltaTime,
             auto &transformComp = entity->getComponents("Transform");
 
             auto &position = reinterpret_cast<Snake::Transform &>(transformComp).position;
-            if (position.x < 0 || position.x > 1920 || position.y < 0 || position.y > 1080) {
+            if (position.x < 0 || position.x > 100 || position.y < 0 || position.y > 100) {
                 eventManager.addEvent("GAME_OVER");
             }
         } catch (const std::exception &e) {

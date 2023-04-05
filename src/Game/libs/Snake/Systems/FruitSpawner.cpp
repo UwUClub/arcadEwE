@@ -23,6 +23,8 @@ namespace Snake {
     {
         (void)(deltaTime);
         (void)(eventManager);
+        if (eventManager.isEventTriggered("FRUIT_EATEN").first)
+            entityManager.removeEntity("fruit");
         if (entityManager.getEntitiesById("fruit") == nullptr)
             if (SpawnFruit(entityManager) == false)
                 eventManager.addEvent("GAME_OVER");

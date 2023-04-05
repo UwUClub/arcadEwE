@@ -31,7 +31,7 @@ void Snake::ColliderManager::run(double deltaTime,
             if (!boxCollider.isEnabled)
                 continue;
             for (auto &otherEntity : entities) {
-                if (entity == otherEntity)
+                if (entity->getId() == otherEntity->getId())
                     continue;
                 auto &otherColliders = otherEntity->getComponents(Arcade::ECS::CompType::COLLIDER);
                 for (auto &otherCollider : otherColliders) {
@@ -39,16 +39,17 @@ void Snake::ColliderManager::run(double deltaTime,
                     if (!otherBoxCollider.isEnabled)
                         continue;
                     if (boxCollider.IsColliding(otherBoxCollider)) {
-                        if (std::find(boxCollider._collidingEntities.begin(), boxCollider._collidingEntities.end(), otherEntity.get()) == boxCollider._collidingEntities.end()) {
-                            boxCollider._collidingEntities.emplace_back(otherEntity.get());
-                            boxCollider.OnCollisionEnter(*otherEntity);
+                        if (std::find(boxCollider._collidingEntities.begin(), boxCollider._collidingEntities.end(), otherEntity->getId()) == boxCollider._collidingEntities.end()) {
+                            boxCollider._collidingEntities.emplace_back(otherEntity->getId());
+                            boxCollider.OnCollisionEnter(*otherEntity, eventManager);
                         } else {
-                            boxCollider.OnCollisionStay(*otherEntity);
+                            boxCollider.OnCollisionStay(*otherEntity, eventManager);
                         }
                     } else {
-                        if (std::find(boxCollider._collidingEntities.begin(), boxCollider._collidingEntities.end(), otherEntity.get()) != boxCollider._collidingEntities.end()) {
-                            boxCollider._collidingEntities.erase(std::remove(boxCollider._collidingEntities.begin(), boxCollider._collidingEntities.end(), otherEntity.get()), boxCollider._collidingEntities.end());
-                            boxCollider.OnCollisionExit(*otherEntity);
+                        auto it = std::find(boxCollider._collidingEntities.begin(), boxCollider._collidingEntities.end(), otherEntity->getId());
+                        if (it != boxCollider._collidingEntities.end()) {
+                            boxCollider._collidingEntities.erase(it);
+                            boxCollider.OnCollisionExit(*otherEntity, eventManager);
                         }
                     }
                 }

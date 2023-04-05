@@ -33,6 +33,8 @@ set(EXEC_SRC
         Components/Direction.hpp
         Components/Transform.cpp
         Components/Transform.hpp
+        Components/SnakeHeadCollider.cpp
+        Components/SnakeHeadCollider.hpp
         Components/SnakeIsHovered.cpp
         Components/SnakeIsHovered.hpp
         Components/SnakeText.cpp

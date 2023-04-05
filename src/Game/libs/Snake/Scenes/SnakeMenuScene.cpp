@@ -31,7 +31,7 @@ namespace Snake {
         auto &entity = _entityManager->createEntity("playButton");
 
         auto text = std::shared_ptr<Snake::Text>(new Snake::Text("play_button_text",
-            "PLAY", FONT_PATH, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, { BASE_X, 0, 0 }));
+            "PLAY", FONT_PATH, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, { BASE_X, 50, 0 }));
         text->pos.y = OFFSET_Y_TEXT;
         auto hover = std::shared_ptr<Snake::IsHovered>(new Snake::IsHovered("play_button_hover"));
         hover->isHovered = true;
