@@ -20,6 +20,8 @@ namespace Snake
             void run(double deltaTime,
                 Arcade::ECS::IEventManager &eventManager,
                 Arcade::ECS::IEntityManager &currentScene) override;
+        private:
+            void SetNextPosition(Arcade::ECS::IEntity &entity);
     };
 } // namespace Arcade::Core
 

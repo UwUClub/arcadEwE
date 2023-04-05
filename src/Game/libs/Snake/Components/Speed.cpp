@@ -23,4 +23,14 @@ namespace Snake {
     {
         return _speed;
     }
+
+    void Speed::setNextPoint(const Arcade::Vector3f &nextPoint)
+    {
+        _nextPoint = nextPoint;
+    }
+
+    [[nodiscard]] const Arcade::Vector3f &Speed::getNextPoint() const
+    {
+        return _nextPoint;
+    }
 }

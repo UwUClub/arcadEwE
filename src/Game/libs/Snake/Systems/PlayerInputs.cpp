@@ -8,6 +8,9 @@
 #include "PlayerInputs.hpp"
 #include "Events.hpp"
 #include "Direction.hpp"
+#include "Speed.hpp"
+#include "SnakeGameScene.hpp"
+#include "Transform.hpp"
 #include <iostream>
 
 void Snake::PlayerInputs::run(double deltaTime,
@@ -49,4 +52,33 @@ void Snake::PlayerInputs::run(double deltaTime,
             return;
         }
     }
+}
+
+void Snake::PlayerInputs::SetNextPosition(Arcade::ECS::IEntity &entity)
+{
+    auto &directionComp = entity.getComponents("Direction");
+    auto &speedComp = entity.getComponents("Speed");
+    auto &transformComp = entity.getComponents("Transform");
+    auto &transform = reinterpret_cast<Snake::Transform &>(transformComp);
+    auto nextPosition = reinterpret_cast<Snake::Speed &>(speedComp).getNextPoint();
+    auto direction = reinterpret_cast<Snake::Direction &>(directionComp).getDirection();
+    auto currentPos = transform.getPosition();
+    currentPos.x = static_cast<int>(currentPos.x) % CASE_SIZE * CASE_SIZE;
+    currentPos.y = static_cast<int>(currentPos.y) % CASE_SIZE * CASE_SIZE;
+
+    switch (direction) {
+        case Snake::Direction::dir::UP:
+            nextPosition = {currentPos.x, currentPos.y - CASE_SIZE, 0};
+            break;
+        case Snake::Direction::dir::DOWN:
+            nextPosition = {currentPos.x, currentPos.y + CASE_SIZE, 0};
+            break;
+        case Snake::Direction::dir::LEFT:
+            nextPosition = {currentPos.x - CASE_SIZE, currentPos.y, 0};
+            break;
+        case Snake::Direction::dir::RIGHT:
+            nextPosition = {currentPos.x + CASE_SIZE, currentPos.y, 0};
+            break;
+    }
+    reinterpret_cast<Snake::Speed &>(speedComp).setNextPoint(nextPosition);
 }
