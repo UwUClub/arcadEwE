@@ -47,24 +47,6 @@ set(EXEC_SRC
         src/ECS/EntityManager.hpp
         src/ECS/Entity.cpp
         src/ECS/Entity.hpp
-        src/Core/MainMenu/MainMenu.cpp
-        src/Core/MainMenu/MainMenu.hpp
-        src/Core/MainMenu/Scene/SelectionLib.cpp
-        src/Core/MainMenu/Scene/SelectionLib.hpp
-        src/Core/MainMenu/Scene/SaveReader.cpp
-        src/Core/MainMenu/Scene/SaveReader.hpp
-        src/Core/MainMenu/Components/Music.cpp
-        src/Core/MainMenu/Components/Music.hpp
-        src/Core/MainMenu/Components/Sprite.cpp
-        src/Core/MainMenu/Components/Sprite.hpp
-        src/Core/MainMenu/Components/Text.cpp
-        src/Core/MainMenu/Components/Text.hpp
-        src/Core/MainMenu/Components/IsHovered.cpp
-        src/Core/MainMenu/Components/IsHovered.hpp
-        src/Core/MainMenu/Systems/IsHovering.cpp
-        src/Core/MainMenu/Systems/IsHovering.hpp
-        src/Core/MainMenu/Systems/KeyboardHandler.cpp
-        src/Core/MainMenu/Systems/KeyboardHandler.hpp
         src/ECS/Component.cpp
         src/Core/Clock.cpp
         src/Core/Clock.hpp)
