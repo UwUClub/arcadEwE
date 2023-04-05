@@ -15,7 +15,7 @@ namespace Arcade::Graph {
         ~TextHandler();
 
         void run(Arcade::ECS::IEntityManager &entityManager, sf::RenderWindow *window);
-        void handle_font(std::string path, sf::Text *text);
+        void handleFont(std::string path, sf::Text *text);
 
         protected:
         std::map<std::string, sf::Font *> _fonts; // key is the font path, value is the font

@@ -21,7 +21,7 @@ namespace Arcade::Graph
         _window->clear(sf::Color::Black);
         _textHandler = new TextHandler();
         _spriteHandler = new SpriteHandler();
-        // this->_musicHandler = new MusicHandler();
+        _musicHandler = new MusicHandler();
         _eventHandler = new EventHandler();
     }
 
@@ -30,7 +30,7 @@ namespace Arcade::Graph
         _window->close();
         delete _textHandler;
         delete _spriteHandler;
-        // free(this->_musicHandler);
+        delete _musicHandler;
         delete _eventHandler;
     }
 
@@ -43,7 +43,7 @@ namespace Arcade::Graph
         _textHandler->run(entityManager, _window);
         _window->display();
 
-        // this->_musicHandler->run(delta, eventManager, entityManager);
+        _musicHandler->run(entityManager);
         _eventHandler->run(eventManager, _window);
     }
 } // namespace Arcade::Graph

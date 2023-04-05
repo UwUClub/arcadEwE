@@ -32,6 +32,12 @@ void Arcade::Graph::SoundHandler::loadMusic(const std::string& path)
 
 void Arcade::Graph::SoundHandler::playMusic(const std::shared_ptr<IMusic>& music)
 {
+    // check if sound is already playing
+    // check if music is still playing in the background using the sdl api
+    if (Mix_PlayingMusic() == 0)
+        music->play = false;
+    if (music->play)
+        return;
     if (music->path.empty())
         return;
     loadMusic(music->path);

@@ -22,6 +22,7 @@ namespace Arcade::Game
 
         bool init() final;
         void addIcon();
+        void addMusic();
     };
 } // namespace Arcade::Game
 

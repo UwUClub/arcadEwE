@@ -12,7 +12,7 @@
 #include "IDisplayModule.hpp"
 #include "TextHandler.hpp"
 #include "SpriteHandler.hpp"
-// #include "MusicHandler.hpp"
+#include "MusicHandler.hpp"
 #include "EventHandler.hpp"
 
 #define WINDOW_WIDTH  1920
@@ -33,7 +33,7 @@ namespace Arcade::Graph
         sf::RenderWindow *_window;
         TextHandler *_textHandler;
         SpriteHandler *_spriteHandler;
-        // MusicHandler *_musicHandler;
+        MusicHandler *_musicHandler;
         EventHandler *_eventHandler;
     };
 } // namespace Arcade::Graph

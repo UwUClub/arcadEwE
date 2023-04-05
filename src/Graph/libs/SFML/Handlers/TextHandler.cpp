@@ -55,7 +55,7 @@ namespace Arcade::Graph
                 sfText->setFillColor(sf::Color(fColor.r, fColor.g, fColor.b, fColor.a));
                 sfText->setOutlineColor(sf::Color(bColor.r, bColor.g, bColor.b, bColor.a));
 
-                this->handle_font((*text).fontPath, sfText);
+                this->handleFont((*text).fontPath, sfText);
 
                 const int x = ((*text).pos.x / 100) * WINDOW_WIDTH;
                 const int y = ((*text).pos.y / 100) * WINDOW_HEIGHT;
@@ -66,7 +66,7 @@ namespace Arcade::Graph
         }
     }
 
-    void TextHandler::handle_font(std::string path, sf::Text *text)
+    void TextHandler::handleFont(std::string path, sf::Text *text)
     {
         sf::Font *font = new sf::Font();
 

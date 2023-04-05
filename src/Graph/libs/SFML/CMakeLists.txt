@@ -38,6 +38,8 @@ set(EXEC_SRC
     Handlers/SpriteHandler.hpp
     Handlers/EventHandler.cpp
     Handlers/EventHandler.hpp
+    Handlers/MusicHandler.cpp
+    Handlers/MusicHandler.hpp
 )
 
 include_directories(.)
