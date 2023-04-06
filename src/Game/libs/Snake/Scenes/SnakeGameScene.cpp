@@ -9,6 +9,7 @@
 #include "SystemManager.hpp"
 #include "PlayerInputs.hpp"
 #include "MoveSnake.hpp"
+#include "MoveTail.hpp"
 #include "ObjectFactory.hpp"
 #include "ColliderManager.hpp"
 #include "FruitSpawner.hpp"
@@ -37,6 +38,7 @@ namespace Snake {
         _systemManager->addSystem("TransformDisplay", std::make_unique<Snake::TransformDisplay>());
         _systemManager->addSystem("SnakeGameManager", std::make_unique<Snake::SnakeGameManager>());
         _systemManager->addSystem("ColliderManager", std::make_unique<Snake::ColliderManager>());
+        _systemManager->addSystem("MoveTail", std::make_unique<Snake::MoveTail>());
 
         objectFactory.CreateSnakeHead(*_entityManager, {MAX_CASE_X / 2 * CASE_SIZE , MAX_CASE_Y / 2 * CASE_SIZE, 0});
         objectFactory.CreateSnakeBody(*_entityManager, {MAX_CASE_X / 2 * CASE_SIZE, (MAX_CASE_Y / 2 + 1) * CASE_SIZE, 0}, {0, 0, 0});

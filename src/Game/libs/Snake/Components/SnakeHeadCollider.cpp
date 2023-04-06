@@ -24,7 +24,6 @@ namespace Snake {
             std::cout << "Fruit" << std::endl;
             eventManager.addEvent("FRUIT_EATEN");
         }
-        std::cout << "Collision" << std::endl;
         (void)entity;
         (void)eventManager;
     }

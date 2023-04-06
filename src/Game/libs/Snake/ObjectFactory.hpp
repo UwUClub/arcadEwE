@@ -12,6 +12,7 @@
     #define SNAKE_PATH "assets/images/SnakeSpriteSheet.png"
     #define FRUIT_PATH "assets/images/apple.png"
     #define WALL_PATH "assets/images/SnakeSpriteSheet.png"
+    #define SPEED 10.0f
 
 namespace Snake {
     class ObjectFactory {

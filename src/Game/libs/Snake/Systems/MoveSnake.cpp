@@ -12,6 +12,7 @@
 #include "Speed.hpp"
 #include "SnakeGameScene.hpp"
 #include <iostream>
+#include <memory>
 
 void Snake::MoveSnake::run(double deltaTime,
     Arcade::ECS::IEventManager &eventManager,
@@ -23,7 +24,7 @@ void Snake::MoveSnake::run(double deltaTime,
     for (auto &entity : entities) {
         auto idEntity = entity->getId();
 
-        if (idEntity.find("snake") == std::string::npos) {
+        if (idEntity.find("snake_head") == std::string::npos) {
             continue;
         }
 
@@ -45,6 +46,7 @@ void Snake::MoveSnake::run(double deltaTime,
                         if (nextDirection != Snake::Direction::dir::UP) {
                             transform.setPosition(nextPos);
                             directionComp.setDirection(nextDirection);
+                            eventManager.addEvent("SnakeMove");
                         } else {
                             speedComp.setNextPoint({nextPos.x, nextPos.y - CASE_SIZE, 0});
                         }
@@ -56,6 +58,7 @@ void Snake::MoveSnake::run(double deltaTime,
                         if (nextDirection != Snake::Direction::dir::DOWN) {
                             transform.setPosition(nextPos);
                             directionComp.setDirection(nextDirection);
+                            eventManager.addEvent("SnakeMove");
                         } else {
                             speedComp.setNextPoint({nextPos.x, nextPos.y + CASE_SIZE, 0});
                         }
@@ -67,6 +70,7 @@ void Snake::MoveSnake::run(double deltaTime,
                         if (nextDirection != Snake::Direction::dir::LEFT) {
                             transform.setPosition(nextPos);
                             directionComp.setDirection(nextDirection);
+                            eventManager.addEvent("SnakeMove");
                         } else {
                             speedComp.setNextPoint({nextPos.x - CASE_SIZE, nextPos.y, 0});
                         }
@@ -78,6 +82,7 @@ void Snake::MoveSnake::run(double deltaTime,
                         if (nextDirection != Snake::Direction::dir::RIGHT) {
                             transform.setPosition(nextPos);
                             directionComp.setDirection(nextDirection);
+                            eventManager.addEvent("SnakeMove");
                         } else {
                             speedComp.setNextPoint({nextPos.x + CASE_SIZE, nextPos.y, 0});
                         }

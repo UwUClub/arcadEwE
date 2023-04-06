@@ -13,6 +13,7 @@
 #include "SnakeSprite.hpp"
 #include "BoxCollider.hpp"
 #include "SnakeHeadCollider.hpp"
+#include "SnakePath.hpp"
 
 namespace Snake {
     ObjectFactory::ObjectFactory()
@@ -27,27 +28,41 @@ namespace Snake {
     {
         auto &entity = entityManager.createEntity("snake_head");
         auto transform = std::shared_ptr<Snake::Transform>(new Snake::Transform("Transform", position));
-        auto speed = std::shared_ptr<Snake::Speed>(new Snake::Speed("Speed", 10.0f));
+        auto speed = std::shared_ptr<Snake::Speed>(new Snake::Speed("Speed", SPEED));
 
         speed->setNextPoint({position.x / CASE_SIZE * CASE_SIZE, position.y / CASE_SIZE * CASE_SIZE, 0});
         entity.addComponent(transform);
         entity.addComponent(std::shared_ptr<Snake::Direction>(new Snake::Direction("Direction", Direction::dir::UP)));
         entity.addComponent(speed);
         entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite", SNAKE_PATH, {"H", {255, 255, 255, 255}, {0, 0, 0, 255}}, position, {0, 0, CASE_SIZE * 10, CASE_SIZE * 10}, 0)));
-        entity.addComponent(std::shared_ptr<Snake::SnakeHeadCollider>(new Snake::SnakeHeadCollider("SnakeCollider", {CASE_SIZE, CASE_SIZE, 0}, *transform)));
+        entity.addComponent(std::shared_ptr<Snake::SnakeHeadCollider>(new Snake::SnakeHeadCollider("SnakeCollider", {CASE_SIZE / 2, CASE_SIZE / 2, 0}, *transform)));
         return entity;
     }
 
     Arcade::ECS::IEntity &ObjectFactory::CreateSnakeBody(Arcade::ECS::IEntityManager &entityManager, Arcade::Vector3f position, Arcade::Vector3f rotation)
     {
+        auto entities = entityManager.getEntities();
+        int snakeBodyCount = 0;
+
+        for (auto &entity : entities) {
+            std::string id = entity->getId();
+            if (id.find("snake_body") != std::string::npos) {
+                snakeBodyCount++;
+            }
+        }
         auto &entity = entityManager.createEntity("snake_body");
         (void)rotation;
         auto transform = std::shared_ptr<Snake::Transform>(new Snake::Transform("Transform", position));
+        auto boxCollider = std::shared_ptr<Snake::BoxCollider>(new Snake::BoxCollider("BoxCollider", {CASE_SIZE / 2, CASE_SIZE / 2, 0}, *transform));
         entity.addComponent(transform);
+        entity.addComponent(std::shared_ptr<Snake::SnakePath>(new Snake::SnakePath("SnakePath")));
         entity.addComponent(std::shared_ptr<Snake::Direction>(new Snake::Direction("Direction", Direction::dir::UP)));
-        entity.addComponent(std::shared_ptr<Snake::Speed>(new Snake::Speed("Speed", 0.0f)));
+        entity.addComponent(std::shared_ptr<Snake::Speed>(new Snake::Speed("Speed", SPEED)));
         entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite", SNAKE_PATH, {"B", {255, 255, 255, 255}, {0, 0, 0, 255}}, position, {0, 0, CASE_SIZE * 10, CASE_SIZE * 10}, 0)));
-        entity.addComponent(std::shared_ptr<Snake::BoxCollider>(new Snake::BoxCollider("BoxCollider", {CASE_SIZE, CASE_SIZE, 0}, *transform)));
+        entity.addComponent(boxCollider);
+        if (snakeBodyCount == 0) {
+            boxCollider->isEnabled = false;
+        }
         return entity;
     }
 
@@ -68,7 +83,7 @@ namespace Snake {
         auto transform = std::shared_ptr<Snake::Transform>(new Snake::Transform("Transform", position));
         entity.addComponent(transform);
         entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("sprite", WALL_PATH, {"#", {255, 255, 255, 255}, {0, 0, 0, 255}}, position, {0, 0, CASE_SIZE, CASE_SIZE}, 0)));
-        entity.addComponent(std::shared_ptr<Snake::BoxCollider>(new Snake::BoxCollider("BoxCollider", {CASE_SIZE, CASE_SIZE, 0}, *transform)));
+        entity.addComponent(std::shared_ptr<Snake::BoxCollider>(new Snake::BoxCollider("BoxCollider", {CASE_SIZE / 2, CASE_SIZE / 2, 0}, *transform)));
         return entity;
     }
 }

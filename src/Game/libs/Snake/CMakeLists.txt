@@ -37,6 +37,8 @@ set(EXEC_SRC
         Components/SnakeHeadCollider.hpp
         Components/SnakeIsHovered.cpp
         Components/SnakeIsHovered.hpp
+        Components/SnakePath.cpp
+        Components/SnakePath.hpp
         Components/SnakeText.cpp
         Components/SnakeText.hpp
         Components/Speed.cpp
@@ -57,6 +59,8 @@ set(EXEC_SRC
         Systems/MenuKeyboardHandler.hpp
         Systems/MoveSnake.cpp
         Systems/MoveSnake.hpp
+        Systems/MoveTail.cpp
+        Systems/MoveTail.hpp
         Systems/PlayerInputs.cpp
         Systems/PlayerInputs.hpp
         Systems/SnakeGameManager.cpp
