@@ -43,7 +43,7 @@ void Snake::MoveSnake::run(double deltaTime,
                 case Snake::Direction::dir::UP:
                     transform.Translate({0, -speed * static_cast<float>(deltaTime), 0});
                     if (nextPos.y != -1 && transform.getPosition().y < nextPos.y) {
-                        if (nextDirection != Snake::Direction::dir::UP) {
+                        if (nextDirection != Snake::Direction::dir::UP && nextDirection != Snake::Direction::dir::DOWN) {
                             transform.setPosition(nextPos);
                             directionComp.setDirection(nextDirection);
                             eventManager.addEvent("SnakeMove");
@@ -55,7 +55,7 @@ void Snake::MoveSnake::run(double deltaTime,
                 case Snake::Direction::dir::DOWN:
                     transform.Translate({0, speed * static_cast<float>(deltaTime), 0});
                     if (nextPos.y != -1 && transform.getPosition().y > nextPos.y) {
-                        if (nextDirection != Snake::Direction::dir::DOWN) {
+                        if (nextDirection != Snake::Direction::dir::DOWN && nextDirection != Snake::Direction::dir::UP) {
                             transform.setPosition(nextPos);
                             directionComp.setDirection(nextDirection);
                             eventManager.addEvent("SnakeMove");
@@ -67,7 +67,7 @@ void Snake::MoveSnake::run(double deltaTime,
                 case Snake::Direction::dir::LEFT:
                     transform.Translate({-speed * static_cast<float>(deltaTime), 0, 0});
                     if (nextPos.x != -1 && transform.getPosition().x < nextPos.x) {
-                        if (nextDirection != Snake::Direction::dir::LEFT) {
+                        if (nextDirection != Snake::Direction::dir::LEFT && nextDirection != Snake::Direction::dir::RIGHT) {
                             transform.setPosition(nextPos);
                             directionComp.setDirection(nextDirection);
                             eventManager.addEvent("SnakeMove");
@@ -79,7 +79,7 @@ void Snake::MoveSnake::run(double deltaTime,
                 case Snake::Direction::dir::RIGHT:
                     transform.Translate({speed * static_cast<float>(deltaTime), 0, 0});
                     if (nextPos.x != -1 && transform.getPosition().x > nextPos.x) {
-                        if (nextDirection != Snake::Direction::dir::RIGHT) {
+                        if (nextDirection != Snake::Direction::dir::RIGHT && nextDirection != Snake::Direction::dir::LEFT) {
                             transform.setPosition(nextPos);
                             directionComp.setDirection(nextDirection);
                             eventManager.addEvent("SnakeMove");
