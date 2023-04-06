@@ -27,9 +27,12 @@ namespace Snake {
     {
         auto &entity = entityManager.createEntity("snake_head");
         auto transform = std::shared_ptr<Snake::Transform>(new Snake::Transform("Transform", position));
+        auto speed = std::shared_ptr<Snake::Speed>(new Snake::Speed("Speed", 10.0f));
+
+        speed->setNextPoint({position.x / CASE_SIZE * CASE_SIZE, position.y / CASE_SIZE * CASE_SIZE, 0});
         entity.addComponent(transform);
         entity.addComponent(std::shared_ptr<Snake::Direction>(new Snake::Direction("Direction", Direction::dir::UP)));
-        entity.addComponent(std::shared_ptr<Snake::Speed>(new Snake::Speed("Speed", 10.0f)));
+        entity.addComponent(speed);
         entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite", SNAKE_PATH, {"H", {255, 255, 255, 255}, {0, 0, 0, 255}}, position, {0, 0, CASE_SIZE * 10, CASE_SIZE * 10}, 0)));
         entity.addComponent(std::shared_ptr<Snake::SnakeHeadCollider>(new Snake::SnakeHeadCollider("SnakeCollider", {CASE_SIZE, CASE_SIZE, 0}, *transform)));
         return entity;

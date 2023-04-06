@@ -38,15 +38,16 @@ void Snake::PlayerInputs::run(double deltaTime,
         try {
             auto &directionComp = entity->getComponents("Direction");
 
-            if (eventD.first)
-                direction = Snake::Direction::dir::DOWN;
             if (eventU.first)
                 direction = Snake::Direction::dir::UP;
+            if (eventD.first)
+                direction = Snake::Direction::dir::DOWN;
             if (eventL.first)
                 direction = Snake::Direction::dir::LEFT;
             if (eventR.first)
                 direction = Snake::Direction::dir::RIGHT;
-            reinterpret_cast<Snake::Direction &>(directionComp).setDirection(direction);
+            reinterpret_cast<Snake::Direction &>(directionComp).setNextDirection(direction);
+            // SetNextPosition(*entity);
         } catch(const std::exception& e) {
             std::cerr << "playerInputs direction component not found" << std::endl;
             return;
@@ -63,8 +64,8 @@ void Snake::PlayerInputs::SetNextPosition(Arcade::ECS::IEntity &entity)
     auto nextPosition = reinterpret_cast<Snake::Speed &>(speedComp).getNextPoint();
     auto direction = reinterpret_cast<Snake::Direction &>(directionComp).getDirection();
     auto currentPos = transform.getPosition();
-    currentPos.x = static_cast<int>(currentPos.x) % CASE_SIZE * CASE_SIZE;
-    currentPos.y = static_cast<int>(currentPos.y) % CASE_SIZE * CASE_SIZE;
+    currentPos.x = static_cast<int>(currentPos.x) / CASE_SIZE * CASE_SIZE;
+    currentPos.y = static_cast<int>(currentPos.y) / CASE_SIZE * CASE_SIZE;
 
     switch (direction) {
         case Snake::Direction::dir::UP:

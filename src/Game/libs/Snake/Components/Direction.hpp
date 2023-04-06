@@ -26,9 +26,12 @@ namespace Snake {
 
             void setDirection(const enum dir direction);
             [[nodiscard]] enum dir getDirection() const;
+            void setNextDirection(const enum dir direction);
+            [[nodiscard]] enum dir getNextDirection() const;
 
         private:
             dir _direction;
+            dir _nextDirection;
     };
 } // namespace Snake
 

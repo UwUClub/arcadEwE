@@ -10,14 +10,15 @@
 #include "Direction.hpp"
 #include "Transform.hpp"
 #include "Speed.hpp"
+#include "SnakeGameScene.hpp"
 #include <iostream>
 
 void Snake::MoveSnake::run(double deltaTime,
     Arcade::ECS::IEventManager &eventManager,
-    Arcade::ECS::IEntityManager &currentScene)
+    Arcade::ECS::IEntityManager &entityManager)
 {
     (void)(eventManager);
-    auto &entities = currentScene.getEntities();
+    auto &entities = entityManager.getEntities();
 
     for (auto &entity : entities) {
         auto idEntity = entity->getId();
@@ -28,40 +29,58 @@ void Snake::MoveSnake::run(double deltaTime,
 
         try {
             auto &transformComp = entity->getComponents("Transform");
-            auto &directionComp = entity->getComponents("Direction");
-            auto &speedComp = entity->getComponents("Speed");
+            auto &directionComp = reinterpret_cast<Snake::Direction &>(entity->getComponents("Direction"));
+            auto &speedComp = reinterpret_cast<Snake::Speed &>(entity->getComponents("Speed"));
 
             auto &transform = reinterpret_cast<Snake::Transform &>(transformComp);
-            auto speed = reinterpret_cast<Snake::Speed &>(speedComp).getSpeed();
-            auto nextPos = reinterpret_cast<Snake::Speed &>(speedComp).getNextPoint();
-            auto direction = reinterpret_cast<Snake::Direction &>(directionComp).getDirection();
+            auto speed = speedComp.getSpeed();
+            auto nextPos = speedComp.getNextPoint();
+            auto direction = directionComp.getDirection();
+            auto nextDirection = directionComp.getNextDirection();
+
             switch (direction) {
                 case Snake::Direction::dir::UP:
                     transform.Translate({0, -speed * static_cast<float>(deltaTime), 0});
                     if (nextPos.y != -1 && transform.getPosition().y < nextPos.y) {
-                        transform.setPosition(nextPos);
-                        reinterpret_cast<Snake::Speed &>(speedComp).setNextPoint({-1, -1, -1});
+                        if (nextDirection != Snake::Direction::dir::UP) {
+                            transform.setPosition(nextPos);
+                            directionComp.setDirection(nextDirection);
+                        } else {
+                            speedComp.setNextPoint({nextPos.x, nextPos.y - CASE_SIZE, 0});
+                        }
                     }
                     break;
                 case Snake::Direction::dir::DOWN:
                     transform.Translate({0, speed * static_cast<float>(deltaTime), 0});
                     if (nextPos.y != -1 && transform.getPosition().y > nextPos.y) {
-                        transform.setPosition(nextPos);
-                        reinterpret_cast<Snake::Speed &>(speedComp).setNextPoint({-1, -1, -1});
+                        if (nextDirection != Snake::Direction::dir::DOWN) {
+                            transform.setPosition(nextPos);
+                            directionComp.setDirection(nextDirection);
+                        } else {
+                            speedComp.setNextPoint({nextPos.x, nextPos.y + CASE_SIZE, 0});
+                        }
                     }
                     break;
                 case Snake::Direction::dir::LEFT:
                     transform.Translate({-speed * static_cast<float>(deltaTime), 0, 0});
                     if (nextPos.x != -1 && transform.getPosition().x < nextPos.x) {
-                        transform.setPosition(nextPos);
-                        reinterpret_cast<Snake::Speed &>(speedComp).setNextPoint({-1, -1, -1});
+                        if (nextDirection != Snake::Direction::dir::LEFT) {
+                            transform.setPosition(nextPos);
+                            directionComp.setDirection(nextDirection);
+                        } else {
+                            speedComp.setNextPoint({nextPos.x - CASE_SIZE, nextPos.y, 0});
+                        }
                     }
                     break;
                 case Snake::Direction::dir::RIGHT:
                     transform.Translate({speed * static_cast<float>(deltaTime), 0, 0});
                     if (nextPos.x != -1 && transform.getPosition().x > nextPos.x) {
-                        transform.setPosition(nextPos);
-                        reinterpret_cast<Snake::Speed &>(speedComp).setNextPoint({-1, -1, -1});
+                        if (nextDirection != Snake::Direction::dir::RIGHT) {
+                            transform.setPosition(nextPos);
+                            directionComp.setDirection(nextDirection);
+                        } else {
+                            speedComp.setNextPoint({nextPos.x + CASE_SIZE, nextPos.y, 0});
+                        }
                     }
                     break;
             }

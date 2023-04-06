@@ -10,7 +10,7 @@
 namespace Snake {
     Direction::Direction(const std::string &id, const enum Direction::dir direction) :
         Arcade::ECS::Component(Arcade::ECS::CompType::DIRECTION, id),
-        _direction(direction)
+        _direction(direction), _nextDirection(direction)
     {
     }
 
@@ -24,4 +24,13 @@ namespace Snake {
         return _direction;
     }
 
+    void Direction::setNextDirection(const enum Direction::dir direction)
+    {
+        _nextDirection = direction;
+    }
+
+    Direction::dir Direction::getNextDirection() const
+    {
+        return _nextDirection;
+    }
 }

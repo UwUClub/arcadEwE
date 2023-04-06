@@ -7,7 +7,6 @@
 
 #include "BoxCollider.hpp"
 #include <algorithm>
-#include <iostream>
 
 namespace Snake {
     BoxCollider::BoxCollider(const std::string &id, Arcade::Vector3f box, Transform &transform) :

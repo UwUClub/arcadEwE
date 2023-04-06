@@ -8,6 +8,7 @@
 #include "SnakeGameManager.hpp"
 #include "Events.hpp"
 #include "Transform.hpp"
+#include "SnakeGameScene.hpp"
 #include <iostream>
 
 void Snake::SnakeGameManager::run(double deltaTime,
@@ -27,7 +28,7 @@ void Snake::SnakeGameManager::run(double deltaTime,
             auto &transformComp = entity->getComponents("Transform");
 
             auto &position = reinterpret_cast<Snake::Transform &>(transformComp).position;
-            if (position.x < 0 || position.x > 100 || position.y < 0 || position.y > 100) {
+            if (position.x < 0 || position.x > 100 - 1 || position.y < 0 || position.y > 100 - 1) {
                 eventManager.addEvent("GAME_OVER");
             }
         } catch (const std::exception &e) {
