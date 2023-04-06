@@ -21,10 +21,10 @@ bool Arcade::Game::SelectionLib::init()
     _systemManager->addSystem("isHovering", std::make_unique<Arcade::Game::IsHovering>());
     _systemManager->addSystem("keyboardHandler", std::make_unique<Arcade::Game::KeyboardHandler>());
     for (auto &lib : libs) {
-        if (lib.second == "./lib/libarcade_mainMenu_game.so")
+        if (lib.second == "./lib/arcade_mainMenu_game.so")
             continue;
         std::string name = lib.second;
-        name.erase(0, 16);
+        name.erase(0, 13);
         name.erase(name.size() - 3, name.size());
 
         auto &entity = _entityManager->createEntity(name);

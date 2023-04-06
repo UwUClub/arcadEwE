@@ -25,22 +25,22 @@ set(INCLUDES
         ../../../../sharedArchitecture/include/Arcade/Graph/IText.hpp
         ../../../../sharedArchitecture/include/Arcade/Graph/IDisplayModule.hpp
         ../../../../sharedArchitecture/include/Arcade/Game/IScene.hpp
-)
+        )
 
 # Add main.cpp file of project root directory as source file
 set(EXEC_SRC
-    Api.cpp
-    SFMLDisplayModule.cpp
-    SFMLDisplayModule.hpp
-    Handlers/TextHandler.cpp
-    Handlers/TextHandler.hpp
-    Handlers/SpriteHandler.cpp
-    Handlers/SpriteHandler.hpp
-    Handlers/EventHandler.cpp
-    Handlers/EventHandler.hpp
-    Handlers/MusicHandler.cpp
-    Handlers/MusicHandler.hpp
-)
+        Api.cpp
+        SFMLDisplayModule.cpp
+        SFMLDisplayModule.hpp
+        Handlers/TextHandler.cpp
+        Handlers/TextHandler.hpp
+        Handlers/SpriteHandler.cpp
+        Handlers/SpriteHandler.hpp
+        Handlers/EventHandler.cpp
+        Handlers/EventHandler.hpp
+        Handlers/MusicHandler.cpp
+        Handlers/MusicHandler.hpp
+        )
 
 include_directories(.)
 include_directories(Handlers)
@@ -60,4 +60,4 @@ include_directories(../../../../sharedArchitecture/include/Arcade/Graph)
 add_library(${PROJECT_NAME} SHARED ${EXEC_SRC} ${INCLUDES})
 target_link_libraries(${PROJECT_NAME} sfml-system sfml-window sfml-graphics sfml-audio)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../../../lib)
+set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../../../lib PREFIX "")

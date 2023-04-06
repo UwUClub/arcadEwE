@@ -77,7 +77,7 @@ void Arcade::Core::Core::handleCoreEvents()
         for (auto &comp : *eventGraph.second) {
             if (comp.has_value()) {
                 std::string libName = reinterpret_cast<Arcade::Game::Text &>(*comp.value()).text;
-                libName = "./lib/libarcade_" + libName + ".so";
+                libName = "./lib/arcade_" + libName + ".so";
                 loadDisplayModule(libName);
                 return;
             }
