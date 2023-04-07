@@ -59,12 +59,11 @@ namespace Snake
                 snakeBodyCount++;
             }
         }
-        auto &entity = entityManager.createEntity("snake_body");
-        (void) rotation;
-        auto transform
-            = std::shared_ptr<Snake::Transform>(new Snake::Transform("Transform", position));
-        auto boxCollider = std::shared_ptr<Snake::BoxCollider>(
-            new Snake::BoxCollider("BoxCollider", { CASE_SIZE / 2, CASE_SIZE / 2, 0 }, *transform));
+        std::string id = "snake_body_" + std::to_string(snakeBodyCount);
+        auto &entity = entityManager.createEntity(id);
+        (void)rotation;
+        auto transform = std::shared_ptr<Snake::Transform>(new Snake::Transform("Transform", position));
+        auto boxCollider = std::shared_ptr<Snake::BoxCollider>(new Snake::BoxCollider("BoxCollider", {CASE_SIZE / 2, CASE_SIZE / 2, 0}, *transform));
         entity.addComponent(transform);
         entity.addComponent(std::shared_ptr<Snake::SnakePath>(new Snake::SnakePath("SnakePath")));
         entity.addComponent(std::shared_ptr<Snake::Direction>(

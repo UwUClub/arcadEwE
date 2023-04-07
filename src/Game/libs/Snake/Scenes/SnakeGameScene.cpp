@@ -17,6 +17,7 @@
 #include "ArcadeStruct.hpp"
 #include "TransformDisplay.hpp"
 #include "SnakeGameManager.hpp"
+#include "SnakeTailManager.hpp"
 
 namespace Snake {
     SnakeGameScene::SnakeGameScene() : SnakeScene()
@@ -39,6 +40,7 @@ namespace Snake {
         _systemManager->addSystem("SnakeGameManager", std::make_unique<Snake::SnakeGameManager>());
         _systemManager->addSystem("ColliderManager", std::make_unique<Snake::ColliderManager>());
         _systemManager->addSystem("MoveTail", std::make_unique<Snake::MoveTail>());
+        _systemManager->addSystem("SnakeTailManager", std::make_unique<Snake::SnakeTailManager>());
 
         objectFactory.CreateSnakeHead(*_entityManager, {MAX_CASE_X / 2 * CASE_SIZE , MAX_CASE_Y / 2 * CASE_SIZE, 0});
         objectFactory.CreateSnakeBody(*_entityManager, {MAX_CASE_X / 2 * CASE_SIZE, (MAX_CASE_Y / 2 + 1) * CASE_SIZE, 0}, {0, 0, 0});
