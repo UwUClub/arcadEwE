@@ -11,7 +11,8 @@
 #include "SnakeGameOverScene.hpp"
 #include "EventManager.hpp"
 
-namespace Snake {
+namespace Snake
+{
     SnakeGameModule::SnakeGameModule()
     {
         _currentScene = 0;
@@ -24,6 +25,8 @@ namespace Snake {
     void SnakeGameModule::update(double deltaTime, Arcade::ECS::IEventManager &eventManager)
     {
         _scenes[_currentScene]->update(deltaTime, eventManager);
+        if (eventManager.isEventTriggered("FRUIT_EATEN").first)
+            _score += 10;
         handleEventSceneChange(eventManager);
     }
 
@@ -38,6 +41,10 @@ namespace Snake {
             throw SnakeException("Scene does not exist");
         _scenes[_currentScene]->close();
         _currentScene = sceneId;
+        if (_currentScene == 2) {
+            auto *gameOverScene = dynamic_cast<SnakeGameOverScene *>(_scenes[_currentScene].get());
+            gameOverScene->setScore(_score);
+        }
         _scenes[_currentScene]->init();
     }
 
@@ -54,7 +61,7 @@ namespace Snake {
             changeScene(2);
         if (rPressed.first && _currentScene != 2)
             changeScene(0);
-        if (tPressed.first)
+        if (tPressed.first && _currentScene != 2)
             eventManager.addEvent("GAME_END");
     }
 

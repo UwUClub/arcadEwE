@@ -9,10 +9,11 @@
 #include "EntityManager.hpp"
 #include "SystemManager.hpp"
 
-namespace Snake {
+namespace Snake
+{
     SnakeScene::SnakeScene()
-    : _entityManager(std::make_unique<Arcade::ECS::EntityManager>())
-    , _systemManager(std::make_unique<Arcade::ECS::SystemManager>())
+        : _entityManager(std::make_unique<Arcade::ECS::EntityManager>())
+        , _systemManager(std::make_unique<Arcade::ECS::SystemManager>())
     {
     }
 
@@ -31,4 +32,4 @@ namespace Snake {
         _entityManager.reset(nullptr);
         _systemManager.reset(nullptr);
     }
-}
+} // namespace Snake

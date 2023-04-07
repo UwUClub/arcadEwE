@@ -6,12 +6,17 @@
 #include "BufferWriterManager.hpp"
 #include "IText.hpp"
 
+Snake::BufferWriterManager::BufferWriterManager(size_t score)
+    : _score(score)
+{
+}
+
 void Snake::BufferWriterManager::run(double deltaTime, Arcade::ECS::IEventManager& eventManager,
     Arcade::ECS::IEntityManager& entityManager)
 {
     auto entities = entityManager.getEntitiesByComponentType(Arcade::ECS::CompType::BUFFERTEXT);
 
-    (void)deltaTime;
+    (void) deltaTime;
     for (auto& entity : *entities) {
         auto& bufferText = entity->getComponents(Arcade::ECS::CompType::TEXT);
 
@@ -25,7 +30,9 @@ void Snake::BufferWriterManager::run(double deltaTime, Arcade::ECS::IEventManage
                     continue;
                 }
                 if (eventKey == "ENTER") {
-                    saveBuffer(buffer->text);
+                    saveBuffer(buffer->text + " " + std::to_string(_score));
+                    eventManager.addEvent(END_GAME);
+                    return;
                 }
                 buffer->text += eventKey;
             }

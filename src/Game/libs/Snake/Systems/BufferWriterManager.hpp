@@ -16,13 +16,14 @@ namespace Snake
     class BufferWriterManager : public Arcade::ECS::ISystem
     {
         public:
-        BufferWriterManager() = default;
+        BufferWriterManager(size_t score);
         ~BufferWriterManager() override = default;
 
         void run(double deltaTime, Arcade::ECS::IEventManager &eventManager,
             Arcade::ECS::IEntityManager &entityManager) override;
 
         private:
+        size_t _score;
         static const inline std::unordered_map<std::string, std::string> _keyMap = {
             { KEY_0_PRESSED, "0" },
             { KEY_1_PRESSED, "1" },
@@ -67,5 +68,5 @@ namespace Snake
         std::vector<std::string> getEventsTriggered(Arcade::ECS::IEventManager &eventManager);
         void saveBuffer(const std::string &buffer);
     };
-} // namespace snake
+} // namespace Snake
 #endif // ARCADE_BUFFERWRITERMANAGER_HPP
