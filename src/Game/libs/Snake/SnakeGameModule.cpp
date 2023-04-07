@@ -8,6 +8,7 @@
 #include "SnakeGameModule.hpp"
 #include "SnakeGameScene.hpp"
 #include "SnakeMenuScene.hpp"
+#include "SnakeGameOverScene.hpp"
 #include "EventManager.hpp"
 
 namespace Snake {
@@ -16,6 +17,7 @@ namespace Snake {
         _currentScene = 0;
         _scenes.emplace_back(std::make_unique<SnakeMenuScene>());
         _scenes.emplace_back(std::make_unique<SnakeGameScene>());
+        _scenes.emplace_back(std::make_unique<SnakeGameOverScene>());
         _scenes[_currentScene]->init();
     }
 
@@ -49,8 +51,8 @@ namespace Snake {
         if (play.first && _currentScene == 0)
             changeScene(1);
         if (gameOver.first && _currentScene == 1)
-            changeScene(0);
-        if (rPressed.first)
+            changeScene(2);
+        if (rPressed.first && _currentScene != 2)
             changeScene(0);
         if (tPressed.first)
             eventManager.addEvent("GAME_END");

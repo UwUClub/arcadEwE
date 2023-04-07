@@ -6,7 +6,7 @@
 #include "BufferWriterManager.hpp"
 #include "IText.hpp"
 
-void snake::BufferWriterManager::run(double deltaTime, Arcade::ECS::IEventManager& eventManager,
+void Snake::BufferWriterManager::run(double deltaTime, Arcade::ECS::IEventManager& eventManager,
     Arcade::ECS::IEntityManager& entityManager)
 {
     auto entities = entityManager.getEntitiesByComponentType(Arcade::ECS::CompType::BUFFERTEXT);
@@ -33,7 +33,7 @@ void snake::BufferWriterManager::run(double deltaTime, Arcade::ECS::IEventManage
     }
 }
 
-std::vector<std::string> snake::BufferWriterManager::getEventsTriggered(
+std::vector<std::string> Snake::BufferWriterManager::getEventsTriggered(
     Arcade::ECS::IEventManager& eventManager)
 {
     std::vector<std::string> events;
@@ -46,10 +46,9 @@ std::vector<std::string> snake::BufferWriterManager::getEventsTriggered(
     return events;
 }
 
-void snake::BufferWriterManager::saveBuffer(const std::string& buffer)
+void Snake::BufferWriterManager::saveBuffer(const std::string& buffer)
 {
     std::ofstream ofs("save.txt", std::ofstream::out | std::ofstream::app);
-    
     ofs << buffer << std::endl;
     ofs.close();
 }

@@ -45,6 +45,8 @@ set(EXEC_SRC
         Components/Speed.hpp
         Components/SnakeSprite.cpp
         Components/SnakeSprite.hpp
+        Scenes/SnakeGameOverScene.cpp
+        Scenes/SnakeGameOverScene.hpp
         Scenes/SnakeGameScene.cpp
         Scenes/SnakeGameScene.hpp
         Scenes/SnakeMenuScene.cpp
@@ -87,7 +89,10 @@ set(EXEC_SRC
         ../../../ECS/Entity.cpp
         ../../../ECS/Component.hpp
         ../../../ECS/Component.cpp
-        Components/BufferText.cpp Components/BufferText.hpp Systems/BufferWriterManager.cpp Systems/BufferWriterManager.hpp)
+        Components/BufferText.cpp
+        Components/BufferText.hpp
+        Systems/BufferWriterManager.cpp
+        Systems/BufferWriterManager.hpp)
 
 include_directories(.)
 include_directories(Components)

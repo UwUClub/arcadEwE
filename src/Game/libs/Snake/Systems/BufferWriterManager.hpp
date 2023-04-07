@@ -11,7 +11,7 @@
 #include "Component.hpp"
 #include "Events.hpp"
 
-namespace snake
+namespace Snake
 {
     class BufferWriterManager : public Arcade::ECS::ISystem
     {
