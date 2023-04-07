@@ -6,7 +6,6 @@
 */
 
 #include "SnakeHeadCollider.hpp"
-#include <iostream>
 
 namespace Snake {
     SnakeHeadCollider::SnakeHeadCollider(const std::string &id, Arcade::Vector3f box, Transform &transform) :
@@ -16,12 +15,10 @@ namespace Snake {
 
     void SnakeHeadCollider::OnCollisionEnter(const Arcade::ECS::IEntity &entity, Arcade::ECS::IEventManager &eventManager)
     {
-        if (entity.getId() == "snake_body") {
-            std::cout << "Game Over" << std::endl;
+        if (entity.getId().find("snake_body_") != std::string::npos) {
             eventManager.addEvent("GAME_OVER");
         }
         if (entity.getId() == "fruit") {
-            std::cout << "Fruit" << std::endl;
             eventManager.addEvent("FRUIT_EATEN");
         }
         (void)entity;

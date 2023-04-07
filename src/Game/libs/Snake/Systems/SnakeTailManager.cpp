@@ -35,13 +35,11 @@ namespace Snake {
                 }
             }
             try {
-                std::cout << "id: snake_body_" + std::to_string(snakeBodyCount - 1) << std::endl;
                 auto lastTail = entityManager.getEntitiesById("snake_body_" + std::to_string(snakeBodyCount - 1));
                 if (lastTail == nullptr)
                     return;
                 auto lastTailTransform = reinterpret_cast<Snake::Transform &>(lastTail->getComponents("Transform"));
                 auto lastTailPos = lastTailTransform.getPosition();
-                std::cout << "Snake body pos: " << lastTailPos.x << " " << lastTailPos.y << std::endl;
                 auto lastTailDirection = reinterpret_cast<Snake::Direction &>(lastTail->getComponents("Direction"));
                 auto direction = lastTailDirection.getDirection();
                 Arcade::Vector3f pos = lastTailPos;
@@ -59,10 +57,8 @@ namespace Snake {
                         pos.x -= CASE_SIZE;
                         break;
                 }
-                std::cout << "Snake body pos: " << pos.x << " " << pos.y << std::endl;
                 auto objectFactory = Snake::ObjectFactory();
                 objectFactory.CreateSnakeBody(entityManager, pos, {0, 0, 0});
-                std::cout << "Snake body added" << std::endl;
             } catch (std::exception &e) {
                 std::cerr << "Error: last tail not found" << std::endl;
             }

@@ -14,7 +14,6 @@
 #include "BoxCollider.hpp"
 #include "SnakeHeadCollider.hpp"
 #include "SnakePath.hpp"
-#include <iostream>
 
 namespace Snake
 {
@@ -72,7 +71,6 @@ namespace Snake
             path = std::shared_ptr<Snake::SnakePath>(new Snake::SnakePath("SnakePath"));
             direction = std::shared_ptr<Snake::Direction>(new Snake::Direction("Direction", Direction::dir::UP));
         } else {
-            std::cout << "lastTail" << std::endl;
             auto lastTailPath = reinterpret_cast<Snake::SnakePath &>(lastTail->getComponents("SnakePath"));
             path = std::shared_ptr<Snake::SnakePath>(new Snake::SnakePath(lastTailPath));
             auto lastTailDirection = reinterpret_cast<Snake::Direction &>(lastTail->getComponents("Direction"));
