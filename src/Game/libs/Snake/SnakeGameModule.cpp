@@ -43,10 +43,16 @@ namespace Snake {
     {
         auto play = eventManager.isEventTriggered("PLAY");
         auto gameOver = eventManager.isEventTriggered("GAME_OVER");
+        auto rPressed = eventManager.isEventTriggered("KEY_R_PRESSED");
+        auto tPressed = eventManager.isEventTriggered("KEY_T_PRESSED");
 
         if (play.first && _currentScene == 0)
             changeScene(1);
         if (gameOver.first && _currentScene == 1)
+            changeScene(0);
+        if (rPressed.first)
+            changeScene(1);
+        if (tPressed.first && _currentScene != 0)
             changeScene(0);
     }
 
