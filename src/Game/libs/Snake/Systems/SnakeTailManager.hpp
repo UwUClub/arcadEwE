@@ -19,6 +19,8 @@ namespace Snake {
             void run(double deltaTime,
                 Arcade::ECS::IEventManager &eventManager,
                 Arcade::ECS::IEntityManager &entityManager) override;
+        private:
+            bool isTailValid(Arcade::ECS::IEntityManager &entityManager, std::string &id);
     };
 }
 

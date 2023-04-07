@@ -12,7 +12,7 @@
 #define SNAKE_PATH   "assets/images/SnakeSpriteSheet.png"
 #define FRUIT_PATH   "assets/images/apple.png"
 #define WALL_PATH    "assets/images/SnakeSpriteSheet.png"
-#define SPEED_ENTITY 10.0f
+#define SPEED_ENTITY 30.0f
 
 namespace Snake
 {

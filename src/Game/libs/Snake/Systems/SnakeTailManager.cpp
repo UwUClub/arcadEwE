@@ -12,6 +12,7 @@
 #include "SnakeGameScene.hpp"
 #include "Direction.hpp"
 #include "ArcadeStruct.hpp"
+#include "BoxCollider.hpp"
 #include <regex>
 #include <string>
 #include <iostream>
@@ -59,9 +60,41 @@ namespace Snake {
                 }
                 auto objectFactory = Snake::ObjectFactory();
                 objectFactory.CreateSnakeBody(entityManager, pos, {0, 0, 0});
+                std::string id = "snake_body_" + std::to_string(snakeBodyCount);
+                if (!isTailValid(entityManager, id)) {
+                    eventManager.addEvent("GAME_OVER");
+                }
             } catch (std::exception &e) {
                 std::cerr << "Error: last tail not found" << std::endl;
             }
         }
+    }
+
+    bool SnakeTailManager::isTailValid(Arcade::ECS::IEntityManager &entityManager, std::string &id) {
+        auto entities = *entityManager.getEntitiesByComponentType(Arcade::ECS::CompType::COLLIDER);
+        auto tail = entityManager.getEntitiesById(id);
+        if (tail == nullptr)
+            return false;
+        auto tailCollider = reinterpret_cast<BoxCollider &>(tail->getComponents("BoxCollider"));
+
+        for (auto entity : entities) {
+            if (entity == tail)
+                continue;
+            auto otherColliders = entity->getComponents(Arcade::ECS::CompType::COLLIDER);
+            if (otherColliders.size() == 0 || !otherColliders[0])
+                continue;
+            auto &otherCollider = dynamic_cast<BoxCollider &>(*otherColliders[0]);
+            if (!otherCollider.isEnabled)
+                continue;
+            if (tailCollider.IsColliding(otherCollider)) {
+                return false;
+            }
+        }
+        auto transformComp = reinterpret_cast<Transform &>(tail->getComponents("Transform"));
+        auto pos = transformComp.getPosition();
+        if (pos.x < 0 || pos.x > 100 - 1|| pos.y < 0 || pos.y > 100 - 1) {
+            return false;
+        }
+        return true;
     }
 }

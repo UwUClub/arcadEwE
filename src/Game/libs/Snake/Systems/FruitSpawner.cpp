@@ -26,8 +26,9 @@ namespace Snake {
         if (eventManager.isEventTriggered("FRUIT_EATEN").first)
             entityManager.removeEntity("fruit");
         if (entityManager.getEntitiesById("fruit") == nullptr)
-            if (SpawnFruit(entityManager) == false)
+            if (SpawnFruit(entityManager) == false) {
                 eventManager.addEvent("GAME_OVER");
+            }
     }
 
     bool FruitSpawner::SpawnFruit(Arcade::ECS::IEntityManager &entityManager)
@@ -64,26 +65,21 @@ namespace Snake {
     bool FruitSpawner::isFruitColliding(Arcade::ECS::IEntityManager &entityManager) {
         auto entities = *entityManager.getEntitiesByComponentType(Arcade::ECS::CompType::COLLIDER);
         auto fruit = entityManager.getEntitiesById("fruit");
+        if (fruit == nullptr)
+            return false;
+        auto fruitCollider = reinterpret_cast<BoxCollider &>(fruit->getComponents("BoxCollider"));
 
         for (auto entity : entities) {
-            auto colliders = entity->getComponents(Arcade::ECS::CompType::COLLIDER);
-            if (colliders.size() == 0 || !colliders[0])
+            if (entity == fruit)
                 continue;
-            auto &collider = dynamic_cast<BoxCollider &>(*colliders[0]);
-            if (!collider.isEnabled)
+            auto otherColliders = entity->getComponents(Arcade::ECS::CompType::COLLIDER);
+            if (otherColliders.size() == 0 || !otherColliders[0])
                 continue;
-            for (auto &other : entities) {
-                if (entity == other)
-                    continue;
-                auto otherColliders = other->getComponents(Arcade::ECS::CompType::COLLIDER);
-                if (otherColliders.size() == 0 || !otherColliders[0])
-                    continue;
-                auto &otherCollider = dynamic_cast<BoxCollider &>(*otherColliders[0]);
-                if (!otherCollider.isEnabled)
-                    continue;
-                if (collider.IsColliding(otherCollider)) {
-                    return true;
-                }
+            auto &otherCollider = dynamic_cast<BoxCollider &>(*otherColliders[0]);
+            if (!otherCollider.isEnabled)
+                continue;
+            if (fruitCollider.IsColliding(otherCollider)) {
+                return false;
             }
         }
         return false;
