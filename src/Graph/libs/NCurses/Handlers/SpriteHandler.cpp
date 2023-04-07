@@ -8,6 +8,7 @@
 #include "IComponent.hpp"
 #include "ISprite.hpp"
 #include "SpriteHandler.hpp"
+#include "Component.hpp"
 
 namespace Arcade::Graph
 {

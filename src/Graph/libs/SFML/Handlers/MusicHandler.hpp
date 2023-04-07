@@ -9,6 +9,7 @@
 #include <map>
 #include <memory>
 #include "IEntityManager.hpp"
+#include "Component.hpp"
 
 namespace Arcade::Graph
 {

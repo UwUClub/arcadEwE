@@ -9,6 +9,18 @@
 
 namespace Arcade::ECS
 {
+    enum class CompType : int {
+        TEXT = 0,
+        SPRITE = 1,
+        MUSIC = 2,
+        TEXT_HOVER = 3,
+        SPEED = 4,
+        BUFFERTEXT = 5,
+        DIRECTION = 6,
+        COLLIDER = 7,
+        TRANSFORM = 8,
+    };
+
     /**
      * @brief Base class for all components
      */

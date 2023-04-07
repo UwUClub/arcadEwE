@@ -3,7 +3,7 @@ set(PROJECT_NAME arcade_snake_game)
 project(${PROJECT_NAME})               # Create project "arcade"
 set(CMAKE_CXX_STANDARD 20)            # Enable c++14 standard
 # add compilation flags to access dynamic library
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fno-gnu-unique -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fno-gnu-unique -fPIC")
 
 set(INCLUDES
         ../../../../sharedArchitecture/include/Api.hpp
@@ -22,7 +22,7 @@ set(INCLUDES
         ../../../../sharedArchitecture/include/Arcade/Graph/IText.hpp
         ../../../../sharedArchitecture/include/Arcade/Graph/IDisplayModule.hpp
         ../../../../sharedArchitecture/include/Arcade/Game/IScene.hpp
-)
+        )
 
 # Add main.cpp file of project root directory as source file
 set(EXEC_SRC
@@ -85,7 +85,7 @@ set(EXEC_SRC
         ../../../ECS/Entity.cpp
         ../../../ECS/Component.hpp
         ../../../ECS/Component.cpp
-)
+        Components/BufferText.cpp Components/BufferText.hpp Systems/BufferWriterManager.cpp Systems/BufferWriterManager.hpp)
 
 include_directories(.)
 include_directories(Components)

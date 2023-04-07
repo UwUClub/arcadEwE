@@ -6,8 +6,9 @@
 */
 
 #ifndef SNAKE_TEXT_HPP
-    #define SNAKE_TEXT_HPP
-    #include "IText.hpp"
+#define SNAKE_TEXT_HPP
+#include "IText.hpp"
+#include "Component.hpp"
 
 namespace Snake
 {

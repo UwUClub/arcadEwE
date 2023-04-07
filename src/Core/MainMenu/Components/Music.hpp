@@ -8,6 +8,7 @@
 #include "GraphStruct.hpp"
 #include "IComponent.hpp"
 #include "IMusic.hpp"
+#include "Component.hpp"
 
 namespace Arcade::Game
 {

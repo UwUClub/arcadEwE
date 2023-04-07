@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include "IEventManager.hpp"
 #include "IEntityManager.hpp"
+#include "Component.hpp"
 
 namespace Arcade::Graph
 {
@@ -20,6 +21,7 @@ namespace Arcade::Graph
         void handleTexture(const std::string path, sf::Sprite *sprite);
 
         protected:
-        std::map<std::string, sf::Texture *> _textures; // key is the texture path, value is the texture
+        std::map<std::string, sf::Texture *>
+            _textures; // key is the texture path, value is the texture
     };
 } // namespace Arcade::Graph

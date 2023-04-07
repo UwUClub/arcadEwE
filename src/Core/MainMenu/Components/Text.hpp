@@ -6,6 +6,7 @@
 #define ARCADE_TEXT_HPP
 
 #include "IText.hpp"
+#include "Component.hpp"
 
 namespace Arcade::Game
 {

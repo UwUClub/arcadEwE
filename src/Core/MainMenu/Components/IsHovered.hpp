@@ -6,6 +6,7 @@
 #define ARCADE_ISHOVERED_HPP
 
 #include "IComponent.hpp"
+#include "Component.hpp"
 
 namespace Arcade::Game
 {

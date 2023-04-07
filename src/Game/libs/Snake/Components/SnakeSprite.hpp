@@ -6,8 +6,9 @@
 */
 
 #ifndef SNAKE_SPRITE_HPP
-    #define SNAKE_SPRITE_HPP
-    #include "ISprite.hpp"
+#define SNAKE_SPRITE_HPP
+#include "ISprite.hpp"
+#include "Component.hpp"
 
 namespace Snake
 {

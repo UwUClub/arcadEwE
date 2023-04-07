@@ -8,6 +8,7 @@
 #include "IComponent.hpp"
 #include "IText.hpp"
 #include "TextHandler.hpp"
+#include "Component.hpp"
 
 namespace Arcade::Graph
 {

@@ -6,8 +6,10 @@
 
 #include <SFML/Graphics.hpp>
 #include "IEntityManager.hpp"
+#include "Component.hpp"
 
-namespace Arcade::Graph {
+namespace Arcade::Graph
+{
     class TextHandler
     {
         public:
@@ -20,4 +22,4 @@ namespace Arcade::Graph {
         protected:
         std::map<std::string, sf::Font *> _fonts; // key is the font path, value is the font
     };
-}
+} // namespace Arcade::Graph

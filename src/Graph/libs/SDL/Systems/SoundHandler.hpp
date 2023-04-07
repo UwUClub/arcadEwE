@@ -11,6 +11,7 @@
 #include <string>
 #include "IMusic.hpp"
 #include "IEntityManager.hpp"
+#include "Component.hpp"
 
 namespace Arcade::Graph
 {
