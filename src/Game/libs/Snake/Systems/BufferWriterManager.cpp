@@ -11,6 +11,7 @@ void snake::BufferWriterManager::run(double deltaTime, Arcade::ECS::IEventManage
 {
     auto entities = entityManager.getEntitiesByComponentType(Arcade::ECS::CompType::BUFFERTEXT);
 
+    (void)deltaTime;
     for (auto& entity : *entities) {
         auto& bufferText = entity->getComponents(Arcade::ECS::CompType::TEXT);
 

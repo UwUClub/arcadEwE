@@ -10,6 +10,8 @@
 #include "IEntity.hpp"
 #include "ObjectFactory.hpp"
 #include "SnakeGameScene.hpp"
+#include "Direction.hpp"
+#include "ArcadeStruct.hpp"
 #include <regex>
 #include <string>
 #include <iostream>
@@ -21,32 +23,46 @@ namespace Snake {
     {
         (void)deltaTime;
 
-        auto eatFruitEvent = eventManager.isEventTriggered("EAT_FRUIT");
+        auto eatFruitEvent = eventManager.isEventTriggered("FRUIT_EATEN");
         if (eatFruitEvent.first) {
             auto entities = entityManager.getEntities();
-            int lastNbr = 0;
-            int currNbr = 0;
+            int snakeBodyCount= 0;
 
             for (auto &entity : entities) {
-                auto id = entity->getId();
-                std::regex regex("snake_body([0-9]+)");
-                for(std::sregex_iterator i = std::sregex_iterator(id.begin(), id.end(), regex);
-                        i != std::sregex_iterator(); ++i)
-                {
-                    std::smatch m = *i;
-                    currNbr = std::stoi(m[1].str().c_str());
+                std::string id = entity->getId();
+                if (id.find("snake_body_") != std::string::npos) {
+                    snakeBodyCount++;
                 }
-                if (currNbr > lastNbr)
-                    lastNbr = currNbr;
             }
             try {
-                auto lastTail = entityManager.getEntitiesById("snake_body" + std::to_string(lastNbr));
-                auto lastTailTransform = lastTail->getComponents("Transform");
-                Arcade::Vector3f lastTailPos = reinterpret_cast<Snake::Transform &>(lastTailTransform).getPosition();
-                Arcade::Vector3f pos = {lastTailPos.x + CASE_SIZE, lastTailPos.y + CASE_SIZE, lastTailPos.z};
-
+                std::cout << "id: snake_body_" + std::to_string(snakeBodyCount - 1) << std::endl;
+                auto lastTail = entityManager.getEntitiesById("snake_body_" + std::to_string(snakeBodyCount - 1));
+                if (lastTail == nullptr)
+                    return;
+                auto lastTailTransform = reinterpret_cast<Snake::Transform &>(lastTail->getComponents("Transform"));
+                auto lastTailPos = lastTailTransform.getPosition();
+                std::cout << "Snake body pos: " << lastTailPos.x << " " << lastTailPos.y << std::endl;
+                auto lastTailDirection = reinterpret_cast<Snake::Direction &>(lastTail->getComponents("Direction"));
+                auto direction = lastTailDirection.getDirection();
+                Arcade::Vector3f pos = lastTailPos;
+                switch (direction) {
+                    case Snake::Direction::UP:
+                        pos.y += CASE_SIZE;
+                        break;
+                    case Snake::Direction::DOWN:
+                        pos.y -= CASE_SIZE;
+                        break;
+                    case Snake::Direction::LEFT:
+                        pos.x += CASE_SIZE;
+                        break;
+                    case Snake::Direction::RIGHT:
+                        pos.x -= CASE_SIZE;
+                        break;
+                }
+                std::cout << "Snake body pos: " << pos.x << " " << pos.y << std::endl;
                 auto objectFactory = Snake::ObjectFactory();
                 objectFactory.CreateSnakeBody(entityManager, pos, {0, 0, 0});
+                std::cout << "Snake body added" << std::endl;
             } catch (std::exception &e) {
                 std::cerr << "Error: last tail not found" << std::endl;
             }

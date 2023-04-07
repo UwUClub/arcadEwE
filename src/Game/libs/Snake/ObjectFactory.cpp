@@ -14,6 +14,7 @@
 #include "BoxCollider.hpp"
 #include "SnakeHeadCollider.hpp"
 #include "SnakePath.hpp"
+#include <iostream>
 
 namespace Snake
 {
@@ -55,19 +56,33 @@ namespace Snake
 
         for (auto &entity : entities) {
             std::string id = entity->getId();
-            if (id.find("snake_body") != std::string::npos) {
+            if (id.find("snake_body_") != std::string::npos) {
                 snakeBodyCount++;
             }
         }
         std::string id = "snake_body_" + std::to_string(snakeBodyCount);
         auto &entity = entityManager.createEntity(id);
         (void)rotation;
+
+        auto lastTail = entityManager.getEntitiesById("snake_body_" + std::to_string(snakeBodyCount - 1));
+        std::shared_ptr<Snake::SnakePath> path;
+        std::shared_ptr<Snake::Direction> direction;
+
+        if (lastTail == nullptr) {
+            path = std::shared_ptr<Snake::SnakePath>(new Snake::SnakePath("SnakePath"));
+            direction = std::shared_ptr<Snake::Direction>(new Snake::Direction("Direction", Direction::dir::UP));
+        } else {
+            std::cout << "lastTail" << std::endl;
+            auto lastTailPath = reinterpret_cast<Snake::SnakePath &>(lastTail->getComponents("SnakePath"));
+            path = std::shared_ptr<Snake::SnakePath>(new Snake::SnakePath(lastTailPath));
+            auto lastTailDirection = reinterpret_cast<Snake::Direction &>(lastTail->getComponents("Direction"));
+            direction = std::shared_ptr<Snake::Direction>(new Snake::Direction(lastTailDirection));
+        }
         auto transform = std::shared_ptr<Snake::Transform>(new Snake::Transform("Transform", position));
         auto boxCollider = std::shared_ptr<Snake::BoxCollider>(new Snake::BoxCollider("BoxCollider", {CASE_SIZE / 2, CASE_SIZE / 2, 0}, *transform));
         entity.addComponent(transform);
-        entity.addComponent(std::shared_ptr<Snake::SnakePath>(new Snake::SnakePath("SnakePath")));
-        entity.addComponent(std::shared_ptr<Snake::Direction>(
-            new Snake::Direction("Direction", Direction::dir::UP)));
+        entity.addComponent(path);
+        entity.addComponent(direction);
         entity.addComponent(std::shared_ptr<Snake::Speed>(new Snake::Speed("Speed", SPEED_ENTITY)));
         entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite", SNAKE_PATH,
             { "B", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
