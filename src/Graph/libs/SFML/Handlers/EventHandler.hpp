@@ -21,7 +21,7 @@ namespace Arcade::Graph
 
         private:
         static const inline std::unordered_map<sf::Keyboard::Key, const std::string> keyMap = {
-            { sf::Keyboard::Escape, KEY_ESC_PRESSED },
+            { sf::Keyboard::Escape, QUIT },
             { sf::Keyboard::Up, KEY_UP_PRESSED },
             { sf::Keyboard::Down, KEY_DOWN_PRESSED },
             { sf::Keyboard::Left, KEY_LEFT_PRESSED },

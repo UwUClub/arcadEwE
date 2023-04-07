@@ -35,7 +35,7 @@ namespace Arcade::Graph
         };
 
         static const inline std::unordered_map<SDL_Keycode, const std::string> keyMap = {
-            { SDLK_ESCAPE, KEY_ESC_PRESSED },
+            { SDLK_ESCAPE, QUIT },
             { SDLK_UP, KEY_UP_PRESSED },
             { SDLK_DOWN, KEY_DOWN_PRESSED },
             { SDLK_LEFT, KEY_LEFT_PRESSED },
