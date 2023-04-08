@@ -5,8 +5,8 @@
 ** NibblerScene
 */
 
-#ifndef SNAKESCENE_HPP_
-#define SNAKESCENE_HPP_
+#ifndef NIBBLERSCENE_HPP_
+#define NIBBLERSCENE_HPP_
 #include "IEventManager.hpp"
 #include "IEntityManager.hpp"
 #include "EntityManager.hpp"
@@ -33,4 +33,4 @@ namespace Nibbler
     };
 } // namespace Nibbler
 
-#endif /* !SNAKESCENE_HPP_ */
+#endif /* !NIBBLERSCENE_HPP_ */

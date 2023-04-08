@@ -2,8 +2,8 @@
 // Created by patatofour on 28/03/23.
 //
 
-#ifndef SNAKE_MENUKEYBOARDHANDLER_HPP
-#define SNAKE_MENUKEYBOARDHANDLER_HPP
+#ifndef NIBBLER_MENUKEYBOARDHANDLER_HPP
+#define NIBBLER_MENUKEYBOARDHANDLER_HPP
 
 #include "Events.hpp"
 #include "ISystem.hpp"
@@ -25,4 +25,4 @@ namespace Nibbler
     };
 } // namespace Nibbler
 
-#endif // SNAKE_MENUKEYBOARDHANDLER_HPP
+#endif // NIBBLER_MENUKEYBOARDHANDLER_HPP

@@ -5,8 +5,8 @@
 ** NibblerGameManager
 */
 
-#ifndef SNAKEGAMEMANAGER_HPP_
-    #define SNAKEGAMEMANAGER_HPP_
+#ifndef NIBBLERGAMEMANAGER_HPP_
+    #define NIBBLERGAMEMANAGER_HPP_
     #include "ISystem.hpp"
 
 namespace Nibbler
@@ -23,4 +23,4 @@ namespace Nibbler
     };
 }
 
-#endif /* !SNAKEGAMEMANAGER_HPP_ */
+#endif /* !NIBBLERGAMEMANAGER_HPP_ */

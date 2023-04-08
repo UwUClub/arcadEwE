@@ -32,7 +32,7 @@ void Nibbler::PlayerInputs::run(double deltaTime,
         auto idEntity = entity->getId();
         enum Nibbler::Direction::dir direction = Nibbler::Direction::dir::UP;
 
-        if (idEntity.find("Nibbler") == std::string::npos) {
+        if (idEntity.find("nibbler") == std::string::npos) {
             continue;
         }
         try {

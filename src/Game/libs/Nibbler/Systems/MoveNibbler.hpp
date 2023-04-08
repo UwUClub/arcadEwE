@@ -5,8 +5,8 @@
 ** MoveNibbler
 */
 
-#ifndef MOVESNAKE_HPP_
-    #define MOVESNAKE_HPP_
+#ifndef MOVENIBBLER_HPP_
+    #define MOVENIBBLER_HPP_
     #include "ISystem.hpp"
 
 namespace Nibbler
@@ -23,4 +23,4 @@ namespace Nibbler
     };
 }
 
-#endif /* !MOVESNAKE_HPP_ */
+#endif /* !MOVENIBBLER_HPP_ */

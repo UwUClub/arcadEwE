@@ -5,8 +5,8 @@
 ** NibblerTailManager
 */
 
-#ifndef SNAKETAILMANAGER_HPP_
-    #define SNAKETAILMANAGER_HPP_
+#ifndef NIBBLERTAILMANAGER_HPP_
+    #define NIBBLERTAILMANAGER_HPP_
     #include "ISystem.hpp"
 
 namespace Nibbler {
@@ -24,4 +24,4 @@ namespace Nibbler {
     };
 }
 
-#endif /* !SNAKETAILMANAGER_HPP_ */
+#endif /* !NIBBLERTAILMANAGER_HPP_ */

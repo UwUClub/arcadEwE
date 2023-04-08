@@ -13,6 +13,7 @@
 #include "NibblerGameScene.hpp"
 #include <iostream>
 #include <memory>
+#include <iostream>
 
 void Nibbler::MoveNibbler::run(double deltaTime,
     Arcade::ECS::IEventManager &eventManager,
@@ -24,7 +25,7 @@ void Nibbler::MoveNibbler::run(double deltaTime,
     for (auto &entity : entities) {
         auto idEntity = entity->getId();
 
-        if (idEntity.find("snake_head") == std::string::npos) {
+        if (idEntity.find("nibbler_head") == std::string::npos) {
             continue;
         }
 
@@ -46,7 +47,7 @@ void Nibbler::MoveNibbler::run(double deltaTime,
                         if (nextDirection != Nibbler::Direction::dir::UP && nextDirection != Nibbler::Direction::dir::DOWN) {
                             transform.setPosition(nextPos);
                             directionComp.setDirection(nextDirection);
-                            eventManager.addEvent("NibblerMove");
+                            eventManager.addEvent("nibblerMove");
                         } else {
                             speedComp.setNextPoint({nextPos.x, nextPos.y - CASE_SIZE, 0});
                         }
@@ -58,7 +59,7 @@ void Nibbler::MoveNibbler::run(double deltaTime,
                         if (nextDirection != Nibbler::Direction::dir::DOWN && nextDirection != Nibbler::Direction::dir::UP) {
                             transform.setPosition(nextPos);
                             directionComp.setDirection(nextDirection);
-                            eventManager.addEvent("NibblerMove");
+                            eventManager.addEvent("nibblerMove");
                         } else {
                             speedComp.setNextPoint({nextPos.x, nextPos.y + CASE_SIZE, 0});
                         }
@@ -70,7 +71,7 @@ void Nibbler::MoveNibbler::run(double deltaTime,
                         if (nextDirection != Nibbler::Direction::dir::LEFT && nextDirection != Nibbler::Direction::dir::RIGHT) {
                             transform.setPosition(nextPos);
                             directionComp.setDirection(nextDirection);
-                            eventManager.addEvent("NibblerMove");
+                            eventManager.addEvent("nibblerMove");
                         } else {
                             speedComp.setNextPoint({nextPos.x - CASE_SIZE, nextPos.y, 0});
                         }
@@ -82,7 +83,7 @@ void Nibbler::MoveNibbler::run(double deltaTime,
                         if (nextDirection != Nibbler::Direction::dir::RIGHT && nextDirection != Nibbler::Direction::dir::LEFT) {
                             transform.setPosition(nextPos);
                             directionComp.setDirection(nextDirection);
-                            eventManager.addEvent("NibblerMove");
+                            eventManager.addEvent("nibblerMove");
                         } else {
                             speedComp.setNextPoint({nextPos.x + CASE_SIZE, nextPos.y, 0});
                         }

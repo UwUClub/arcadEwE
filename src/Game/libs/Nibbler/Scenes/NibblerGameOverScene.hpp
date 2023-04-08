@@ -5,8 +5,8 @@
 ** NibblerGameOverScene
 */
 
-#ifndef SNAKEGAMEOVERSCENE_HPP_
-#define SNAKEGAMEOVERSCENE_HPP_
+#ifndef NIBBLERGAMEOVERSCENE_HPP_
+#define NIBBLERGAMEOVERSCENE_HPP_
 #include "NibblerScene.hpp"
 #define BASE_X        40
 #define OFFSET_Y_TEXT 50
@@ -29,4 +29,4 @@ namespace Nibbler
     };
 } // namespace Nibbler
 
-#endif /* !SNAKEGAMEOVERSCENE_HPP_ */
+#endif /* !NIBBLERGAMEOVERSCENE_HPP_ */

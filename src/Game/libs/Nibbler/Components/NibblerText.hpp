@@ -5,8 +5,8 @@
 ** Text
 */
 
-#ifndef SNAKE_TEXT_HPP
-#define SNAKE_TEXT_HPP
+#ifndef NIBBLER_TEXT_HPP
+#define NIBBLER_TEXT_HPP
 #include "IText.hpp"
 #include "Component.hpp"
 
@@ -20,4 +20,4 @@ namespace Nibbler
     };
 } // namespace Nibbler
 
-#endif // SNAKE_TEXT_HPP
+#endif // NIBBLER_TEXT_HPP

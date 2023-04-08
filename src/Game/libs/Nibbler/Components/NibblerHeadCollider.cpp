@@ -15,7 +15,7 @@ namespace Nibbler {
 
     void NibblerHeadCollider::OnCollisionEnter(const Arcade::ECS::IEntity &entity, Arcade::ECS::IEventManager &eventManager)
     {
-        if (entity.getId().find("snake_body_") != std::string::npos) {
+        if (entity.getId().find("nibbler_body_") != std::string::npos) {
             eventManager.addEvent("GAME_OVER");
         }
         if (entity.getId() == "fruit") {

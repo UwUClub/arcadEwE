@@ -28,7 +28,7 @@ namespace Nibbler
     Arcade::ECS::IEntity &ObjectFactory::CreateNibblerHead(Arcade::ECS::IEntityManager &entityManager,
         Arcade::Vector3f position)
     {
-        auto &entity = entityManager.createEntity("Nibbler_head");
+        auto &entity = entityManager.createEntity("nibbler_head");
         auto transform
             = std::shared_ptr<Nibbler::Transform>(new Nibbler::Transform("Transform", position));
         auto speed = std::shared_ptr<Nibbler::Speed>(new Nibbler::Speed("Speed", SPEED_ENTITY));
@@ -55,15 +55,15 @@ namespace Nibbler
 
         for (auto &entity : entities) {
             std::string id = entity->getId();
-            if (id.find("Nibbler_body_") != std::string::npos) {
+            if (id.find("nibbler_body_") != std::string::npos) {
                 NibblerBodyCount++;
             }
         }
-        std::string id = "Nibbler_body_" + std::to_string(NibblerBodyCount);
+        std::string id = "nibbler_body_" + std::to_string(NibblerBodyCount);
         auto &entity = entityManager.createEntity(id);
         (void)rotation;
 
-        auto lastTail = entityManager.getEntitiesById("Nibbler_body_" + std::to_string(NibblerBodyCount - 1));
+        auto lastTail = entityManager.getEntitiesById("nibbler_body_" + std::to_string(NibblerBodyCount - 1));
         std::shared_ptr<Nibbler::NibblerPath> path;
         std::shared_ptr<Nibbler::Direction> direction;
 

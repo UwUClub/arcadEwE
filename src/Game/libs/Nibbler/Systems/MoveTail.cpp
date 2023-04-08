@@ -20,21 +20,21 @@ void Nibbler::MoveTail::run(double deltaTime,
     Arcade::ECS::IEventManager &eventManager,
     Arcade::ECS::IEntityManager &entityManager)
 {
-    auto isMoved = eventManager.isEventTriggered("NibblerMove");
-    auto snakeHead = entityManager.getEntitiesById("snake_head");
-    if (snakeHead == nullptr) {
+    auto isMoved = eventManager.isEventTriggered("nibblerMove");
+    auto nibblerHead = entityManager.getEntitiesById("nibbler_head");
+    if (nibblerHead == nullptr) {
         return;
     }
-    auto &headTransformComp = reinterpret_cast<Nibbler::Transform &>(snakeHead->getComponents("Transform"));
+    auto &headTransformComp = reinterpret_cast<Nibbler::Transform &>(nibblerHead->getComponents("Transform"));
     auto headPosition = headTransformComp.getPosition();
-    auto &headDirectionComp = reinterpret_cast<Nibbler::Direction &>(snakeHead->getComponents("Direction"));
+    auto &headDirectionComp = reinterpret_cast<Nibbler::Direction &>(nibblerHead->getComponents("Direction"));
     auto headDirection = headDirectionComp.getDirection();
 
     auto &entities = entityManager.getEntities();
     for (auto &entity : entities) {
         auto idEntity = entity->getId();
 
-        if (idEntity.find("snake_body") == std::string::npos) {
+        if (idEntity.find("nibbler_body") == std::string::npos) {
             continue;
         }
         try {

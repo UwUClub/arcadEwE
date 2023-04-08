@@ -21,7 +21,7 @@ void Nibbler::NibblerGameManager::run(double deltaTime,
     for (auto &entity : entities) {
         auto idEntity = entity->getId();
 
-        if (idEntity != "snake_head") {
+        if (idEntity != "nibbler_head") {
             continue;
         }
         try {
@@ -32,7 +32,7 @@ void Nibbler::NibblerGameManager::run(double deltaTime,
                 eventManager.addEvent("GAME_OVER");
             }
         } catch (const std::exception &e) {
-            std::cerr << "snakeGameManager, component not found" << std::endl;
+            std::cerr << "nibblerGameManager, component not found" << std::endl;
             return;
         }
     }

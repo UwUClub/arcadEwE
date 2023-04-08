@@ -5,8 +5,8 @@
 ** NibblerSprite
 */
 
-#ifndef SNAKE_SPRITE_HPP
-#define SNAKE_SPRITE_HPP
+#ifndef NIBBLER_SPRITE_HPP
+#define NIBBLER_SPRITE_HPP
 #include "ISprite.hpp"
 #include "Component.hpp"
 
@@ -20,4 +20,4 @@ namespace Nibbler
     };
 } // namespace Nibbler
 
-#endif // SNAKE_SPRITE_HPP
+#endif // NIBBLER_SPRITE_HPP

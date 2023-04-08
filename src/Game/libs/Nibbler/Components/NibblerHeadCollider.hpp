@@ -5,8 +5,8 @@
 ** NibblerHeadCollider
 */
 
-#ifndef SNAKEHEADCOLLIDER_HPP_
-    #define SNAKEHEADCOLLIDER_HPP_
+#ifndef NIBBLERHEADCOLLIDER_HPP_
+    #define NIBBLERHEADCOLLIDER_HPP_
     #include "BoxCollider.hpp"
 
 namespace Nibbler {
@@ -21,4 +21,4 @@ namespace Nibbler {
     };
 }
 
-#endif /* !SNAKEHEADCOLLIDER_HPP_ */
+#endif /* !NIBBLERHEADCOLLIDER_HPP_ */

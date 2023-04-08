@@ -27,16 +27,16 @@ namespace Nibbler {
         auto eatFruitEvent = eventManager.isEventTriggered("FRUIT_EATEN");
         if (eatFruitEvent.first) {
             auto entities = entityManager.getEntities();
-            int snakeBodyCount= 0;
+            int nibblerBodyCount= 0;
 
             for (auto &entity : entities) {
                 std::string id = entity->getId();
-                if (id.find("snake_body_") != std::string::npos) {
-                    snakeBodyCount++;
+                if (id.find("nibbler_body_") != std::string::npos) {
+                    nibblerBodyCount++;
                 }
             }
             try {
-                auto lastTail = entityManager.getEntitiesById("snake_body_" + std::to_string(snakeBodyCount - 1));
+                auto lastTail = entityManager.getEntitiesById("nibbler_body_" + std::to_string(nibblerBodyCount - 1));
                 if (lastTail == nullptr)
                     return;
                 auto lastTailTransform = reinterpret_cast<Nibbler::Transform &>(lastTail->getComponents("Transform"));
@@ -60,7 +60,7 @@ namespace Nibbler {
                 }
                 auto objectFactory = Nibbler::ObjectFactory();
                 objectFactory.CreateNibblerBody(entityManager, pos, {0, 0, 0});
-                std::string id = "snake_body_" + std::to_string(snakeBodyCount);
+                std::string id = "nibbler_body_" + std::to_string(nibblerBodyCount);
                 if (!isTailValid(entityManager, id)) {
                     eventManager.addEvent("GAME_OVER");
                 }

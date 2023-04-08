@@ -5,8 +5,8 @@
 ** NibblerMenuScene
 */
 
-#ifndef SNAKEMENUSCENE_HPP_
-    #define SNAKEMENUSCENE_HPP_
+#ifndef NIBBLERMENUSCENE_HPP_
+    #define NIBBLERMENUSCENE_HPP_
     #include "NibblerScene.hpp"
     #define BASE_X        40
     #define OFFSET_Y_TEXT 50
@@ -26,4 +26,4 @@ namespace Nibbler
 } // namespace Nibbler
 
 
-#endif /* !SNAKEMENUSCENE_HPP_ */
+#endif /* !NIBBLERMENUSCENE_HPP_ */

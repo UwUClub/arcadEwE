@@ -9,9 +9,9 @@
 #define OBJECTFACTORY_HPP_
 #include "IEntityManager.hpp"
 #include "ArcadeStruct.hpp"
-#define SNAKE_PATH   "assets/images/SnakeSpriteSheet.png"
+#define SNAKE_PATH   "assets/images/snake_body.png"
 #define FRUIT_PATH   "assets/images/apple.png"
-#define WALL_PATH    "assets/images/SnakeSpriteSheet.png"
+#define WALL_PATH    "assets/images/snake_body.png"
 #define SPEED_ENTITY 30.0f
 
 namespace Snake

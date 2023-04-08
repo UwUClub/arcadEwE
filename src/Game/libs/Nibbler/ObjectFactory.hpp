@@ -9,9 +9,9 @@
 #define OBJECTFACTORY_HPP_
 #include "IEntityManager.hpp"
 #include "ArcadeStruct.hpp"
-#define NIBBLER_PATH   "assets/images/NibblerSpriteSheet.png"
+#define NIBBLER_PATH   "assets/images/nibbler_body.png"
 #define FRUIT_PATH   "assets/images/apple.png"
-#define WALL_PATH    "assets/images/NibblerSpriteSheet.png"
+#define WALL_PATH    "assets/images/nibbler_body.png"
 #define SPEED_ENTITY 30.0f
 
 namespace Nibbler

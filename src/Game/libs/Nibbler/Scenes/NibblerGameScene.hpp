@@ -5,8 +5,8 @@
 ** NibblerGameScene
 */
 
-#ifndef SNAKEGAMESCENE_HPP_
-    #define SNAKEGAMESCENE_HPP_
+#ifndef NIBBLERGAMESCENE_HPP_
+    #define NIBBLERGAMESCENE_HPP_
     #include "NibblerScene.hpp"
     #define SCREEN_WIDTH 100
     #define SCREEN_HEIGHT 100
@@ -25,4 +25,4 @@ namespace Nibbler {
     };
 }
 
-#endif /* !SNAKEGAMESCENE_HPP_ */
+#endif /* !NIBBLERGAMESCENE_HPP_ */

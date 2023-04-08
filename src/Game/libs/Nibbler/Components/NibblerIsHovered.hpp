@@ -2,8 +2,8 @@
 // Created by patatofour on 28/03/23.
 //
 
-#ifndef SNAKE_ISHOVERED_HPP
-#define SNAKE_ISHOVERED_HPP
+#ifndef NIBBLER_ISHOVERED_HPP
+#define NIBBLER_ISHOVERED_HPP
 
 #include "IComponent.hpp"
 #include "Component.hpp"
@@ -19,4 +19,4 @@ namespace Nibbler
     };
 } // namespace Nibbler
 
-#endif // SNAKE_ISHOVERED_HPP
+#endif // NIBBLER_ISHOVERED_HPP
