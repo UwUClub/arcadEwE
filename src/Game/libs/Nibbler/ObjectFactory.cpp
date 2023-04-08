@@ -107,19 +107,33 @@ namespace Nibbler
         return entity;
     }
 
-    Arcade::ECS::IEntity &ObjectFactory::CreateWall(Arcade::ECS::IEntityManager &entityManager,
-        Arcade::Vector3f position, Arcade::Vector3f rotation)
+    Arcade::ECS::IEntity &ObjectFactory::CreateHorizontalWall(Arcade::ECS::IEntityManager &entityManager,
+        Arcade::Vector3f position)
     {
-        auto &entity = entityManager.createEntity("wall");
-        (void) rotation;
+        auto &entity = entityManager.createEntity("horizontal_wall");
         auto transform
             = std::shared_ptr<Nibbler::Transform>(new Nibbler::Transform("Transform", position));
         entity.addComponent(transform);
-        entity.addComponent(std::shared_ptr<Nibbler::Sprite>(new Nibbler::Sprite("sprite", WALL_PATH,
-            { "#", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
+        entity.addComponent(std::shared_ptr<Nibbler::Sprite>(new Nibbler::Sprite("Sprite", HORIZONTAL_WALL_PATH,
+            { "-", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
             { 0, 0, CASE_SIZE, CASE_SIZE }, 0)));
         entity.addComponent(std::shared_ptr<Nibbler::BoxCollider>(new Nibbler::BoxCollider(
-            "BoxCollider", { CASE_SIZE / 2, CASE_SIZE / 2, 0 }, *transform)));
+            "BoxCollider", { 1, CASE_SIZE, 0 }, *transform)));
+        return entity;
+    }
+
+    Arcade::ECS::IEntity &ObjectFactory::CreateVerticalWall(Arcade::ECS::IEntityManager &entityManager,
+        Arcade::Vector3f position)
+    {
+        auto &entity = entityManager.createEntity("vertical_wall");
+        auto transform
+            = std::shared_ptr<Nibbler::Transform>(new Nibbler::Transform("Transform", position));
+        entity.addComponent(transform);
+        entity.addComponent(std::shared_ptr<Nibbler::Sprite>(new Nibbler::Sprite("Sprite", VERTICAL_WALL_PATH,
+            { "|", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
+            { 0, 0, CASE_SIZE, CASE_SIZE }, 0)));
+        entity.addComponent(std::shared_ptr<Nibbler::BoxCollider>(new Nibbler::BoxCollider(
+            "BoxCollider", { CASE_SIZE, 1, 0 }, *transform)));
         return entity;
     }
 } // namespace Nibbler

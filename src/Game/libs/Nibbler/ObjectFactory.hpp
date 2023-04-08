@@ -13,7 +13,8 @@
 #define NIBBLER_SIZE 64
 #define FRUIT_PATH   "assets/images/apple.png"
 #define FRUIT_SIZE 128
-#define WALL_PATH    "assets/images/nibbler_body.png"
+#define HORIZONTAL_WALL_PATH    "assets/images/horizontal_wall.png"
+#define VERTICAL_WALL_PATH    "assets/images/vertical_wall.png"
 #define SPEED_ENTITY 30.0f
 
 namespace Nibbler
@@ -30,8 +31,10 @@ namespace Nibbler
             Arcade::Vector3f position, Arcade::Vector3f rotation);
         Arcade::ECS::IEntity &CreateFruit(Arcade::ECS::IEntityManager &entityManager,
             Arcade::Vector3f position);
-        Arcade::ECS::IEntity &CreateWall(Arcade::ECS::IEntityManager &entityManager,
-            Arcade::Vector3f position, Arcade::Vector3f rotation);
+        Arcade::ECS::IEntity &CreateHorizontalWall(Arcade::ECS::IEntityManager &entityManager,
+            Arcade::Vector3f position);
+        Arcade::ECS::IEntity &CreateVerticalWall(Arcade::ECS::IEntityManager &entityManager,
+            Arcade::Vector3f position);
     };
 } // namespace Nibbler
 
