@@ -116,7 +116,7 @@ namespace Nibbler
         entity.addComponent(transform);
         entity.addComponent(std::shared_ptr<Nibbler::Sprite>(new Nibbler::Sprite("Sprite", HORIZONTAL_WALL_PATH,
             { "-", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
-            { 0, 0, WALL_HEIGHT, WALL_WIDTH }, 0)));
+            { 0, 0, WALL_HEIGHT * 2, WALL_WIDTH }, 0)));
         entity.addComponent(std::shared_ptr<Nibbler::BoxCollider>(new Nibbler::BoxCollider(
             "BoxCollider", { CASE_SIZE, 2, 0 }, *transform)));
         return entity;

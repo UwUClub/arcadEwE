@@ -47,16 +47,25 @@ namespace Nibbler {
         objectFactory.CreateNibblerBody(*_entityManager, {MAX_CASE_X / 2 * CASE_SIZE, (MAX_CASE_Y / 2 + 2) * CASE_SIZE, 0}, {0, 0, 0});
         objectFactory.CreateNibblerBody(*_entityManager, {MAX_CASE_X / 2 * CASE_SIZE, (MAX_CASE_Y / 2 + 3) * CASE_SIZE, 0}, {0, 0, 0});
 
-        objectFactory.CreateHorizontalWall(*_entityManager, {CASE_SIZE - WALL_SIZE, CASE_SIZE - WALL_SIZE, 0});
-        objectFactory.CreateHorizontalWall(*_entityManager, {MAX_CASE_X * CASE_SIZE - WALL_SIZE, CASE_SIZE - WALL_SIZE, 0});
-        objectFactory.CreateVerticalWall(*_entityManager, {CASE_SIZE * (MAX_CASE_X / 2) - WALL_SIZE, CASE_SIZE - WALL_SIZE, 0});
-        objectFactory.CreateVerticalWall(*_entityManager, {CASE_SIZE * (MAX_CASE_X / 2 + 1) - WALL_SIZE, CASE_SIZE - WALL_SIZE, 0});
+        objectFactory.CreateHorizontalWall(*_entityManager, {CASE_SIZE - WALL_OFFSET_X, CASE_SIZE - WALL_OFFSET_Y, 0});
+        objectFactory.CreateHorizontalWall(*_entityManager, {MAX_CASE_X * CASE_SIZE - WALL_OFFSET_X, CASE_SIZE - WALL_OFFSET_Y, 0});
+        objectFactory.CreateVerticalWall(*_entityManager, {CASE_SIZE * (MAX_CASE_X / 2 + 1) - WALL_OFFSET_X, CASE_SIZE - WALL_OFFSET_Y, 0});
+        objectFactory.CreateVerticalWall(*_entityManager, {CASE_SIZE * (MAX_CASE_X / 2 + 2) - WALL_OFFSET_X, CASE_SIZE - WALL_OFFSET_Y, 0});
 
-        objectFactory.CreateVerticalWall(*_entityManager, {CASE_SIZE - WALL_SIZE, CASE_SIZE * 2 - WALL_SIZE, 0});
-        objectFactory.CreateVerticalWall(*_entityManager, {MAX_CASE_X * CASE_SIZE - WALL_SIZE, CASE_SIZE * 2 - WALL_SIZE, 0});
+        objectFactory.CreateVerticalWall(*_entityManager, {CASE_SIZE - WALL_OFFSET_X, CASE_SIZE * 2 - WALL_OFFSET_Y, 0});
+        objectFactory.CreateVerticalWall(*_entityManager, {(MAX_CASE_X + 1) * CASE_SIZE - WALL_OFFSET_X, CASE_SIZE * 2 - WALL_OFFSET_Y, 0});
+        objectFactory.CreateVerticalWall(*_entityManager, {CASE_SIZE * 2 - WALL_OFFSET_X, CASE_SIZE * 2 - WALL_OFFSET_Y, 0});
+        objectFactory.CreateVerticalWall(*_entityManager, {MAX_CASE_X * CASE_SIZE - WALL_OFFSET_X, CASE_SIZE * 2 - WALL_OFFSET_Y, 0});
+        objectFactory.CreateHorizontalWall(*_entityManager, {CASE_SIZE - WALL_OFFSET_X, CASE_SIZE * 2- WALL_OFFSET_Y, 0});
+        objectFactory.CreateHorizontalWall(*_entityManager, {MAX_CASE_X * CASE_SIZE - WALL_OFFSET_X, CASE_SIZE * 2 - WALL_OFFSET_Y, 0});
+        objectFactory.CreateHorizontalWall(*_entityManager, {CASE_SIZE * (MAX_CASE_X / 2) - WALL_OFFSET_X, CASE_SIZE * 2 - WALL_OFFSET_Y, 0});
+        objectFactory.CreateHorizontalWall(*_entityManager, {CASE_SIZE * (MAX_CASE_X / 2 + 2) - WALL_OFFSET_X, CASE_SIZE * 2 - WALL_OFFSET_Y, 0});
 
-        objectFactory.CreateVerticalWall(*_entityManager, {CASE_SIZE * 2 - WALL_SIZE, CASE_SIZE * 3 - WALL_SIZE, 0});
-        objectFactory.CreateVerticalWall(*_entityManager, {MAX_CASE_X * 2 - WALL_SIZE, CASE_SIZE * 3 - WALL_SIZE, 0});
+        objectFactory.CreateHorizontalWall(*_entityManager, {CASE_SIZE - WALL_OFFSET_X, CASE_SIZE * 3 - WALL_OFFSET_Y, 0});
+        objectFactory.CreateHorizontalWall(*_entityManager, {MAX_CASE_X * CASE_SIZE - WALL_OFFSET_X, CASE_SIZE * 3 - WALL_OFFSET_Y, 0});
+        objectFactory.CreateHorizontalWall(*_entityManager, {CASE_SIZE * (MAX_CASE_X / 2) - WALL_OFFSET_X, CASE_SIZE * 3 - WALL_OFFSET_Y, 0});
+        objectFactory.CreateHorizontalWall(*_entityManager, {CASE_SIZE * (MAX_CASE_X / 2 + 1) - WALL_OFFSET_X, CASE_SIZE * 3 - WALL_OFFSET_Y, 0});
+        objectFactory.CreateHorizontalWall(*_entityManager, {CASE_SIZE * (MAX_CASE_X / 2 + 2) - WALL_OFFSET_X, CASE_SIZE * 3 - WALL_OFFSET_Y, 0});
         return true;
     }
 }

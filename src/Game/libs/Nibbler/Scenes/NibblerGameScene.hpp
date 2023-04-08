@@ -13,7 +13,8 @@
     #define CASE_SIZE 10
     #define MAX_CASE_X (SCREEN_WIDTH / CASE_SIZE - 1)
     #define MAX_CASE_Y (SCREEN_HEIGHT / CASE_SIZE - 1)
-    #define WALL_SIZE 2
+    #define WALL_OFFSET_X 4
+    #define WALL_OFFSET_Y 2
 
 namespace Nibbler {
     class NibblerGameScene : public NibblerScene
