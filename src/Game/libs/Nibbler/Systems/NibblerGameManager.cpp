@@ -8,6 +8,7 @@
 #include "NibblerGameManager.hpp"
 #include "Events.hpp"
 #include "Transform.hpp"
+#include "Direction.hpp"
 #include "NibblerGameScene.hpp"
 #include <iostream>
 
@@ -25,11 +26,24 @@ void Nibbler::NibblerGameManager::run(double deltaTime,
             continue;
         }
         try {
+            const int shift = 2;
             auto &transformComp = entity->getComponents("Transform");
+            auto &directionComp = entity->getComponents("Direction");
 
             auto &position = reinterpret_cast<Nibbler::Transform &>(transformComp).position;
-            if (position.x < 0 || position.x > 100 - 1 || position.y < 0 || position.y > 100 - 1) {
-                eventManager.addEvent("GAME_OVER");
+            const auto direction = reinterpret_cast<Nibbler::Direction &>(directionComp).getDirection();
+
+            if (position.x < 0 + shift && direction == Nibbler::Direction::dir::LEFT) {
+                eventManager.addEvent("KEY_DOWN_PRESSED");
+            }
+            if (position.x > 100 - 12 && direction == Nibbler::Direction::dir::RIGHT) {
+                eventManager.addEvent("KEY_UP_PRESSED");
+            }
+            if (position.y < 0 + shift && direction == Nibbler::Direction::dir::UP) {
+                eventManager.addEvent("KEY_LEFT_PRESSED");
+            }
+            if (position.y > 100 - 30 && direction == Nibbler::Direction::dir::DOWN) {
+                eventManager.addEvent("KEY_RIGHT_PRESSED");
             }
         } catch (const std::exception &e) {
             std::cerr << "nibblerGameManager, component not found" << std::endl;
