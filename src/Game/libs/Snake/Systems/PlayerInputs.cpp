@@ -56,13 +56,13 @@ void Snake::PlayerInputs::run(double deltaTime,
                 auto &sprite = reinterpret_cast<Snake::Sprite &>(spriteComp);
 
                 if (eventU.first)
-                    sprite.rect = { SNAKE_HEAD_SIZE * 3, 0, SNAKE_HEAD_SIZE, SNAKE_HEAD_SIZE };
+                    sprite.currentRectIndex = 3;
                 if (eventD.first)
-                    sprite.rect = { SNAKE_HEAD_SIZE, 0, SNAKE_HEAD_SIZE, SNAKE_HEAD_SIZE };
+                    sprite.currentRectIndex = 1;
                 if (eventL.first)
-                    sprite.rect = { SNAKE_HEAD_SIZE * 2, 0, SNAKE_HEAD_SIZE, SNAKE_HEAD_SIZE };
+                    sprite.currentRectIndex = 2;
                 if (eventR.first)
-                    sprite.rect = { 0, 0, SNAKE_HEAD_SIZE, SNAKE_HEAD_SIZE };
+                    sprite.currentRectIndex = 0;
             }
 
         } catch(const std::exception& e) {
