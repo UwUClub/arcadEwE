@@ -33,7 +33,7 @@ void Arcade::Graph::SpriteDisplay::drawSprite(SDL_Renderer *renderer,
 
     if (texture == nullptr)
         return;
-    rect.x = sprite->rect.left;
+    rect.x = sprite->rect.width * sprite->currentRectIndex;
     rect.y = sprite->rect.top;
     rect.w = sprite->rect.width;
     rect.h = sprite->rect.height;

@@ -39,9 +39,9 @@ namespace Snake
         entity.addComponent(std::shared_ptr<Snake::Direction>(
             new Snake::Direction("Direction", Direction::dir::UP)));
         entity.addComponent(speed);
-        entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite", SNAKE_HEAD,
-            { "H", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
-            { 0, 0, SNAKE_SIZE, SNAKE_SIZE }, 0)));
+        entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite",
+            SNAKE_HEAD_PATH, { "H", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
+            { SNAKE_HEAD_SIZE * 3, 0, SNAKE_HEAD_SIZE, SNAKE_HEAD_SIZE }, 0)));
         entity.addComponent(std::shared_ptr<Snake::SnakeHeadCollider>(new Snake::SnakeHeadCollider(
             "SnakeCollider", { CASE_SIZE / 2, CASE_SIZE / 2, 0 }, *transform)));
         return entity;
@@ -88,9 +88,9 @@ namespace Snake
         entity.addComponent(path);
         entity.addComponent(direction);
         entity.addComponent(std::shared_ptr<Snake::Speed>(new Snake::Speed("Speed", SPEED_ENTITY)));
-        entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite", SNAKE_PATH,
-            { "B", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
-            { 0, 0, SNAKE_SIZE, SNAKE_SIZE }, 0)));
+        entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite",
+            SNAKE_BODY_PATH, { "B", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
+            { 0, 0, SNAKE_BODY_SIZE, SNAKE_BODY_SIZE }, 0)));
         entity.addComponent(boxCollider);
         if (snakeBodyCount == 0) {
             boxCollider->isEnabled = false;
