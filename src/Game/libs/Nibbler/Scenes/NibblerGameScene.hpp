@@ -11,8 +11,8 @@
     #define SCREEN_WIDTH 100
     #define SCREEN_HEIGHT 100
     #define CASE_SIZE 10
-    #define MAX_CASE_X SCREEN_WIDTH / CASE_SIZE
-    #define MAX_CASE_Y SCREEN_HEIGHT / CASE_SIZE
+    #define MAX_CASE_X (SCREEN_WIDTH / CASE_SIZE - 1)
+    #define MAX_CASE_Y (SCREEN_HEIGHT / CASE_SIZE - 1)
 
 namespace Nibbler {
     class NibblerGameScene : public NibblerScene
