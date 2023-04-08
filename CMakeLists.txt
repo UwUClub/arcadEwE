@@ -79,7 +79,7 @@ include_directories(sharedArchitecture/include/Arcade/Graph)
 
 
 # TODO : uncomment sdl
-# add_subdirectory(src/Graph/libs/SDL)
+add_subdirectory(src/Graph/libs/SDL)
 add_subdirectory(src/Graph/libs/SFML)
 add_subdirectory(src/Graph/libs/NCurses)
 # Games libraries

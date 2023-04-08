@@ -83,4 +83,4 @@ include_directories(../../../sharedArchitecture/include/Arcade/Graph)
 # Add executable target with source files listed in SOURCE_FILES variable
 #add_subdirectory(src/Core/MainMenu)
 add_library(${PROJECT_NAME} SHARED ${EXEC_SRC} ${INCLUDES})
-set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../../lib)
+set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../../lib PREFIX "")

@@ -3,6 +3,7 @@
 //
 
 #include <memory>
+#include <iostream>
 #include "Core.hpp"
 #include "EventManager.hpp"
 #include "Component.hpp"
@@ -77,7 +78,7 @@ void Arcade::Core::Core::handleCoreEvents()
         for (auto &comp : *eventGraph.second) {
             if (comp.has_value()) {
                 std::string libName = reinterpret_cast<Arcade::Game::Text &>(*comp.value()).text;
-                libName = "./lib/libarcade_" + libName + ".so";
+                libName = "./lib/arcade_" + libName + ".so";
                 loadDisplayModule(libName);
                 return;
             }
@@ -136,10 +137,12 @@ void Arcade::Core::Core::loadDisplayModule(const std::string &path)
     if (_currentDisplayModule == path)
         return;
     try {
+        std::cout << "Loading " << path << std::endl;
         _displayModule.reset(nullptr);
         _displayModule = std::make_unique<DisplayHandler>(path);
         _currentDisplayModule = path;
     } catch (const DisplayHandler::LibraryHandlerException &e) {
+        std::cout << "FAIL" << std::endl;
         std::cerr << e.what() << std::endl;
         exit(84);
     }

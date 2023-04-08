@@ -22,7 +22,7 @@ set(INCLUDES
         ../../../../sharedArchitecture/include/Arcade/Graph/IText.hpp
         ../../../../sharedArchitecture/include/Arcade/Graph/IDisplayModule.hpp
         ../../../../sharedArchitecture/include/Arcade/Game/IScene.hpp
-)
+        )
 
 # Add main.cpp file of project root directory as source file
 set(EXEC_SRC
@@ -38,7 +38,7 @@ set(EXEC_SRC
         Handlers/SpriteHandler.cpp
         Handlers/EventHandler.hpp
         Handlers/EventHandler.cpp
-)
+        )
 
 include_directories(.)
 include_directories(Handlers)
@@ -57,4 +57,4 @@ include_directories(../../../../sharedArchitecture/include/Arcade/Graph)
 # Add executable target with source files listed in SOURCE_FILES variable
 #add_subdirectory(src/Core/MainMenu)
 add_library(${PROJECT_NAME} SHARED ${EXEC_SRC} ${INCLUDES})
-set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../../../lib)
+set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ../../../../lib PREFIX "")
