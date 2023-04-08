@@ -41,7 +41,7 @@ namespace Snake
         entity.addComponent(speed);
         entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite", SNAKE_PATH,
             { "H", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
-            { 0, 0, CASE_SIZE * 10, CASE_SIZE * 10 }, 0)));
+            { 0, 0, SNAKE_SIZE, SNAKE_SIZE }, 0)));
         entity.addComponent(std::shared_ptr<Snake::SnakeHeadCollider>(new Snake::SnakeHeadCollider(
             "SnakeCollider", { CASE_SIZE / 2, CASE_SIZE / 2, 0 }, *transform)));
         return entity;
@@ -84,7 +84,7 @@ namespace Snake
         entity.addComponent(std::shared_ptr<Snake::Speed>(new Snake::Speed("Speed", SPEED_ENTITY)));
         entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite", SNAKE_PATH,
             { "B", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
-            { 0, 0, CASE_SIZE * 10, CASE_SIZE * 10 }, 0)));
+            { 0, 0, SNAKE_SIZE, SNAKE_SIZE }, 0)));
         entity.addComponent(boxCollider);
         if (snakeBodyCount == 0) {
             boxCollider->isEnabled = false;
@@ -101,7 +101,7 @@ namespace Snake
         entity.addComponent(transform);
         entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("sprite", FRUIT_PATH,
             { "F", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
-            { 0, 0, CASE_SIZE * 10, CASE_SIZE * 10 }, 0)));
+            { 0, 0, FRUIT_SIZE, FRUIT_SIZE }, 0)));
         entity.addComponent(std::shared_ptr<Snake::BoxCollider>(
             new Snake::BoxCollider("BoxCollider", { CASE_SIZE, CASE_SIZE, 0 }, *transform)));
         return entity;

@@ -10,7 +10,9 @@
 #include "IEntityManager.hpp"
 #include "ArcadeStruct.hpp"
 #define NIBBLER_PATH   "assets/images/nibbler_body.png"
+#define NIBBLER_SIZE 64
 #define FRUIT_PATH   "assets/images/apple.png"
+#define FRUIT_SIZE 128
 #define WALL_PATH    "assets/images/nibbler_body.png"
 #define SPEED_ENTITY 30.0f
 

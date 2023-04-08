@@ -42,7 +42,7 @@ void Nibbler::NibblerGameManager::run(double deltaTime,
             if (position.y < 0 + shift && direction == Nibbler::Direction::dir::UP) {
                 eventManager.addEvent("KEY_LEFT_PRESSED");
             }
-            if (position.y > 100 - 30 && direction == Nibbler::Direction::dir::DOWN) {
+            if (position.y > 100 - 20 && direction == Nibbler::Direction::dir::DOWN) {
                 eventManager.addEvent("KEY_RIGHT_PRESSED");
             }
         } catch (const std::exception &e) {
