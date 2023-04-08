@@ -8,9 +8,11 @@
 #include "PlayerInputs.hpp"
 #include "Events.hpp"
 #include "Direction.hpp"
+#include "SnakeSprite.hpp"
 #include "Speed.hpp"
 #include "SnakeGameScene.hpp"
 #include "Transform.hpp"
+#include "ObjectFactory.hpp"
 #include <iostream>
 
 void Snake::PlayerInputs::run(double deltaTime,
@@ -48,6 +50,21 @@ void Snake::PlayerInputs::run(double deltaTime,
                 direction = Snake::Direction::dir::RIGHT;
             reinterpret_cast<Snake::Direction &>(directionComp).setNextDirection(direction);
             // SetNextPosition(*entity);
+
+            if (idEntity.find("snake_head") != std::string::npos) {
+                auto &spriteComp = entity->getComponents("Sprite");
+                auto &sprite = reinterpret_cast<Snake::Sprite &>(spriteComp);
+
+                if (eventU.first)
+                    sprite.rect = { SNAKE_HEAD_SIZE * 3, 0, SNAKE_HEAD_SIZE, SNAKE_HEAD_SIZE };
+                if (eventD.first)
+                    sprite.rect = { SNAKE_HEAD_SIZE, 0, SNAKE_HEAD_SIZE, SNAKE_HEAD_SIZE };
+                if (eventL.first)
+                    sprite.rect = { SNAKE_HEAD_SIZE * 2, 0, SNAKE_HEAD_SIZE, SNAKE_HEAD_SIZE };
+                if (eventR.first)
+                    sprite.rect = { 0, 0, SNAKE_HEAD_SIZE, SNAKE_HEAD_SIZE };
+            }
+
         } catch(const std::exception& e) {
             std::cerr << "playerInputs direction component not found" << std::endl;
             return;
