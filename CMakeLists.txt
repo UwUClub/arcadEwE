@@ -85,5 +85,6 @@ add_subdirectory(src/Graph/libs/NCurses)
 # Games libraries
 add_subdirectory(src/Core/MainMenu)
 add_subdirectory(src/Game/libs/Snake)
+add_subdirectory(src/Game/libs/Nibbler)
 # Core
 add_executable(${PROJECT_NAME} ${EXEC_SRC} ${INCLUDES})
