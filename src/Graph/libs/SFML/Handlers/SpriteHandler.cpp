@@ -48,7 +48,7 @@ namespace Arcade::Graph
                 sfSprite->setPosition(x, y);
 
                 Arcade::Graph::Rect rect = (*sprite).rect;
-                sfSprite->setTextureRect(sf::IntRect(rect.left, rect.top, rect.width, rect.height));
+                sfSprite->setTextureRect(sf::IntRect(rect.left + rect.width * sprite->currentRectIndex, rect.top, rect.width, rect.height));
 
                 this->handleTexture((*sprite).path, sfSprite);
 

@@ -41,7 +41,7 @@ namespace Snake
         entity.addComponent(speed);
         entity.addComponent(std::shared_ptr<Snake::Sprite>(new Snake::Sprite("Sprite",
             SNAKE_HEAD_PATH, { "H", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
-            { SNAKE_HEAD_SIZE * 3, 0, SNAKE_HEAD_SIZE, SNAKE_HEAD_SIZE }, 0)));
+            { 0, 0, SNAKE_HEAD_SIZE, SNAKE_HEAD_SIZE }, 3)));
         entity.addComponent(std::shared_ptr<Snake::SnakeHeadCollider>(new Snake::SnakeHeadCollider(
             "SnakeCollider", { CASE_SIZE / 2, CASE_SIZE / 2, 0 }, *transform)));
         return entity;
