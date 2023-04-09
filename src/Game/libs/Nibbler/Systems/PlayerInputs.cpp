@@ -8,9 +8,11 @@
 #include "PlayerInputs.hpp"
 #include "Events.hpp"
 #include "Direction.hpp"
+#include "NibblerSprite.hpp"
 #include "Speed.hpp"
 #include "NibblerGameScene.hpp"
 #include "Transform.hpp"
+#include "ObjectFactory.hpp"
 #include <iostream>
 
 void Nibbler::PlayerInputs::run(double deltaTime,
@@ -48,6 +50,20 @@ void Nibbler::PlayerInputs::run(double deltaTime,
                 direction = Nibbler::Direction::dir::RIGHT;
             reinterpret_cast<Nibbler::Direction &>(directionComp).setNextDirection(direction);
             // SetNextPosition(*entity);
+        
+            if (idEntity.find("nibbler_head") != std::string::npos) {
+                auto &spriteComp = entity->getComponents("Sprite");
+                auto &sprite = reinterpret_cast<Nibbler::Sprite &>(spriteComp);
+
+                if (eventU.first)
+                    sprite.currentRectIndex = 3;
+                if (eventD.first)
+                    sprite.currentRectIndex = 1;
+                if (eventL.first)
+                    sprite.currentRectIndex = 2;
+                if (eventR.first)
+                    sprite.currentRectIndex = 0;
+            }
         } catch(const std::exception& e) {
             std::cerr << "playerInputs direction component not found" << std::endl;
             return;

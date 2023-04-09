@@ -39,9 +39,9 @@ namespace Nibbler
         entity.addComponent(std::shared_ptr<Nibbler::Direction>(
             new Nibbler::Direction("Direction", Direction::dir::UP)));
         entity.addComponent(speed);
-        entity.addComponent(std::shared_ptr<Nibbler::Sprite>(new Nibbler::Sprite("Sprite", NIBBLER_PATH,
+        entity.addComponent(std::shared_ptr<Nibbler::Sprite>(new Nibbler::Sprite("Sprite", NIBBLER_HEAD_PATH,
             { "H", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
-            { 0, 0, NIBBLER_SIZE, NIBBLER_SIZE }, 0)));
+            { 0, 0, NIBBLER_SIZE, NIBBLER_SIZE }, 3)));
         entity.addComponent(std::shared_ptr<Nibbler::NibblerHeadCollider>(new Nibbler::NibblerHeadCollider(
             "NibblerCollider", { CASE_SIZE / 2, CASE_SIZE / 2, 0 }, *transform)));
         return entity;
@@ -82,7 +82,7 @@ namespace Nibbler
         entity.addComponent(path);
         entity.addComponent(direction);
         entity.addComponent(std::shared_ptr<Nibbler::Speed>(new Nibbler::Speed("Speed", SPEED_ENTITY)));
-        entity.addComponent(std::shared_ptr<Nibbler::Sprite>(new Nibbler::Sprite("Sprite", NIBBLER_PATH,
+        entity.addComponent(std::shared_ptr<Nibbler::Sprite>(new Nibbler::Sprite("Sprite", NIBBLER_BODY_PATH,
             { "B", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
             { 0, 0, NIBBLER_SIZE, NIBBLER_SIZE }, 0)));
         entity.addComponent(boxCollider);

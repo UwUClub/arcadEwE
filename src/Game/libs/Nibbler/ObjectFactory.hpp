@@ -9,7 +9,8 @@
 #define OBJECTFACTORY_HPP_
 #include "IEntityManager.hpp"
 #include "ArcadeStruct.hpp"
-#define NIBBLER_PATH         "assets/snake/lego/bg_green.png"
+#define NIBBLER_HEAD_PATH    "assets/snake/lego/head.png"
+#define NIBBLER_BODY_PATH    "assets/snake/lego/bg_green.png"
 #define NIBBLER_SIZE         64
 #define FRUIT_PATH           "assets/snake/lego/apple.png"
 #define FRUIT_SIZE           64
