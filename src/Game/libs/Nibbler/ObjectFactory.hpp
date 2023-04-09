@@ -18,7 +18,7 @@
 #define VERTICAL_WALL_PATH   "assets/images/vertical_wall.png"
 #define WALL_WIDTH           21
 #define WALL_HEIGHT          108
-#define SPEED_ENTITY         30.0f
+#define SPEED_ENTITY         10.0f
 
 namespace Nibbler
 {
