@@ -20,6 +20,11 @@ namespace Nibbler
             void run(double deltaTime,
                 Arcade::ECS::IEventManager &eventManager,
                 Arcade::ECS::IEntityManager &currentScene) override;
+        private:
+            bool IsUpValid(Arcade::ECS::IEntityManager &entityManager, Arcade::ECS::IEntity &nibbler, Arcade::Vector3f position);
+            bool IsDownValid(Arcade::ECS::IEntityManager &entityManager, Arcade::ECS::IEntity &nibbler, Arcade::Vector3f position);
+            bool IsLeftValid(Arcade::ECS::IEntityManager &entityManager, Arcade::ECS::IEntity &nibbler, Arcade::Vector3f position);
+            bool IsRightValid(Arcade::ECS::IEntityManager &entityManager, Arcade::ECS::IEntity &nibbler, Arcade::Vector3f position);
     };
 }
 

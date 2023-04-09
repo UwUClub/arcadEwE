@@ -23,14 +23,12 @@ namespace Nibbler {
         if (entity.getId() == "fruit") {
             eventManager.addEvent("FRUIT_EATEN");
         }
-        if (entity.getId() == "horizontal_wall") {
-            eventManager.addEvent("KEY_RIGHT_PRESSED");
-        }
-        if (entity.getId() == "vertical_wall") {
-            eventManager.addEvent("KEY_DOWN_PRESSED");
-        }
-        (void)entity;
-        (void)eventManager;
+        // if (entity.getId() == "horizontal_wall") {
+        //     eventManager.addEvent("HORIZONTAL_WALL_COLLISION");
+        // }
+        // if (entity.getId() == "vertical_wall") {
+        //     eventManager.addEvent("VERTICAL_WALL_COLLISION");
+        // }
     }
 
     void NibblerHeadCollider::OnCollisionStay(const Arcade::ECS::IEntity &entity, Arcade::ECS::IEventManager &eventManager)

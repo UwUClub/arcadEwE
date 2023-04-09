@@ -118,7 +118,7 @@ namespace Nibbler
             { "-", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
             { 0, 0, WALL_HEIGHT * 2, WALL_WIDTH }, 0)));
         entity.addComponent(std::shared_ptr<Nibbler::BoxCollider>(new Nibbler::BoxCollider(
-            "BoxCollider", { WALL_HEIGHT / 10, WALL_WIDTH / 2, 0 }, *transform)));
+            "BoxCollider", { CASE_SIZE, 2, 0 }, *transform)));
         return entity;
     }
 
@@ -133,7 +133,7 @@ namespace Nibbler
             { "|", { 255, 255, 255, 255 }, { 0, 0, 0, 255 } }, position,
             { 0, 0, WALL_WIDTH, WALL_HEIGHT }, 0)));
         entity.addComponent(std::shared_ptr<Nibbler::BoxCollider>(new Nibbler::BoxCollider(
-            "BoxCollider", { WALL_WIDTH / 5, WALL_HEIGHT / 10, 0 }, *transform)));
+            "BoxCollider", { 2, CASE_SIZE, 0 }, *transform)));
         return entity;
     }
 } // namespace Nibbler
