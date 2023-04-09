@@ -31,7 +31,7 @@ namespace Nibbler
         auto &entity = entityManager.createEntity("nibbler_head");
         auto transform
             = std::shared_ptr<Nibbler::Transform>(new Nibbler::Transform("Transform", position));
-        auto speed = std::shared_ptr<Nibbler::Speed>(new Nibbler::Speed("Speed", SPEED_ENTITY));
+        auto speed = std::shared_ptr<Nibbler::Speed>(new Nibbler::Speed("Speed", SPEED_ENTITY * 1.005));
 
         speed->setNextPoint(
             { position.x / CASE_SIZE * CASE_SIZE, position.y / CASE_SIZE * CASE_SIZE, 0 });

@@ -61,9 +61,6 @@ namespace Nibbler {
                 auto objectFactory = Nibbler::ObjectFactory();
                 objectFactory.CreateNibblerBody(entityManager, pos, {0, 0, 0});
                 std::string id = "nibbler_body_" + std::to_string(nibblerBodyCount);
-                if (!isTailValid(entityManager, id)) {
-                    eventManager.addEvent("GAME_OVER");
-                }
             } catch (std::exception &e) {
                 std::cerr << "Error: last tail not found" << std::endl;
             }

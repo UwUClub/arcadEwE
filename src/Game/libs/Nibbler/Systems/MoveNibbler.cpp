@@ -16,6 +16,8 @@
 #include <iostream>
 #include <memory>
 #include <iostream>
+#include <chrono>
+#include <ctime>
 
 void Nibbler::MoveNibbler::run(double deltaTime,
     Arcade::ECS::IEventManager &eventManager,
@@ -41,6 +43,7 @@ void Nibbler::MoveNibbler::run(double deltaTime,
             auto nextPos = speedComp.getNextPoint();
             auto direction = directionComp.getDirection();
             auto nextDirection = directionComp.getNextDirection();
+            auto start = std::chrono::steady_clock::now();
 
             switch (direction) {
                 case Nibbler::Direction::dir::UP:
@@ -49,31 +52,35 @@ void Nibbler::MoveNibbler::run(double deltaTime,
                         bool isUpValid = IsUpValid(entityManager, *entity, nextPos);
                         bool isRightValid = IsRightValid(entityManager, *entity, nextPos);
                         bool isLeftValid = IsLeftValid(entityManager, *entity, nextPos);
+                        auto end = std::chrono::steady_clock::now();
+                        std::chrono::duration<float> temp = end - start;
+                        auto delta = temp.count();
 
                         if (nextDirection == Nibbler::Direction::dir::LEFT && isLeftValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x - (speed * delta), nextPos.y, 0});
                             directionComp.setDirection(Nibbler::Direction::dir::LEFT);
                             eventManager.addEvent("nibblerMove");
                             return;
                         }
                         if (nextDirection == Nibbler::Direction::dir::RIGHT && isRightValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x + (speed * delta), nextPos.y, 0});
                             directionComp.setDirection(Nibbler::Direction::dir::RIGHT);
                             eventManager.addEvent("nibblerMove");
                             return;
                         }
                         if (isUpValid) {
                             speedComp.setNextPoint({nextPos.x, nextPos.y - CASE_SIZE, 0});
+                            transform.Translate({0, -speed * delta, 0});
                             return;
                         }
                         if (isLeftValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x - (speed * delta), nextPos.y, 0});
                             directionComp.setDirection(Nibbler::Direction::dir::LEFT);
                             eventManager.addEvent("nibblerMove");
                             return;
                         }
                         if (isRightValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x + (speed * delta), nextPos.y, 0});
                             directionComp.setDirection(Nibbler::Direction::dir::RIGHT);
                             eventManager.addEvent("nibblerMove");
                             return;
@@ -87,31 +94,35 @@ void Nibbler::MoveNibbler::run(double deltaTime,
                         bool isDownValid = IsDownValid(entityManager, *entity, nextPos);
                         bool isRightValid = IsRightValid(entityManager, *entity, nextPos);
                         bool isLeftValid = IsLeftValid(entityManager, *entity, nextPos);
+                        auto end = std::chrono::steady_clock::now();
+                        std::chrono::duration<float> temp = end - start;
+                        auto delta = temp.count();
 
                         if (nextDirection == Nibbler::Direction::dir::LEFT && isLeftValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x - (speed * delta), nextPos.y, 0});
                             directionComp.setDirection(Nibbler::Direction::dir::LEFT);
                             eventManager.addEvent("nibblerMove");
                             return;
                         }
                         if (nextDirection == Nibbler::Direction::dir::RIGHT && isRightValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x + (speed * delta), nextPos.y, 0});
                             directionComp.setDirection(Nibbler::Direction::dir::RIGHT);
                             eventManager.addEvent("nibblerMove");
                             return;
                         }
                         if (isDownValid) {
                             speedComp.setNextPoint({nextPos.x, nextPos.y + CASE_SIZE, 0});
+                            transform.Translate({0, speed * delta, 0});
                             return;
                         }
                         if (isLeftValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x - (speed * delta), nextPos.y, 0});
                             directionComp.setDirection(Nibbler::Direction::dir::LEFT);
                             eventManager.addEvent("nibblerMove");
                             return;
                         }
                         if (isRightValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x + (speed * delta), nextPos.y, 0});
                             directionComp.setDirection(Nibbler::Direction::dir::RIGHT);
                             eventManager.addEvent("nibblerMove");
                             return;
@@ -125,31 +136,35 @@ void Nibbler::MoveNibbler::run(double deltaTime,
                         bool isUpValid = IsUpValid(entityManager, *entity, nextPos);
                         bool isDownValid = IsDownValid(entityManager, *entity, nextPos);
                         bool isLeftValid = IsLeftValid(entityManager, *entity, nextPos);
+                        auto end = std::chrono::steady_clock::now();
+                        std::chrono::duration<float> temp = end - start;
+                        auto delta = temp.count();
 
                         if (nextDirection == Nibbler::Direction::dir::UP && isUpValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x, nextPos.y - (speed * delta), 0});
                             directionComp.setDirection(Nibbler::Direction::dir::UP);
                             eventManager.addEvent("nibblerMove");
                             return;
                         }
                         if (nextDirection == Nibbler::Direction::dir::DOWN && isDownValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x, nextPos.y + (speed * delta), 0});
                             directionComp.setDirection(Nibbler::Direction::dir::DOWN);
                             eventManager.addEvent("nibblerMove");
                             return;
                         }
                         if (isLeftValid) {
                             speedComp.setNextPoint({nextPos.x - CASE_SIZE, nextPos.y, 0});
+                            transform.Translate({-speed * delta, 0, 0});
                             return;
                         }
                         if (isUpValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x, nextPos.y - (speed * delta), 0});
                             directionComp.setDirection(Nibbler::Direction::dir::UP);
                             eventManager.addEvent("nibblerMove");
                             return;
                         }
                         if (isDownValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x, nextPos.y + (speed * delta), 0});
                             directionComp.setDirection(Nibbler::Direction::dir::DOWN);
                             eventManager.addEvent("nibblerMove");
                             return;
@@ -163,31 +178,35 @@ void Nibbler::MoveNibbler::run(double deltaTime,
                         bool isUpValid = IsUpValid(entityManager, *entity, nextPos);
                         bool isDownValid = IsDownValid(entityManager, *entity, nextPos);
                         bool isRightValid = IsRightValid(entityManager, *entity, nextPos);
+                        auto end = std::chrono::steady_clock::now();
+                        std::chrono::duration<float> temp = end - start;
+                        auto delta = temp.count();
 
                         if (nextDirection == Nibbler::Direction::dir::UP && isUpValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x, nextPos.y - (speed * delta), 0});
                             directionComp.setDirection(Nibbler::Direction::dir::UP);
                             eventManager.addEvent("nibblerMove");
                             return;
                         }
                         if (nextDirection == Nibbler::Direction::dir::DOWN && isDownValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x, nextPos.y + (speed * delta), 0});
                             directionComp.setDirection(Nibbler::Direction::dir::DOWN);
                             eventManager.addEvent("nibblerMove");
                             return;
                         }
                         if (isRightValid) {
                             speedComp.setNextPoint({nextPos.x + CASE_SIZE, nextPos.y, 0});
+                            transform.Translate({speed * delta, 0, 0});
                             return;
                         }
                         if (isUpValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x, nextPos.y - (speed * delta), 0});
                             directionComp.setDirection(Nibbler::Direction::dir::UP);
                             eventManager.addEvent("nibblerMove");
                             return;
                         }
                         if (isDownValid) {
-                            transform.setPosition(nextPos);
+                            transform.setPosition({nextPos.x, nextPos.y + (speed * delta), 0});
                             directionComp.setDirection(Nibbler::Direction::dir::DOWN);
                             eventManager.addEvent("nibblerMove");
                             return;

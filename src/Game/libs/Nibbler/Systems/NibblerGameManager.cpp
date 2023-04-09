@@ -26,25 +26,26 @@ void Nibbler::NibblerGameManager::run(double deltaTime,
             continue;
         }
         try {
-            const int shift = 2;
-            auto &transformComp = entity->getComponents("Transform");
-            auto &directionComp = entity->getComponents("Direction");
+            (void)eventManager;
+            // const int shift = 2;
+            // auto &transformComp = entity->getComponents("Transform");
+            // auto &directionComp = entity->getComponents("Direction");
 
-            auto &position = reinterpret_cast<Nibbler::Transform &>(transformComp).position;
-            const auto direction = reinterpret_cast<Nibbler::Direction &>(directionComp).getDirection();
+            // auto &position = reinterpret_cast<Nibbler::Transform &>(transformComp).position;
+            // const auto direction = reinterpret_cast<Nibbler::Direction &>(directionComp).getDirection();
 
-            if (position.x < 0 + shift && direction == Nibbler::Direction::dir::LEFT) {
-                eventManager.addEvent("KEY_DOWN_PRESSED");
-            }
-            if (position.x > 100 - 12 && direction == Nibbler::Direction::dir::RIGHT) {
-                eventManager.addEvent("KEY_UP_PRESSED");
-            }
-            if (position.y < 0 + shift && direction == Nibbler::Direction::dir::UP) {
-                eventManager.addEvent("KEY_LEFT_PRESSED");
-            }
-            if (position.y > 100 - 20 && direction == Nibbler::Direction::dir::DOWN) {
-                eventManager.addEvent("KEY_RIGHT_PRESSED");
-            }
+            // if (position.x < 0 + shift && direction == Nibbler::Direction::dir::LEFT) {
+            //     eventManager.addEvent("KEY_DOWN_PRESSED");
+            // }
+            // if (position.x > 100 - 12 && direction == Nibbler::Direction::dir::RIGHT) {
+            //     eventManager.addEvent("KEY_UP_PRESSED");
+            // }
+            // if (position.y < 0 + shift && direction == Nibbler::Direction::dir::UP) {
+            //     eventManager.addEvent("KEY_LEFT_PRESSED");
+            // }
+            // if (position.y > 100 - 20 && direction == Nibbler::Direction::dir::DOWN) {
+            //     eventManager.addEvent("KEY_RIGHT_PRESSED");
+            // }
         } catch (const std::exception &e) {
             std::cerr << "nibblerGameManager, component not found" << std::endl;
             return;
