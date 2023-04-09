@@ -63,6 +63,9 @@ namespace Arcade::Graph
             static_cast<Uint8>(text->backgroundColor.b),
             static_cast<Uint8>(text->backgroundColor.a) };
 
+        if (text->text.empty()) {
+            return;
+        }
         TTF_Font *font = loadFont(text->fontPath);
         if (font == nullptr) {
             std::cerr << "Failed to load font: " << TTF_GetError() << std::endl;

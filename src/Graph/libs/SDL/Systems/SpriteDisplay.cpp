@@ -33,16 +33,15 @@ void Arcade::Graph::SpriteDisplay::drawSprite(SDL_Renderer *renderer,
 
     if (texture == nullptr)
         return;
-    rect.x = sprite->pos.x;
-    rect.y = sprite->pos.y;
-    rect.w = sprite->rect.left + (sprite->rect.width * sprite->currentRectIndex);
-    rect.h = sprite->rect.top + sprite->rect.height;
-    srcRect.x = (sprite->pos.x / 100) * SCREEN_WIDTH;
+    rect.x = sprite->rect.width * sprite->currentRectIndex;
+    rect.y = sprite->rect.top;
+    rect.w = sprite->rect.width;
+    rect.h = sprite->rect.height;
+    srcRect.x = (sprite->pos.x / 100) * SCREEN_WIDTH / 2;
     srcRect.y = (sprite->pos.y / 100) * SCREEN_HEIGHT;
     srcRect.w = sprite->rect.width;
     srcRect.h = sprite->rect.height;
 
-    SDL_QueryTexture(texture, nullptr, nullptr, &rect.w, &rect.h);
     SDL_RenderCopy(renderer, texture, &rect, &srcRect);
 }
 
