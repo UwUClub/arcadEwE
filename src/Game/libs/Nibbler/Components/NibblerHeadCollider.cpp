@@ -5,6 +5,8 @@
 ** NibblerHeadCollider
 */
 
+#include "Direction.hpp"
+#include "Events.hpp"
 #include "NibblerHeadCollider.hpp"
 
 namespace Nibbler {
@@ -20,6 +22,12 @@ namespace Nibbler {
         }
         if (entity.getId() == "fruit") {
             eventManager.addEvent("FRUIT_EATEN");
+        }
+        if (entity.getId() == "horizontal_wall") {
+            eventManager.addEvent("KEY_RIGHT_PRESSED");
+        }
+        if (entity.getId() == "vertical_wall") {
+            eventManager.addEvent("KEY_DOWN_PRESSED");
         }
         (void)entity;
         (void)eventManager;
