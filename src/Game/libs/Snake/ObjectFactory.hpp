@@ -9,11 +9,11 @@
 #define OBJECTFACTORY_HPP_
 #include "IEntityManager.hpp"
 #include "ArcadeStruct.hpp"
-#define SNAKE_HEAD_PATH "assets/images/snake_head.png"
+#define SNAKE_HEAD_PATH "assets/snake/lego/head.png"
 #define SNAKE_HEAD_SIZE 64
-#define SNAKE_BODY_PATH "assets/images/snake_body.png"
+#define SNAKE_BODY_PATH "assets/snake/lego/bg_green.png"
 #define SNAKE_BODY_SIZE 64
-#define FRUIT_PATH      "assets/images/apple.png"
+#define FRUIT_PATH      "assets/snake/lego/apple.png"
 #define FRUIT_SIZE      128
 #define WALL_PATH       "assets/images/snake_body.png"
 #define SPEED_ENTITY    30.0f
